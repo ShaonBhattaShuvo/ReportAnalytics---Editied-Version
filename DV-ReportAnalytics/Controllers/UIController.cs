@@ -1,4 +1,4 @@
-﻿using DV_ReportAnalytics.UI;
+﻿using DV_ReportAnalytics.Events;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +15,7 @@ namespace DV_ReportAnalytics
     public class UIController
     {
         public event UserMessageEventHandler UserMessageUpdated = null;
+        public event OpenFileEventHandler OpenFile = null;
 
         public UIController()
         {
@@ -25,10 +26,7 @@ namespace DV_ReportAnalytics
         public void AppForm_OpenButtonClicked()
         {
             //_UserMessageUpdated(this, new UserMessageEventArgs("Open File: We can implement functionality in the separate class and create instance of this class in UIController."));
-            if (this._openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                this._webBrowser.Navigate(_openFileDialog.FileName, false);
-            }
+            _OpenFile(this, new OpenFileEventArgs("123"));
         }
 
         public void AppForm_SaveButtonClicked()
@@ -60,6 +58,14 @@ namespace DV_ReportAnalytics
         {
             if (UserMessageUpdated != null)
                 UserMessageUpdated.Invoke(sender, args);
+        }
+
+        private void _OpenFile(object sender, OpenFileEventArgs args)
+        {
+            if (OpenFile != null)
+            {
+                OpenFile.Invoke(sender, args);
+            }
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using DV_ReportAnalytics.UI;
+﻿using DV_ReportAnalytics.Events;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -31,6 +31,7 @@ namespace DV_ReportAnalytics
         {
             _uicontroller= new UIController();
             _uicontroller.UserMessageUpdated += _UserMessageUpdated;
+            _uicontroller.OpenFile += _OpenFile;
         }
               
         private void MainForm_Resize(object sender, EventArgs e)
@@ -73,14 +74,5 @@ namespace DV_ReportAnalytics
         {
             _uicontroller.AppForm_HelpInfoButtonClicked();
         }
-
-
-#region "UIController"
-        private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
-        {
-            MessageBox.Show(args.Message);
-        }
-#endregion
-
     }
 }
