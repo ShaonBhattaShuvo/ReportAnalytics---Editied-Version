@@ -8,14 +8,15 @@ namespace DV_ReportAnalytics.Events
 {
         public class OpenFileEventArgs : EventArgs
         {
-            public string Message { get; }
+            public string Path { get; }
 
-            public OpenFileEventArgs(string message)
+            public OpenFileEventArgs(string path)
             {
-                this.Message = message;
+                this.Path = path;
             }
 
         }
+        public delegate void OnOpenFileEventHandler(object sender, EventArgs e);
         public delegate void OpenFileEventHandler(object sender, OpenFileEventArgs e);
         
 }

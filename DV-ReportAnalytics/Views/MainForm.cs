@@ -1,5 +1,4 @@
-﻿using DV_ReportAnalytics.Events;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,15 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DV_ReportAnalytics.Events;
+using DV_ReportAnalytics.Controllers;
+using DV_ReportAnalytics.Models;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.Views
 {
     /// <summary>
     /// Do not touch this file. All the coding must be done in UIController.cs
     /// </summary>
     public partial class MainForm : Form
     {
-        UIController _uicontroller = null;
+        private UIController _uicontroller = null;
+        private SpreadSheetModel _spreadSheetModel = null;
 
         public MainForm()
         {
@@ -29,9 +32,13 @@ namespace DV_ReportAnalytics
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            // bind controllers and models
+            // register events
             _uicontroller= new UIController();
             _uicontroller.UserMessageUpdated += _UserMessageUpdated;
-            _uicontroller.OpenFile += _OpenFile;
+            _uicontroller.OnOpenFile += _OnOpenFileHandler;
+            _spreadSheetModel = new SpreadSheetModel("test");
+            _spreadSheetModel.OpenFile += _OpenFileHandler;
         }
               
         private void MainForm_Resize(object sender, EventArgs e)

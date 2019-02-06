@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.Controllers
 {
     /// <summary>
     /// Place your code here
@@ -15,7 +15,7 @@ namespace DV_ReportAnalytics
     public class UIController
     {
         public event UserMessageEventHandler UserMessageUpdated = null;
-        public event OpenFileEventHandler OpenFile = null;
+        public event OnOpenFileEventHandler OnOpenFile = null;
 
         public UIController()
         {
@@ -26,7 +26,7 @@ namespace DV_ReportAnalytics
         public void AppForm_OpenButtonClicked()
         {
             //_UserMessageUpdated(this, new UserMessageEventArgs("Open File: We can implement functionality in the separate class and create instance of this class in UIController."));
-            _OpenFile(this, new OpenFileEventArgs("123"));
+            _OnOpenFile();
         }
 
         public void AppForm_SaveButtonClicked()
@@ -60,11 +60,11 @@ namespace DV_ReportAnalytics
                 UserMessageUpdated.Invoke(sender, args);
         }
 
-        private void _OpenFile(object sender, OpenFileEventArgs args)
+        private void _OnOpenFile()
         {
-            if (OpenFile != null)
+            if (OnOpenFile != null)
             {
-                OpenFile.Invoke(sender, args);
+                OnOpenFile.Invoke(this, new EventArgs());
             }
         }
     }

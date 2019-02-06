@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DV_ReportAnalytics.Events;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.Views
 {
     partial class MainForm
     {
@@ -15,12 +15,17 @@ namespace DV_ReportAnalytics
             MessageBox.Show(args.Message);
         }
         
-        private void _OpenFile(object sender, OpenFileEventArgs args)
+        private void _OnOpenFileHandler(object sender, EventArgs args)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                spreadSheetContainer.Navigate(openFileDialog.FileName, false);
+                _spreadSheetModel.setFilePath(openFileDialog.FileName);
             }
+        }
+
+        private void _OpenFileHandler(object sender, OpenFileEventArgs args)
+        {
+            spreadSheetContainer.Navigate(args.Path, false);
         }
     }
 }
