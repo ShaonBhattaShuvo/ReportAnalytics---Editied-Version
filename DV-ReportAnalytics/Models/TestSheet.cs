@@ -8,9 +8,9 @@ namespace DV_ReportAnalytics.Models
 {
     class TestSheet: ASpreadSheetModel
     {
-        public TestSheet(string name): base(name)
+        public TestSheet(string filename): base(filename)
         {
-            
+
         }
     }
 }

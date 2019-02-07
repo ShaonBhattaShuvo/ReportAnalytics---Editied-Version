@@ -18,8 +18,8 @@ namespace DV_ReportAnalytics.Views
     /// </summary>
     public partial class MainForm : Form
     {
-        private MainFormController _uicontroller = null;
-        private ISpreadSheetModel _spreadSheetModel = null;
+        private MainFormController _controller;
+        private ISpreadSheetModel _model;
 
         public MainForm()
         {
@@ -34,11 +34,10 @@ namespace DV_ReportAnalytics.Views
         {
             // bind controllers and models
             // register events
-            _uicontroller= new MainFormController();
-            _uicontroller.UserMessageUpdated += _UserMessageUpdated;
-            _uicontroller.OnOpenFile += _OpenDialogHandler;
-            _spreadSheetModel = new TestSheet("test");
-            _spreadSheetModel.OpenFile += _OpenFileHandler;
+            _controller = new MainFormController(this);
+            _controller.UserMessageUpdated += _UserMessageUpdated;
+            _model = null;
+            
         }
               
         private void MainForm_Resize(object sender, EventArgs e)
@@ -50,22 +49,22 @@ namespace DV_ReportAnalytics.Views
 
         private void toolStripButtonOpenFile_Click(object sender, EventArgs e)
         {
-            _uicontroller.AppForm_OpenButtonClicked();
+            _controller.AppForm_OpenButtonClicked();
         }
 
         private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
         {
-            _uicontroller.AppForm_SaveButtonClicked();
+            _controller.AppForm_SaveButtonClicked();
         }
 
         private void toolStripButtonTableDisplay_Click(object sender, EventArgs e)
         {
-            _uicontroller.AppForm_TableButtonClicked();
+            _controller.AppForm_TableButtonClicked();
         }
 
         private void toolStripButtonGraphToggle_Click(object sender, EventArgs e)
         {
-            _uicontroller.AppForm_GraphButtonClicked();
+            _controller.AppForm_GraphButtonClicked();
 
             // Determine whether to show the graph which depends on the state of the splitter
             splitContainerMain.Panel2Collapsed = !splitContainerMain.Panel2Collapsed;
@@ -74,12 +73,12 @@ namespace DV_ReportAnalytics.Views
 
         private void toolStripButtonSettings_Click(object sender, EventArgs e)
         {
-            _uicontroller.AppForm_SettingsButtonClicked();
+            _controller.AppForm_SettingsButtonClicked();
         }
 
         private void toolStripButtonHelp_Click(object sender, EventArgs e)
         {
-            _uicontroller.AppForm_HelpInfoButtonClicked();
+            _controller.AppForm_HelpInfoButtonClicked();
         }
     }
 }

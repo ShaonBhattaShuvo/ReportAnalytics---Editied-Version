@@ -5,17 +5,19 @@ using System.Text;
 using System.Threading.Tasks;
 using DV_ReportAnalytics.Events;
 
+// base model for spreadsheet
+// must be inherited before using
 namespace DV_ReportAnalytics.Models
 {
     abstract class ASpreadSheetModel: ISpreadSheetModel
     {
-        public string Name {set; get;}
+        public string FileName {set; get;}
         public string Path {set; get;}
         public event OpenFileEventHandler OpenFile = null;
 
-        public ASpreadSheetModel(string name)
+        public ASpreadSheetModel(string filename)
         {
-            Name = name;
+            FileName = filename;
         }
 
         public void setFilePath(string path)

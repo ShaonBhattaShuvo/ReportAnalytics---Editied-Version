@@ -9,7 +9,7 @@ namespace DV_ReportAnalytics.Models
 {
     interface ISpreadSheetModel
     {
-        string Name {set; get;}
+        string FileName {set; get;}
         string Path {set; get;}
         event OpenFileEventHandler OpenFile;
         void setFilePath(string path);

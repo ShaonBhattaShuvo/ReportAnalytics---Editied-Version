@@ -8,26 +8,28 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    partial class MainForm
+    partial class MainForm: IMainForm
     {
         private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
         {
             MessageBox.Show(args.Message);
         }
-        
-        private void _OpenDialogHandler(object sender, EventArgs args)
-        {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                // set model file path
-                _spreadSheetModel.setFilePath(openFileDialog.FileName);
-            }
-        }
 
-        private void _OpenFileHandler(object sender, OpenFileEventArgs args)
+        public void OpenFileHandler(object sender, OpenFileEventArgs args)
         {
             // open file in window
             spreadSheetContainer.Navigate(args.Path, false);
+        }
+
+        public string GetPathFromDialog()
+        {
+            string filename = "";
+            if (openFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                // set model file path
+                filename = openFileDialog.FileName;
+            }
+            return filename;   
         }
     }
 }

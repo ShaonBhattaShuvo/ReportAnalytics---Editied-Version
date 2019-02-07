@@ -16,7 +16,6 @@ namespace DV_ReportAnalytics.Events
             }
 
         }
-        public delegate void OnOpenFileEventHandler(object sender, EventArgs e);
         public delegate void OpenFileEventHandler(object sender, OpenFileEventArgs e);
         
 }

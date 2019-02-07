@@ -1,10 +1,13 @@
-﻿using DV_ReportAnalytics.Events;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using DV_ReportAnalytics.Events;
+using DV_ReportAnalytics.Models;
+using DV_ReportAnalytics.Views;
 
 
 namespace DV_ReportAnalytics.Controllers
@@ -12,21 +15,26 @@ namespace DV_ReportAnalytics.Controllers
     /// <summary>
     /// Place your code here
     /// </summary>
-    public class MainFormController
+    class MainFormController: IMainFormController
     {
         public event UserMessageEventHandler UserMessageUpdated = null;
-        public event OnOpenFileEventHandler OnOpenFile = null;
 
-        public MainFormController()
+        private MainForm _mainForm;
+        private ISpreadSheetModel _sheet;
+
+        public MainFormController(MainForm mainForm)
         {
-            //TODO: Create all necessary classes which require different functionality from MainForm
+            // mainform should be binded with controller here
+            _mainForm = mainForm;
+            // TODO: Create all necessary classes which require different functionality from MainForm
         }
 
 
         public void AppForm_OpenButtonClicked()
         {
-            //_UserMessageUpdated(this, new UserMessageEventArgs("Open File: We can implement functionality in the separate class and create instance of this class in UIController."));
-            _OnOpenFile();
+            string path = _mainForm.GetPathFromDialog();
+            _NewSheet(Path.GetFileName(path));
+            _sheet.setFilePath(path);
         }
 
         public void AppForm_SaveButtonClicked()
@@ -60,12 +68,10 @@ namespace DV_ReportAnalytics.Controllers
                 UserMessageUpdated.Invoke(sender, args);
         }
 
-        private void _OnOpenFile()
+        private void _NewSheet(string filename)
         {
-            if (OnOpenFile != null)
-            {
-                OnOpenFile.Invoke(this, new EventArgs());
-            }
+            _sheet = new TestSheet(filename); // create a new sheet model
+            _sheet.OpenFile += _mainForm.OpenFileHandler; // and bind it with mainform
         }
     }
 }
