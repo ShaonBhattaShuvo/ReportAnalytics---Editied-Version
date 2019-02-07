@@ -3,7 +3,7 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Models
 {
-    public interface ISpreadSheetModel
+    interface ISpreadSheetModel
     {
         string FileName {get;}
         string FilePath {get;}

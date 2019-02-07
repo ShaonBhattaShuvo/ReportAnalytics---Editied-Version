@@ -15,7 +15,7 @@ namespace DV_ReportAnalytics.Controllers
     /// <summary>
     /// Place your code here
     /// </summary>
-    public class MainFormController: IMainFormController
+    class MainFormController: IMainFormController
     {
         public event UserMessageEventHandler UserMessageUpdated = null;
 

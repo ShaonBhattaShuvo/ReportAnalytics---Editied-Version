@@ -1,6 +1,6 @@
 ﻿namespace DV_ReportAnalytics.Views
 {
-    public partial class MainForm
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.

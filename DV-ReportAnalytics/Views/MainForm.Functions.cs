@@ -10,7 +10,7 @@ using DV_ReportAnalytics.Models;
 // this part implements the public methods that the controllers can use
 namespace DV_ReportAnalytics.Views
 {
-    public partial class MainForm: IMainForm
+    partial class MainForm: IMainForm
     {
         private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
         {

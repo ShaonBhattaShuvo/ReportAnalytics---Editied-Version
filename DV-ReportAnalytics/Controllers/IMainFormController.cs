@@ -3,7 +3,7 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Controllers
 {
-    public interface IMainFormController
+    interface IMainFormController
     {
         event UserMessageEventHandler UserMessageUpdated;
         void AppForm_OpenButtonClicked(string path);

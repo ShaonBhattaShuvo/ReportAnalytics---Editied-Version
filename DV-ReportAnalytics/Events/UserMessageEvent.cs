@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace DV_ReportAnalytics.Events
 {
-        public class UserMessageEventArgs : EventArgs
+    class UserMessageEventArgs : EventArgs
+    {
+        public string Message { get; }
+
+        public UserMessageEventArgs(string message)
         {
-            public string Message { get; }
-
-            public UserMessageEventArgs(string message)
-            {
-                this.Message = message;
-            }
-
+            this.Message = message;
         }
-        public delegate void UserMessageEventHandler(object sender, UserMessageEventArgs e);
+
+    }
+    delegate void UserMessageEventHandler(object sender, UserMessageEventArgs e);
         
 }

@@ -2,7 +2,7 @@
 
 namespace DV_ReportAnalytics.Events
 {
-    public class DataPlotEventArgs: EventArgs
+    class DataPlotEventArgs: EventArgs
     {
         public string Data {get;}
 
@@ -11,5 +11,5 @@ namespace DV_ReportAnalytics.Events
             Data = data;
         }
     }
-    public delegate void DataPlotEventHandler(object sender, DataPlotEventArgs e);
+    delegate void DataPlotEventHandler(object sender, DataPlotEventArgs e);
 }

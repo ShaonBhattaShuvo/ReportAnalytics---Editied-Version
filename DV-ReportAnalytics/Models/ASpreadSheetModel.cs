@@ -8,7 +8,7 @@ using DV_ReportAnalytics.Events;
 // it just makes changes and emmit events
 namespace DV_ReportAnalytics.Models
 {
-    public abstract class ASpreadSheetModel: ISpreadSheetModel
+    abstract class ASpreadSheetModel: ISpreadSheetModel
     {
         public string FileName {get;}
         public string FilePath {get;}
@@ -16,7 +16,7 @@ namespace DV_ReportAnalytics.Models
         public event DataPlotEventHandler DataPlot;
         private bool _isopen;
 
-        public ASpreadSheetModel(string path)
+        protected ASpreadSheetModel(string path)
         {
             FileName = Path.GetFileName(path);
             FilePath = path;
