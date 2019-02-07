@@ -66,11 +66,9 @@ namespace DV_ReportAnalytics.Views
 
         private void toolStripButtonGraphToggle_Click(object sender, EventArgs e)
         {
-            _controller.AppForm_GraphButtonClicked();
-
             // Determine whether to show the graph which depends on the state of the splitter
             splitContainerMain.Panel2Collapsed = !splitContainerMain.Panel2Collapsed;
-            
+            _controller.AppForm_GraphButtonClicked();
         }
 
         private void toolStripButtonSettings_Click(object sender, EventArgs e)

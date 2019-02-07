@@ -12,20 +12,38 @@ namespace DV_ReportAnalytics.Models
     {
         public string FileName {get;}
         public string FilePath {get;}
-        public event OpenFileEventHandler OpenFile;
+        public event FileOpenEventHandler FileOpen;
+        public event DataPlotEventHandler DataPlot;
+        private bool _isopen;
 
         public ASpreadSheetModel(string path)
         {
             FileName = Path.GetFileName(path);
             FilePath = path;
+            _isopen = false;
         }
 
         public void Open()
         {
+            _isopen = true;
             // TODO: open spreadsheet, read data, build data structure
-            if (OpenFile != null)
+
+            if (FileOpen != null)
             {
-                OpenFile.Invoke(this, new OpenFileEventArgs(FilePath));
+                FileOpen.Invoke(this, new FileOpenEventArgs(FilePath)); // update observer
+            }
+        }
+
+        // this function is used to generate data for plotting
+        // TODO: add specific actions in this function
+        public virtual void GetPlotData()
+        {
+            if (_isopen && DataPlot != null)
+            {
+                string file = @"HTML\index.html";
+                string path = Path.GetFullPath(file);
+                Console.WriteLine(path);
+                DataPlot.Invoke(this, new DataPlotEventArgs(path)); // update observer
             }
         }
     }

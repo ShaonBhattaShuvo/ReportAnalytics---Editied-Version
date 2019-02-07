@@ -7,7 +7,9 @@ namespace DV_ReportAnalytics.Models
     {
         string FileName {get;}
         string FilePath {get;}
-        event OpenFileEventHandler OpenFile;
-        void Open();
+        event FileOpenEventHandler FileOpen;
+        event DataPlotEventHandler DataPlot;
+        void Open(); // open file
+        void GetPlotData();
     }
 }

@@ -49,7 +49,10 @@ namespace DV_ReportAnalytics.Controllers
 
         public void AppForm_GraphButtonClicked()
         {
-            // _UserMessageUpdated(this, new UserMessageEventArgs("Show Graph: We can implement functionality in the separate class and create instance of this class in UIController."));
+            if (_model != null)
+            {
+                _model.GetPlotData();
+            }
         }
 
         public void AppForm_SettingsButtonClicked()
