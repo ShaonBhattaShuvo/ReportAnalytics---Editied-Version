@@ -7,13 +7,13 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Models
 {
-    class SpreadSheetModel: ISpreadSheetModel
+    abstract class ASpreadSheetModel: ISpreadSheetModel
     {
         public string Name {set; get;}
         public string Path {set; get;}
         public event OpenFileEventHandler OpenFile = null;
 
-        public SpreadSheetModel(string name)
+        public ASpreadSheetModel(string name)
         {
             Name = name;
         }

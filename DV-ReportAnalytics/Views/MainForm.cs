@@ -19,7 +19,7 @@ namespace DV_ReportAnalytics.Views
     public partial class MainForm : Form
     {
         private MainFormController _uicontroller = null;
-        private SpreadSheetModel _spreadSheetModel = null;
+        private ISpreadSheetModel _spreadSheetModel = null;
 
         public MainForm()
         {
@@ -37,7 +37,7 @@ namespace DV_ReportAnalytics.Views
             _uicontroller= new MainFormController();
             _uicontroller.UserMessageUpdated += _UserMessageUpdated;
             _uicontroller.OnOpenFile += _OpenDialogHandler;
-            _spreadSheetModel = new SpreadSheetModel("test");
+            _spreadSheetModel = new TestSheet("test");
             _spreadSheetModel.OpenFile += _OpenFileHandler;
         }
               
