@@ -15,16 +15,18 @@ namespace DV_ReportAnalytics.Views
             MessageBox.Show(args.Message);
         }
         
-        private void _OnOpenFileHandler(object sender, EventArgs args)
+        private void _OpenDialogHandler(object sender, EventArgs args)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
+                // set model file path
                 _spreadSheetModel.setFilePath(openFileDialog.FileName);
             }
         }
 
         private void _OpenFileHandler(object sender, OpenFileEventArgs args)
         {
+            // open file in window
             spreadSheetContainer.Navigate(args.Path, false);
         }
     }

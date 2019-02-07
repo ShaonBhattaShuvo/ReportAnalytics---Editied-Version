@@ -12,12 +12,12 @@ namespace DV_ReportAnalytics.Controllers
     /// <summary>
     /// Place your code here
     /// </summary>
-    public class UIController
+    public class MainFormController
     {
         public event UserMessageEventHandler UserMessageUpdated = null;
         public event OnOpenFileEventHandler OnOpenFile = null;
 
-        public UIController()
+        public MainFormController()
         {
             //TODO: Create all necessary classes which require different functionality from MainForm
         }

@@ -18,7 +18,7 @@ namespace DV_ReportAnalytics.Views
     /// </summary>
     public partial class MainForm : Form
     {
-        private UIController _uicontroller = null;
+        private MainFormController _uicontroller = null;
         private SpreadSheetModel _spreadSheetModel = null;
 
         public MainForm()
@@ -34,9 +34,9 @@ namespace DV_ReportAnalytics.Views
         {
             // bind controllers and models
             // register events
-            _uicontroller= new UIController();
+            _uicontroller= new MainFormController();
             _uicontroller.UserMessageUpdated += _UserMessageUpdated;
-            _uicontroller.OnOpenFile += _OnOpenFileHandler;
+            _uicontroller.OnOpenFile += _OpenDialogHandler;
             _spreadSheetModel = new SpreadSheetModel("test");
             _spreadSheetModel.OpenFile += _OpenFileHandler;
         }

@@ -7,28 +7,30 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Models
 {
-    class SpreadSheetModel
+    class SpreadSheetModel: ISpreadSheetModel
     {
-        private readonly string _name;
-        private string _path;
+        public string Name {set; get;}
+        public string Path {set; get;}
         public event OpenFileEventHandler OpenFile = null;
 
         public SpreadSheetModel(string name)
         {
-            _name = name;
+            Name = name;
         }
 
         public void setFilePath(string path)
         {
-            _path = path;
-            _OpenFile();
+            Path = path;
+            _OpenFile(); // notify view to open file
         }
 
         private void _OpenFile()
         {
+            // TO-DO
+            // read other data from the spreadsheet
             if (OpenFile != null)
             {
-                OpenFile.Invoke(this, new OpenFileEventArgs(_path));
+                OpenFile.Invoke(this, new OpenFileEventArgs(Path));
             }
         }
     }
