@@ -55,7 +55,7 @@
   <ItemGroup>
     <Compile Include="Controllers\IMainFormController.cs" />
     <Compile Include="Controllers\MainFormController.cs" />
-    <Compile Include="Events\OpenFileEvent.cs" />
+    <Compile Include="Events\ShowFileEvent.cs" />
     <Compile Include="Models\ISpreadSheetModel.cs" />
     <Compile Include="Models\ASpreadSheetModel.cs" />
     <Compile Include="Models\TestSheet.cs" />
@@ -69,7 +69,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Events\UserMessageEvent.cs" />
-    <Compile Include="Views\MainForm.Controller.cs">
+    <Compile Include="Views\MainForm.Public.cs">
       <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Include="Views\MainForm.resx">

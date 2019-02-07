@@ -6,16 +6,16 @@ using System.Threading.Tasks;
 
 namespace DV_ReportAnalytics.Events
 {
-        public class OpenFileEventArgs : EventArgs
+        public class ShowFileEventArgs : EventArgs
         {
             public string Path { get; }
 
-            public OpenFileEventArgs(string path)
+            public ShowFileEventArgs(string path)
             {
                 this.Path = path;
             }
 
         }
-        public delegate void OpenFileEventHandler(object sender, OpenFileEventArgs e);
+        public delegate void ShowFileEventHandler(object sender, ShowFileEventArgs e);
         
 }

@@ -15,26 +15,25 @@ namespace DV_ReportAnalytics.Controllers
     /// <summary>
     /// Place your code here
     /// </summary>
-    class MainFormController: IMainFormController
+    public class MainFormController: IMainFormController
     {
         public event UserMessageEventHandler UserMessageUpdated = null;
 
-        private MainForm _mainForm;
-        private ISpreadSheetModel _sheet;
+        private IMainForm _view;
+        private ISpreadSheetModel _model;
 
-        public MainFormController(MainForm mainForm)
+        public MainFormController(IMainForm mainForm)
         {
             // mainform should be binded with controller here
-            _mainForm = mainForm;
+            _view = mainForm;
             // TODO: Create all necessary classes which require different functionality from MainForm
         }
 
 
         public void AppForm_OpenButtonClicked()
         {
-            string path = _mainForm.GetPathFromDialog();
-            _NewSheet(Path.GetFileName(path));
-            _sheet.setFilePath(path);
+            _NewModel(_view.GetPathFromDialog());
+
         }
 
         public void AppForm_SaveButtonClicked()
@@ -68,10 +67,11 @@ namespace DV_ReportAnalytics.Controllers
                 UserMessageUpdated.Invoke(sender, args);
         }
 
-        private void _NewSheet(string filename)
+        private void _NewModel(string path)
         {
-            _sheet = new TestSheet(filename); // create a new sheet model
-            _sheet.OpenFile += _mainForm.OpenFileHandler; // and bind it with mainform
+            _model = new TestSheet(path); // create a new sheet model
+            _view.SetModel(_model); // bind with view
+            _model.NotifyOnOpen();
         }
     }
 }

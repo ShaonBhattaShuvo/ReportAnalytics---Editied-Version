@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace DV_ReportAnalytics.Models
 {
-    class TestSheet: ASpreadSheetModel
+    public class TestSheet: ASpreadSheetModel
     {
-        public TestSheet(string filename): base(filename)
+        public TestSheet(string path): base(path)
         {
 
         }

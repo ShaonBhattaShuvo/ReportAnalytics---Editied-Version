@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Threading.Tasks;
 using DV_ReportAnalytics.Events;
 
@@ -9,30 +10,23 @@ using DV_ReportAnalytics.Events;
 // must be inherited before using
 namespace DV_ReportAnalytics.Models
 {
-    abstract class ASpreadSheetModel: ISpreadSheetModel
+    public abstract class ASpreadSheetModel: ISpreadSheetModel
     {
         public string FileName {set; get;}
-        public string Path {set; get;}
-        public event OpenFileEventHandler OpenFile = null;
+        public string FilePath {set; get;}
+        public event ShowFileEventHandler ShowFile;
 
-        public ASpreadSheetModel(string filename)
+        public ASpreadSheetModel(string path)
         {
-            FileName = filename;
+            FileName = Path.GetFileName(path);
+            FilePath = path;
         }
 
-        public void setFilePath(string path)
+        public void NotifyOnOpen()
         {
-            Path = path;
-            _OpenFile(); // notify view to open file
-        }
-
-        private void _OpenFile()
-        {
-            // TO-DO
-            // read other data from the spreadsheet
-            if (OpenFile != null)
+            if (ShowFile != null)
             {
-                OpenFile.Invoke(this, new OpenFileEventArgs(Path));
+                ShowFile.Invoke(this, new ShowFileEventArgs(FilePath));
             }
         }
     }

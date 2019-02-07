@@ -12,10 +12,7 @@ using DV_ReportAnalytics.Views;
 
 namespace DV_ReportAnalytics.Controllers
 {
-    /// <summary>
-    /// Place your code here
-    /// </summary>
-    interface IMainFormController
+    public interface IMainFormController
     {
         event UserMessageEventHandler UserMessageUpdated;
         void AppForm_OpenButtonClicked();

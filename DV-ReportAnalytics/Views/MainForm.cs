@@ -18,7 +18,7 @@ namespace DV_ReportAnalytics.Views
     /// </summary>
     public partial class MainForm : Form
     {
-        private MainFormController _controller;
+        private IMainFormController _controller;
         private ISpreadSheetModel _model;
 
         public MainForm()
@@ -33,10 +33,9 @@ namespace DV_ReportAnalytics.Views
         private void MainForm_Load(object sender, EventArgs e)
         {
             // bind controllers and models
-            // register events
             _controller = new MainFormController(this);
             _controller.UserMessageUpdated += _UserMessageUpdated;
-            _model = null;
+            _model = null; // no model binded before opening a file
             
         }
               

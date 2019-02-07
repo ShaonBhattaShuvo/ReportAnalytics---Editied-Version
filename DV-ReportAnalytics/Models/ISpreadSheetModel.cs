@@ -7,11 +7,11 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Models
 {
-    interface ISpreadSheetModel
+    public interface ISpreadSheetModel
     {
         string FileName {set; get;}
-        string Path {set; get;}
-        event OpenFileEventHandler OpenFile;
-        void setFilePath(string path);
+        string FilePath {set; get;}
+        event ShowFileEventHandler ShowFile;
+        void NotifyOnOpen();
     }
 }
