@@ -30,10 +30,11 @@ namespace DV_ReportAnalytics.Controllers
         }
 
 
-        public void AppForm_OpenButtonClicked()
+        public void AppForm_OpenButtonClicked(string path)
         {
-            _NewModel(_view.GetPathFromDialog());
-
+            _model = new TestSheet(path); // create a new sheet model
+            _view.SetModel(_model); // bind with view
+            _model.Open(); // after setup, open the file
         }
 
         public void AppForm_SaveButtonClicked()
@@ -48,7 +49,7 @@ namespace DV_ReportAnalytics.Controllers
 
         public void AppForm_GraphButtonClicked()
         {
-            _UserMessageUpdated(this, new UserMessageEventArgs("Show Graph: We can implement functionality in the separate class and create instance of this class in UIController."));
+            // _UserMessageUpdated(this, new UserMessageEventArgs("Show Graph: We can implement functionality in the separate class and create instance of this class in UIController."));
         }
 
         public void AppForm_SettingsButtonClicked()
@@ -65,13 +66,6 @@ namespace DV_ReportAnalytics.Controllers
         {
             if (UserMessageUpdated != null)
                 UserMessageUpdated.Invoke(sender, args);
-        }
-
-        private void _NewModel(string path)
-        {
-            _model = new TestSheet(path); // create a new sheet model
-            _view.SetModel(_model); // bind with view
-            _model.NotifyOnOpen();
         }
     }
 }

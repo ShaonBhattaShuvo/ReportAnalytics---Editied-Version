@@ -1,20 +1,18 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.IO;
-using System.Threading.Tasks;
 using DV_ReportAnalytics.Events;
 
 // base model for spreadsheet
 // must be inherited before using
+// model dostn' care about controllers and views
+// it just makes changes and emmit events
 namespace DV_ReportAnalytics.Models
 {
     public abstract class ASpreadSheetModel: ISpreadSheetModel
     {
-        public string FileName {set; get;}
-        public string FilePath {set; get;}
-        public event ShowFileEventHandler ShowFile;
+        public string FileName {get;}
+        public string FilePath {get;}
+        public event OpenFileEventHandler OpenFile;
 
         public ASpreadSheetModel(string path)
         {
@@ -22,11 +20,12 @@ namespace DV_ReportAnalytics.Models
             FilePath = path;
         }
 
-        public void NotifyOnOpen()
+        public void Open()
         {
-            if (ShowFile != null)
+            // TODO: open spreadsheet, read data, build data structure
+            if (OpenFile != null)
             {
-                ShowFile.Invoke(this, new ShowFileEventArgs(FilePath));
+                OpenFile.Invoke(this, new OpenFileEventArgs(FilePath));
             }
         }
     }

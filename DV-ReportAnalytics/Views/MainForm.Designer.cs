@@ -38,10 +38,12 @@
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.spreadSheetContainer = new System.Windows.Forms.WebBrowser();
+            this.graphContainer = new System.Windows.Forms.WebBrowser();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.toolStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
+            this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -140,11 +142,12 @@
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.splitContainerMain.Panel2.Controls.Add(this.graphContainer);
             this.splitContainerMain.Size = new System.Drawing.Size(1212, 754);
             this.splitContainerMain.SplitterDistance = 603;
             this.splitContainerMain.TabIndex = 1;
             // 
-            // webBrowser1
+            // spreadSheetContainer
             // 
             this.spreadSheetContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.spreadSheetContainer.Location = new System.Drawing.Point(0, 0);
@@ -153,7 +156,16 @@
             this.spreadSheetContainer.Size = new System.Drawing.Size(603, 754);
             this.spreadSheetContainer.TabIndex = 0;
             // 
-            // openFileDialog1
+            // graphContainer
+            // 
+            this.graphContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.graphContainer.Location = new System.Drawing.Point(0, 0);
+            this.graphContainer.MinimumSize = new System.Drawing.Size(20, 20);
+            this.graphContainer.Name = "graphContainer";
+            this.graphContainer.Size = new System.Drawing.Size(605, 754);
+            this.graphContainer.TabIndex = 0;
+            // 
+            // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
@@ -172,6 +184,7 @@
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
             this.splitContainerMain.Panel1.ResumeLayout(false);
+            this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -191,6 +204,7 @@
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.WebBrowser spreadSheetContainer;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.WebBrowser graphContainer;
     }
 }
 
