@@ -11,13 +11,14 @@ namespace DV_ReportAnalytics.Models
     interface ITable<KR, KC, V>
     {
         void SetValue(KR row, KC column, V value);
-        void SetTable();
+        void SetTable(TTable<KR, KC, V> table);
+        void SetName(string name);
         void Transpose();
         string GetName();
         V GetValue(KR row, KC column);
-        Table GetValueByRows(KR[] rows);
-        Table GetValueByColumns(KC[] columns);
-        Table GetTable();
-        Dimension GetDimension();
+        TTable<KR, KC, V> GetValueByRows(KR[] rows);
+        TTable<KR, KC, V> GetValueByColumns(KC[] columns);
+        TTable<KR, KC, V> GetTable();
+        TDimension GetDimension();
     }
 }

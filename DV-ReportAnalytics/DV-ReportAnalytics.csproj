@@ -53,14 +53,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\IMainFormController.cs" />
+    <Compile Include="Interfaces\IControllers\IMainFormController.cs" />
     <Compile Include="Controllers\MainFormController.cs" />
     <Compile Include="Events\DataPlotEvent.cs" />
     <Compile Include="Events\FileOpenEvent.cs" />
-    <Compile Include="Models\ISpreadSheetModel.cs" />
+    <Compile Include="Interfaces\IModels\ISpreadSheetModel.cs" />
     <Compile Include="Models\ASpreadSheetModel.cs" />
+    <Compile Include="Interfaces\IModels\ITable.cs" />
+    <Compile Include="Models\Table.cs" />
     <Compile Include="Models\TestSheet.cs" />
-    <Compile Include="Views\IMainForm.cs" />
+    <Compile Include="Types\Common.cs" />
+    <Compile Include="Types\Table.cs" />
+    <Compile Include="Interfaces\IViews\IMainForm.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +99,7 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <None Include="TestFiles\test.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -116,17 +121,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Icons\settings-32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="HTML\figure.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\index.html">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="HTML\plotlyjs-bundle.js">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -156,6 +150,14 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces\IEvents\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestFiles\figure.js" />
+    <Content Include="TestFiles\index.html" />
+    <Content Include="TestFiles\plotlyjs-bundle.js" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
