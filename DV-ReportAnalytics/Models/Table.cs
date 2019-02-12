@@ -22,6 +22,9 @@ namespace DV_ReportAnalytics.Models
 
         public void SetValue(KR row, KC column, V value)
         {
+            if (!_table.ContainsKey(row))
+                _table.Add(row, new Dictionary<KC, V>()); // if the row does exist, create it
+            _table[row].Add(column, value);
 
         }
 
@@ -42,12 +45,12 @@ namespace DV_ReportAnalytics.Models
 
         public string GetName()
         {
-
+            return _name;
         }
 
         public V GetValue(KR row, KC column)
         {
-
+            return _table[row][column];
         }
 
         public TTable<KR, KC, V> GetValueByRows(KR[] rows)
@@ -62,12 +65,24 @@ namespace DV_ReportAnalytics.Models
 
         public TTable<KR, KC, V> GetTable()
         {
-
+            return _table;
         }
 
         public TDimension GetDimension()
         {
-
+            int rows = 0;
+            int columns = 0;
+            // check if the table is empty
+            if (_table.Count > 0)
+            {
+                rows = _table.Count;
+                foreach (KeyValuePair<KR, Dictionary<KC, V>> kvp in _table)
+                {
+                    columns = kvp.Value.Count;
+                    break;
+                }
+            }
+            return new TDimension(rows, columns);
         }
     }
 }

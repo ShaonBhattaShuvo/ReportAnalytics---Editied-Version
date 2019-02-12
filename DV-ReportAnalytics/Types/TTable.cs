@@ -9,7 +9,7 @@ namespace DV_ReportAnalytics.Types.Table
     {
         public int rows;
         public int columns;
-        TDimension(int rows, int columns)
+        public TDimension(int rows, int columns)
         {
             this.rows = rows;
             this.columns = columns;
@@ -20,7 +20,7 @@ namespace DV_ReportAnalytics.Types.Table
     {
         KR row;
         KC column;
-        THeaders(KR row, KC column)
+        public THeaders(KR row, KC column)
         {
             this.row = row;
             this.column = column;
