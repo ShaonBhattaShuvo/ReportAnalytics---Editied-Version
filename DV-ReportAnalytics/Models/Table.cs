@@ -7,28 +7,28 @@ using DV_ReportAnalytics.Types.Table;
 
 namespace DV_ReportAnalytics.Models
 {
-    class Table<KR, KC, V>: ITable<KR, KC, V>
+    class Table<K, V>: ITable<K, V>
     {
-        protected TTable<KR, KC, V> _table;
+        protected TTable<K, V> _table;
         protected string _name;
 
         Table(string name)
         {
             _name = name;
-            _table = new TTable<KR, KC, V>();
+            _table = new TTable<K, V>();
         }
 
         Table(): this("untitled"){} // default constructor
 
-        public void SetValue(KR row, KC column, V value)
+        public void SetValue(K row, K column, V value)
         {
             if (!_table.ContainsKey(row))
-                _table.Add(row, new Dictionary<KC, V>()); // if the row does exist, create it
+                _table.Add(row, new Dictionary<K, V>()); // if the row does exist, create it
             _table[row].Add(column, value);
 
         }
 
-        public void SetTable(TTable<KR, KC, V> table)
+        public void SetTable(TTable<K, V> table)
         {
             _table = table;
         }
@@ -40,6 +40,18 @@ namespace DV_ReportAnalytics.Models
 
         public void Transpose()
         {
+            TTable<K, V> newTable = new TTable<K, V>();
+            foreach (KeyValuePair<K, Dictionary<K, V>> row in _table)
+            {
+                foreach (KeyValuePair<K, V> item in row.Value)
+                {
+                    // if the item does not exist, create it
+                    // transpose row and column
+                    if (!newTable.ContainsKey(item.Key))
+                        newTable.Add(item.Key, new Dictionary<K, V>());
+                    newTable[item.Key].Add(row.Key, item.Value);
+                }
+            }
 
         }
 
@@ -48,22 +60,30 @@ namespace DV_ReportAnalytics.Models
             return _name;
         }
 
-        public V GetValue(KR row, KC column)
+        public V GetValue(K row, K column)
         {
             return _table[row][column];
         }
 
-        public TTable<KR, KC, V> GetValueByRows(KR[] rows)
+        public TTable<K, V> GetValueByRows(K[] qrows)
         {
-
+            TTable<K, V> query = new TTable<K, V>();
+            query = (TTable<K, V>) _table.Where(row => qrows.Contains(row.Key)).ToDictionary(row => row.Key, row => row.Value);
+            return query;
         }
 
-        public TTable<KR, KC, V> GetValueByColumns(KC[] columns)
+        public TTable<K, V> GetValueByColumns(K[] qcolumns)
         {
-
+            TTable<K, V> query = new TTable<K, V>();
+            query = (TTable<K, V>) _table.Select(row =>
+                    new KeyValuePair<K, Dictionary<K, V>>(
+                        row.Key,
+                        row.Value.Where(column => qcolumns.Contains(column.Key)).ToDictionary(column => column.Key, column => column.Value)))
+                .ToDictionary(row => row.Key, row => row.Value);
+            return query;
         }
 
-        public TTable<KR, KC, V> GetTable()
+        public TTable<K, V> GetTable()
         {
             return _table;
         }
@@ -76,7 +96,7 @@ namespace DV_ReportAnalytics.Models
             if (_table.Count > 0)
             {
                 rows = _table.Count;
-                foreach (KeyValuePair<KR, Dictionary<KC, V>> kvp in _table)
+                foreach (KeyValuePair<K, Dictionary<K, V>> kvp in _table)
                 {
                     columns = kvp.Value.Count;
                     break;
