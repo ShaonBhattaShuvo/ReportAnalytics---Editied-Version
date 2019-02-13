@@ -68,18 +68,19 @@ namespace DV_ReportAnalytics.Models
         public TTable<K, V> GetValueByRows(K[] qrows)
         {
             TTable<K, V> query = new TTable<K, V>();
-            query = (TTable<K, V>) _table.Where(row => qrows.Contains(row.Key)).ToDictionary(row => row.Key, row => row.Value);
+            query = _table.Where(row => qrows.Contains(row.Key)) // query by rows
+                .ToTTable(row => row.Key, row => row.Value);
             return query;
         }
 
         public TTable<K, V> GetValueByColumns(K[] qcolumns)
         {
             TTable<K, V> query = new TTable<K, V>();
-            query = (TTable<K, V>) _table.Select(row =>
-                    new KeyValuePair<K, Dictionary<K, V>>(
-                        row.Key,
-                        row.Value.Where(column => qcolumns.Contains(column.Key)).ToDictionary(column => column.Key, column => column.Value)))
-                .ToDictionary(row => row.Key, row => row.Value);
+            query = _table.Select(row => new KeyValuePair<K, Dictionary<K, V>>(
+                    row.Key,
+                    row.Value.Where(column => qcolumns.Contains(column.Key)) // query by columns
+                    .ToDictionary(column => column.Key, column => column.Value)))
+                .ToTTable(row => row.Key, row => row.Value);
             return query;
         }
 
