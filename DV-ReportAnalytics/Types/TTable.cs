@@ -27,5 +27,16 @@ namespace DV_ReportAnalytics.Types.Table
         }
     }
 
-    
+    static class TExtension
+    {
+        public static TTable<K, V> ToTTable<K, V>(this IEnumerable<KeyValuePair<K, Dictionary<K, V>>> list)
+        {
+            TTable<K, V> table = new TTable<K, V>();
+            foreach (KeyValuePair<K, Dictionary<K, V>> kvp in list)
+            {
+                table.Add(kvp.Key, kvp.Value);
+            }
+            return table;
+        }
+    }
 }
