@@ -29,13 +29,11 @@ namespace DV_ReportAnalytics.Types.Table
 
     static class TExtension
     {
-        public static TTable<K, V> ToTTable<K, V>(this IEnumerable<KeyValuePair<K, Dictionary<K, V>>> list)
+        public static TTable<TKey, TElement> ToTTable<TSource, TKey, TElement>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, Dictionary<TKey, TElement>> elementSelector)
         {
-            TTable<K, V> table = new TTable<K, V>();
-            foreach (KeyValuePair<K, Dictionary<K, V>> kvp in list)
-            {
-                table.Add(kvp.Key, kvp.Value);
-            }
+            TTable<TKey, TElement> table = new TTable<TKey, TElement>();
+            foreach (TSource element in source)
+                table.Add(keySelector(element), elementSelector(element));
             return table;
         }
     }
