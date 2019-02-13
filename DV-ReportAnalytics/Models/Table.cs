@@ -7,28 +7,28 @@ using DV_ReportAnalytics.Types.Table;
 
 namespace DV_ReportAnalytics.Models
 {
-    class Table<K, V>: ITable<K, V>
+    class Table<TKey, TElement>: ITable<TKey, TElement>
     {
-        protected TTable<K, V> _table;
+        protected TTable<TKey, TElement> _table;
         protected string _name;
 
         Table(string name)
         {
             _name = name;
-            _table = new TTable<K, V>();
+            _table = new TTable<TKey, TElement>();
         }
 
         Table(): this("untitled"){} // default constructor
 
-        public void SetValue(K row, K column, V value)
+        public void SetValue(TKey row, TKey column, TElement value)
         {
             if (!_table.ContainsKey(row))
-                _table.Add(row, new Dictionary<K, V>()); // if the row does exist, create it
+                _table.Add(row, new Dictionary<TKey, TElement>()); // if the row does exist, create it
             _table[row].Add(column, value);
 
         }
 
-        public void SetTable(TTable<K, V> table)
+        public void SetTable(TTable<TKey, TElement> table)
         {
             _table = table;
         }
@@ -40,15 +40,15 @@ namespace DV_ReportAnalytics.Models
 
         public void Transpose()
         {
-            TTable<K, V> newTable = new TTable<K, V>();
-            foreach (KeyValuePair<K, Dictionary<K, V>> row in _table)
+            TTable<TKey, TElement> newTable = new TTable<TKey, TElement>();
+            foreach (KeyValuePair<TKey, Dictionary<TKey, TElement>> row in _table)
             {
-                foreach (KeyValuePair<K, V> item in row.Value)
+                foreach (KeyValuePair<TKey, TElement> item in row.Value)
                 {
                     // if the item does not exist, create it
                     // transpose row and column
                     if (!newTable.ContainsKey(item.Key))
-                        newTable.Add(item.Key, new Dictionary<K, V>());
+                        newTable.Add(item.Key, new Dictionary<TKey, TElement>());
                     newTable[item.Key].Add(row.Key, item.Value);
                 }
             }
@@ -60,23 +60,23 @@ namespace DV_ReportAnalytics.Models
             return _name;
         }
 
-        public V GetValue(K row, K column)
+        public TElement GetValue(TKey row, TKey column)
         {
             return _table[row][column];
         }
 
-        public TTable<K, V> GetValueByRows(K[] qrows)
+        public TTable<TKey, TElement> GetValueByRows(TKey[] qrows)
         {
-            TTable<K, V> query = new TTable<K, V>();
+            TTable<TKey, TElement> query = new TTable<TKey, TElement>();
             query = _table.Where(row => qrows.Contains(row.Key)) // query by rows
                 .ToTTable(row => row.Key, row => row.Value);
             return query;
         }
 
-        public TTable<K, V> GetValueByColumns(K[] qcolumns)
+        public TTable<TKey, TElement> GetValueByColumns(TKey[] qcolumns)
         {
-            TTable<K, V> query = new TTable<K, V>();
-            query = _table.Select(row => new KeyValuePair<K, Dictionary<K, V>>(
+            TTable<TKey, TElement> query = new TTable<TKey, TElement>();
+            query = _table.Select(row => new KeyValuePair<TKey, Dictionary<TKey, TElement>>(
                     row.Key,
                     row.Value.Where(column => qcolumns.Contains(column.Key)) // query by columns
                     .ToDictionary(column => column.Key, column => column.Value)))
@@ -84,7 +84,7 @@ namespace DV_ReportAnalytics.Models
             return query;
         }
 
-        public TTable<K, V> GetTable()
+        public TTable<TKey, TElement> GetTable()
         {
             return _table;
         }
@@ -97,7 +97,7 @@ namespace DV_ReportAnalytics.Models
             if (_table.Count > 0)
             {
                 rows = _table.Count;
-                foreach (KeyValuePair<K, Dictionary<K, V>> kvp in _table)
+                foreach (KeyValuePair<TKey, Dictionary<TKey, TElement>> kvp in _table)
                 {
                     columns = kvp.Value.Count;
                     break;

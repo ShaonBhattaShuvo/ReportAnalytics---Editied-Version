@@ -7,18 +7,18 @@ using DV_ReportAnalytics.Types.Table;
 
 namespace DV_ReportAnalytics.Models
 {
-    // KR: key row, KC: key columnm, V: value
-    interface ITable<K, V>
+    // TKey: row and column, TElement: value
+    interface ITable<TKey, TElement>
     {
-        void SetValue(K row, K column, V value);
-        void SetTable(TTable<K, V> table);
+        void SetValue(TKey row, TKey column, TElement value);
+        void SetTable(TTable<TKey, TElement> table);
         void SetName(string name);
         void Transpose();
         string GetName();
-        V GetValue(K row, K column);
-        TTable<K, V> GetValueByRows(K[] rows);
-        TTable<K, V> GetValueByColumns(K[] columns);
-        TTable<K, V> GetTable();
+        TElement GetValue(TKey row, TKey column);
+        TTable<TKey, TElement> GetValueByRows(TKey[] rows);
+        TTable<TKey, TElement> GetValueByColumns(TKey[] columns);
+        TTable<TKey, TElement> GetTable();
         TDimension GetDimension();
     }
 }

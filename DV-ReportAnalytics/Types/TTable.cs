@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types.Table
 {
-    class TTable<K, V>: Dictionary<K, Dictionary<K, V>>{}
+    class TTable<TKey, TElement>: Dictionary<TKey, Dictionary<TKey, TElement>>{}
 
     struct TDimension
     {
@@ -16,11 +16,11 @@ namespace DV_ReportAnalytics.Types.Table
         }
     }
 
-    struct THeaders<K>
+    struct THeaders<TKey>
     {
-        K row;
-        K column;
-        public THeaders(K row, K column)
+        TKey row;
+        TKey column;
+        public THeaders(TKey row, TKey column)
         {
             this.row = row;
             this.column = column;
