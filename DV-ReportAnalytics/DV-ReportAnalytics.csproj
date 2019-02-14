@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Algorithms\Interpolation.cs" />
     <Compile Include="Interfaces\IControllers\IMainFormController.cs" />
     <Compile Include="Controllers\MainFormController.cs" />
     <Compile Include="Events\DataPlotEvent.cs" />
@@ -62,8 +63,9 @@
     <Compile Include="Interfaces\IModels\ITable.cs" />
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\TestSheet.cs" />
-    <Compile Include="Types\Common.cs" />
-    <Compile Include="Types\Table.cs" />
+    <Compile Include="Types\TData.cs" />
+    <Compile Include="Types\TInterpolation.cs" />
+    <Compile Include="Types\TTable.cs" />
     <Compile Include="Interfaces\IViews\IMainForm.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>

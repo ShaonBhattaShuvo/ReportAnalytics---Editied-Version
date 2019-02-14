@@ -27,6 +27,6 @@ namespace DV_ReportAnalytics.Types.Data
         }
     }
 
-    class TData3DMap: Dictionary<string, TData3D>{}
-    class TData2DMap: Dictionary<string, TData2D>{}
+    class TData3DMap: Dictionary<string, TData3D> {}
+    class TData2DMap: Dictionary<string, TData2D> {}
 }
