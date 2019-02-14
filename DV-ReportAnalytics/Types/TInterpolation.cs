@@ -6,10 +6,16 @@ namespace DV_ReportAnalytics.Types.Interpolation
     {
         public int lbound;
         public int ubound;
+
         public TBounds(int lbound, int ubound)
         {
             this.lbound = lbound;
             this.ubound = ubound;
+        }
+
+        public bool IsBoundOverlapped()
+        {
+            return lbound == ubound;
         }
     }
 }
