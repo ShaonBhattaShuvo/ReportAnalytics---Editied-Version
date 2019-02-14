@@ -18,7 +18,7 @@ namespace DV_ReportAnalytics.Models
             _table = new TTable<TKey, TElement>();
         }
 
-        Table(): this("untitled"){} // default constructor
+        Table(): this("untitled") {} // default constructor
 
         public void SetValue(TKey row, TKey column, TElement value)
         {
@@ -67,16 +67,14 @@ namespace DV_ReportAnalytics.Models
 
         public TTable<TKey, TElement> GetValueByRows(TKey[] qrows)
         {
-            TTable<TKey, TElement> query = new TTable<TKey, TElement>();
-            query = _table.Where(row => qrows.Contains(row.Key)) // query by rows
+            TTable<TKey, TElement> query = _table.Where(row => qrows.Contains(row.Key)) // query by rows
                 .ToTTable(row => row.Key, row => row.Value);
             return query;
         }
 
         public TTable<TKey, TElement> GetValueByColumns(TKey[] qcolumns)
         {
-            TTable<TKey, TElement> query = new TTable<TKey, TElement>();
-            query = _table.Select(row => new KeyValuePair<TKey, Dictionary<TKey, TElement>>(
+            TTable<TKey, TElement> query = _table.Select(row => new KeyValuePair<TKey, Dictionary<TKey, TElement>>(
                     row.Key,
                     row.Value.Where(column => qcolumns.Contains(column.Key)) // query by columns
                     .ToDictionary(column => column.Key, column => column.Value)))

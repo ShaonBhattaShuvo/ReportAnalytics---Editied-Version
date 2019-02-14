@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types.Table
 {
-    class TTable<TKey, TElement>: Dictionary<TKey, Dictionary<TKey, TElement>>{}
+    class TTable<TKey, TElement>: Dictionary<TKey, Dictionary<TKey, TElement>> {}
 
     struct TDimension
     {
@@ -18,8 +18,8 @@ namespace DV_ReportAnalytics.Types.Table
 
     struct THeaders<TKey>
     {
-        TKey row;
-        TKey column;
+        public TKey row;
+        public TKey column;
         public THeaders(TKey row, TKey column)
         {
             this.row = row;
@@ -29,6 +29,7 @@ namespace DV_ReportAnalytics.Types.Table
 
     static class TExtension
     {
+        // extension method to get TTable from an enumerable type
         public static TTable<TKey, TElement> ToTTable<TSource, TKey, TElement>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, Dictionary<TKey, TElement>> elementSelector)
         {
             TTable<TKey, TElement> table = new TTable<TKey, TElement>();
