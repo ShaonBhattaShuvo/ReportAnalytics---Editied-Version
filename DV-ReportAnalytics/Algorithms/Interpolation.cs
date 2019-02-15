@@ -9,6 +9,45 @@ namespace DV_ReportAnalytics.Algorithms
 {
     static class Interpolation
     {
+        static public void BilinearTest()
+        {
+            List<double> srcX = new List<double>() { 1, 2, 3 };
+            List<double> srcY = new List<double>() { 1, 2, 3 };
+            List<List<double>> srcData = new List<List<double>>()
+            {
+                new List<double>() {0,128,0},
+                new List<double>() {128,255,128},
+                new List<double>() {0,128,0}
+            };
+            List<double> extX = new List<double>() { 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3 };
+            List<double> extY = new List<double>() { 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3 };
+
+            double dstX = 0;
+            double dstY = 0;
+            List<List<double>> result = new List<List<double>>();
+
+            Action<List<double>> show = row => {
+                row.ForEach(x => Console.Write(x + " "));
+                Console.WriteLine();
+            };
+
+            for (int x = 0; x < extX.Count; x++)
+            {
+                List<double> row = new List<double>();
+                dstX = extX[x];
+                for (int y = 0; y < extY.Count; y++)
+                {
+                    dstY = extY[y];
+                    row.Add(BilinearInterpolation(srcData, srcX, srcY, dstX, dstY));
+                }
+                result.Add(row);
+            }
+            Console.WriteLine("Source Data:");
+            srcData.ForEach(show);
+            Console.WriteLine("Result Data:");
+            result.ForEach(show);
+        }
+
         static private TBounds GetNeighborIndices(List<double> srcArray, double value)
         {
             int lbound = 0; // lower bound of x
@@ -22,7 +61,7 @@ namespace DV_ReportAnalytics.Algorithms
             {
                 while (Math.Abs(ubound - lbound) > 1)
                 {
-                    mid = (int) Math.Round((double)((lbound + ubound) / 2));
+                    mid = (int)Math.Round((double)((lbound + ubound) / 2));
                     if (srcArray[mid] < value)
                         lbound = mid;
                     else if (srcArray[mid] > value)
@@ -39,7 +78,7 @@ namespace DV_ReportAnalytics.Algorithms
             return new TBounds(lbound, ubound);
         }
 
-        static private List<double> ExtendArray (List<double> srcArray, int points)
+        static private List<double> ExtendArray(List<double> srcArray, int points)
         {
             if (points < 1)
                 return srcArray;
@@ -72,7 +111,7 @@ namespace DV_ReportAnalytics.Algorithms
             return interp;
         }
 
-        static private double BilinearInterpolation(List<double> srcXAxis, List<double> srcYAxis, List<List<double>> srcTable, double dstX, double dstY)
+        static private double BilinearInterpolation(List<List<double>> srcTable, List<double> srcXAxis, List<double> srcYAxis, double dstX, double dstY)
         {
             TBounds xbound = GetNeighborIndices(srcXAxis, dstX);
             TBounds ybound = GetNeighborIndices(srcYAxis, dstY);
