@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types.Data
 {
-    struct TData3D
+    struct TData3D<TX, TY, TZ>
     {
-        public int[] x;
-        public int[] y;
-        public int[,] z; // multi-dimensional array
-        TData3D(int[] x, int[] y, int[,] z)
+        public List<TX> x;
+        public List<TY> y;
+        public List<List<TZ>> z; // multi-dimensional array
+        TData3D(List<TX> x, List<TY> y, List<List<TZ>> z)
         {
             this.x = x;
             this.y = y;
@@ -16,17 +16,17 @@ namespace DV_ReportAnalytics.Types.Data
         }
     }
 
-    struct TData2D
+    struct TData2D<TX, TY>
     {
-        public int[] x;
-        public int[] y;
-        TData2D(int[] x, int[] y)
+        public List<TX> x;
+        public List<TY> y;
+        TData2D(List<TX> x, List<TY> y)
         {
             this.x = x;
             this.y = y;
         }
     }
 
-    class TData3DMap: Dictionary<string, TData3D> {}
-    class TData2DMap: Dictionary<string, TData2D> {}
+    class TData3DMap<TX, TY, TZ> : Dictionary<string, TData3D<TX, TY, TZ>> { }
+    class TData2DMap<TX, TY> : Dictionary<string, TData2D<TX, TY>> { }
 }

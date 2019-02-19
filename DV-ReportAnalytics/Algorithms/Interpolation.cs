@@ -123,23 +123,23 @@ namespace DV_ReportAnalytics.Algorithms
             double x2 = srcXAxis[xbound.ubound];
             double y1 = srcYAxis[ybound.lbound];
             double y2 = srcYAxis[ybound.ubound];
+            double interp;
 
             // if point exactly found on a node do not interpolate
             if (xbound.IsBoundOverlapped() && ybound.IsBoundOverlapped())
-                return q11;
+                interp = q11;
             // if point lies exactly on an xAxis node do linear interpolation
             else if (xbound.IsBoundOverlapped())
-                return q11 + (q22 - q11) * (dstY - y1) / (y2 - y1);
+                interp = q11 + (q22 - q11) * (dstY - y1) / (y2 - y1);
             // if point lies exactly on an yAxis node do liear interpolation
             else if (ybound.IsBoundOverlapped())
-                return q11 + (q12 - q11) * (dstX - x1) / (x2 - x1);
+                interp = q11 + (q12 - q11) * (dstX - x1) / (x2 - x1);
+            else
+                interp = (q11 * (y2 - dstY) * (x2 - dstX) + 
+                    q21 * (dstY - y1) * (x2 - dstX) + 
+                    q12 * (y2 - dstY) * (dstX - x1) + 
+                    q22 * (dstY - y1) * (dstX - x1)) / ((y2 - y1) * (x2 - x1));
 
-            double interp =
-                (q11 * (y2 - dstY) * (x2 - dstX) +
-                q21 * (dstY - y1) * (x2 - dstX) +
-                q12 * (y2 - dstY) * (dstX - x1) +
-                q22 * (dstY - y1) * (dstX - x1)) /
-                ((y2 - y1) * (x2 - x1));
             return interp;
         }
     }
