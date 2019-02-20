@@ -5,87 +5,68 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DV_ReportAnalytics.Types.Data;
+using DV_ReportAnalytics.Types.Table;
 
 namespace DV_ReportAnalytics.Models
 {
     class NewTable<TKeyRow, TKeyColumn, TValue>
     {
-        protected DataSet _dataSet;
-        protected DataTable _rows;
-        protected DataTable _columns;
-        protected DataTable _data;
-        protected bool isTranposed;
+        protected int _rowIndex;
+        protected int _columnIndex;
+        protected List<List<TValue>> _values;
+        protected SortedList<TKeyRow, int> _rowDictionary;
+        protected SortedList<TKeyColumn, int> _columnDictionary;
+        protected string _rowName;
+        protected string _columnName;
+        protected string _name;
+        protected bool _isTranposed;
 
-        NewTable(string tableName, string rowName, string columnName)
+        public NewTable(string name, string rowName, string columnName)
+            : this (name, rowName, columnName, new List<TKeyRow>(), new List<TKeyColumn>(), new List<List<TValue>>()) { }
+
+        // default constructor
+        public NewTable() : this("untitled", "rows", "columns") { }
+
+        // initialize with given rows, columns and values
+        // row and column index must correspond with 2d list of values
+        public NewTable(string name, string rowName, string columnName, List<TKeyRow> rows, List<TKeyColumn> columns, List<List<TValue>> values)
         {
-            DataColumn column;
-            // initialize data table;
-            _data = new DataTable(tableName);
-            column = new DataColumn("id");
-            column.DataType = typeof(int);
-            column.Caption = "ID";
-            column.AutoIncrement = true;
-            column.Unique = true;
-            column.ReadOnly = true;
-            _data.Columns.Add(column);
-
-            column = new DataColumn("row_id");
-            column.DataType = typeof(int);
-            column.Caption = "Row";
-            _data.Columns.Add(column);
-
-            column = new DataColumn("column_id");
-            column.DataType = typeof(int);
-            column.Caption = "Column";
-            _data.Columns.Add(column);
-
-            column = new DataColumn("value");
-            column.DataType = typeof(TValue);
-            column.Caption = "Value";
-            _data.Columns.Add(column);
-
-            // initialize row table
-            _rows = new DataTable(rowName);
-            column = new DataColumn("id");
-            column.DataType = typeof(int);
-            column.Caption = "ID";
-            column.AutoIncrement = true;
-            column.Unique = true;
-            column.ReadOnly = true;
-            _rows.Columns.Add(column);
-
-            column = new DataColumn("key");
-            column.DataType = typeof(TKeyRow);
-            column.Caption = "Key";
-            _rows.Columns.Add(column);
-
-            // initialize column table
-            _columns = new DataTable(columnName);
-            column = new DataColumn("id");
-            column.DataType = typeof(int);
-            column.Caption = "ID";
-            column.AutoIncrement = true;
-            column.Unique = true;
-            column.ReadOnly = true;
-            _columns.Columns.Add(column);
-
-            column = new DataColumn("key");
-            column.DataType = typeof(TKeyColumn);
-            column.Caption = "Key";
-            _columns.Columns.Add(column);
-
-            // create relations
-            _dataSet = new DataSet();
-            DataRelation relation; 
-            relation = new DataRelation("id2row", _data.Columns["row_id"], _rows.Columns["id"]);
-            _dataSet.Relations.Add(relation);
-            relation = new DataRelation("id2column", _data.Columns["column_id"], _columns.["id"]);
-            _dataSet.Relations.Add(relation);
+            _name = name;
+            _rowName = rowName;
+            _columnName = columnName;
+            _rowIndex = rows.Count - 1; // index starts with -1
+            _columnIndex = columns.Count - 1;
+            _values = values;
+            _rowDictionary = new SortedList<TKeyRow, int>();
+            _columnDictionary = new SortedList<TKeyColumn, int>();
+            _isTranposed = false;
+            // initialize dictionary
+            for (int i = 0; i < rows.Count; i++)
+                _rowDictionary.Add(rows[i], i);
+            for (int i = 0; i < columns.Count; i++)
+                _columnDictionary.Add(columns[i], i);
         }
 
-        NewTable() : this("untitled", "rows", "columns") { }
-
-        public void SetValue(TKeyRow row, TKeyColumn column, TValue value) { }
+        public void SetValue(TKeyRow row, TKeyColumn column, TValue value)
+        {
+            // add to dictionary
+            if (!_columnDictionary.Keys.Contains(column))
+            {
+                _columnIndex++;
+                _columnDictionary.Add(column, _columnIndex);
+                // update new columns
+                _values.ForEach(r => r.AddRange(new TValue[_columnDictionary.Count - r.Count]));
+            }
+            if (!_rowDictionary.Keys.Contains(row))
+            {
+                _rowIndex++;
+                _rowDictionary.Add(row, _rowIndex);
+                // update the new row
+                _values.Add(new List<TValue>(new TValue[_columnDictionary.Count]));
+            }
+            // set value
+            _values[_rowDictionary[row]][_columnDictionary[column]] = value;
+        }
         
         public void SetTable() { }
 
