@@ -8,7 +8,7 @@ namespace DV_ReportAnalytics.Types.Data
         public List<TX> x;
         public List<TY> y;
         public List<List<TZ>> z; // multi-dimensional array
-        TData3D(List<TX> x, List<TY> y, List<List<TZ>> z)
+        public TData3D(List<TX> x, List<TY> y, List<List<TZ>> z)
         {
             this.x = x;
             this.y = y;
@@ -20,7 +20,7 @@ namespace DV_ReportAnalytics.Types.Data
     {
         public List<TX> x;
         public List<TY> y;
-        TData2D(List<TX> x, List<TY> y)
+        public TData2D(List<TX> x, List<TY> y)
         {
             this.x = x;
             this.y = y;

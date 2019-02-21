@@ -27,16 +27,6 @@ namespace DV_ReportAnalytics.Types.Table
         }
     }
 
-    struct TIndex<TKeyRow, TKeyColumn>
-    {
-        public TKeyRow row;
-        public TKeyColumn column;
-        public Index(TKeyRow row, TKeyColumn column)
-        {
-            this.row = row;
-            this.column = column;
-        }
-    }
 
     static class TExtension
     {
