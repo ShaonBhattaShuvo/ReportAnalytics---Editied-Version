@@ -54,19 +54,21 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Interpolation.cs" />
-    <Compile Include="Interfaces\IControllers\IMainFormController.cs" />
+    <Compile Include="Interfaces\Controllers\IMainFormController.cs" />
     <Compile Include="Controllers\MainFormController.cs" />
     <Compile Include="Events\DataPlotEvent.cs" />
     <Compile Include="Events\FileOpenEvent.cs" />
-    <Compile Include="Interfaces\IModels\ISpreadSheetModel.cs" />
+    <Compile Include="Interfaces\Models\ICrossTable.cs" />
+    <Compile Include="Interfaces\Models\ISpreadSheetModel.cs" />
     <Compile Include="Models\ASpreadSheetModel.cs" />
-    <Compile Include="Interfaces\IModels\ITable.cs" />
+    <Compile Include="Interfaces\Models\ITable.cs" />
+    <Compile Include="Models\CrossTable.cs" />
     <Compile Include="Models\Table.cs" />
     <Compile Include="Models\TestSheet.cs" />
     <Compile Include="Types\TData.cs" />
     <Compile Include="Types\TInterpolation.cs" />
     <Compile Include="Types\TTable.cs" />
-    <Compile Include="Interfaces\IViews\IMainForm.cs" />
+    <Compile Include="Interfaces\Views\IMainForm.cs" />
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -154,7 +156,7 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Interfaces\IEvents\" />
+    <Folder Include="Interfaces\Events\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestFiles\figure.js" />

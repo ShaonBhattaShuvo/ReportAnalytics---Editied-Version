@@ -5,25 +5,25 @@ namespace DV_ReportAnalytics.Types.Data
 {
     struct TData3D<TX, TY, TZ>
     {
-        public List<TX> x;
-        public List<TY> y;
-        public List<List<TZ>> z; // multi-dimensional array
+        public List<TX> X { get; }
+        public List<TY> Y { get; }
+        public List<List<TZ>> Z { get; } // multi-dimensional array
         public TData3D(List<TX> x, List<TY> y, List<List<TZ>> z)
         {
-            this.x = x;
-            this.y = y;
-            this.z = z;
+            X = x;
+            Y = y;
+            Z = z;
         }
     }
 
     struct TData2D<TX, TY>
     {
-        public List<TX> x;
-        public List<TY> y;
+        public List<TX> X { get; }
+        public List<TY> Y { get; }
         public TData2D(List<TX> x, List<TY> y)
         {
-            this.x = x;
-            this.y = y;
+            X = x;
+            Y = y;
         }
     }
 
