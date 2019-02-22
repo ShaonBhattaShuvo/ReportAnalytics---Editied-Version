@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DV_ReportAnalytics.Types.Table
+namespace DV_ReportAnalytics.Types
 {
     class TTable<TKey, TElement>: Dictionary<TKey, Dictionary<TKey, TElement>> {}
 

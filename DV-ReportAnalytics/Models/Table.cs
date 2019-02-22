@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using DV_ReportAnalytics.Types.Table;
+using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {

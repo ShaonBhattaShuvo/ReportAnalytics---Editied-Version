@@ -50,7 +50,8 @@ namespace DV_ReportAnalytics.Views
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
-                _controller.AppForm_OpenButtonClicked(openFileDialog.FileName); // inform controller to update model
+                // inform controller to update model
+                _controller.AppForm_OpenButtonClicked(openFileDialog.FileName); 
             }
         }
 

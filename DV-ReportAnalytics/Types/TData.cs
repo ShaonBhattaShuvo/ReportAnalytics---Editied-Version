@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DV_ReportAnalytics.Types.Data
+namespace DV_ReportAnalytics.Types
 {
     struct TData3D<TX, TY, TZ>
     {

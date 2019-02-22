@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DV_ReportAnalytics.Types.Interpolation
+namespace DV_ReportAnalytics.Types
 {
     struct TBounds
     {

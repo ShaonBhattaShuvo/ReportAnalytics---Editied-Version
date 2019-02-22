@@ -1,5 +1,5 @@
 ﻿using System;
-using DV_ReportAnalytics.Types.Table;
+using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {

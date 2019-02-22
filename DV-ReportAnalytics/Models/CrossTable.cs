@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using DV_ReportAnalytics.Types.Data;
+using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {
