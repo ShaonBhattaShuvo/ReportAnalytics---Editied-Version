@@ -5,93 +5,106 @@ using DV_ReportAnalytics.Types.Data;
 
 namespace DV_ReportAnalytics.Models
 {
-    class CrossTable<TKeyRow, TKeyColumn, TValue> : ICrossTable<TKeyRow, TKeyColumn, TValue>
-        where TKeyRow : new()
-        where TKeyColumn : new()
+    class LookupTable<TKeyRow, TKeyColumn, TValue>
+        where TKeyRow : IEquatable<TKeyRow>, IComparable<TKeyRow>
+        where TKeyColumn : IEquatable<TKeyColumn>, IComparable<TKeyColumn>
         where TValue : new()
     {
         private int _rowIndex;
         private int _columnIndex;
-        protected List<List<TValue>> _values;
+        protected Dictionary<ValueTuple<int, int>, TValue> _valueDictionary;
         protected SortedList<TKeyRow, int> _rowDictionary;
         protected SortedList<TKeyColumn, int> _columnDictionary;
         public string RowName { get; }
         public string Name { get; }
         public string ColumnName { get; }
 
-        public CrossTable(string name, string rowName, string columnName)
+        public LookupTable(string name, string rowName, string columnName)
             : this (name, rowName, columnName, new List<TKeyRow>(), new List<TKeyColumn>(), new List<List<TValue>>()) { }
 
         // default constructor
-        public CrossTable() : this("untitled", "rows", "columns") { }
+        public LookupTable() : this("untitled", "rows", "columns") { }
 
         // initialize with given rows, columns and values
         // row and column index must correspond with 2d list of values
-        public CrossTable(string name, string rowName, string columnName, List<TKeyRow> rows, List<TKeyColumn> columns, List<List<TValue>> values)
+        public LookupTable(string name, string rowName, string columnName, List<TKeyRow> rows, List<TKeyColumn> columns, List<List<TValue>> values)
         {
+            // TODO: throw exception if rows and columns don't match value's dimension
             Name = name;
             RowName = rowName;
             ColumnName = columnName;
-            _rowIndex = rows.Count - 1; // index starts with -1
-            _columnIndex = columns.Count - 1;
-            _values = values;
+            // initialize dictionary
             _rowDictionary = new SortedList<TKeyRow, int>();
             _columnDictionary = new SortedList<TKeyColumn, int>();
-            // initialize dictionary
-            for (int i = 0; i < rows.Count; i++)
-                _rowDictionary.Add(rows[i], i);
-            for (int i = 0; i < columns.Count; i++)
-                _columnDictionary.Add(columns[i], i);
-        }
-
-        public void SetValue(TKeyRow row, TKeyColumn column, TValue value)
-        {
-            // add to dictionary
-            if (!_columnDictionary.Keys.Contains(column))
-            {
-                _columnIndex++;
-                _columnDictionary.Add(column, _columnIndex);
-                // update new columns
-                _values.ForEach(r => r.Add(new TValue()));
-            }
-            if (!_rowDictionary.Keys.Contains(row))
+            _valueDictionary = new Dictionary<(int, int), TValue>();
+            // index starts with -1 if instance is empty
+            _rowIndex = -1;
+            _columnIndex = -1;
+            foreach(TKeyRow r in rows)
             {
                 _rowIndex++;
-                _rowDictionary.Add(row, _rowIndex);
-                // update the new row
-                _values.Add(new List<TValue>(new TValue[_columnDictionary.Count]));
+                _rowDictionary.Add(r, _rowIndex);
+                foreach(TKeyColumn c in columns)
+                {
+                    _columnIndex++;
+                    _columnDictionary.Add(c, _columnIndex);
+                    // add value to lookup dictionary
+                    _valueDictionary.Add((_rowIndex, _columnIndex), values[_rowIndex][_columnIndex]);
+                }
             }
-            // set value
-            _values[_rowDictionary[row]][_columnDictionary[column]] = value;
         }
 
-        public TValue GetValue(TKeyRow row, TKeyColumn column)
+        // provide a convenient way to access table using index
+        public TValue this[TKeyRow row, TKeyColumn column]
         {
-            TValue v;
-            if (_rowDictionary.TryGetValue(row, out int r) && _columnDictionary.TryGetValue(column, out int c))
-                v = _values[r][c];
-            else
-                v = new TValue(); // if does not exit, return uninitialized value;
-            return v;
+            set
+            {
+                // update rows and columns
+                if (!_rowDictionary.Keys.Contains(row))
+                {
+                    _rowIndex++;
+                    _rowDictionary.Add(row, _rowIndex);
+                }
+                if (!_columnDictionary.Keys.Contains(column))
+                {
+                    _columnIndex++;
+                    _columnDictionary.Add(column, _columnIndex);
+                }
+                // add to dictionary
+                _valueDictionary.Add((_rowDictionary[row], _columnDictionary[column]), value);
+            }
+            get
+            {
+                if (_rowDictionary.TryGetValue(row, out int r) &&
+                    _columnDictionary.TryGetValue(column, out int c) &&
+                    _valueDictionary.TryGetValue((r, c), out TValue v))
+                    ; // value can be gotten from if statement
+                else
+                    // if does not exit, return uninitialized value;
+                    v = new TValue(); 
+                return v;
+            }
         }
 
         private void GetXYZ(TKeyRow[] rowRange, TKeyColumn[] columnRange, bool transposed, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z)
         {
-            // get y range
-            if (rowRange == null)
-                y = _rowDictionary.Keys.ToList();
-            else
-            {
-                y = rowRange.Where(r => _rowDictionary.Keys.Contains(r)).ToList();
-                y.Sort(); // rowRange may not be sorted
-            }
             // get x range
             if (columnRange == null)
                 x = _columnDictionary.Keys.ToList();
             else
             {
+                // use linq to query
                 x = columnRange.Where(c => _columnDictionary.Keys.Contains(c)).ToList();
                 x.Sort(); // columnRange may not be sorted
+            }
+            // get y range
+            if (rowRange == null)
+                y = _rowDictionary.Keys.ToList();
+            else
+            {
+                // use linq to query
+                y = rowRange.Where(r => _rowDictionary.Keys.Contains(r)).ToList();
+                y.Sort(); // rowRange may not be sorted
             }
             // get z
             z = new List<List<TValue>>();
@@ -103,7 +116,7 @@ namespace DV_ReportAnalytics.Models
                 {
                     List<TValue> l = new List<TValue>();
                     foreach (TKeyRow r in y)
-                        l.Add(GetValue(r, c));
+                        l.Add(this[r, c]);
                     z.Add(l);
                 }
             }
@@ -114,12 +127,13 @@ namespace DV_ReportAnalytics.Models
                 {
                     List<TValue> l = new List<TValue>();
                     foreach (TKeyColumn c in x)
-                        l.Add(GetValue(r, c));
+                        l.Add(this[r, c]);
                     z.Add(l);
                 }
             }
         }
 
+        // passing empty default value to get the whole table
         public TData3D<TKeyColumn, TKeyRow, TValue> GetData3D(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
         {
             GetXYZ(rowRange, columnRange, false, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z);
@@ -128,6 +142,7 @@ namespace DV_ReportAnalytics.Models
             return data;
         }
 
+        // get transposed table
         public TData3D<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
         {
             GetXYZ(rowRange, columnRange, true, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z);
