@@ -10,8 +10,9 @@ namespace DV_ReportAnalytics.Models
         where TKeyColumn : IEquatable<TKeyColumn>, IComparable<TKeyColumn>
         where TValue : new()
     {
-        private int _rowIndex;
-        private int _columnIndex;
+        // the pointers should always point to the last element that added into the dictionaries
+        private int _rowPointer;
+        private int _columnPointer;
         protected Dictionary<ValueTuple<int, int>, TValue> _valueDictionary;
         protected SortedList<TKeyRow, int> _rowDictionary;
         protected SortedList<TKeyColumn, int> _columnDictionary;
@@ -37,19 +38,18 @@ namespace DV_ReportAnalytics.Models
             _rowDictionary = new SortedList<TKeyRow, int>();
             _columnDictionary = new SortedList<TKeyColumn, int>();
             _valueDictionary = new Dictionary<(int, int), TValue>();
-            // index starts with -1 if instance is empty
-            _rowIndex = -1;
-            _columnIndex = -1;
-            foreach(TKeyRow r in rows)
+            // pointers start with -1 if instance is empty
+            _rowPointer = rows.Count - 1;
+            _columnPointer = columns.Count - 1;
+
+            for (int r = 0; r < rows.Count; r++)
             {
-                _rowIndex++;
-                _rowDictionary.Add(r, _rowIndex);
-                foreach(TKeyColumn c in columns)
+                _rowDictionary.Add(rows[r], r);
+                for (int c = 0; c < columns.Count; c++)
                 {
-                    _columnIndex++;
-                    _columnDictionary.Add(c, _columnIndex);
+                    _columnDictionary.Add(columns[c], c);
                     // add value to lookup dictionary
-                    _valueDictionary.Add((_rowIndex, _columnIndex), values[_rowIndex][_columnIndex]);
+                    _valueDictionary.Add((r, c), values[r][c]);
                 }
             }
         }
@@ -62,13 +62,13 @@ namespace DV_ReportAnalytics.Models
                 // update rows and columns
                 if (!_rowDictionary.Keys.Contains(row))
                 {
-                    _rowIndex++;
-                    _rowDictionary.Add(row, _rowIndex);
+                    _rowPointer++;
+                    _rowDictionary.Add(row, _rowPointer);
                 }
                 if (!_columnDictionary.Keys.Contains(column))
                 {
-                    _columnIndex++;
-                    _columnDictionary.Add(column, _columnIndex);
+                    _columnPointer++;
+                    _columnDictionary.Add(column, _columnPointer);
                 }
                 // add to dictionary
                 _valueDictionary.Add((_rowDictionary[row], _columnDictionary[column]), value);
