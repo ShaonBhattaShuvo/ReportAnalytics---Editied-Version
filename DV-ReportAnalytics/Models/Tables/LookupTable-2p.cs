@@ -10,44 +10,46 @@ namespace DV_ReportAnalytics.Models
         where TKeyColumn : IEquatable<TKeyColumn>, IComparable<TKeyColumn>
         where TValue : new()
     {
-        // the pointers should always point to the last element that added into the dictionaries
-        private int _rowPointer;
-        private int _columnPointer;
+        // the ID should always point to the last element that added into the dictionaries
+        private int _keyRowID;
+        private int _keyColumnID;
         protected Dictionary<ValueTuple<int, int>, TValue> _valueDictionary;
-        protected SortedList<TKeyRow, int> _rowDictionary;
-        protected SortedList<TKeyColumn, int> _columnDictionary;
-        public string RowName { get; }
+        protected SortedList<TKeyRow, int> _keyRowDictionary;
+        protected SortedList<TKeyColumn, int> _keyColumnDictionary;
         public string Name { get; }
-        public string ColumnName { get; }
+        public string keyRowName { get; }
+        public string keyColumnName { get; }
+        public string ValueName { get; }
 
-        public LookupTable(string name, string rowName, string columnName)
-            : this (name, rowName, columnName, new List<TKeyRow>(), new List<TKeyColumn>(), new List<List<TValue>>()) { }
+        public LookupTable(string name, string rowName, string columnName, string valueName)
+            : this (name, rowName, columnName, valueName, new List<TKeyRow>(), new List<TKeyColumn>(), new List<List<TValue>>()) { }
 
         // default constructor
-        public LookupTable() : this("untitled", "rows", "columns") { }
+        public LookupTable() : this("untitled", "rows", "columns", "values") { }
 
         // initialize with given rows, columns and values
         // row and column index must correspond with 2d list of values
-        public LookupTable(string name, string rowName, string columnName, List<TKeyRow> rows, List<TKeyColumn> columns, List<List<TValue>> values)
+        public LookupTable(string name, string rowName, string columnName, string valueName, List<TKeyRow> rows, List<TKeyColumn> columns, List<List<TValue>> values)
         {
             // TODO: throw exception if rows and columns don't match value's dimension
             Name = name;
-            RowName = rowName;
-            ColumnName = columnName;
+            keyRowName = rowName;
+            keyColumnName = columnName;
+            ValueName = valueName;
             // initialize dictionary
-            _rowDictionary = new SortedList<TKeyRow, int>();
-            _columnDictionary = new SortedList<TKeyColumn, int>();
+            _keyRowDictionary = new SortedList<TKeyRow, int>();
+            _keyColumnDictionary = new SortedList<TKeyColumn, int>();
             _valueDictionary = new Dictionary<(int, int), TValue>();
-            // pointers start with -1 if instance is empty
-            _rowPointer = rows.Count - 1;
-            _columnPointer = columns.Count - 1;
+            // ID start with -1 if instance is empty
+            _keyRowID = rows.Count - 1;
+            _keyColumnID = columns.Count - 1;
 
             for (int r = 0; r < rows.Count; r++)
             {
-                _rowDictionary.Add(rows[r], r);
+                _keyRowDictionary.Add(rows[r], r);
                 for (int c = 0; c < columns.Count; c++)
                 {
-                    _columnDictionary.Add(columns[c], c);
+                    _keyColumnDictionary.Add(columns[c], c);
                     // add value to lookup dictionary
                     _valueDictionary.Add((r, c), values[r][c]);
                 }
@@ -60,23 +62,23 @@ namespace DV_ReportAnalytics.Models
             set
             {
                 // update rows and columns
-                if (!_rowDictionary.Keys.Contains(row))
+                if (!_keyRowDictionary.Keys.Contains(row))
                 {
-                    _rowPointer++;
-                    _rowDictionary.Add(row, _rowPointer);
+                    _keyRowID++;
+                    _keyRowDictionary.Add(row, _keyRowID);
                 }
-                if (!_columnDictionary.Keys.Contains(column))
+                if (!_keyColumnDictionary.Keys.Contains(column))
                 {
-                    _columnPointer++;
-                    _columnDictionary.Add(column, _columnPointer);
+                    _keyColumnID++;
+                    _keyColumnDictionary.Add(column, _keyColumnID);
                 }
                 // add to dictionary
-                _valueDictionary.Add((_rowDictionary[row], _columnDictionary[column]), value);
+                _valueDictionary.Add((_keyRowDictionary[row], _keyColumnDictionary[column]), value);
             }
             get
             {
-                if (_rowDictionary.TryGetValue(row, out int r) &&
-                    _columnDictionary.TryGetValue(column, out int c) &&
+                if (_keyRowDictionary.TryGetValue(row, out int r) &&
+                    _keyColumnDictionary.TryGetValue(column, out int c) &&
                     _valueDictionary.TryGetValue((r, c), out TValue v))
                     ; // value can be gotten from if statement
                 else
@@ -90,20 +92,20 @@ namespace DV_ReportAnalytics.Models
         {
             // get x range
             if (columnRange == null)
-                x = _columnDictionary.Keys.ToList();
+                x = _keyColumnDictionary.Keys.ToList();
             else
             {
                 // use linq to query
-                x = columnRange.Where(c => _columnDictionary.Keys.Contains(c)).ToList();
+                x = columnRange.Where(c => _keyColumnDictionary.Keys.Contains(c)).ToList();
                 x.Sort(); // columnRange may not be sorted
             }
             // get y range
             if (rowRange == null)
-                y = _rowDictionary.Keys.ToList();
+                y = _keyRowDictionary.Keys.ToList();
             else
             {
                 // use linq to query
-                y = rowRange.Where(r => _rowDictionary.Keys.Contains(r)).ToList();
+                y = rowRange.Where(r => _keyRowDictionary.Keys.Contains(r)).ToList();
                 y.Sort(); // rowRange may not be sorted
             }
             // get z
@@ -153,7 +155,7 @@ namespace DV_ReportAnalytics.Models
 
         public (int rows, int columns) GetDimension()
         {
-            return (_rowDictionary.Count, _columnDictionary.Count);
+            return (_keyRowDictionary.Count, _keyColumnDictionary.Count);
         }
 
     }
