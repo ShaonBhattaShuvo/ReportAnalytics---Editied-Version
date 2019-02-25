@@ -23,18 +23,12 @@ namespace DV_ReportAnalytics.Views
             spreadSheetContainer.Navigate(args.Path, false);
         }
 
-        private void _PlotDataHandler(object sender, DataPlotEventArgs args)
-        {
-            graphContainer.Navigate(args.Data, false);
-        }
-
         public void SetModel(ISpreadSheetModel model)
         {
             // model that view observes
             _model = model; 
             // and bind events
             _model.FileOpen += _ShowFileHandler;
-            _model.DataPlot += _PlotDataHandler;
         }
     }
 }

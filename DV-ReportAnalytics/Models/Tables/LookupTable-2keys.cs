@@ -17,19 +17,13 @@ namespace DV_ReportAnalytics.Models
         protected SortedList<TKeyRow, int> _keyRowDictionary;
         protected SortedList<TKeyColumn, int> _keyColumnDictionary;
         public string Name { get; }
-        public string KeyRowName { get; }
-        public string KeyColumnName { get; }
-        public string ValueName { get; }
 
         // initialize with given rows, columns and values
         // row and column index must correspond with 2d list of values
-        public LookupTable(string name, string rowName, string columnName, string valueName, TKeyRow[] rows, TKeyColumn[] columns, TValue[,] values)
+        public LookupTable(string name, TKeyRow[] rows, TKeyColumn[] columns, TValue[,] values)
         {
             // TODO: throw exception if rows and columns don't match value's dimension
             Name = name;
-            KeyRowName = rowName;
-            KeyColumnName = columnName;
-            ValueName = valueName;
             // IDs start with -1 if instance is empty
             _keyRowID = rows.Length - 1;
             _keyColumnID = columns.Length - 1;
@@ -50,11 +44,11 @@ namespace DV_ReportAnalytics.Models
         }
 
         // constructor with names
-        public LookupTable(string name, string rowName, string columnName, string valueName)
-            : this (name, rowName, columnName, valueName, new TKeyRow[0], new TKeyColumn[0], new TValue[0, 0]) { }
+        public LookupTable(string name)
+            : this (name, new TKeyRow[0], new TKeyColumn[0], new TValue[0, 0]) { }
 
         // default constructor
-        public LookupTable() : this("untitled", "rows", "columns", "values") { }
+        public LookupTable() : this("untitled") { }
 
         // provide a convenient way to access table using index
         public TValue this[TKeyRow row, TKeyColumn column]

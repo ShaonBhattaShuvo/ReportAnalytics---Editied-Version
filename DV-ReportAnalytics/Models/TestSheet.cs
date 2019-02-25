@@ -2,7 +2,7 @@
 
 namespace DV_ReportAnalytics.Models
 {
-    class TestSheet: ASpreadSheetModel
+    class TestSheet: SpreadSheetModel
     {
         public TestSheet(string path): base(path)
         {

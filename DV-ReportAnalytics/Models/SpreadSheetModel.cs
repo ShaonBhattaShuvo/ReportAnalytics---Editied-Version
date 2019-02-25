@@ -8,42 +8,28 @@ using DV_ReportAnalytics.Events;
 // it just makes changes and emmit events
 namespace DV_ReportAnalytics.Models
 {
-    abstract class ASpreadSheetModel: ISpreadSheetModel
+    abstract class SpreadSheetModel: ISpreadSheetModel
     {
         public string FileName {get;}
         public string FilePath {get;}
         public event FileOpenEventHandler FileOpen;
-        public event DataPlotEventHandler DataPlot;
-        private bool _isopen;
+        private bool _isOpen;
 
-        protected ASpreadSheetModel(string path)
+        protected SpreadSheetModel(string path)
         {
             FileName = Path.GetFileName(path);
             FilePath = path;
-            _isopen = false;
+            _isOpen = false;
         }
 
         public void Open()
         {
-            _isopen = true;
+            _isOpen = true;
             // TODO: open spreadsheet, read data, build data structure
 
             if (FileOpen != null)
             {
                 FileOpen.Invoke(this, new FileOpenEventArgs(FilePath)); // update observer
-            }
-        }
-
-        // this function is used to generate data for plotting
-        // TODO: add specific actions in this function
-        public virtual void GetPlotData()
-        {
-            if (_isopen && DataPlot != null)
-            {
-                string file = @"HTML\index.html";
-                string path = Path.GetFullPath(file);
-                Console.WriteLine(path);
-                DataPlot.Invoke(this, new DataPlotEventArgs(path)); // update observer
             }
         }
     }

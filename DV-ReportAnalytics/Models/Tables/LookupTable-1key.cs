@@ -15,16 +15,12 @@ namespace DV_ReportAnalytics.Models
         protected Dictionary<int, TValue> _valueDictionary;
         protected SortedList<TKey, int> _keyDictionary;
         public string Name { get; }
-        public string KeyName { get; }
-        public string ValueName { get; }
 
         // initialize with given keys and values
-        public LookupTable(string name, string keyName, string valueName, TKey[] keys, TValue[] values)
+        public LookupTable(string name, TKey[] keys, TValue[] values)
         {
             // TODO: throw exception if keys don't match value's dimension
             Name = name;
-            KeyName = keyName;
-            ValueName = valueName;
             // ID starts with -1 if instance is empty
             _keyID = keys.Length - 1;
             // initialize dictionary
@@ -38,11 +34,11 @@ namespace DV_ReportAnalytics.Models
         }
 
         // constructor with names
-        public LookupTable(string name, string keyName, string valueName)
-            : this(name, keyName, valueName, new TKey[0], new TValue[0]) { }
+        public LookupTable(string name)
+            : this(name, new TKey[0], new TValue[0]) { }
 
         // default constructor
-        public LookupTable() : this("untitled", "keys", "values") { }
+        public LookupTable() : this("untitled") { }
 
         // indexer
         public TValue this[TKey key]

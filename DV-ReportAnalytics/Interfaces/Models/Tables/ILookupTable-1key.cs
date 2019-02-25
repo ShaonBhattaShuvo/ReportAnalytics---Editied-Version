@@ -7,8 +7,6 @@ namespace DV_ReportAnalytics.Models
     interface ILookupTable<TKey, TValue>
     {
         string Name { get; }
-        string KeyName { get; }
-        string ValueName { get; }
 
         // use indexer to get value in a convenient way
         TValue this[TKey key] { set; get; }

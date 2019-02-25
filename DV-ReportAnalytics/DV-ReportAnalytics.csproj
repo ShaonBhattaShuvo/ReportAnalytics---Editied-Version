@@ -62,7 +62,7 @@
     <Compile Include="Interfaces\Models\Tables\ILookupTable-1key.cs" />
     <Compile Include="Interfaces\Models\Tables\ILookupTable-2keys.cs" />
     <Compile Include="Interfaces\Models\ISpreadSheetModel.cs" />
-    <Compile Include="Models\ASpreadSheetModel.cs" />
+    <Compile Include="Models\SpreadSheetModel.cs" />
     <Compile Include="Interfaces\Models\Tables\ITable.cs" />
     <Compile Include="Models\Tables\LookupTable-1key.cs" />
     <Compile Include="Models\Tables\LookupTable-2keys.cs" />

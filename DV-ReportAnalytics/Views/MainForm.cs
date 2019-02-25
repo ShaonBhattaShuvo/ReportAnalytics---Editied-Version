@@ -35,7 +35,8 @@ namespace DV_ReportAnalytics.Views
             // bind controllers and models
             _controller = new MainFormController(this);
             _controller.UserMessageUpdated += _UserMessageUpdated;
-            _model = null; // no model binded before opening a file
+            // no model binded before opening a file
+            _model = null;
             
         }
               

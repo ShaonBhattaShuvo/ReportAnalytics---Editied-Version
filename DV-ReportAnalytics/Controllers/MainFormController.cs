@@ -51,7 +51,7 @@ namespace DV_ReportAnalytics.Controllers
         {
             if (_model != null)
             {
-                _model.GetPlotData();
+                
             }
         }
 
