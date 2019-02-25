@@ -17,44 +17,44 @@ namespace DV_ReportAnalytics.Models
         protected SortedList<TKeyRow, int> _keyRowDictionary;
         protected SortedList<TKeyColumn, int> _keyColumnDictionary;
         public string Name { get; }
-        public string keyRowName { get; }
-        public string keyColumnName { get; }
+        public string KeyRowName { get; }
+        public string KeyColumnName { get; }
         public string ValueName { get; }
-
-        public LookupTable(string name, string rowName, string columnName, string valueName)
-            : this (name, rowName, columnName, valueName, new List<TKeyRow>(), new List<TKeyColumn>(), new List<List<TValue>>()) { }
-
-        // default constructor
-        public LookupTable() : this("untitled", "rows", "columns", "values") { }
 
         // initialize with given rows, columns and values
         // row and column index must correspond with 2d list of values
-        public LookupTable(string name, string rowName, string columnName, string valueName, List<TKeyRow> rows, List<TKeyColumn> columns, List<List<TValue>> values)
+        public LookupTable(string name, string rowName, string columnName, string valueName, TKeyRow[] rows, TKeyColumn[] columns, TValue[,] values)
         {
             // TODO: throw exception if rows and columns don't match value's dimension
             Name = name;
-            keyRowName = rowName;
-            keyColumnName = columnName;
+            KeyRowName = rowName;
+            KeyColumnName = columnName;
             ValueName = valueName;
+            // IDs start with -1 if instance is empty
+            _keyRowID = rows.Length - 1;
+            _keyColumnID = columns.Length - 1;
             // initialize dictionary
             _keyRowDictionary = new SortedList<TKeyRow, int>();
             _keyColumnDictionary = new SortedList<TKeyColumn, int>();
             _valueDictionary = new Dictionary<(int, int), TValue>();
-            // ID start with -1 if instance is empty
-            _keyRowID = rows.Count - 1;
-            _keyColumnID = columns.Count - 1;
-
-            for (int r = 0; r < rows.Count; r++)
+            for (int r = 0; r < rows.Length; r++)
             {
                 _keyRowDictionary.Add(rows[r], r);
-                for (int c = 0; c < columns.Count; c++)
+                for (int c = 0; c < columns.Length; c++)
                 {
                     _keyColumnDictionary.Add(columns[c], c);
                     // add value to lookup dictionary
-                    _valueDictionary.Add((r, c), values[r][c]);
+                    _valueDictionary.Add((r, c), values[r, c]);
                 }
             }
         }
+
+        // constructor with names
+        public LookupTable(string name, string rowName, string columnName, string valueName)
+            : this (name, rowName, columnName, valueName, new TKeyRow[0], new TKeyColumn[0], new TValue[0, 0]) { }
+
+        // default constructor
+        public LookupTable() : this("untitled", "rows", "columns", "values") { }
 
         // provide a convenient way to access table using index
         public TValue this[TKeyRow row, TKeyColumn column]
