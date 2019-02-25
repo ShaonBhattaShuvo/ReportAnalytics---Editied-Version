@@ -10,6 +10,7 @@ namespace DV_ReportAnalytics.Models
         // event being triggered when file is open
         event FileOpenEventHandler FileOpen;
         // open file
+        // FileOpen event should be triggered in this method
         void Open(); 
     }
 }

@@ -15,12 +15,9 @@ namespace DV_ReportAnalytics.Controllers
     /// <summary>
     /// Place your code here
     /// </summary>
-    class MainFormController: IMainFormController
+    partial class MainFormController: IMainFormController
     {
         public event UserMessageEventHandler UserMessageUpdated = null;
-
-        private IMainForm _view;
-        private ISpreadSheetModel _model;
 
         public MainFormController(IMainForm mainForm)
         {
@@ -29,7 +26,7 @@ namespace DV_ReportAnalytics.Controllers
             // TODO: Create all necessary classes which require different functionality from MainForm
         }
 
-
+        // place configuration seletor here
         public void AppForm_OpenButtonClicked(string path)
         {
             _model = new TestSheet(path); // create a new sheet model
