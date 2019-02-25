@@ -80,10 +80,14 @@ namespace DV_ReportAnalytics.Models
                 if (_keyRowDictionary.TryGetValue(row, out int r) &&
                     _keyColumnDictionary.TryGetValue(column, out int c) &&
                     _valueDictionary.TryGetValue((r, c), out TValue v))
-                    ; // value can be gotten from if statement
+                {
+                    // value can be gotten from if statement
+                }
                 else
+                {
                     // if does not exit, return uninitialized value;
-                    v = new TValue(); 
+                    v = new TValue();
+                }
                 return v;
             }
         }
@@ -92,21 +96,27 @@ namespace DV_ReportAnalytics.Models
         {
             // get x range
             if (columnRange == null)
+            {
                 x = _keyColumnDictionary.Keys.ToList();
+            }
             else
             {
                 // use linq to query
                 x = columnRange.Where(c => _keyColumnDictionary.Keys.Contains(c)).ToList();
-                x.Sort(); // columnRange may not be sorted
+                // columnRange may not be sorted
+                x.Sort();
             }
             // get y range
             if (rowRange == null)
+            {
                 y = _keyRowDictionary.Keys.ToList();
+            }
             else
             {
                 // use linq to query
                 y = rowRange.Where(r => _keyRowDictionary.Keys.Contains(r)).ToList();
-                y.Sort(); // rowRange may not be sorted
+                // rowRange may not be sorted
+                y.Sort(); 
             }
             // get z
             z = new List<List<TValue>>();
