@@ -44,6 +44,11 @@ namespace DV_ReportAnalytics.Models
             }
         }
 
+        public List<TKey> GetKeys()
+        {
+            return _keyDictionary.Keys.ToList();
+        }
+
         // passing empty default value to get the whole table
         public TData2D<TKey, TValue> GetData2D(TKey[] keyRange = null)
         {
@@ -52,7 +57,8 @@ namespace DV_ReportAnalytics.Models
             // get x range
             if (keyRange == null)
             {
-                x = _keyDictionary.Keys.ToList();
+                //x = _keyDictionary.Keys.ToList();
+                x = GetKeys();
             }
             else
             {

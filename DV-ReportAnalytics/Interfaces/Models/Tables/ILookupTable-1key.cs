@@ -1,19 +1,23 @@
 ﻿using System;
+using System.Collections.Generic;
 using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {
-    interface ILookupTable<Tkey, TValue>
+    interface ILookupTable<TKey, TValue>
     {
         string Name { get; }
         string keyName { get; }
         string valueName { get; }
 
         // use indexer to get value in a convenient way
-        TValue this[Tkey key] { set; get; }
+        TValue this[TKey key] { set; get; }
+
+        // get keys
+        List<TKey> GetKeys();
 
         // get table
-        TData2D<Tkey, TValue> GetData2D(Tkey[] range);
+        TData2D<TKey, TValue> GetData2D(TKey[] range);
 
         // get the number of elements
         int GetDimension();

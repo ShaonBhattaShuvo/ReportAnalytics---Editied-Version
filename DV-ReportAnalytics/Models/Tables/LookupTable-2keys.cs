@@ -93,12 +93,23 @@ namespace DV_ReportAnalytics.Models
             }
         }
 
+        public List<TKeyRow> GetKeysRows()
+        {
+            return _keyRowDictionary.Keys.ToList();
+        }
+
+        public List<TKeyColumn> GetKeysColumns()
+        {
+            return _keyColumnDictionary.Keys.ToList();
+        }
+
         private void GetXYZ(TKeyRow[] rowRange, TKeyColumn[] columnRange, bool transposed, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z)
         {
             // get x range
             if (columnRange == null)
             {
-                x = _keyColumnDictionary.Keys.ToList();
+                //x = _keyColumnDictionary.Keys.ToList();
+                x = GetKeysColumns();
             }
             else
             {
@@ -111,7 +122,8 @@ namespace DV_ReportAnalytics.Models
             // get y range
             if (rowRange == null)
             {
-                y = _keyRowDictionary.Keys.ToList();
+                //y = _keyRowDictionary.Keys.ToList();
+                y = GetKeysRows();
             }
             else
             {
