@@ -57,7 +57,8 @@ namespace DV_ReportAnalytics.Models
             else
             {
                 // use linq to query
-                x = keyRange.Where(k => _keyDictionary.Keys.Contains(k)).ToList();
+                //x = keyRange.Where(k => _keyDictionary.Keys.Contains(k)).ToList();
+                x = keyRange.ToList();
                 // range may not be sorted
                 x.Sort();
             }

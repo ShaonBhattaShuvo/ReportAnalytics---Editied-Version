@@ -77,6 +77,7 @@ namespace DV_ReportAnalytics.Models
             }
             get
             {
+                // filter
                 if (_keyRowDictionary.TryGetValue(row, out int r) &&
                     _keyColumnDictionary.TryGetValue(column, out int c) &&
                     _valueDictionary.TryGetValue((r, c), out TValue v))
@@ -102,7 +103,8 @@ namespace DV_ReportAnalytics.Models
             else
             {
                 // use linq to query
-                x = columnRange.Where(c => _keyColumnDictionary.Keys.Contains(c)).ToList();
+                //x = columnRange.Where(c => _keyColumnDictionary.Keys.Contains(c)).ToList();
+                x = columnRange.ToList();
                 // columnRange may not be sorted
                 x.Sort();
             }
@@ -114,7 +116,8 @@ namespace DV_ReportAnalytics.Models
             else
             {
                 // use linq to query
-                y = rowRange.Where(r => _keyRowDictionary.Keys.Contains(r)).ToList();
+                //y = rowRange.Where(r => _keyRowDictionary.Keys.Contains(r)).ToList();
+                y = rowRange.ToList();
                 // rowRange may not be sorted
                 y.Sort(); 
             }
