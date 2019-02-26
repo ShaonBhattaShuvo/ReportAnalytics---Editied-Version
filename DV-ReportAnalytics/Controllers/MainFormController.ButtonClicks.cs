@@ -27,9 +27,7 @@ namespace DV_ReportAnalytics.Controllers
         // place configuration seletor here
         public void AppForm_OpenButtonClicked(string path)
         {
-            _model = new EptReport(path); // create a new sheet model
-            _view.SetModel(_model); // bind with view
-            _model.Open(); // after setup, open the file
+            _FileOpen(this, new FileOpenEventArgs(path));
         }
 
         public void AppForm_SaveButtonClicked()

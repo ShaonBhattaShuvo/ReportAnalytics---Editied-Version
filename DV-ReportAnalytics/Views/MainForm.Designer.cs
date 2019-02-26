@@ -38,9 +38,9 @@
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
+            this.workbookView = new SpreadsheetGear.Windows.Forms.WorkbookView();
             this.graphContainer = new System.Windows.Forms.WebBrowser();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.workbookView = new SpreadsheetGear.Windows.Forms.WorkbookView();
             this.toolStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -148,6 +148,19 @@
             this.splitContainerMain.SplitterDistance = 603;
             this.splitContainerMain.TabIndex = 1;
             // 
+            // workbookView
+            // 
+            this.workbookView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.workbookView.FormulaBar = null;
+            this.workbookView.Location = new System.Drawing.Point(3, 3);
+            this.workbookView.Name = "workbookView";
+            this.workbookView.Size = new System.Drawing.Size(597, 748);
+            this.workbookView.TabIndex = 0;
+            this.workbookView.Visible = false;
+            this.workbookView.WorkbookSetState = resources.GetString("workbookView.WorkbookSetState");
+            // 
             // graphContainer
             // 
             this.graphContainer.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -160,18 +173,6 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
-            // 
-            // workbookView
-            // 
-            this.workbookView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.workbookView.FormulaBar = null;
-            this.workbookView.Location = new System.Drawing.Point(3, 3);
-            this.workbookView.Name = "workbookView";
-            this.workbookView.Size = new System.Drawing.Size(597, 748);
-            this.workbookView.TabIndex = 0;
-            this.workbookView.WorkbookSetState = resources.GetString("workbookView.WorkbookSetState");
             // 
             // MainForm
             // 
