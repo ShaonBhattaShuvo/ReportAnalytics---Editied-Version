@@ -2,7 +2,7 @@
 
 namespace DV_ReportAnalytics.Models
 {
-    class ResultTable : LookupTable<double, double, double>, IResultTable<double, double, double>
+    class EptTable : LookupTable<double, double, double>, IEptTable<double, double, double>
     {
         public string KeyRowName { set; get; }
         public string KeyColumnName { set; get; }
@@ -12,7 +12,7 @@ namespace DV_ReportAnalytics.Models
         public string ValueSuffix { set; get; }
 
         // initialize all properties
-        public ResultTable(string name, string rowName, string columnName, string valueName, 
+        public EptTable(string name, string rowName, string columnName, string valueName, 
             string rowSuffix, string columnSuffix, string valueSuffix,
             double[] rows, double[] columns, double[,] values)
             : base(name, rows, columns, values)
@@ -26,6 +26,6 @@ namespace DV_ReportAnalytics.Models
         }
 
         // default constructor
-        public ResultTable() : this("untitled", "", "", "", "", "", "", new double[0], new double[0], new double[0, 0]) { }
+        public EptTable() : this("untitled", "", "", "", "", "", "", new double[0], new double[0], new double[0, 0]) { }
     }
 }

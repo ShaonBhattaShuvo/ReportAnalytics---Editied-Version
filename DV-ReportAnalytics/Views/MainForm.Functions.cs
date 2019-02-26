@@ -22,12 +22,12 @@ namespace DV_ReportAnalytics.Views
         {
             // Interrupt background calculation if necessary and acquire a lock on the workbook set.
             workbookView.GetLock();
-            workbookView.Visible = true;
             try
             {
                 // close previous before open a new file
                 workbookView.ActiveWorkbookSet.Workbooks.Close();
                 workbookView.ActiveWorkbook = workbookView.ActiveWorkbookSet.Workbooks.Open(args.Path);
+                workbookView.Visible = true;
                 printAllWorkbooks();
             }
             finally

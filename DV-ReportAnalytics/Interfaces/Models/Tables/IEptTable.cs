@@ -2,7 +2,7 @@
 
 namespace DV_ReportAnalytics.Models
 {
-    interface IResultTable<TKeyRow, TKeyColumn, TValue> : ILookupTable<TKeyRow, TKeyColumn, TValue>
+    interface IEptTable<TKeyRow, TKeyColumn, TValue> : ILookupTable<TKeyRow, TKeyColumn, TValue>
     {
         string KeyRowName { set; get; }
         string KeyColumnName { set; get; }
