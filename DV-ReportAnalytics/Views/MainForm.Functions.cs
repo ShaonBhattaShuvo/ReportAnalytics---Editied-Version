@@ -17,18 +17,16 @@ namespace DV_ReportAnalytics.Views
             MessageBox.Show(args.Message);
         }
 
-        private void _ShowFileHandler(object sender, FileOpenEventArgs args)
+        private void _FileOpen(object sender, FileOpenEventArgs args)
         {
             // open file in window
-            spreadSheetContainer.Navigate(args.Path, false);
+            
         }
 
         public void SetModel(ISpreadSheetModel model)
         {
             // model that view observes
             _model = model; 
-            // and bind events
-            _model.FileOpen += _ShowFileHandler;
         }
     }
 }

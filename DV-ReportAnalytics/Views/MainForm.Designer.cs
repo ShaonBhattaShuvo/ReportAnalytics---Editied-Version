@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOpenFile = new System.Windows.Forms.ToolStripButton();
@@ -37,9 +38,9 @@
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.spreadSheetContainer = new System.Windows.Forms.WebBrowser();
             this.graphContainer = new System.Windows.Forms.WebBrowser();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.workbookView = new SpreadsheetGear.Windows.Forms.WorkbookView();
             this.toolStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -137,7 +138,7 @@
             // 
             // splitContainerMain.Panel1
             // 
-            this.splitContainerMain.Panel1.Controls.Add(this.spreadSheetContainer);
+            this.splitContainerMain.Panel1.Controls.Add(this.workbookView);
             // 
             // splitContainerMain.Panel2
             // 
@@ -146,15 +147,6 @@
             this.splitContainerMain.Size = new System.Drawing.Size(1212, 754);
             this.splitContainerMain.SplitterDistance = 603;
             this.splitContainerMain.TabIndex = 1;
-            // 
-            // spreadSheetContainer
-            // 
-            this.spreadSheetContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.spreadSheetContainer.Location = new System.Drawing.Point(0, 0);
-            this.spreadSheetContainer.MinimumSize = new System.Drawing.Size(20, 20);
-            this.spreadSheetContainer.Name = "spreadSheetContainer";
-            this.spreadSheetContainer.Size = new System.Drawing.Size(603, 754);
-            this.spreadSheetContainer.TabIndex = 0;
             // 
             // graphContainer
             // 
@@ -168,6 +160,18 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
+            // 
+            // workbookView
+            // 
+            this.workbookView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.workbookView.FormulaBar = null;
+            this.workbookView.Location = new System.Drawing.Point(3, 3);
+            this.workbookView.Name = "workbookView";
+            this.workbookView.Size = new System.Drawing.Size(597, 748);
+            this.workbookView.TabIndex = 0;
+            this.workbookView.WorkbookSetState = resources.GetString("workbookView.WorkbookSetState");
             // 
             // MainForm
             // 
@@ -202,9 +206,9 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonSettings;
         private System.Windows.Forms.ToolStripButton toolStripButtonHelp;
         private System.Windows.Forms.SplitContainer splitContainerMain;
-        private System.Windows.Forms.WebBrowser spreadSheetContainer;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.WebBrowser graphContainer;
+        private SpreadsheetGear.Windows.Forms.WorkbookView workbookView;
     }
 }
 

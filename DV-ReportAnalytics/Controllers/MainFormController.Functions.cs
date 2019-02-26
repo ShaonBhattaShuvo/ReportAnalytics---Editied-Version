@@ -30,7 +30,7 @@ namespace DV_ReportAnalytics.Controllers
                 FileOpen.Invoke(sender, args); // update observer
         }
 
-        private void getModel(string type, string path)
+        private void _GetModel(string type, string path)
         {
 
             if (Enum.TryParse<ModelTypes>(type, false, out ModelTypes t))
