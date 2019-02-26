@@ -12,7 +12,6 @@ namespace DV_ReportAnalytics.Models
     {
         public string FileName {get;}
         public string FilePath {get;}
-        public event FileOpenEventHandler FileOpen;
 
         protected SpreadSheetModel(string path)
         {
@@ -20,10 +19,6 @@ namespace DV_ReportAnalytics.Models
             FilePath = path;
         }
 
-        public virtual void Open()
-        {
-            if (FileOpen != null)
-                FileOpen.Invoke(this, new FileOpenEventArgs(FilePath)); // update observer
-        }
+        public abstract void Open();
     }
 }

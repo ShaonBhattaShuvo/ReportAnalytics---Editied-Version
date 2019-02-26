@@ -17,8 +17,6 @@ namespace DV_ReportAnalytics.Controllers
     /// </summary>
     partial class MainFormController: IMainFormController
     {
-        public event UserMessageEventHandler UserMessageUpdated = null;
-
         public MainFormController(IMainForm mainForm)
         {
             // mainform should be binded with controller here
@@ -29,7 +27,7 @@ namespace DV_ReportAnalytics.Controllers
         // place configuration seletor here
         public void AppForm_OpenButtonClicked(string path)
         {
-            _model = new TestSheet(path); // create a new sheet model
+            _model = new EptReport(path); // create a new sheet model
             _view.SetModel(_model); // bind with view
             _model.Open(); // after setup, open the file
         }
@@ -60,12 +58,6 @@ namespace DV_ReportAnalytics.Controllers
         public void AppForm_HelpInfoButtonClicked()
         {
             _UserMessageUpdated(this, new UserMessageEventArgs("Implement Help/Info."));
-        }
-
-        private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
-        {
-            if (UserMessageUpdated != null)
-                UserMessageUpdated.Invoke(sender, args);
         }
     }
 }

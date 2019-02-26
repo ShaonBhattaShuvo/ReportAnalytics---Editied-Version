@@ -7,10 +7,7 @@ namespace DV_ReportAnalytics.Models
     {
         string FileName {get;}
         string FilePath {get;}
-        // event being triggered when file is open
-        event FileOpenEventHandler FileOpen;
         // open file
-        // FileOpen event should be triggered in this method
         void Open(); 
     }
 }
