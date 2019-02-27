@@ -2,20 +2,20 @@
 
 namespace DV_ReportAnalytics.Types
 {
-    struct TBounds
+    struct TBounds : ITBounds
     {
-        public int lbound;
-        public int ubound;
+        public int LBound { get; }
+        public int UBound { get; } 
 
         public TBounds(int lbound, int ubound)
         {
-            this.lbound = lbound;
-            this.ubound = ubound;
+            LBound = lbound;
+            UBound = ubound;
         }
 
         public bool IsBoundOverlapped()
         {
-            return lbound == ubound;
+            return LBound == UBound;
         }
     }
 }

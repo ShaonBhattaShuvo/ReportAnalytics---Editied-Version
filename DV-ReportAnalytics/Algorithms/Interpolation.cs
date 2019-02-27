@@ -75,7 +75,7 @@ namespace DV_ReportAnalytics.Algorithms
             return new TBounds(lbound, ubound);
         }
 
-        static private List<double> ExtendArray(List<double> srcArray, int points)
+        static public List<double> ExtendArray(List<double> srcArray, int points)
         {
             if (points < 1)
                 return srcArray;
@@ -98,28 +98,28 @@ namespace DV_ReportAnalytics.Algorithms
             }
         }
 
-        static private double LinearInterpolation(List<double> srcArray, double xVal)
+        static public double LinearInterpolation(List<double> srcArray, double xVal)
         {
             TBounds bound = GetNeighborIndices(srcArray, xVal);
-            double ylbound = srcArray[bound.lbound];
-            double yubound = srcArray[bound.ubound];
+            double ylbound = srcArray[bound.LBound];
+            double yubound = srcArray[bound.UBound];
             // interpolation
-            double interp = ylbound + (xVal - bound.lbound) * (yubound - ylbound) / (bound.ubound - bound.lbound);
+            double interp = ylbound + (xVal - bound.LBound) * (yubound - ylbound) / (bound.UBound - bound.LBound);
             return interp;
         }
 
-        static private double BilinearInterpolation(List<List<double>> srcTable, List<double> srcXAxis, List<double> srcYAxis, double dstX, double dstY)
+        static public double BilinearInterpolation(List<List<double>> srcTable, List<double> srcXAxis, List<double> srcYAxis, double dstX, double dstY)
         {
             TBounds xbound = GetNeighborIndices(srcXAxis, dstX);
             TBounds ybound = GetNeighborIndices(srcYAxis, dstY);
-            double q11 = srcTable[ybound.lbound][xbound.lbound];
-            double q21 = srcTable[ybound.ubound][xbound.lbound];
-            double q12 = srcTable[ybound.lbound][xbound.ubound];
-            double q22 = srcTable[ybound.ubound][xbound.ubound];
-            double x1 = srcXAxis[xbound.lbound];
-            double x2 = srcXAxis[xbound.ubound];
-            double y1 = srcYAxis[ybound.lbound];
-            double y2 = srcYAxis[ybound.ubound];
+            double q11 = srcTable[ybound.LBound][xbound.LBound];
+            double q21 = srcTable[ybound.UBound][xbound.LBound];
+            double q12 = srcTable[ybound.LBound][xbound.UBound];
+            double q22 = srcTable[ybound.UBound][xbound.UBound];
+            double x1 = srcXAxis[xbound.LBound];
+            double x2 = srcXAxis[xbound.UBound];
+            double y1 = srcYAxis[ybound.LBound];
+            double y2 = srcYAxis[ybound.UBound];
             double interp;
 
             // if point exactly found on a node do not interpolate

@@ -13,8 +13,7 @@ namespace DV_ReportAnalytics.Controllers
     partial class MainFormController : IMainFormController
     {
         private IMainForm _view;
-        private dynamic _model;
-        private IEptReport _eptReportModel;
+        private ISpreadSheetModel _model;
         public event UserMessageEventHandler UserMessageUpdated = null;
         public event FileOpenEventHandler FileOpen;
 
@@ -39,8 +38,7 @@ namespace DV_ReportAnalytics.Controllers
                 {
                     case ModelTypes.EptReport:
                         // do something
-                        _eptReportModel = new EptReport(path);
-                        _model = _eptReportModel;
+                        _model = new EptReportModel(path);
                         break;
                     default:
                         break;

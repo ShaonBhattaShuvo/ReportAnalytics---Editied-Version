@@ -3,11 +3,11 @@ using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
-    struct TData3D<TX, TY, TZ>
+    struct TData3D<TX, TY, TZ> : ITData3D<TX, TY, TZ>
     {
         public List<TX> X { get; }
         public List<TY> Y { get; }
-        public List<List<TZ>> Z { get; } // multi-dimensional array
+        public List<List<TZ>> Z { get; }
         public TData3D(List<TX> x, List<TY> y, List<List<TZ>> z)
         {
             X = x;
@@ -16,7 +16,7 @@ namespace DV_ReportAnalytics.Types
         }
     }
 
-    struct TData2D<TX, TY>
+    struct TData2D<TX, TY> : ITData2D<TX, TY>
     {
         public List<TX> X { get; }
         public List<TY> Y { get; }
