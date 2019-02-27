@@ -11,8 +11,6 @@ namespace DV_ReportAnalytics.Models
         string KeyRowSuffix { set; get; }
         string KeyColumnSuffix { set; get; }
         string ValueSuffix { set; get; }
-        // do interpolation
-        TData3D<double, double, double> GetData3DInterpolated(int rowInterp, int columnInterp, double[] rowRange, double[] columnRange);
-        TData3D<double, double, double> GetData3DInterpolatedTransposed(int rowInterp, int columnInterp, double[] rowRange, double[] columnRange);
+        TData3DDouble GetData(double[] rowRange, double[] columnRange);
     }
 }

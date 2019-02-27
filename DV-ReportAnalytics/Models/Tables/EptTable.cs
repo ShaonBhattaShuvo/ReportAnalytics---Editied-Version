@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using DV_ReportAnalytics.Types;
 using DV_ReportAnalytics.Algorithms;
 
@@ -30,14 +31,12 @@ namespace DV_ReportAnalytics.Models
         // default constructor
         public EptTable() : this("untitled", "", "", "", "", "", "", new double[0], new double[0], new double[0, 0]) { }
 
-        public TData3D<double, double, double> GetData3DInterpolated(int rowInterp, int columnInterp, double[] rowRange = null, double[] columnRange = null)
+        // hide the base method because it uses new return type
+        public TData3DDouble GetData(double[] rowRange = null, double[] columnRange = null)
         {
-            TData3D<double, double, double> pre = GetData3D(rowRange, columnRange);
+            GetXYZ(columnRange, rowRange, out List<double> x, out List<double> y, out List<List<double>> z);
+            TData3DDouble data = new TData3DDouble(x, y, z);
+            return data;
         }
-        public TData3D<double, double, double> GetData3DInterpolatedTransposed(int rowInterp, int columnInterp, double[] rowRange, double[] columnRange)
-        {
-
-        }
-        
     }
 }

@@ -18,10 +18,10 @@ namespace DV_ReportAnalytics.Models
         List<TKeyColumn> GetKeysColumns();
 
         // passing empty default value to get the whole table
-        TData3D<TKeyColumn, TKeyRow, TValue> GetData3D(TKeyRow[] rowRange, TKeyColumn[] columnRange);
+        TData3D<TKeyColumn, TKeyRow, TValue> GetData(TKeyRow[] rowRange, TKeyColumn[] columnRange);
 
-        // get transposed table
-        TData3D<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange, TKeyColumn[] columnRange);
+        //// get transposed table
+        //TData3D<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange, TKeyColumn[] columnRange);
 
         // get a tuple that contains the number of rows and columns
         (int rows, int columns) GetDimension();

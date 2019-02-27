@@ -97,7 +97,7 @@ namespace DV_ReportAnalytics.Models
             return _keyColumnDictionary.Keys.ToList();
         }
 
-        private void GetXYZ(TKeyRow[] rowRange, TKeyColumn[] columnRange, bool transposed, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z)
+        protected void GetXYZ(TKeyColumn[] columnRange, TKeyRow[] rowRange, out List<TKeyColumn> x, out List<TKeyRow> y, out List<List<TValue>> z)
         {
             // get x range
             if (columnRange == null)
@@ -129,48 +129,34 @@ namespace DV_ReportAnalytics.Models
             }
             // get z
             z = new List<List<TValue>>();
-            // if it is transposed
-            // scan by column
-            if (transposed)
+            // scan by row
+            foreach (TKeyRow r in y)
             {
+                List<TValue> l = new List<TValue>();
                 foreach (TKeyColumn c in x)
-                {
-                    List<TValue> l = new List<TValue>();
-                    foreach (TKeyRow r in y)
-                        l.Add(this[r, c]);
-                    z.Add(l);
-                }
+                    l.Add(this[r, c]);
+                z.Add(l);
             }
-            // or scan by row
-            else
-            {
-                foreach (TKeyRow r in y)
-                {
-                    List<TValue> l = new List<TValue>();
-                    foreach (TKeyColumn c in x)
-                        l.Add(this[r, c]);
-                    z.Add(l);
-                }
-            }
+           
         }
 
         // passing empty default value to get the whole table
-        public TData3D<TKeyColumn, TKeyRow, TValue> GetData3D(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
+        public TData3D<TKeyColumn, TKeyRow, TValue> GetData(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
         {
-            GetXYZ(rowRange, columnRange, false, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z);
+            GetXYZ(columnRange, rowRange, out List<TKeyColumn> x, out List<TKeyRow> y, out List<List<TValue>> z);
             // build data
             TData3D<TKeyColumn, TKeyRow, TValue> data = new TData3D<TKeyColumn, TKeyRow, TValue>(x, y, z);
             return data;
         }
 
-        // get transposed table
-        public TData3D<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
-        {
-            GetXYZ(rowRange, columnRange, true, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z);
-            // build data
-            TData3D<TKeyRow, TKeyColumn, TValue> data = new TData3D<TKeyRow, TKeyColumn, TValue>(y, x, z);
-            return data;
-        }
+        //// get transposed table
+        //public TData3D<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
+        //{
+        //    GetXYZ(rowRange, columnRange, true, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z);
+        //    // build data
+        //    TData3D<TKeyRow, TKeyColumn, TValue> data = new TData3D<TKeyRow, TKeyColumn, TValue>(y, x, z);
+        //    return data;
+        //}
 
         public (int rows, int columns) GetDimension()
         {
