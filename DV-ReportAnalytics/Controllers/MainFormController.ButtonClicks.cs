@@ -37,7 +37,9 @@ namespace DV_ReportAnalytics.Controllers
 
         public void AppForm_TableButtonClicked()
         {
-            _UserMessageUpdated(this, new UserMessageEventArgs("Table Display: We can implement functionality in the separate class and create instance of this class in UIController."));
+            //_UserMessageUpdated(this, new UserMessageEventArgs("Table Display: We can implement functionality in the separate class and create instance of this class in UIController."));
+            EptForm ept = new EptForm();
+            ept.Show();
         }
 
         public void AppForm_GraphButtonClicked()
@@ -50,7 +52,9 @@ namespace DV_ReportAnalytics.Controllers
 
         public void AppForm_SettingsButtonClicked()
         {
-            _UserMessageUpdated(this, new UserMessageEventArgs("Implement Show Settings."));
+            //_UserMessageUpdated(this, new UserMessageEventArgs("Implement Show Settings."));
+            ConfigForm config = new ConfigForm();
+            config.Show();
         }
 
         public void AppForm_HelpInfoButtonClicked()

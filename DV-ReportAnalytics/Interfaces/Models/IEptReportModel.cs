@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Text.RegularExpressions;
 
 namespace DV_ReportAnalytics.Models
@@ -13,9 +9,9 @@ namespace DV_ReportAnalytics.Models
         // new pattern should be re-instantiated
         Regex Pattern { set; get; }
         // column index for name field
-        int IndexName { set; get; }
+        int NameIndex { set; get; }
         // column index for value field
-        int IndexValue { set; get; }
+        int ValueIndex { set; get; }
         // 
     }
 }
