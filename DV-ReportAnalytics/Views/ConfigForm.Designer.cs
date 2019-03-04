@@ -35,11 +35,11 @@
             this.labelInputSheetName = new System.Windows.Forms.Label();
             this.labelOutputSheetName = new System.Windows.Forms.Label();
             this.labelResultFormat = new System.Windows.Forms.Label();
-            this.textBoxParameter = new System.Windows.Forms.TextBox();
             this.textBoxName = new System.Windows.Forms.TextBox();
             this.textBoxInputSheetName = new System.Windows.Forms.TextBox();
             this.textBoxOutputSheetName = new System.Windows.Forms.TextBox();
             this.textBoxResultFormat = new System.Windows.Forms.TextBox();
+            this.textBoxParameter = new System.Windows.Forms.TextBox();
             this.comboBoxType = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel.SuspendLayout();
             this.SuspendLayout();
@@ -149,17 +149,6 @@
             this.labelResultFormat.Text = "Result Format";
             this.labelResultFormat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // textBoxParameter
-            // 
-            this.textBoxParameter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxParameter.Location = new System.Drawing.Point(198, 4);
-            this.textBoxParameter.Name = "textBoxParameter";
-            this.textBoxParameter.Size = new System.Drawing.Size(188, 20);
-            this.textBoxParameter.TabIndex = 6;
-            this.textBoxParameter.Text = "Value";
-            // 
             // textBoxName
             // 
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -203,6 +192,17 @@
             this.textBoxResultFormat.Size = new System.Drawing.Size(188, 20);
             this.textBoxResultFormat.TabIndex = 10;
             this.textBoxResultFormat.Text = "Speed, Torque";
+            // 
+            // textBoxParameter
+            // 
+            this.textBoxParameter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxParameter.Location = new System.Drawing.Point(198, 4);
+            this.textBoxParameter.Name = "textBoxParameter";
+            this.textBoxParameter.Size = new System.Drawing.Size(188, 20);
+            this.textBoxParameter.TabIndex = 6;
+            this.textBoxParameter.Text = "Value";
             // 
             // comboBoxType
             // 

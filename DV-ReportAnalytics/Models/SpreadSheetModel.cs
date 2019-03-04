@@ -8,7 +8,7 @@ using DV_ReportAnalytics.Events;
 // it just makes changes and emmit events
 namespace DV_ReportAnalytics.Models
 {
-    abstract class SpreadSheetModel: ISpreadSheetModel
+    abstract class SpreadSheetModel: IWorkbookModel
     {
         public string FileName {get;}
         public string FilePath {get;}
