@@ -74,7 +74,8 @@
     <Compile Include="Algorithms\Interpolation.cs" />
     <Compile Include="Constant\ModelTypes.cs" />
     <Compile Include="Controllers\MainFormController.Functions.cs" />
-    <Compile Include="Interfaces\Controllers\IModelController.cs" />
+    <Compile Include="Events\WorkbookModelEvents.cs" />
+    <Compile Include="Interfaces\Controllers\IWorkbookModelController.cs" />
     <Compile Include="Interfaces\Controllers\IMainFormController.cs" />
     <Compile Include="Controllers\MainFormController.ButtonClicks.cs" />
     <Compile Include="Events\DataPlotEvent.cs" />
@@ -83,11 +84,12 @@
     <Compile Include="Interfaces\Models\Tables\ICrossTable.cs" />
     <Compile Include="Interfaces\Models\Tables\ILookupTable-1key.cs" />
     <Compile Include="Interfaces\Models\Tables\ILookupTable-2keys.cs" />
-    <Compile Include="Interfaces\Models\ISpreadSheetModel.cs" />
+    <Compile Include="Interfaces\Models\IWorkbookModel.cs" />
     <Compile Include="Interfaces\Models\Tables\IEptTable.cs" />
     <Compile Include="Interfaces\Types\ITBounds.cs" />
     <Compile Include="Interfaces\Types\ITData.cs" />
     <Compile Include="Interfaces\Types\ITDataDouble.cs" />
+    <Compile Include="Interfaces\Views\IWorkbookModelView.cs" />
     <Compile Include="Models\SpreadSheetModel.cs" />
     <Compile Include="Interfaces\Models\Tables\ITable.cs" />
     <Compile Include="Models\Tables\LookupTable-1key.cs" />
