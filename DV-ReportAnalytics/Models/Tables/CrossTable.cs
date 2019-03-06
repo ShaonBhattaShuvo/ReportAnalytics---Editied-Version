@@ -5,6 +5,7 @@ using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {
+    [Obsolete("Use LookupTable instead", false)]
     class CrossTable<TKeyRow, TKeyColumn, TValue> : ICrossTable<TKeyRow, TKeyColumn, TValue>
         where TKeyRow : new()
         where TKeyColumn : new()
