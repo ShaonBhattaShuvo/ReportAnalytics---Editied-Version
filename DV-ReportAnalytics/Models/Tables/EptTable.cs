@@ -29,10 +29,12 @@ namespace DV_ReportAnalytics.Models
         }
 
         // default constructor
-        public EptTable() : this("untitled", "", "", "", "", "", "", new double[0], new double[0], new double[0, 0]) { }
+        public EptTable() : this("untitled", "row", "column", "value", 
+            "", "", "", 
+            new double[0], new double[0], new double[0, 0]) { }
 
         // interpolation
-        protected void _interpolate (List<double> xi, List<double> yi, List<List<double>> zi, int xInterp, int yInterp, out List<double> xo, out List<double> yo, out List<List<double>> zo)
+        protected void _Interpolate (List<double> xi, List<double> yi, List<List<double>> zi, int xInterp, int yInterp, out List<double> xo, out List<double> yo, out List<List<double>> zo)
         {
             xo = Interpolation.ExtendArray(xi, xInterp);
             yo = Interpolation.ExtendArray(yi, yInterp);
@@ -58,8 +60,8 @@ namespace DV_ReportAnalytics.Models
         public TData3<double, double, double> GetData(int columnInterp, int rowInterp, double[] columnRange = null, double[] rowRange = null)
         {
             // retrive original data
-            _getXYZ(columnRange, rowRange, out List<double> x, out List<double> y, out List<List<double>> z);
-            _interpolate(x, y, z, columnInterp, rowInterp, out List<double> xo, out List<double> yo, out List<List<double>> zo);
+            _GetXYZ(columnRange, rowRange, out List<double> x, out List<double> y, out List<List<double>> z);
+            _Interpolate(x, y, z, columnInterp, rowInterp, out List<double> xo, out List<double> yo, out List<List<double>> zo);
             TData3<double, double, double> data = new TData3<double, double, double>(xo, yo, zo);
             return data;
         }
