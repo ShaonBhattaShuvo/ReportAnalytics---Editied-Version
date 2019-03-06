@@ -5,11 +5,27 @@ namespace DV_ReportAnalytics.Types
 {
     struct TData3<TX, TY, TZ> : ITData3<TX, TY, TZ>
     {
+        public string Name { get; }
+        public string XName { get; }
+        public string XSuffix { get; }
+        public string YName { get; }
+        public string YSuffix { get; }
+        public string ZName { get; }
+        public string ZSuffix { get; }
         public List<TX> X { get; }
         public List<TY> Y { get; }
         public List<List<TZ>> Z { get; }
-        public TData3(List<TX> x, List<TY> y, List<List<TZ>> z)
+        public TData3(string name, string xName, string yName, string zName, 
+            string xSuffix, string ySuffix, string zSuffix,
+            List<TX> x, List<TY> y, List<List<TZ>> z)
         {
+            Name = name;
+            XName = xName;
+            YName = yName;
+            ZName = zName;
+            XSuffix = xSuffix;
+            YSuffix = ySuffix;
+            ZSuffix = zSuffix;
             X = x;
             Y = y;
             Z = z;
@@ -18,15 +34,27 @@ namespace DV_ReportAnalytics.Types
 
     struct TData2<TX, TY> : ITData2<TX, TY>
     {
+        public string Name { get; }
+        public string XName { get; }
+        public string XSuffix { get; }
+        public string YName { get; }
+        public string YSuffix { get; }
         public List<TX> X { get; }
         public List<TY> Y { get; }
-        public TData2(List<TX> x, List<TY> y)
+        public TData2(string name, string xName, string yName,
+            string xSuffix, string ySuffix,
+            List<TX> x, List<TY> y)
         {
+            Name = name;
+            XName = xName;
+            YName = yName;
+            XSuffix = xSuffix;
+            YSuffix = ySuffix;
             X = x;
             Y = y;
         }
     }
 
-    class TData3Map<TX, TY, TZ> : Dictionary<string, TData3<TX, TY, TZ>> { }
-    class TData2Map<TX, TY> : Dictionary<string, TData2<TX, TY>> { }
+    class TData3Dictionary<TX, TY, TZ> : Dictionary<string, TData3<TX, TY, TZ>> { }
+    class TData2Dictionary<TX, TY> : Dictionary<string, TData2<TX, TY>> { }
 }
