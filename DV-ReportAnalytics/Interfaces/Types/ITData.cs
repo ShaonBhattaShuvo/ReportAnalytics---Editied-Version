@@ -3,14 +3,14 @@ using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
-    interface ITData3D<TX, TY, TZ>
+    interface ITData3<TX, TY, TZ>
     {
         List<TX> X { get; }
         List<TY> Y { get; }
         List<List<TZ>> Z { get; }
     }
 
-    interface ITData2D<TX, TY>
+    interface ITData2<TX, TY>
     {
         List<TX> X { get; }
         List<TY> Y { get; }

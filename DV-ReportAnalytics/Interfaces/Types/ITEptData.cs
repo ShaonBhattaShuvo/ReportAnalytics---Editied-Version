@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
-    interface ITEptData : ITData3D<double, double, double>
+    interface ITEptData : ITData3<double, double, double>
     {
         // interpolated values
         List<double> XI { get; }

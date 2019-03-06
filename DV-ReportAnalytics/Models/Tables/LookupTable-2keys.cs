@@ -97,7 +97,7 @@ namespace DV_ReportAnalytics.Models
             return _keyColumnDictionary.Keys.ToList();
         }
 
-        protected void GetXYZ(TKeyColumn[] columnRange, TKeyRow[] rowRange, out List<TKeyColumn> x, out List<TKeyRow> y, out List<List<TValue>> z)
+        protected void _getXYZ(TKeyColumn[] columnRange, TKeyRow[] rowRange, out List<TKeyColumn> x, out List<TKeyRow> y, out List<List<TValue>> z)
         {
             // get x range
             if (columnRange == null)
@@ -141,11 +141,11 @@ namespace DV_ReportAnalytics.Models
         }
 
         // passing empty default value to get the whole table
-        public TData3D<TKeyColumn, TKeyRow, TValue> GetData(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
+        public virtual TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyColumn[] columnRange = null, TKeyRow[] rowRange = null)
         {
-            GetXYZ(columnRange, rowRange, out List<TKeyColumn> x, out List<TKeyRow> y, out List<List<TValue>> z);
+            _getXYZ(columnRange, rowRange, out List<TKeyColumn> x, out List<TKeyRow> y, out List<List<TValue>> z);
             // build data
-            TData3D<TKeyColumn, TKeyRow, TValue> data = new TData3D<TKeyColumn, TKeyRow, TValue>(x, y, z);
+            TData3<TKeyColumn, TKeyRow, TValue> data = new TData3<TKeyColumn, TKeyRow, TValue>(x, y, z);
             return data;
         }
 

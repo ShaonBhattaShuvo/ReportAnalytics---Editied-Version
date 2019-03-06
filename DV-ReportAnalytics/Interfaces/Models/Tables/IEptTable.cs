@@ -11,6 +11,6 @@ namespace DV_ReportAnalytics.Models
         string KeyRowSuffix { set; get; }
         string KeyColumnSuffix { set; get; }
         string ValueSuffix { set; get; }
-        TEptData GetData(double[] rowRange, double[] columnRange);
+        TData3<double, double, double> GetData(int columnInterp, int rowInterp, double[] columnRange, double[] rowRange);
     }
 }
