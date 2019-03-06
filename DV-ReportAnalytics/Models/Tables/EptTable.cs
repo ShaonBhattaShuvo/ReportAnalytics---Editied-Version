@@ -7,31 +7,16 @@ namespace DV_ReportAnalytics.Models
 {
     class EptTable : LookupTable<double, double, double>, IEptTable
     {
-        public string KeyRowName { set; get; }
-        public string KeyColumnName { set; get; }
-        public string ValueName { set; get; }
-        public string KeyRowSuffix { set; get; }
-        public string KeyColumnSuffix { set; get; }
-        public string ValueSuffix { set; get; }
-
         // initialize all properties
         public EptTable(string name, string rowName, string columnName, string valueName, 
             string rowSuffix, string columnSuffix, string valueSuffix,
             double[] rows, double[] columns, double[,] values)
-            : base(name, rows, columns, values)
-        {
-            KeyRowName = rowName;
-            KeyColumnName = columnName;
-            ValueName = valueName;
-            KeyRowSuffix = rowSuffix;
-            KeyColumnSuffix = columnSuffix;
-            ValueSuffix = valueSuffix;
-        }
+            : base(name, rowName, columnName, valueName,
+                  rowSuffix, columnSuffix, valueSuffix,
+                  rows, columns, values) { }
 
         // default constructor
-        public EptTable() : this("untitled", "row", "column", "value", 
-            "", "", "", 
-            new double[0], new double[0], new double[0, 0]) { }
+        public EptTable() : base() { }
 
         // interpolation
         protected void _Interpolate (List<double> xi, List<double> yi, List<List<double>> zi, int xInterp, int yInterp, out List<double> xo, out List<double> yo, out List<List<double>> zo)

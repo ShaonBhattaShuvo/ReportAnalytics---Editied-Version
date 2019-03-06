@@ -6,8 +6,13 @@ namespace DV_ReportAnalytics.Models
 {
     interface ILookupTable<TKeyRow, TKeyColumn, TValue>
     {
-        string Name { get; }
-
+        string Name { set; get; }
+        string KeyRowName { set; get; }
+        string KeyColumnName { set; get; }
+        string ValueName { set; get; }
+        string KeyRowSuffix { set; get; }
+        string KeyColumnSuffix { set; get; }
+        string ValueSuffix { set; get; }
         // provide a convenient way to access table using index
         TValue this[TKeyRow row, TKeyColumn column] { set; get; }
 

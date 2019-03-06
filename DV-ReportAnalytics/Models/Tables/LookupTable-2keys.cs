@@ -10,20 +10,34 @@ namespace DV_ReportAnalytics.Models
         where TKeyColumn : IEquatable<TKeyColumn>, IComparable<TKeyColumn>
         where TValue : new()
     {
+        public string Name { set;  get; }
+        public string KeyRowName { set; get; }
+        public string KeyColumnName { set; get; }
+        public string ValueName { set; get; }
+        public string KeyRowSuffix { set; get; }
+        public string KeyColumnSuffix { set; get; }
+        public string ValueSuffix { set; get; }
         // the ID should always point to the last element that added into the dictionaries
         private int _keyRowID;
         private int _keyColumnID;
         protected Dictionary<ValueTuple<int, int>, TValue> _valueDictionary;
         protected SortedList<TKeyRow, int> _keyRowDictionary;
         protected SortedList<TKeyColumn, int> _keyColumnDictionary;
-        public string Name { get; }
 
         // initialize with given rows, columns and values
         // row and column index must correspond with 2d list of values
-        public LookupTable(string name, TKeyRow[] rows, TKeyColumn[] columns, TValue[,] values)
+        public LookupTable(string name, string rowName, string columnName, string valueName,
+            string rowSuffix, string columnSuffix, string valueSuffix, 
+            TKeyRow[] rows, TKeyColumn[] columns, TValue[,] values)
         {
             // TODO: throw exception if rows and columns don't match value's dimension
             Name = name;
+            KeyRowName = rowName;
+            KeyColumnName = columnName;
+            ValueName = valueName;
+            KeyRowSuffix = rowSuffix;
+            KeyColumnSuffix = columnSuffix;
+            ValueSuffix = valueSuffix;
             // IDs start with -1 if instance is empty
             _keyRowID = rows.Length - 1;
             _keyColumnID = columns.Length - 1;
@@ -45,10 +59,13 @@ namespace DV_ReportAnalytics.Models
 
         // constructor with names
         public LookupTable(string name)
-            : this (name, new TKeyRow[0], new TKeyColumn[0], new TValue[0, 0]) { }
+            : this(name, "Row Label", "Column Label", "Value Label",
+                  "", "", "",
+                  new TKeyRow[0], new TKeyColumn[0], new TValue[0, 0]) { }
 
         // default constructor
-        public LookupTable() : this("untitled") { }
+        public LookupTable() 
+            : this("Untitled") { }
 
         // provide a convenient way to access table using index
         public TValue this[TKeyRow row, TKeyColumn column]

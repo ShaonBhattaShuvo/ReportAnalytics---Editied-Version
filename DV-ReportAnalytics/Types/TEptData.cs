@@ -7,6 +7,13 @@ namespace DV_ReportAnalytics.Types
     [Obsolete("This struc is no longer in use. Use the corresponded class to get interpolation instead.", false)]
     struct TEptData : ITEptData
     {
+        public string Name { get; }
+        public string XName { get; }
+        public string XSuffix { get; }
+        public string YName { get; }
+        public string YSuffix { get; }
+        public string ZName { get; }
+        public string ZSuffix { get; }
         // interpolated values
         public List<double> XI { private set; get; }
         public List<double> YI { private set; get; }
@@ -16,11 +23,20 @@ namespace DV_ReportAnalytics.Types
         public List<double> Y { get; }
         public List<List<double>> Z { get; }
 
-        public TEptData(List<double> x, List<double> y, List<List<double>> z)
+        public TEptData(string name, string xName, string yName, string zName,
+            string xSuffix, string ySuffix, string zSuffix,
+            List<double> x, List<double> y, List<List<double>> z)
         {
             XI = X = x;
             YI = Y = y;
             ZI = Z = z;
+            Name = name;
+            XName = xName;
+            YName = yName;
+            ZName = zName;
+            XSuffix = xSuffix;
+            YSuffix = ySuffix;
+            ZSuffix = zSuffix;
         }
 
         // interpolation

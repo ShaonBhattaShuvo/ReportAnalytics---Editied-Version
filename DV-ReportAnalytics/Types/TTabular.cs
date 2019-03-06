@@ -12,13 +12,13 @@ namespace DV_ReportAnalytics.Types
         public string ColumnSuffix { get; }
         public string ValueName { get; }
         public string ValueSuffix { get; }
-        public List<TRow> Row { get; }
-        public List<TColumn> Column { get; }
-        public List<TValue> Value { get; }
-
+        public List<TRow> Rows { get; }
+        public List<TColumn> Columns { get; }
+        public List<TValue> Values { get; }
+        // full initialization
         public TTabular3(string name, string rowName, string columnName, string valueName,
             string rowSuffix, string columnSuffix, string valueSuffix,
-            List<TRow> row, List<TColumn> column, List<TValue> value)
+            List<TRow> rows, List<TColumn> columns, List<TValue> values)
         {
             Name = name;
             RowName = rowName;
@@ -27,9 +27,14 @@ namespace DV_ReportAnalytics.Types
             RowSuffix = rowSuffix;
             ColumnSuffix = columnSuffix;
             ValueSuffix = valueSuffix;
-            Row = row;
-            Column = column;
-            Value = value;
+            Rows = rows;
+            Columns = columns;
+            Values = values;
         }
+        // initialize with values
+        public TTabular3(List<TRow> rows, List<TColumn> columns, List<TValue> values)
+            : this("Untitled", "Row Label", "Column Label", "Value Label",
+                  "", "", "",
+                  rows, columns, values) { }
     }
 }

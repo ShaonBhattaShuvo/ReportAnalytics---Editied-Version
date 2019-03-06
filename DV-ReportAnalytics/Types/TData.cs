@@ -15,6 +15,7 @@ namespace DV_ReportAnalytics.Types
         public List<TX> X { get; }
         public List<TY> Y { get; }
         public List<List<TZ>> Z { get; }
+        // full initialization
         public TData3(string name, string xName, string yName, string zName, 
             string xSuffix, string ySuffix, string zSuffix,
             List<TX> x, List<TY> y, List<List<TZ>> z)
@@ -30,6 +31,11 @@ namespace DV_ReportAnalytics.Types
             Y = y;
             Z = z;
         }
+        // initializa with values
+        public TData3(List<TX> x, List<TY> y, List<List<TZ>> z)
+            : this("Untitled", "X Label", "Y Label", "Z Label",
+                  "", "", "",
+                  x, y, z) { }
     }
 
     struct TData2<TX, TY> : ITData2<TX, TY>
@@ -41,6 +47,7 @@ namespace DV_ReportAnalytics.Types
         public string YSuffix { get; }
         public List<TX> X { get; }
         public List<TY> Y { get; }
+        // full initialization
         public TData2(string name, string xName, string yName,
             string xSuffix, string ySuffix,
             List<TX> x, List<TY> y)
@@ -53,6 +60,11 @@ namespace DV_ReportAnalytics.Types
             X = x;
             Y = y;
         }
+        // initializa with values
+        public TData2(List<TX> x, List<TY> y)
+            : this("Untitled", "X Label", "Y Label",
+                  "", "",
+                  x, y) { }
     }
 
     class TData3Dictionary<TX, TY, TZ> : Dictionary<string, TData3<TX, TY, TZ>> { }
