@@ -6,8 +6,11 @@ namespace DV_ReportAnalytics.Models
 {
     interface ILookupTable<TKey, TValue>
     {
-        string Name { get; }
-
+        string Name { set;  get; }
+        string KeyName { set; get; }
+        string ValueName { set; get; }
+        string KeySuffix { set; get; }
+        string ValueSuffix { set; get; }
         // use indexer to get value in a convenient way
         TValue this[TKey key] { set; get; }
 
@@ -15,7 +18,7 @@ namespace DV_ReportAnalytics.Models
         List<TKey> GetKeys();
 
         // get table
-        TData2D<TKey, TValue> GetData2D(TKey[] range);
+        TData2<TKey, TValue> GetData(TKey[] range);
 
         // get the number of elements
         int GetDimension();

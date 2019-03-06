@@ -11,16 +11,28 @@ namespace DV_ReportAnalytics.Models
         where TKey : IEquatable<TKey>, IComparable<TKey>
         where TValue : new()
     {
+        public string Name { set; get; }
+        public string KeyName { set; get; }
+        public string ValueName { set; get; }
+        public string KeySuffix { set; get; }
+        public string ValueSuffix { set; get; }
+        // the ID should always point to the last element that added into the dictionaries
         private int _keyID;
         protected Dictionary<int, TValue> _valueDictionary;
         protected SortedList<TKey, int> _keyDictionary;
-        public string Name { get; }
+        
 
         // initialize with given keys and values
-        public LookupTable(string name, TKey[] keys, TValue[] values)
+        public LookupTable(string name, string keyName, string valueName,
+            string keySuffix, string valueSuffix,
+            TKey[] keys, TValue[] values)
         {
             // TODO: throw exception if keys don't match value's dimension
             Name = name;
+            KeyName = keyName;
+            ValueName = valueName;
+            KeySuffix = keySuffix;
+            ValueSuffix = valueSuffix;
             // ID starts with -1 if instance is empty
             _keyID = keys.Length - 1;
             // initialize dictionary
@@ -72,7 +84,7 @@ namespace DV_ReportAnalytics.Models
         }
 
         // passing empty default value to get the whole table
-        public TData2D<TKey, TValue> GetData2D(TKey[] keyRange = null)
+        public TData2<TKey, TValue> GetData(TKey[] keyRange = null)
         {
             List<TKey> x = new List<TKey>();
             List<TValue> y = new List<TValue>();
@@ -94,7 +106,7 @@ namespace DV_ReportAnalytics.Models
             foreach (TKey k in x)
                 y.Add(this[k]);
             // build data
-            TData2D<TKey, TValue> data = new TData2D<TKey, TValue>(x, y);
+            TData2<TKey, TValue> data = new TData2<TKey, TValue>(x, y);
             return data;
         }
 
