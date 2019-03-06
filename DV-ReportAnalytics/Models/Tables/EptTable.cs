@@ -32,10 +32,10 @@ namespace DV_ReportAnalytics.Models
         public EptTable() : this("untitled", "", "", "", "", "", "", new double[0], new double[0], new double[0, 0]) { }
 
         // hide the base method because it uses new return type
-        public TData3DDouble GetData(double[] rowRange = null, double[] columnRange = null)
+        public TEptData GetData(double[] rowRange = null, double[] columnRange = null)
         {
             GetXYZ(columnRange, rowRange, out List<double> x, out List<double> y, out List<List<double>> z);
-            TData3DDouble data = new TData3DDouble(x, y, z);
+            TEptData data = new TEptData(x, y, z);
             return data;
         }
     }

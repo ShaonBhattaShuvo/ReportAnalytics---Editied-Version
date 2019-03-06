@@ -4,7 +4,7 @@ using DV_ReportAnalytics.Algorithms;
 
 namespace DV_ReportAnalytics.Types
 {
-    struct TData3DDouble : ITData3DDouble
+    struct TEptData : ITEptData
     {
         // interpolated values
         public List<double> XI { private set; get; }
@@ -15,7 +15,7 @@ namespace DV_ReportAnalytics.Types
         public List<double> Y { get; }
         public List<List<double>> Z { get; }
 
-        public TData3DDouble(List<double> x, List<double> y, List<List<double>> z)
+        public TEptData(List<double> x, List<double> y, List<List<double>> z)
         {
             XI = X = x;
             YI = Y = y;
