@@ -17,8 +17,11 @@ namespace DV_ReportAnalytics.Models
         // get keys
         TKey[] GetKeys();
 
-        // get table
+        // get data by range
         TData2<TKey, TValue> GetData(TKey[] range);
+
+        // get all data
+        TData2<TKey, TValue> GetData();
 
         // get the number of elements
         int GetDimension();

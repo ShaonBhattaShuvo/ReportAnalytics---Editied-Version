@@ -110,13 +110,23 @@ namespace DV_ReportAnalytics.Models
             for (int i = 0; i < x.Length; i++)
                 y[i] = this[x[i]];
         }
+        // for internal use
+        protected virtual TData2<TKey, TValue> _GetData(TKey[] x, TValue[] y)
+        {
+            return new TData2<TKey, TValue>(x, y);
+        }
 
-        // passing empty default value to get the whole table
-        public TData2<TKey, TValue> GetData(TKey[] keyRange = null)
+        // get data by range
+        public virtual TData2<TKey, TValue> GetData(TKey[] keyRange)
         {
             _GetXY(keyRange, out TKey[] x, out TValue[] y);
-            TData2<TKey, TValue> data = new TData2<TKey, TValue>(x, y);
-            return data;
+            return _GetData(x, y);
+        }
+
+        // get all data
+        public virtual TData2<TKey, TValue> GetData()
+        {
+            return GetData(null);
         }
 
         // get dimension
