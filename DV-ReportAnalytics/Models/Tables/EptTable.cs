@@ -47,7 +47,6 @@ namespace DV_ReportAnalytics.Models
         // retrive values by map index to each other
         protected void _FlatenXYZ(double[] xi, double[] yi, double[,] zi, out double[] x, out double[] y, out double[] z)
         {
-            // TODO: throw exception if length don't match
             // get xyz
             x = new double[zi.Length];
             y = new double[zi.Length];
@@ -90,7 +89,7 @@ namespace DV_ReportAnalytics.Models
         public TTabular3<double, double, double> GetTabular(double[] rowRange, double[] columnRange, int rowInterp, int columnInterp)
         {
             _GetXYZ(rowRange, columnRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
-            _Interpolate(xtemp, ytemp, ztemp, columnInterp, rowInterp, out double[] xinterp, out double[] yinterp, out double[,] zinterp);
+            Interpolation.TableBilinearInterpolation(xtemp, ytemp, ztemp, columnInterp, rowInterp, out double[] xinterp, out double[] yinterp, out double[,] zinterp);
             _FlatenXYZ(xinterp, yinterp, zinterp, out double[] x, out double[] y, out double[] z);
             return _GetTabular(x, y, z);
         }

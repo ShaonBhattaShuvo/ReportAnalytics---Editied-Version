@@ -36,6 +36,15 @@ namespace DV_ReportAnalytics.Algorithms
             return new TBounds(lbound, ubound);
         }
 
+        // throw an error if dimensions are not matched
+        private static void _CheckMatch(double[] x, double[] y, double[,] z)
+        {
+            if (y.GetLength(0) != z.GetLength(0) || x.GetLength(0) != z.GetLength(1))
+            {
+                throw new Exception("Dimensions are not matched!");
+            }
+        }
+
         public static double[] ExtendArray(double[] srcArray, int points)
         {
             if (points < 1)
@@ -70,7 +79,8 @@ namespace DV_ReportAnalytics.Algorithms
             return interp;
         }
 
-        public static double BilinearInterpolation(double[,] srcTable, double[] srcXAxis, double[] srcYAxis, double dstX, double dstY)
+        // dimensions should be checked before using this interpolation
+        public static double BilinearInterpolation(double[] srcXAxis, double[] srcYAxis, double[,] srcTable, double dstX, double dstY)
         {
             TBounds xbound = _GetNeighborIndices(srcXAxis, dstX);
             TBounds ybound = _GetNeighborIndices(srcYAxis, dstY);
@@ -104,6 +114,8 @@ namespace DV_ReportAnalytics.Algorithms
 
         public static void TableBilinearInterpolation(double[] xi, double[] yi, double[,] zi, int xInterp, int yInterp, out double[] xo, out double[] yo, out double[,] zo)
         {
+            // examine dimensions
+            _CheckMatch(xi, yi, zi);
             xo = ExtendArray(xi, xInterp);
             yo = ExtendArray(yi, yInterp);
             zo = new double[yo.Length, xo.Length];
@@ -116,7 +128,7 @@ namespace DV_ReportAnalytics.Algorithms
                 for (int c = 0; c < xo.Length; c++)
                 {
                     dstX = xo[c];
-                    zo[r, c] = BilinearInterpolation(zi, xi, yi, dstX, dstY);
+                    zo[r, c] = BilinearInterpolation(xi, yi, zi, dstX, dstY);
                 }
             }
         }
