@@ -148,24 +148,23 @@ namespace DV_ReportAnalytics.Models
                 for (int c = 0; c < x.Length; c++)
                     z[r, c] = this[y[r], x[c]];
         }
-
-        // passing empty default value to get the whole table
-        public virtual TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyColumn[] columnRange = null, TKeyRow[] rowRange = null)
+        // for internal use
+        protected virtual TData3<TKeyColumn, TKeyRow, TValue> _GetData(TKeyColumn[] x,TKeyRow[] y, TValue[,] z)
         {
-            _GetXYZ(columnRange, rowRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z);
-            // build data
-            TData3<TKeyColumn, TKeyRow, TValue> data = new TData3<TKeyColumn, TKeyRow, TValue>(x, y, z);
-            return data;
+            return new TData3<TKeyColumn, TKeyRow, TValue>(x, y, z);
         }
 
-        //// get transposed table
-        //public TData3D<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
-        //{
-        //    GetXYZ(rowRange, columnRange, true, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z);
-        //    // build data
-        //    TData3D<TKeyRow, TKeyColumn, TValue> data = new TData3D<TKeyRow, TKeyColumn, TValue>(y, x, z);
-        //    return data;
-        //}
+        // get data by range
+        public virtual TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyColumn[] columnRange, TKeyRow[] rowRange)
+        {
+            _GetXYZ(columnRange, rowRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z);
+            return _GetData(x, y, z);
+        }
+        // get all data
+        public virtual TData3<TKeyColumn, TKeyRow, TValue> GetData()
+        {
+            return GetData(null, null);
+        }
 
         public (int rows, int columns) GetDimension()
         {

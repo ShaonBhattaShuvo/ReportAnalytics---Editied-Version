@@ -22,8 +22,11 @@ namespace DV_ReportAnalytics.Models
         // get keys for columns
         TKeyColumn[] GetKeysColumns();
 
-        // passing empty default value to get the whole table
+        // get data by range
         TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyColumn[] columnRange, TKeyRow[] rowRange);
+
+        // get all data
+        TData3<TKeyColumn, TKeyRow, TValue> GetData();
 
         //// get transposed table
         //TData3D<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange, TKeyColumn[] columnRange);
