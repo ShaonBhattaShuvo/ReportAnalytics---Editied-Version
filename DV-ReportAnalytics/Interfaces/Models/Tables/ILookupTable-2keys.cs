@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
@@ -23,13 +22,10 @@ namespace DV_ReportAnalytics.Models
         TKeyColumn[] GetKeysColumns();
 
         // get data by range
-        TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyColumn[] columnRange, TKeyRow[] rowRange);
+        TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyRow[] rowRange, TKeyColumn[] columnRange);
 
         // get all data
         TData3<TKeyColumn, TKeyRow, TValue> GetData();
-
-        //// get transposed table
-        //TData3D<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange, TKeyColumn[] columnRange);
 
         // get a tuple that contains the number of rows and columns
         (int rows, int columns) GetDimension();

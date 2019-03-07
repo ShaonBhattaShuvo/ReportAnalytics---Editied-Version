@@ -49,7 +49,7 @@ namespace DV_ReportAnalytics.Models
         }
 
         // get interpolated by range
-        public TData3<double, double, double> GetData(int columnInterp, int rowInterp, double[] columnRange, double[] rowRange)
+        public TData3<double, double, double> GetData(double[] rowRange, double[] columnRange, int rowInterp, int columnInterp)
         {
             // retrive original data
             _GetXYZ(columnRange, rowRange, out double[] x, out double[] y, out double[,] z);
@@ -58,14 +58,15 @@ namespace DV_ReportAnalytics.Models
         }
 
         //get all interpolated
-        public TData3<double, double, double> GetData(int columnInterp, int rowInterp)
+        public TData3<double, double, double> GetData(int rowInterp, int columnInterp)
         {
-            return GetData(columnInterp, rowInterp, null, null);
+            return GetData(null, null, rowInterp, columnInterp);
         }
 
         // retrive values by map index to each other
         protected void _FlatenXYZ(double[] xi, double[] yi, double[,] zi, out double[] x, out double[] y, out double[] z)
         {
+            // TODO: throw exception if length don't match
             // get xyz
             x = new double[zi.Length];
             y = new double[zi.Length];
@@ -91,7 +92,7 @@ namespace DV_ReportAnalytics.Models
         }
 
         // get data by range
-        public TTabular3<double, double, double> GetTabular(double[] columnRange, double[] rowRange)
+        public TTabular3<double, double, double> GetTabular(double[] rowRange, double[] columnRange)
         {
             _GetXYZ(rowRange, columnRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
             _FlatenXYZ(xtemp, ytemp, ztemp, out double[] x, out double[] y, out double[] z);
@@ -105,18 +106,18 @@ namespace DV_ReportAnalytics.Models
         }
 
         // get interpolated by range
-        public TTabular3<double, double, double> GetTabular(int columnInterp, int rowInterp, double[] columnRange, double[] rowRange)
+        public TTabular3<double, double, double> GetTabular(double[] rowRange, double[] columnRange, int rowInterp, int columnInterp)
         {
-            _GetXYZ(columnRange, rowRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
+            _GetXYZ(rowRange, columnRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
             _Interpolate(xtemp, ytemp, ztemp, columnInterp, rowInterp, out double[] xinterp, out double[] yinterp, out double[,] zinterp);
             _FlatenXYZ(xinterp, yinterp, zinterp, out double[] x, out double[] y, out double[] z);
             return _GetTabular(x, y, z);
         }
 
         //get all interpolated
-        public TTabular3<double, double, double> GetTabular(int columnInterp, int rowInterp)
+        public TTabular3<double, double, double> GetTabular(int rowInterp, int columnInterp)
         {
-            return GetTabular(columnInterp, rowInterp, null, null);
+            return GetTabular(null, null, rowInterp, columnInterp);
         }
     }
 }

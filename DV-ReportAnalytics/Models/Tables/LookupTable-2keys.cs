@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using DV_ReportAnalytics.Types;
-using DV_ReportAnalytics.Extensions;
 
 namespace DV_ReportAnalytics.Models
 {
@@ -118,7 +117,7 @@ namespace DV_ReportAnalytics.Models
         }
 
         // get provided range
-        protected void _GetRange(TKeyColumn[] columnRange, TKeyRow[] rowRange, out TKeyColumn[] x, out TKeyRow[] y)
+        protected void _GetRange(TKeyRow[] rowRange, TKeyColumn[] columnRange,  out TKeyColumn[] x, out TKeyRow[] y)
         {
             // get x range
             if (columnRange == null)
@@ -145,9 +144,9 @@ namespace DV_ReportAnalytics.Models
         }
 
         // get xyz values
-        protected void _GetXYZ(TKeyColumn[] columnRange, TKeyRow[] rowRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z)
+        protected void _GetXYZ(TKeyRow[] rowRange, TKeyColumn[] columnRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z)
         {
-            _GetRange(columnRange, rowRange, out x, out y);
+            _GetRange(rowRange, columnRange, out x, out y);
             // get z
             z = new TValue[y.Length, x.Length];
             // scan by row then by column
@@ -156,17 +155,18 @@ namespace DV_ReportAnalytics.Models
                     z[r, c] = this[y[r], x[c]];
         }
         // for internal use
-        protected virtual TData3<TKeyColumn, TKeyRow, TValue> _GetData(TKeyColumn[] x,TKeyRow[] y, TValue[,] z)
+        protected virtual TData3<TKeyColumn, TKeyRow, TValue> _GetData(TKeyColumn[] x, TKeyRow[] y, TValue[,] z)
         {
             return new TData3<TKeyColumn, TKeyRow, TValue>(x, y, z);
         }
 
         // get data by range
-        public virtual TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyColumn[] columnRange, TKeyRow[] rowRange)
+        public virtual TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyRow[] rowRange, TKeyColumn[] columnRange)
         {
-            _GetXYZ(columnRange, rowRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z);
+            _GetXYZ(rowRange, columnRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z);
             return _GetData(x, y, z);
         }
+
         // get all data
         public virtual TData3<TKeyColumn, TKeyRow, TValue> GetData()
         {
