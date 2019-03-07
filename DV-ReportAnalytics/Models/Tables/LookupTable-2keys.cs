@@ -117,7 +117,8 @@ namespace DV_ReportAnalytics.Models
             return _keyColumnDictionary.Keys.ToArray();
         }
 
-        protected void _GetXYZ(TKeyColumn[] columnRange, TKeyRow[] rowRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z)
+        // get provided range
+        protected void _GetRange(TKeyColumn[] columnRange, TKeyRow[] rowRange, out TKeyColumn[] x, out TKeyRow[] y)
         {
             // get x range
             if (columnRange == null)
@@ -141,6 +142,12 @@ namespace DV_ReportAnalytics.Models
                 // rowRange may not be sorted
                 Array.Sort(y);
             }
+        }
+
+        // get xyz values
+        protected void _GetXYZ(TKeyColumn[] columnRange, TKeyRow[] rowRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z)
+        {
+            _GetRange(columnRange, rowRange, out x, out y);
             // get z
             z = new TValue[y.Length, x.Length];
             // scan by row then by column
