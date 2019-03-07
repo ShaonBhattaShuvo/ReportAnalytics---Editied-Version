@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
-    class TTabular3<TRow, TColumn, TValue> : ITTabular3<TRow, TColumn, TValue>
+    internal class TTabular3<TRow, TColumn, TValue> : ITTabular3<TRow, TColumn, TValue>
     {
         public string Name { get; }
         public string RowName { get; }

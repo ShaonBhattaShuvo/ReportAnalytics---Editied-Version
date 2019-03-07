@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
-    interface ITTabular3<TRow, TColumn, TValue>
+    internal interface ITTabular3<TRow, TColumn, TValue>
     {
         string Name { get; }
         string RowName { get; }

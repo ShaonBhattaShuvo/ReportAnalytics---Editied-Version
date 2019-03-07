@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace DV_ReportAnalytics.Views
 {
-    public partial class ConfigForm : Form
+    internal partial class ConfigForm : Form
     {
         public ConfigForm()
         {

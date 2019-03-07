@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
-    interface ITEptData : ITData3<double, double, double>
+    internal interface ITEptData : ITData3<double, double, double>
     {
         // interpolated values
         double[] XI { get; }

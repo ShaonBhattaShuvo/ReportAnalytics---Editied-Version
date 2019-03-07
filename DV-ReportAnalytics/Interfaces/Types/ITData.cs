@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
-    interface ITData3<TX, TY, TZ>
+    internal interface ITData3<TX, TY, TZ>
     {
         string Name { get; }
         string XName { get; }
@@ -17,7 +16,7 @@ namespace DV_ReportAnalytics.Types
         TZ[,] Z { get; }
     }
 
-    interface ITData2<TX, TY>
+    internal interface ITData2<TX, TY>
     {
         string Name { get; }
         string XName { get; }

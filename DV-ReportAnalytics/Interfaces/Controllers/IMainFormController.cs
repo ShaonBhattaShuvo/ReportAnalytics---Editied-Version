@@ -3,7 +3,7 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Controllers
 {
-    interface IMainFormController
+    internal interface IMainFormController
     {
         event UserMessageEventHandler UserMessageUpdated;
         event FileOpenEventHandler FileOpen;

@@ -11,7 +11,7 @@ using SpreadsheetGear;
 // this part implements the public methods that the controllers can use
 namespace DV_ReportAnalytics.Views
 {
-    partial class MainForm: IMainForm
+    internal partial class MainForm : IMainForm
     {
         private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
         {
@@ -51,7 +51,7 @@ namespace DV_ReportAnalytics.Views
         public void SetModel(ISpreadSheetModel model)
         {
             // model that view observes
-            _model = model; 
+            _model = model;
         }
     }
 }

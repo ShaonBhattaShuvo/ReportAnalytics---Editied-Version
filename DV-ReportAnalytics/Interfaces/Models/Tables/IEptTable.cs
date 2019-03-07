@@ -3,7 +3,7 @@ using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {
-    interface IEptTable : ILookupTable<double, double, double>
+    internal interface IEptTable : ILookupTable<double, double, double>
     {
         // get interpolated by range
         TData3<double, double, double> GetData(double[] rowRange, double[] columnRange, int rowInterp, int columnInterp);

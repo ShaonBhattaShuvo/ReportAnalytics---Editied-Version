@@ -2,7 +2,7 @@
 
 namespace DV_ReportAnalytics.Types
 {
-    interface ITBounds
+    internal interface ITBounds
     {
         // lower and upper bounds
         int LBound { get; }

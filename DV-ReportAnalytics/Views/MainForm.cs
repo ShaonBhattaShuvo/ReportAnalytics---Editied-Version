@@ -16,7 +16,7 @@ namespace DV_ReportAnalytics.Views
     /// <summary>
     /// Do not touch this file. All the coding must be done in UIController.cs
     /// </summary>
-    partial class MainForm : Form
+    internal partial class MainForm : Form
     {
         private IMainFormController _controller;
         private ISpreadSheetModel _model;

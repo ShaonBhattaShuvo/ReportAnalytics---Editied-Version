@@ -2,7 +2,7 @@
 
 namespace DV_ReportAnalytics.Types
 {
-    struct TBounds : ITBounds
+    internal struct TBounds : ITBounds
     {
         public int LBound { get; }
         public int UBound { get; } 

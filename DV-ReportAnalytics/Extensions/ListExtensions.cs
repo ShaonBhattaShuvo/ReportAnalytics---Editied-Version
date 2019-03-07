@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DV_ReportAnalytics.Extensions
 {
-    static class ListExtensions
+    internal static class ListExtensions
     {
         /// <summary>
         /// Conerts source to 2D array.

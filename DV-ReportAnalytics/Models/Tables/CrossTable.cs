@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using DV_ReportAnalytics.Types;
+using DV_ReportAnalytics.Extensions;
 
 namespace DV_ReportAnalytics.Models
 {
     [Obsolete("Use LookupTable instead", false)]
-    class CrossTable<TKeyRow, TKeyColumn, TValue> : ICrossTable<TKeyRow, TKeyColumn, TValue>
+    internal class CrossTable<TKeyRow, TKeyColumn, TValue> : ICrossTable<TKeyRow, TKeyColumn, TValue>
         where TKeyRow : new()
         where TKeyColumn : new()
         where TValue : new()
@@ -121,19 +122,19 @@ namespace DV_ReportAnalytics.Models
             }
         }
 
-        public TData3D<TKeyColumn, TKeyRow, TValue> GetData3D(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
+        public TData3<TKeyColumn, TKeyRow, TValue> GetData3D(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
         {
             GetXYZ(rowRange, columnRange, false, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z);
             // build data
-            TData3D<TKeyColumn, TKeyRow, TValue> data = new TData3D<TKeyColumn, TKeyRow, TValue>(x, y, z);
+            TData3<TKeyColumn, TKeyRow, TValue> data = new TData3<TKeyColumn, TKeyRow, TValue>(x.ToArray(), y.ToArray(), z.To2DArray());
             return data;
         }
 
-        public TData3D<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
+        public TData3<TKeyRow, TKeyColumn, TValue> GetData3DTransposed(TKeyRow[] rowRange = null, TKeyColumn[] columnRange = null)
         {
             GetXYZ(rowRange, columnRange, true, out List<TKeyRow> y, out List<TKeyColumn> x, out List<List<TValue>> z);
             // build data
-            TData3D<TKeyRow, TKeyColumn, TValue> data = new TData3D<TKeyRow, TKeyColumn, TValue>(y, x, z);
+            TData3<TKeyRow, TKeyColumn, TValue> data = new TData3<TKeyRow, TKeyColumn, TValue>(y.ToArray(), x.ToArray(), z.To2DArray());
             return data;
         }
 

@@ -4,7 +4,7 @@ using DV_ReportAnalytics.Types;
 namespace DV_ReportAnalytics.Models
 {
     // TKey: row and column, TElement: value
-    interface ITable<TKey, TElement>
+    internal interface ITable<TKey, TElement>
     {
         void SetValue(TKey row, TKey column, TElement value);
         void SetTable(TTable<TKey, TElement> table);

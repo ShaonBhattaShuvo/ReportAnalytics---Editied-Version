@@ -4,10 +4,10 @@ using System.Collections.Generic;
 namespace DV_ReportAnalytics.Types
 {
     [Obsolete("Use improved type instead", false)]
-    class TTable<TKey, TElement>: Dictionary<TKey, Dictionary<TKey, TElement>> {}
+    internal class TTable<TKey, TElement>: Dictionary<TKey, Dictionary<TKey, TElement>> {}
 
     [Obsolete("Use improved type instead", false)]
-    struct TDimension
+    internal struct TDimension
     {
         public int rows;
         public int columns;
@@ -19,7 +19,7 @@ namespace DV_ReportAnalytics.Types
     }
 
     [Obsolete("Use improved type instead", false)]
-    struct THeaders<TKey>
+    internal struct THeaders<TKey>
     {
         public TKey row;
         public TKey column;
@@ -31,7 +31,7 @@ namespace DV_ReportAnalytics.Types
     }
 
     [Obsolete("Use improved type extension instead", false)]
-    static class TExtension
+    internal static class TExtension
     {
         // extension method to get TTable from an enumerable type
         public static TTable<TKey, TElement> ToTTable<TSource, TKey, TElement>(this IEnumerable<TSource> source, Func<TSource, TKey> keySelector, Func<TSource, Dictionary<TKey, TElement>> elementSelector)

@@ -3,7 +3,7 @@ using System.Xml;
 
 namespace DV_ReportAnalytics.Events
 {
-    class WorkbookOpenEventArgs : EventArgs
+    internal class WorkbookOpenEventArgs : EventArgs
     {
         public string Path { get; }
         public bool Done { get; }
@@ -15,10 +15,10 @@ namespace DV_ReportAnalytics.Events
         }
 
     }
-    delegate void WorkbookOpenEventHandler(object sender, WorkbookOpenEventArgs e);
+    internal delegate void WorkbookOpenEventHandler(object sender, WorkbookOpenEventArgs e);
 
 
-    class WorkbookConfigUpdateEventArgs : EventArgs
+    internal class WorkbookConfigUpdateEventArgs : EventArgs
     {
         public XmlDocument Config { get; }
         public WorkbookConfigUpdateEventArgs(XmlDocument config)
@@ -27,10 +27,10 @@ namespace DV_ReportAnalytics.Events
         }
     }
 
-    delegate void WorkbookConfigUpdateEventHandler(object sender, WorkbookConfigUpdateEventArgs e);
+    internal delegate void WorkbookConfigUpdateEventHandler(object sender, WorkbookConfigUpdateEventArgs e);
 
 
-    class WorkbookUpdateEventArgs : EventArgs
+    internal class WorkbookUpdateEventArgs : EventArgs
     {
         // the whole excel file in binary
         public byte[] Buffer { get; }
@@ -40,5 +40,5 @@ namespace DV_ReportAnalytics.Events
         }
     }
 
-    delegate void WorkbookUpdateEventHandler(object sender, WorkbookUpdateEventArgs e);
+    internal delegate void WorkbookUpdateEventHandler(object sender, WorkbookUpdateEventArgs e);
 }

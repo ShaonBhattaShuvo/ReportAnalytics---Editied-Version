@@ -6,7 +6,7 @@ using DV_ReportAnalytics.Types;
 namespace DV_ReportAnalytics.Models
 {
     [Obsolete("Use LookupTable instead", false)]
-    class Table<TKey, TElement>: ITable<TKey, TElement>
+    internal class Table<TKey, TElement>: ITable<TKey, TElement>
     {
         protected TTable<TKey, TElement> _table;
         protected string _name;

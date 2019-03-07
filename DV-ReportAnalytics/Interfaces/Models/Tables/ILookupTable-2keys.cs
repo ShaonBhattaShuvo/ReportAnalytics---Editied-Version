@@ -3,7 +3,7 @@ using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {
-    interface ILookupTable<TKeyRow, TKeyColumn, TValue>
+    internal interface ILookupTable<TKeyRow, TKeyColumn, TValue>
     {
         string Name { set; get; }
         string KeyRowName { set; get; }

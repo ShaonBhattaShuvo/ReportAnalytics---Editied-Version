@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {
-    class LookupTable<TKey, TValue> : ILookupTable<TKey, TValue>
+    internal class LookupTable<TKey, TValue> : ILookupTable<TKey, TValue>
         where TKey : IEquatable<TKey>, IComparable<TKey>
         where TValue : new()
     {

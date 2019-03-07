@@ -4,7 +4,7 @@ using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {
-    interface ILookupTable<TKey, TValue>
+    internal interface ILookupTable<TKey, TValue>
     {
         string Name { set;  get; }
         string KeyName { set; get; }

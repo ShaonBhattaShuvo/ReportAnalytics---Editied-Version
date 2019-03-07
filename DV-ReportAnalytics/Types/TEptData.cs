@@ -5,7 +5,7 @@ using DV_ReportAnalytics.Algorithms;
 namespace DV_ReportAnalytics.Types
 {
     [Obsolete("This struc is no longer in use. Use the corresponded class to get interpolation instead.", false)]
-    struct TEptData : ITEptData
+    internal struct TEptData : ITEptData
     {
         public string Name { get; }
         public string XName { get; }

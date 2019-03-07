@@ -4,7 +4,7 @@ using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Algorithms
 {
-    static class Interpolation
+    internal static class Interpolation
     {
         private static TBounds _GetNeighborIndices(double[] srcArray, double value)
         {

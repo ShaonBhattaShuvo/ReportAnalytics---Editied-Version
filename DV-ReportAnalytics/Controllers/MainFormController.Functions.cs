@@ -10,7 +10,7 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Controllers
 {
-    partial class MainFormController : IMainFormController
+    internal partial class MainFormController : IMainFormController
     {
         private IMainForm _view;
         private IWorkbookModel _model;

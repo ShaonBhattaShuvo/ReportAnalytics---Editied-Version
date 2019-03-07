@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
-    struct TData3<TX, TY, TZ> : ITData3<TX, TY, TZ>
+    internal struct TData3<TX, TY, TZ> : ITData3<TX, TY, TZ>
     {
         public string Name { get; }
         public string XName { get; }

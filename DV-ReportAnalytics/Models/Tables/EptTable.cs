@@ -1,11 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using DV_ReportAnalytics.Types;
 using DV_ReportAnalytics.Algorithms;
 
 namespace DV_ReportAnalytics.Models
 {
-    class EptTable : LookupTable<double, double, double>, IEptTable
+    internal class EptTable : LookupTable<double, double, double>, IEptTable
     {
         // initialize all properties
         public EptTable(

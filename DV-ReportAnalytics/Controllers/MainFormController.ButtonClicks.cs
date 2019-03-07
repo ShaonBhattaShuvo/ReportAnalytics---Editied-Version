@@ -15,7 +15,7 @@ namespace DV_ReportAnalytics.Controllers
     /// <summary>
     /// Place your code here
     /// </summary>
-    partial class MainFormController: IMainFormController
+    internal partial class MainFormController: IMainFormController
     {
         public MainFormController(IMainForm mainForm)
         {
