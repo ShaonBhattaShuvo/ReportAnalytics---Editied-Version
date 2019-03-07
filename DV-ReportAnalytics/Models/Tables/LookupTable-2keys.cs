@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using DV_ReportAnalytics.Types;
+using DV_ReportAnalytics.Extensions;
 
 namespace DV_ReportAnalytics.Models
 {
@@ -57,7 +58,7 @@ namespace DV_ReportAnalytics.Models
             }
         }
 
-        // constructor with names
+        // constructor with name
         public LookupTable(string name)
             : this(name, "Row Label", "Column Label", "Value Label",
                   "", "", "",
@@ -162,7 +163,7 @@ namespace DV_ReportAnalytics.Models
         {
             _GetXYZ(columnRange, rowRange, out List<TKeyColumn> x, out List<TKeyRow> y, out List<List<TValue>> z);
             // build data
-            TData3<TKeyColumn, TKeyRow, TValue> data = new TData3<TKeyColumn, TKeyRow, TValue>(x, y, z);
+            TData3<TKeyColumn, TKeyRow, TValue> data = new TData3<TKeyColumn, TKeyRow, TValue>(x.ToArray(), y.ToArray(), z.To2DArray());
             return data;
         }
 

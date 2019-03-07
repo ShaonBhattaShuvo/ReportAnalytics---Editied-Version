@@ -12,13 +12,13 @@ namespace DV_ReportAnalytics.Types
         public string YSuffix { get; }
         public string ZName { get; }
         public string ZSuffix { get; }
-        public List<TX> X { get; }
-        public List<TY> Y { get; }
-        public List<List<TZ>> Z { get; }
+        public TX[] X { get; }
+        public TY[] Y { get; }
+        public TZ[,] Z { get; }
         // full initialization
         public TData3(string name, string xName, string yName, string zName, 
             string xSuffix, string ySuffix, string zSuffix,
-            List<TX> x, List<TY> y, List<List<TZ>> z)
+            TX[] x, TY[] y, TZ[,] z)
         {
             Name = name;
             XName = xName;
@@ -32,7 +32,7 @@ namespace DV_ReportAnalytics.Types
             Z = z;
         }
         // initializa with values
-        public TData3(List<TX> x, List<TY> y, List<List<TZ>> z)
+        public TData3(TX[] x, TY[] y, TZ[,] z)
             : this("Untitled", "X Label", "Y Label", "Z Label",
                   "", "", "",
                   x, y, z) { }
@@ -45,12 +45,12 @@ namespace DV_ReportAnalytics.Types
         public string XSuffix { get; }
         public string YName { get; }
         public string YSuffix { get; }
-        public List<TX> X { get; }
-        public List<TY> Y { get; }
+        public TX[] X { get; }
+        public TY[] Y { get; }
         // full initialization
         public TData2(string name, string xName, string yName,
             string xSuffix, string ySuffix,
-            List<TX> x, List<TY> y)
+            TX[] x, TY[] y)
         {
             Name = name;
             XName = xName;
@@ -61,7 +61,7 @@ namespace DV_ReportAnalytics.Types
             Y = y;
         }
         // initializa with values
-        public TData2(List<TX> x, List<TY> y)
+        public TData2(TX[] x, TY[] y)
             : this("Untitled", "X Label", "Y Label",
                   "", "",
                   x, y) { }

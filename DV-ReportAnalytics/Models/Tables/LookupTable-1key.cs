@@ -45,12 +45,15 @@ namespace DV_ReportAnalytics.Models
             }
         }
 
-        // constructor with names
+        // constructor with name
         public LookupTable(string name)
-            : this(name, new TKey[0], new TValue[0]) { }
+            : this(name, "Key Label", "Value Label",
+                  "", "",
+                  new TKey[0], new TValue[0]) { }
 
         // default constructor
-        public LookupTable() : this("untitled") { }
+        public LookupTable() 
+            : this("Untitled") { }
 
         // indexer
         public TValue this[TKey key]
@@ -106,7 +109,7 @@ namespace DV_ReportAnalytics.Models
             foreach (TKey k in x)
                 y.Add(this[k]);
             // build data
-            TData2<TKey, TValue> data = new TData2<TKey, TValue>(x, y);
+            TData2<TKey, TValue> data = new TData2<TKey, TValue>(x.ToArray(), y.ToArray());
             return data;
         }
 

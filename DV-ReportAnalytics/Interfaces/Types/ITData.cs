@@ -12,9 +12,9 @@ namespace DV_ReportAnalytics.Types
         string YSuffix { get; }
         string ZName { get; }
         string ZSuffix { get; }
-        List<TX> X { get; }
-        List<TY> Y { get; }
-        List<List<TZ>> Z { get; }
+        TX[] X { get; }
+        TY[] Y { get; }
+        TZ[,] Z { get; }
     }
 
     interface ITData2<TX, TY>
@@ -24,7 +24,7 @@ namespace DV_ReportAnalytics.Types
         string XSuffix { get; }
         string YName { get; }
         string YSuffix { get; }
-        List<TX> X { get; }
-        List<TY> Y { get; }
+        TX[] X { get; }
+        TY[] Y { get; }
     }
 }
