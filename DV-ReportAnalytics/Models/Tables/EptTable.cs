@@ -39,19 +39,30 @@ namespace DV_ReportAnalytics.Models
                 }
             }
         }
+        // override base method to add more info
+        protected override TData3<double, double, double> _GetData(double[] x, double[] y, double[,] z)
+        {
+            return new TData3<double, double, double>(
+                    Name, KeyColumnName, KeyRowName, ValueName,
+                    KeyColumnSuffix, KeyColumnSuffix, ValueSuffix,
+                    x, y, z);
+        }
 
-        // overload base method for interpolation
-        public TData3<double, double, double> GetData(int columnInterp, int rowInterp, double[] columnRange = null, double[] rowRange = null)
+        // get interpolated by range
+        public TData3<double, double, double> GetData(int columnInterp, int rowInterp, double[] columnRange, double[] rowRange)
         {
             // retrive original data
             _GetXYZ(columnRange, rowRange, out double[] x, out double[] y, out double[,] z);
             _Interpolate(x, y, z, columnInterp, rowInterp, out double[] xo, out double[] yo, out double[,] zo);
-            TData3<double, double, double> data =
-                new TData3<double, double, double>(
-                    Name, KeyColumnName, KeyRowName, ValueName, 
-                    KeyColumnSuffix, KeyColumnSuffix, ValueSuffix, 
-                    xo, yo, zo);
-            return data;
+            return _GetData(xo, yo, zo);
         }
+
+        //get all interpolated
+        public TData3<double, double, double> GetData(int columnInterp, int rowInterp)
+        {
+            return GetData(columnInterp, rowInterp, null, null);
+        }
+
+
     }
 }
