@@ -74,9 +74,13 @@ namespace DV_ReportAnalytics.Models
                 // try to get value
                 if (_keyDictionary.TryGetValue(key, out int k) &&
                     _valueDictionary.TryGetValue(k, out TValue v))
-                    ;
+                {
+                    // value can be gotten from if statement
+                }
                 else
+                {
                     v = new TValue();
+                }
                 return v;
             }
         }
@@ -86,11 +90,8 @@ namespace DV_ReportAnalytics.Models
             return _keyDictionary.Keys.ToArray();
         }
 
-        // passing empty default value to get the whole table
-        public TData2<TKey, TValue> GetData(TKey[] keyRange = null)
+        protected void _GetXY(TKey[] keyRange, out TKey[] x, out TValue[] y)
         {
-            List<TKey> x = new List<TKey>();
-            List<TValue> y = new List<TValue>();
             // get x range
             if (keyRange == null)
             {
@@ -98,17 +99,21 @@ namespace DV_ReportAnalytics.Models
             }
             else
             {
-                // use linq to query
-                //x = keyRange.Where(k => _keyDictionary.Keys.Contains(k)).ToList();
-                x = keyRange.ToList();
+                x = keyRange;
                 // range may not be sorted
-                x.Sort();
+                Array.Sort(x);
             }
             // get y
-            foreach (TKey k in x)
-                y.Add(this[k]);
-            // build data
-            TData2<TKey, TValue> data = new TData2<TKey, TValue>(x.ToArray(), y.ToArray());
+            y = new TValue[x.Length];
+            for (int i = 0; i < x.Length; i++)
+                y[i] = this[x[i]];
+        }
+
+        // passing empty default value to get the whole table
+        public TData2<TKey, TValue> GetData(TKey[] keyRange = null)
+        {
+            _GetXY(keyRange, out TKey[] x, out TValue[] y);
+            TData2<TKey, TValue> data = new TData2<TKey, TValue>(x, y);
             return data;
         }
 
