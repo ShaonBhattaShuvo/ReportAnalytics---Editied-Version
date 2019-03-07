@@ -23,7 +23,8 @@ namespace DV_ReportAnalytics.Models
         
 
         // initialize with given keys and values
-        public LookupTable(string name, string keyName, string valueName,
+        public LookupTable(
+            string name, string keyName, string valueName,
             string keySuffix, string valueSuffix,
             TKey[] keys, TValue[] values)
         {
@@ -47,7 +48,8 @@ namespace DV_ReportAnalytics.Models
 
         // constructor with name
         public LookupTable(string name)
-            : this(name, "Key Label", "Value Label",
+            : this(
+                  name, "Key Label", "Value Label",
                   "", "",
                   new TKey[0], new TValue[0]) { }
 

@@ -27,7 +27,8 @@ namespace DV_ReportAnalytics.Models
 
         // initialize with given rows, columns and values
         // row and column index must correspond with 2d list of values
-        public LookupTable(string name, string rowName, string columnName, string valueName,
+        public LookupTable(
+            string name, string rowName, string columnName, string valueName,
             string rowSuffix, string columnSuffix, string valueSuffix, 
             TKeyRow[] rows, TKeyColumn[] columns, TValue[,] values)
         {
@@ -60,7 +61,8 @@ namespace DV_ReportAnalytics.Models
 
         // constructor with name
         public LookupTable(string name)
-            : this(name, "Row Label", "Column Label", "Value Label",
+            : this(
+                  name, "Row Label", "Column Label", "Value Label",
                   "", "", "",
                   new TKeyRow[0], new TKeyColumn[0], new TValue[0, 0]) { }
 
