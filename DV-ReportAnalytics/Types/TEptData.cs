@@ -15,17 +15,17 @@ namespace DV_ReportAnalytics.Types
         public string ZName { get; }
         public string ZSuffix { get; }
         // interpolated values
-        public List<double> XI { private set; get; }
-        public List<double> YI { private set; get; }
-        public List<List<double>> ZI { private set; get; }
+        public double[] XI { private set; get; }
+        public double[] YI { private set; get; }
+        public double[,] ZI { private set; get; }
         // original values
-        public List<double> X { get; }
-        public List<double> Y { get; }
-        public List<List<double>> Z { get; }
+        public double[] X { get; }
+        public double[] Y { get; }
+        public double[,] Z { get; }
 
         public TEptData(string name, string xName, string yName, string zName,
             string xSuffix, string ySuffix, string zSuffix,
-            List<double> x, List<double> y, List<List<double>> z)
+            double[] x, double[] y, double[,] z)
         {
             XI = X = x;
             YI = Y = y;
@@ -44,22 +44,19 @@ namespace DV_ReportAnalytics.Types
         {
             XI = Interpolation.ExtendArray(X, xInterp);
             YI = Interpolation.ExtendArray(Y, yInterp);
-            List<List<double>> interped = new List<List<double>>();
+            ZI = new double[YI.Length, XI.Length];
             // destination points
             double dstX;
             double dstY;
-            for (int i = 0; i < YI.Count; i++)
+            for (int i = 0; i < YI.Length; i++)
             {
-                List<double> row = new List<double>();
                 dstY = YI[i];
-                for (int j = 0; j < XI.Count; j++)
+                for (int j = 0; j < XI.Length; j++)
                 {
                     dstX = XI[j];
-                    row.Add(Interpolation.BilinearInterpolation(Z, X, Y, dstX, dstY));
+                    ZI[i, j] = Interpolation.BilinearInterpolation(Z, X, Y, dstX, dstY);
                 }
-                interped.Add(row);
             }
-            ZI = interped;
         }
     }
 }

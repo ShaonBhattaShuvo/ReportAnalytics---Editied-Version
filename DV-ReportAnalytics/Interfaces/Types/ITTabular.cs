@@ -12,8 +12,8 @@ namespace DV_ReportAnalytics.Types
         string ColumnSuffix { get; }
         string ValueName { get; }
         string ValueSuffix { get; }
-        List<TRow> Rows { get; }
-        List<TColumn> Columns { get; }
-        List<TValue> Values { get; }
+        TRow[] Rows { get; }
+        TColumn[] Columns { get; }
+        TValue[] Values { get; }
     }
 }
