@@ -6,7 +6,7 @@ namespace DV_ReportAnalytics.Algorithms
 {
     static class Interpolation
     {
-        static private TBounds _GetNeighborIndices(double[] srcArray, double value)
+        private static TBounds _GetNeighborIndices(double[] srcArray, double value)
         {
             int lbound = 0; // lower bound of x
             int ubound = srcArray.Length - 1; // upper bound of x
@@ -36,7 +36,7 @@ namespace DV_ReportAnalytics.Algorithms
             return new TBounds(lbound, ubound);
         }
 
-        static public double[] ExtendArray(double[] srcArray, int points)
+        public static double[] ExtendArray(double[] srcArray, int points)
         {
             if (points < 1)
                 return srcArray;
@@ -60,7 +60,7 @@ namespace DV_ReportAnalytics.Algorithms
             }
         }
 
-        static public double LinearInterpolation(double[] srcArray, double xVal)
+        public static double LinearInterpolation(double[] srcArray, double xVal)
         {
             TBounds bound = _GetNeighborIndices(srcArray, xVal);
             double ylbound = srcArray[bound.LBound];
@@ -70,7 +70,7 @@ namespace DV_ReportAnalytics.Algorithms
             return interp;
         }
 
-        static public double BilinearInterpolation(double[,] srcTable, double[] srcXAxis, double[] srcYAxis, double dstX, double dstY)
+        public static double BilinearInterpolation(double[,] srcTable, double[] srcXAxis, double[] srcYAxis, double dstX, double dstY)
         {
             TBounds xbound = _GetNeighborIndices(srcXAxis, dstX);
             TBounds ybound = _GetNeighborIndices(srcYAxis, dstY);
@@ -100,6 +100,25 @@ namespace DV_ReportAnalytics.Algorithms
                     q22 * (dstY - y1) * (dstX - x1)) / ((y2 - y1) * (x2 - x1));
 
             return interp;
+        }
+
+        public static void TableBilinearInterpolation(double[] xi, double[] yi, double[,] zi, int xInterp, int yInterp, out double[] xo, out double[] yo, out double[,] zo)
+        {
+            xo = ExtendArray(xi, xInterp);
+            yo = ExtendArray(yi, yInterp);
+            zo = new double[yo.Length, xo.Length];
+            // destination points
+            double dstX;
+            double dstY;
+            for (int r = 0; r < yo.Length; r++)
+            {
+                dstY = yo[r];
+                for (int c = 0; c < xo.Length; c++)
+                {
+                    dstX = xo[c];
+                    zo[r, c] = BilinearInterpolation(zi, xi, yi, dstX, dstY);
+                }
+            }
         }
     }
 }

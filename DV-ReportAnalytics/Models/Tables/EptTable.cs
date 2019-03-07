@@ -20,25 +20,6 @@ namespace DV_ReportAnalytics.Models
         // default constructor
         public EptTable() : base() { }
 
-        // interpolation
-        protected void _Interpolate (double[] xi, double[] yi, double[,] zi, int xInterp, int yInterp, out double[] xo, out double[] yo, out double[,] zo)
-        {
-            xo = Interpolation.ExtendArray(xi, xInterp);
-            yo = Interpolation.ExtendArray(yi, yInterp);
-            zo = new double[yo.Length, xo.Length];
-            // destination points
-            double dstX;
-            double dstY;
-            for (int r = 0; r < yo.Length; r++)
-            {
-                dstY = yo[r];
-                for (int c = 0; c < xo.Length; c++)
-                {
-                    dstX = xo[c];
-                    zo[r, c] = Interpolation.BilinearInterpolation(zi, xi, yi, dstX, dstY);
-                }
-            }
-        }
         // override base method to add more info
         protected override TData3<double, double, double> _GetData(double[] x, double[] y, double[,] z)
         {
@@ -53,7 +34,7 @@ namespace DV_ReportAnalytics.Models
         {
             // retrive original data
             _GetXYZ(columnRange, rowRange, out double[] x, out double[] y, out double[,] z);
-            _Interpolate(x, y, z, columnInterp, rowInterp, out double[] xo, out double[] yo, out double[,] zo);
+            Interpolation.TableBilinearInterpolation(x, y, z, columnInterp, rowInterp, out double[] xo, out double[] yo, out double[,] zo);
             return _GetData(xo, yo, zo);
         }
 
