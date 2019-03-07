@@ -6,10 +6,10 @@ namespace DV_ReportAnalytics.Algorithms
 {
     static class Interpolation
     {
-        static private TBounds _GetNeighborIndices(List<double> srcArray, double value)
+        static private TBounds _GetNeighborIndices(double[] srcArray, double value)
         {
             int lbound = 0; // lower bound of x
-            int ubound = srcArray.Count - 1; // upper bound of x
+            int ubound = srcArray.Length - 1; // upper bound of x
             int mid = 0;
             if (srcArray[lbound] > value)
                 ubound = lbound;
@@ -36,30 +36,31 @@ namespace DV_ReportAnalytics.Algorithms
             return new TBounds(lbound, ubound);
         }
 
-        static public List<double> ExtendArray(List<double> srcArray, int points)
+        static public double[] ExtendArray(double[] srcArray, int points)
         {
             if (points < 1)
                 return srcArray;
             else
             {
-                List<double> extended = new List<double>();
-                for (int i = 0; i < srcArray.Count - 1; i++)
+                int srcLength = srcArray.Length;
+                int offset = points + 1;
+                double[] extended = new double[srcLength + (srcLength - 1) * points];
+                for (int i = 0; i < srcLength - 1; i++)
                 {
-                    extended.Add(srcArray[i]);
-                    double interval = (srcArray[i + 1] - srcArray[i]) / (points + 1);
-                    double insertPoint = srcArray[i];
-                    for (int j = 1; j <= points; j++)
-                    {
-                        insertPoint = insertPoint + interval;
-                        extended.Add(insertPoint);
-                    }
+                    int baseIndex = i * offset;
+                    double interValue = (srcArray[i + 1] - srcArray[i]) / offset;
+                    double baseValue = srcArray[i];
+                    for (int j = 0; j <= points; j++)
+                        extended[baseIndex + j] = baseValue + interValue * j;
                 }
-                extended.Add(srcArray[srcArray.Count - 1]); // last element
+                // last element
+                extended[extended.Length - 1] = srcArray[srcLength - 1]; 
+
                 return extended;
             }
         }
 
-        static public double LinearInterpolation(List<double> srcArray, double xVal)
+        static public double LinearInterpolation(double[] srcArray, double xVal)
         {
             TBounds bound = _GetNeighborIndices(srcArray, xVal);
             double ylbound = srcArray[bound.LBound];
@@ -69,14 +70,14 @@ namespace DV_ReportAnalytics.Algorithms
             return interp;
         }
 
-        static public double BilinearInterpolation(List<List<double>> srcTable, List<double> srcXAxis, List<double> srcYAxis, double dstX, double dstY)
+        static public double BilinearInterpolation(double[,] srcTable, double[] srcXAxis, double[] srcYAxis, double dstX, double dstY)
         {
             TBounds xbound = _GetNeighborIndices(srcXAxis, dstX);
             TBounds ybound = _GetNeighborIndices(srcYAxis, dstY);
-            double q11 = srcTable[ybound.LBound][xbound.LBound];
-            double q21 = srcTable[ybound.UBound][xbound.LBound];
-            double q12 = srcTable[ybound.LBound][xbound.UBound];
-            double q22 = srcTable[ybound.UBound][xbound.UBound];
+            double q11 = srcTable[ybound.LBound, xbound.LBound];
+            double q21 = srcTable[ybound.UBound, xbound.LBound];
+            double q12 = srcTable[ybound.LBound, xbound.UBound];
+            double q22 = srcTable[ybound.UBound, xbound.UBound];
             double x1 = srcXAxis[xbound.LBound];
             double x2 = srcXAxis[xbound.UBound];
             double y1 = srcYAxis[ybound.LBound];
@@ -84,13 +85,13 @@ namespace DV_ReportAnalytics.Algorithms
             double interp;
 
             // if point exactly found on a node do not interpolate
-            if (xbound.IsBoundOverlapped() && ybound.IsBoundOverlapped())
+            if (xbound.Overlapped && ybound.Overlapped)
                 interp = q11;
             // if point lies exactly on an xAxis node do linear interpolation
-            else if (xbound.IsBoundOverlapped())
+            else if (xbound.Overlapped)
                 interp = q11 + (q22 - q11) * (dstY - y1) / (y2 - y1);
             // if point lies exactly on an yAxis node do liear interpolation
-            else if (ybound.IsBoundOverlapped())
+            else if (ybound.Overlapped)
                 interp = q11 + (q12 - q11) * (dstX - x1) / (x2 - x1);
             else
                 interp = (q11 * (y2 - dstY) * (x2 - dstX) + 

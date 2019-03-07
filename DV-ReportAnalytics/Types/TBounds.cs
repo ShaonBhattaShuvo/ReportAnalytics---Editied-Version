@@ -6,16 +6,13 @@ namespace DV_ReportAnalytics.Types
     {
         public int LBound { get; }
         public int UBound { get; } 
+        public bool Overlapped { get; }
 
         public TBounds(int lbound, int ubound)
         {
             LBound = lbound;
             UBound = ubound;
-        }
-
-        public bool IsBoundOverlapped()
-        {
-            return LBound == UBound;
+            Overlapped = lbound == ubound ? true : false;
         }
     }
 }

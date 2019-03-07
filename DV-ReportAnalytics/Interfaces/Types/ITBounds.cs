@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DV_ReportAnalytics.Types
 {
@@ -11,7 +7,7 @@ namespace DV_ReportAnalytics.Types
         // lower and upper bounds
         int LBound { get; }
         int UBound { get; }
-        // check bounds are overlapped
-        bool IsBoundOverlapped();
+        // check if bounds are overlapped
+        bool Overlapped { get; }
     }
 }

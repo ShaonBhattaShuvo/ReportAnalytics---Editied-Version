@@ -105,65 +105,54 @@ namespace DV_ReportAnalytics.Models
             }
         }
 
-        public List<TKeyRow> GetKeysRows()
+        public TKeyRow[] GetKeysRows()
         {
-            return _keyRowDictionary.Keys.ToList();
+            return _keyRowDictionary.Keys.ToArray();
         }
 
-        public List<TKeyColumn> GetKeysColumns()
+        public TKeyColumn[] GetKeysColumns()
         {
-            return _keyColumnDictionary.Keys.ToList();
+            return _keyColumnDictionary.Keys.ToArray();
         }
 
-        protected void _GetXYZ(TKeyColumn[] columnRange, TKeyRow[] rowRange, out List<TKeyColumn> x, out List<TKeyRow> y, out List<List<TValue>> z)
+        protected void _GetXYZ(TKeyColumn[] columnRange, TKeyRow[] rowRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z)
         {
             // get x range
             if (columnRange == null)
             {
-                //x = _keyColumnDictionary.Keys.ToList();
                 x = GetKeysColumns();
             }
             else
             {
-                // use linq to query
-                //x = columnRange.Where(c => _keyColumnDictionary.Keys.Contains(c)).ToList();
-                x = columnRange.ToList();
+                x = columnRange;
                 // columnRange may not be sorted
-                x.Sort();
+                Array.Sort(x);
             }
             // get y range
             if (rowRange == null)
             {
-                //y = _keyRowDictionary.Keys.ToList();
                 y = GetKeysRows();
             }
             else
             {
-                // use linq to query
-                //y = rowRange.Where(r => _keyRowDictionary.Keys.Contains(r)).ToList();
-                y = rowRange.ToList();
+                y = rowRange;
                 // rowRange may not be sorted
-                y.Sort(); 
+                Array.Sort(y);
             }
             // get z
-            z = new List<List<TValue>>();
-            // scan by row
-            foreach (TKeyRow r in y)
-            {
-                List<TValue> l = new List<TValue>();
-                foreach (TKeyColumn c in x)
-                    l.Add(this[r, c]);
-                z.Add(l);
-            }
-           
+            z = new TValue[y.Length, x.Length];
+            // scan by row then by column
+            for (int r = 0; r < y.Length; r++)
+                for (int c = 0; c < x.Length; c++)
+                    z[r, c] = this[y[r], x[c]];
         }
 
         // passing empty default value to get the whole table
         public virtual TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyColumn[] columnRange = null, TKeyRow[] rowRange = null)
         {
-            _GetXYZ(columnRange, rowRange, out List<TKeyColumn> x, out List<TKeyRow> y, out List<List<TValue>> z);
+            _GetXYZ(columnRange, rowRange, out TKeyColumn[] x, out TKeyRow[] y, out TValue[,] z);
             // build data
-            TData3<TKeyColumn, TKeyRow, TValue> data = new TData3<TKeyColumn, TKeyRow, TValue>(x.ToArray(), y.ToArray(), z.To2DArray());
+            TData3<TKeyColumn, TKeyRow, TValue> data = new TData3<TKeyColumn, TKeyRow, TValue>(x, y, z);
             return data;
         }
 

@@ -15,7 +15,7 @@ namespace DV_ReportAnalytics.Models
         TValue this[TKey key] { set; get; }
 
         // get keys
-        List<TKey> GetKeys();
+        TKey[] GetKeys();
 
         // get table
         TData2<TKey, TValue> GetData(TKey[] range);

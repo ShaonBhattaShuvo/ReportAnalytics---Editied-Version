@@ -17,10 +17,10 @@ namespace DV_ReportAnalytics.Models
         TValue this[TKeyRow row, TKeyColumn column] { set; get; }
 
         // get keys for rows
-        List<TKeyRow> GetKeysRows();
+        TKeyRow[] GetKeysRows();
 
         // get keys for columns
-        List<TKeyColumn> GetKeysColumns();
+        TKeyColumn[] GetKeysColumns();
 
         // passing empty default value to get the whole table
         TData3<TKeyColumn, TKeyRow, TValue> GetData(TKeyColumn[] columnRange, TKeyRow[] rowRange);

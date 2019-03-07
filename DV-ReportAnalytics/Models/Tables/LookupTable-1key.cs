@@ -81,9 +81,9 @@ namespace DV_ReportAnalytics.Models
             }
         }
 
-        public List<TKey> GetKeys()
+        public TKey[] GetKeys()
         {
-            return _keyDictionary.Keys.ToList();
+            return _keyDictionary.Keys.ToArray();
         }
 
         // passing empty default value to get the whole table
@@ -94,7 +94,6 @@ namespace DV_ReportAnalytics.Models
             // get x range
             if (keyRange == null)
             {
-                //x = _keyDictionary.Keys.ToList();
                 x = GetKeys();
             }
             else
