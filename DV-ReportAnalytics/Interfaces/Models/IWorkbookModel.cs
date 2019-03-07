@@ -5,9 +5,11 @@ namespace DV_ReportAnalytics.Models
 {
     interface IWorkbookModel
     {
+        string FileName { get; }
+        string FilePath { get; }
         // provide an event for controller to subscribe
-        event WorkbookModelUpdateEventHandler WorkbookModelUpdate;
+        event WorkbookUpdateEventHandler WorkbookUpdate;
         // open file
-        void UpdateFromModelView(WorkbookModelViewSubmitEvent e);
+        void Update(WorkbookConfigUpdateEventArgs e);
     }
 }

@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace DV_ReportAnalytics.Models
 {
-    class EptReportModel: SpreadSheetModel, IEptReportModel
+    class EptReportModel: WorkbookModel, IEptReportModel
     {
         public string[] Names { get; }
         public Regex Pattern { set; get; }

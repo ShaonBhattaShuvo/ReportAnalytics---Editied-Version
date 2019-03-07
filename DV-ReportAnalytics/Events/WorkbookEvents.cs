@@ -6,14 +6,17 @@ namespace DV_ReportAnalytics.Events
     class WorkbookOpenEventArgs : EventArgs
     {
         public string Path { get; }
+        public bool Done { get; }
 
-        public WorkbookOpenEventArgs(string path)
+        public WorkbookOpenEventArgs(string path, bool done)
         {
             Path = path;
+            Done = done;
         }
 
     }
     delegate void WorkbookOpenEventHandler(object sender, WorkbookOpenEventArgs e);
+
 
     class WorkbookConfigUpdateEventArgs : EventArgs
     {
@@ -25,6 +28,7 @@ namespace DV_ReportAnalytics.Events
     }
 
     delegate void WorkbookConfigUpdateEventHandler(object sender, WorkbookConfigUpdateEventArgs e);
+
 
     class WorkbookUpdateEventArgs : EventArgs
     {
