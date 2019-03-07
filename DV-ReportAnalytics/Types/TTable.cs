@@ -3,8 +3,10 @@ using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
+    [Obsolete("Use improved type instead", false)]
     class TTable<TKey, TElement>: Dictionary<TKey, Dictionary<TKey, TElement>> {}
 
+    [Obsolete("Use improved type instead", false)]
     struct TDimension
     {
         public int rows;
@@ -16,6 +18,7 @@ namespace DV_ReportAnalytics.Types
         }
     }
 
+    [Obsolete("Use improved type instead", false)]
     struct THeaders<TKey>
     {
         public TKey row;
@@ -27,7 +30,7 @@ namespace DV_ReportAnalytics.Types
         }
     }
 
-
+    [Obsolete("Use improved type extension instead", false)]
     static class TExtension
     {
         // extension method to get TTable from an enumerable type
