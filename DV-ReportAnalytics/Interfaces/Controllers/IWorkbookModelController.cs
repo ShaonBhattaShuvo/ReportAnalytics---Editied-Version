@@ -5,8 +5,6 @@ namespace DV_ReportAnalytics.Controllers
 {
     internal interface IWorkbookModelController
     {
-        //void SetWorkbookView(IWorkbook workbook);
-
         // open window to make configurations
         void OpenModelView();
 
