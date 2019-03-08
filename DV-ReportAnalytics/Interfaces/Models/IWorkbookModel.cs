@@ -1,5 +1,6 @@
 ﻿using System;
 using DV_ReportAnalytics.Events;
+using System.Xml;
 
 namespace DV_ReportAnalytics.Models
 {
@@ -7,9 +8,17 @@ namespace DV_ReportAnalytics.Models
     {
         string FileName { get; }
         string FilePath { get; }
-        // provide an event for controller to subscribe
+
+        // send workbook in binary to view to update display
         event WorkbookUpdateEventHandler WorkbookUpdate;
-        // open file
-        void Update(WorkbookConfigUpdateEventArgs e);
+
+        // send new workbook path to view to open
+        event WorkbookOpenEventHandler WorkbookOpen;
+
+        // update file
+        void Update(XmlDocument config);
+
+        // open a new file
+        void Open(string path);
     }
 }

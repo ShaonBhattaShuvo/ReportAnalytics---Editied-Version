@@ -7,6 +7,8 @@ namespace DV_ReportAnalytics.Views
     {
         // provide an event for controller to subscribe
         event WorkbookConfigUpdateEventHandler WorkbookConfigUpdate;
+
+        // form control function: show window
         void Show();
     }
 }

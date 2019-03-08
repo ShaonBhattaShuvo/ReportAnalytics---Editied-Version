@@ -7,13 +7,23 @@ namespace DV_ReportAnalytics.Controllers
 {
     internal abstract class WorkbookModelController : IWorkbookModelController
     {
-        public event WorkbookOpenEventHandler WorkbookOpen;
-        private IWorkbookModelView _view;
-        private IWorkbookModel _model;
+        protected IWorkbookModelView _view;
+        protected IWorkbookModel _model;
+        protected IMainForm _main; 
 
         public virtual void OpenModelView()
         {
             _view.Show();
+        }
+
+        public virtual void UpdateModel(string path)
+        {
+            _model.Open(path);
+        }
+
+        public virtual void SetMainView(IMainForm main)
+        {
+            _main = main;
         }
 
         // bind to view's event
@@ -22,11 +32,7 @@ namespace DV_ReportAnalytics.Controllers
         // bind to model's event
         protected virtual void _Update(object sender, WorkbookUpdateEventArgs e) { }
 
-        // raise workbook open event
-        protected virtual void _WorkbookOpen()
-        {
-            if (WorkbookOpen != null)
-                WorkbookOpen.Invoke(this, new WorkbookOpenEventArgs(_model.FilePath, true));
-        }
+        // bind to model's event
+        protected virtual void _Open(object sender, WorkbookOpenEventArgs e) { }
     }
 }

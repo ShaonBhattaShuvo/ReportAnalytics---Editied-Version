@@ -54,7 +54,7 @@ namespace DV_ReportAnalytics.Types
                 for (int j = 0; j < XI.Length; j++)
                 {
                     dstX = XI[j];
-                    ZI[i, j] = Interpolation.BilinearInterpolation(Z, X, Y, dstX, dstY);
+                    ZI[i, j] = Interpolation.BilinearInterpolation(Y, X, Z, dstX, dstY);
                 }
             }
         }

@@ -3,7 +3,7 @@ using System.Text.RegularExpressions;
 
 namespace DV_ReportAnalytics.Models
 {
-    internal interface IEptReportModel : ISpreadSheetModel
+    internal interface IEptReportModel : IWorkbookModel
     {
         string[] Names { get; }
         // new pattern should be re-instantiated

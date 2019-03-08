@@ -1,12 +1,19 @@
 ﻿using System;
-using DV_ReportAnalytics.Events;
+using DV_ReportAnalytics.Views;
 
 namespace DV_ReportAnalytics.Controllers
 {
     internal interface IWorkbookModelController
     {
-        event WorkbookOpenEventHandler WorkbookOpen;
         //void SetWorkbookView(IWorkbook workbook);
+
+        // open window to make configurations
         void OpenModelView();
+
+        // when path changes update model file
+        void UpdateModel(string path);
+
+        // set worbookview component
+        void SetMainView(IMainForm main);
     }
 }
