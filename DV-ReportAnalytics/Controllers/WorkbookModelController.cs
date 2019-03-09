@@ -5,30 +5,35 @@ using DV_ReportAnalytics.Models;
 
 namespace DV_ReportAnalytics.Controllers
 {
-    internal abstract class WorkbookModelController : IWorkbookModelController
+    internal abstract class WorkbookModelController<TModel, TModelView, TMainForm> : IWorkbookModelController<TMainForm>
+        where TModel : IWorkbookModel, new()
+        where TModelView : IWorkbookModelView, new()
+        where TMainForm : IMainForm
     {
-        protected IWorkbookModelView _workboookModelView;
-        protected IWorkbookModel _workbookModel;
-        protected IMainForm _mainView; 
+        protected TModel _workbookModel;
+        protected TModelView _workboookModelView;
+        protected TMainForm _mainForm; 
 
         public WorkbookModelController()
         {
+            _workbookModel = new TModel();
+            _workboookModelView = new TModelView();
             _Bind();
         }
 
-        public virtual void OpenModelView()
+        public virtual void ShowModelView()
         {
             _workboookModelView.Show();
         }
 
-        public virtual void UpdateModel(string path)
+        public virtual void OpenModel(string path)
         {
             _workbookModel.Open(path);
         }
 
-        public virtual void SetMainView(IMainForm main)
+        public virtual void SetMainView(TMainForm mainForm)
         {
-            _mainView = main;
+            _mainForm = mainForm;
         }
 
         // bind to view's event
@@ -40,14 +45,14 @@ namespace DV_ReportAnalytics.Controllers
         // bind to model's event
         protected virtual void _Update(object sender, WorkbookUpdateEventArgs e)
         {
-            _mainView.UpdateWorkbookView(e.Buffer);
+            _mainForm.UpdateWorkbookView(e.Buffer);
         }
 
         // bind to model's event
         protected virtual void _Open(object sender, WorkbookOpenEventArgs e)
         {
             if (e.Done)
-                _mainView.OpenWorkbookView(e.Path);
+                _mainForm.OpenWorkbookView(e.Path);
         }
 
         // bind events
