@@ -6,7 +6,6 @@ namespace DV_ReportAnalytics.Controllers
     internal interface IMainFormController
     {
         event UserMessageEventHandler UserMessageUpdated;
-        event FileOpenEventHandler FileOpen;
         void AppForm_OpenButtonClicked(string path);
         void AppForm_SaveButtonClicked();
         void AppForm_TableButtonClicked();

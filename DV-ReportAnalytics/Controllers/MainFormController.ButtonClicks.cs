@@ -20,14 +20,14 @@ namespace DV_ReportAnalytics.Controllers
         public MainFormController(IMainForm mainForm)
         {
             // mainform should be binded with controller here
-            _view = mainForm;
+            _mainForm = mainForm;
             // TODO: Create all necessary classes which require different functionality from MainForm
         }
 
         // place configuration seletor here
         public void AppForm_OpenButtonClicked(string path)
         {
-            _FileOpen(this, new FileOpenEventArgs(path));
+            
         }
 
         public void AppForm_SaveButtonClicked()
@@ -44,10 +44,7 @@ namespace DV_ReportAnalytics.Controllers
 
         public void AppForm_GraphButtonClicked()
         {
-            if (_model != null)
-            {
-                
-            }
+
         }
 
         public void AppForm_SettingsButtonClicked()

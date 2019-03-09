@@ -12,10 +12,8 @@ namespace DV_ReportAnalytics.Controllers
 {
     internal partial class MainFormController : IMainFormController
     {
-        private IMainForm _view;
-        private IWorkbookModel _model;
+        private IMainForm _mainForm;
         public event UserMessageEventHandler UserMessageUpdated = null;
-        public event FileOpenEventHandler FileOpen;
 
         private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
         {
@@ -23,13 +21,7 @@ namespace DV_ReportAnalytics.Controllers
                 UserMessageUpdated.Invoke(sender, args);
         }
 
-        private void _FileOpen(object sender, FileOpenEventArgs args)
-        {
-            if (FileOpen != null)
-                FileOpen.Invoke(sender, args); // update observer
-        }
-
-        private void _GetModel(string type, string path)
+        private void _GetType(string type)
         {
 
             if (Enum.TryParse<ModelTypes>(type, false, out ModelTypes t))
@@ -38,11 +30,9 @@ namespace DV_ReportAnalytics.Controllers
                 {
                     case ModelTypes.EptReport:
                         // do something
-                        _model = new EptReportModel(path);
                         break;
                     default:
                         break;
-
                 }
             }
             else

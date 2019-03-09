@@ -3,8 +3,7 @@ using DV_ReportAnalytics.Views;
 
 namespace DV_ReportAnalytics.Controllers
 {
-    internal interface IWorkbookModelController<TMainForm>
-        where TMainForm : IMainForm
+    internal interface IWorkbookModelController
     {
         // open window to make configurations
         void ShowModelView();
@@ -13,6 +12,6 @@ namespace DV_ReportAnalytics.Controllers
         void OpenModel(string path);
 
         // set worbookview component
-        void SetMainView(TMainForm mainForm);
+        void SetMainView(IMainForm mainForm);
     }
 }

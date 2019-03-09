@@ -1,66 +1,27 @@
 ﻿using System;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Views;
-using DV_ReportAnalytics.Models;
 
 namespace DV_ReportAnalytics.Controllers
 {
-    internal abstract class WorkbookModelController<TModel, TModelView, TMainForm> : IWorkbookModelController<TMainForm>
-        where TModel : IWorkbookModel, new()
-        where TModelView : IWorkbookModelView, new()
-        where TMainForm : IMainForm
+    internal abstract class WorkbookModelController : IWorkbookModelController
     {
-        protected TModel _workbookModel;
-        protected TModelView _workboookModelView;
-        protected TMainForm _mainForm; 
+        public abstract void ShowModelView();
 
-        public WorkbookModelController()
-        {
-            _workbookModel = new TModel();
-            _workboookModelView = new TModelView();
-            _Bind();
-        }
+        public abstract void OpenModel(string path);
 
-        public virtual void ShowModelView()
-        {
-            _workboookModelView.Show();
-        }
-
-        public virtual void OpenModel(string path)
-        {
-            _workbookModel.Open(path);
-        }
-
-        public virtual void SetMainView(TMainForm mainForm)
-        {
-            _mainForm = mainForm;
-        }
+        public abstract void SetMainView(IMainForm mainForm);
 
         // bind to view's event
-        protected virtual void _ConfigUpdate(object sender, WorkbookConfigUpdateEventArgs e)
-        {
-            _workbookModel.Update(e.Config);
-        }
+        protected abstract void _ConfigUpdate(object sender, WorkbookConfigUpdateEventArgs e);
 
         // bind to model's event
-        protected virtual void _Update(object sender, WorkbookUpdateEventArgs e)
-        {
-            _mainForm.UpdateWorkbookView(e.Buffer);
-        }
+        protected abstract void _Update(object sender, WorkbookUpdateEventArgs e);
 
         // bind to model's event
-        protected virtual void _Open(object sender, WorkbookOpenEventArgs e)
-        {
-            if (e.Done)
-                _mainForm.OpenWorkbookView(e.Path);
-        }
+        protected abstract void _Open(object sender, WorkbookOpenEventArgs e);
 
         // bind events
-        protected virtual void _Bind()
-        {
-            _workboookModelView.WorkbookConfigUpdate += _ConfigUpdate;
-            _workbookModel.WorkbookOpen += _Open;
-            _workbookModel.WorkbookUpdate += _Update;
-        }
+        protected abstract void _Bind();
     }
 }
