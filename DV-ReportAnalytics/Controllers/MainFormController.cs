@@ -8,6 +8,7 @@ using System.IO;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Models;
 using DV_ReportAnalytics.Views;
+using DV_ReportAnalytics.Constant;
 
 
 namespace DV_ReportAnalytics.Controllers
@@ -31,7 +32,8 @@ namespace DV_ReportAnalytics.Controllers
         // place configuration seletor here
         public void AppForm_OpenButtonClicked(string path)
         {
-            
+            _GetType("EptReport");
+            _workbookModelController.OpenModel(path);
         }
 
         public void AppForm_SaveButtonClicked()
@@ -42,8 +44,7 @@ namespace DV_ReportAnalytics.Controllers
         public void AppForm_TableButtonClicked()
         {
             //_UserMessageUpdated(this, new UserMessageEventArgs("Table Display: We can implement functionality in the separate class and create instance of this class in UIController."));
-            EptForm ept = new EptForm();
-            ept.Show();
+            _workbookModelController.ShowModelView();
         }
 
         public void AppForm_GraphButtonClicked()

@@ -14,16 +14,20 @@ namespace DV_ReportAnalytics.Controllers
         private EptReportModel _model;
         private EptForm _view;
 
-        public EptReportController()
+        public EptReportController(IMainForm mainForm)
         {
-            _mainForm = null;
+            _mainForm = mainForm;
             _view = null;
             _model = new EptReportModel();
             _Bind();
         }
 
+        public EptReportController() : this(null) { }
+
         public override void ShowModelView()
         {
+            _view = new EptForm();
+            _view.WorkbookConfigUpdate += _ConfigUpdate;
             _view.Show();
         }
 
@@ -57,7 +61,6 @@ namespace DV_ReportAnalytics.Controllers
         {
             _model.WorkbookOpen += _Open;
             _model.WorkbookUpdate += _Update;
-            _view.WorkbookConfigUpdate += _ConfigUpdate;
         }
 
     }

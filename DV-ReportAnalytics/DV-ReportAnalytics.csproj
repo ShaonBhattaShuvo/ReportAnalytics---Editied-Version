@@ -73,13 +73,15 @@
   <ItemGroup>
     <Compile Include="Algorithms\Interpolation.cs" />
     <Compile Include="Constant\ModelTypes.cs" />
-    <Compile Include="Controllers\MainFormController.Functions.cs" />
-    <Compile Include="Events\WorkbookModelEvents.cs" />
+    <Compile Include="Controllers\EptReportController.cs" />
+    <Compile Include="Controllers\MainFormController.Func.cs" />
+    <Compile Include="Controllers\WorkbookModelController.cs" />
+    <Compile Include="Events\WorkbookEvents.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Interfaces\Controllers\IEptReportController.cs" />
     <Compile Include="Interfaces\Controllers\IWorkbookModelController.cs" />
     <Compile Include="Interfaces\Controllers\IMainFormController.cs" />
-    <Compile Include="Controllers\MainFormController.ButtonClicks.cs" />
-    <Compile Include="Events\DataPlotEvent.cs" />
-    <Compile Include="Events\FileOpenEvent.cs" />
+    <Compile Include="Controllers\MainFormController.cs" />
     <Compile Include="Interfaces\Models\IEptReportModel.cs" />
     <Compile Include="Interfaces\Models\Tables\ICrossTable.cs" />
     <Compile Include="Interfaces\Models\Tables\ILookupTable-1key.cs" />
@@ -88,9 +90,10 @@
     <Compile Include="Interfaces\Models\Tables\IEptTable.cs" />
     <Compile Include="Interfaces\Types\ITBounds.cs" />
     <Compile Include="Interfaces\Types\ITData.cs" />
-    <Compile Include="Interfaces\Types\ITDataDouble.cs" />
+    <Compile Include="Interfaces\Types\ITEptData.cs" />
+    <Compile Include="Interfaces\Types\ITTabular.cs" />
     <Compile Include="Interfaces\Views\IWorkbookModelView.cs" />
-    <Compile Include="Models\SpreadSheetModel.cs" />
+    <Compile Include="Models\WorkbookModel.cs" />
     <Compile Include="Interfaces\Models\Tables\ITable.cs" />
     <Compile Include="Models\Tables\LookupTable-1key.cs" />
     <Compile Include="Models\Tables\LookupTable-2keys.cs" />
@@ -100,9 +103,10 @@
     <Compile Include="Models\EptReportModel.cs" />
     <Compile Include="Types\TData.cs" />
     <Compile Include="Types\TBounds.cs" />
-    <Compile Include="Types\TDataDouble.cs" />
+    <Compile Include="Types\TEptData.cs" />
     <Compile Include="Types\TTable.cs" />
     <Compile Include="Interfaces\Views\IMainForm.cs" />
+    <Compile Include="Types\TTabular.cs" />
     <Compile Include="Views\ConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -124,7 +128,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Events\UserMessageEvent.cs" />
-    <Compile Include="Views\MainForm.Functions.cs">
+    <Compile Include="Views\MainForm.Func.cs">
       <SubType>Form</SubType>
     </Compile>
     <EmbeddedResource Include="Views\ConfigForm.resx">
@@ -155,7 +159,6 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <None Include="TestFiles\test.xlsx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -179,6 +182,24 @@
     <None Include="Icons\settings-32.png" />
   </ItemGroup>
   <ItemGroup>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>8</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Interop.Excel">
+      <Guid>{00020813-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>9</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>5</VersionMajor>
@@ -189,9 +210,7 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\Events\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="TestFiles\figure.js" />
     <Content Include="TestFiles\index.html" />

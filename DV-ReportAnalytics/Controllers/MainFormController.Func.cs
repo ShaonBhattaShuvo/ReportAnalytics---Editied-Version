@@ -25,7 +25,7 @@ namespace DV_ReportAnalytics.Controllers
                 switch (t)
                 {
                     case ModelTypes.EptReport:
-                        // do something
+                        _workbookModelController = new EptReportController(_mainForm);
                         break;
                     default:
                         break;
