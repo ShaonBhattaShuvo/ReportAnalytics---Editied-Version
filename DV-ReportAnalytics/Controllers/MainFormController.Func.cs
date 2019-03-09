@@ -12,9 +12,6 @@ namespace DV_ReportAnalytics.Controllers
 {
     internal partial class MainFormController : IMainFormController
     {
-        private IMainForm _mainForm;
-        public event UserMessageEventHandler UserMessageUpdated = null;
-
         private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
         {
             if (UserMessageUpdated != null)
@@ -23,7 +20,6 @@ namespace DV_ReportAnalytics.Controllers
 
         private void _GetType(string type)
         {
-
             if (Enum.TryParse<ModelTypes>(type, false, out ModelTypes t))
             {
                 switch (t)

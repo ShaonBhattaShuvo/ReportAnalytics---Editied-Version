@@ -17,6 +17,10 @@ namespace DV_ReportAnalytics.Controllers
     /// </summary>
     internal partial class MainFormController: IMainFormController
     {
+        private IMainForm _mainForm;
+        private IWorkbookModelController _workbookModelController;
+        public event UserMessageEventHandler UserMessageUpdated = null;
+
         public MainFormController(IMainForm mainForm)
         {
             // mainform should be binded with controller here
