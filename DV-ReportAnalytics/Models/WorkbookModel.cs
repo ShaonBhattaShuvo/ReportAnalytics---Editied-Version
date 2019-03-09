@@ -21,6 +21,8 @@ namespace DV_ReportAnalytics.Models
         {
             // initialize application object
             _application = new Application();
+            _application.DisplayAlerts = false;
+            _tempPath = Path.GetTempFileName();
         }
 
         // update the workbook according to the config
@@ -44,9 +46,11 @@ namespace DV_ReportAnalytics.Models
             FileName = Path.GetFileName(path);
             FilePath = path;
             // open workbook
+            Console.WriteLine(_application.Workbooks);
+            _application.Workbooks.Close();
             _workbook = _application.Workbooks.Open(path);
-            // create a temp file then save into it
-            string temp = Path.GetTempFileName();
+            Console.WriteLine(_application.Workbooks);
+            // save to temp file
             _workbook.SaveAs(_tempPath);
             // raise event
             if (WorkbookOpen != null)
