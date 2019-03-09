@@ -5,13 +5,15 @@ namespace DV_ReportAnalytics.Models
 {
     internal interface IEptReportModel : IWorkbookModel
     {
-        string[] Names { get; }
+        
         // new pattern should be re-instantiated
-        Regex Pattern { set; get; }
-        // column index for name field
-        int NameIndex { set; get; }
-        // column index for value field
-        int ValueIndex { set; get; }
-        // 
+        Regex ResultFormat { set; get; }
+        // search column index
+        int SearchIndexName { set; get; }
+        int SearchIndexValue { set; get; }
+        string Name { set; get; }
+        string InputSheetName { set; get; }
+        string OutputSheetName { set; get; }
+        string[] Names { get; }
     }
 }

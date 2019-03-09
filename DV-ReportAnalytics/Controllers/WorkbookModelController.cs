@@ -6,6 +6,8 @@ namespace DV_ReportAnalytics.Controllers
 {
     internal abstract class WorkbookModelController : IWorkbookModelController
     {
+        protected IMainForm _mainForm;
+
         public abstract void ShowModelView();
 
         public abstract void OpenModel(string path);
