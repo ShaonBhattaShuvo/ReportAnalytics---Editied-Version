@@ -15,7 +15,7 @@ namespace DV_ReportAnalytics.Models
         protected Application _application;
         protected Workbook _workbook;
         protected Worksheet _worksheet;
-        protected string _tempPath;
+        protected byte[] _buffer;
 
         public WorkbookModel()
         {
@@ -24,59 +24,51 @@ namespace DV_ReportAnalytics.Models
             _application.DisplayAlerts = false;
             _workbook = _application.ActiveWorkbook;
             _worksheet = _workbook.ActiveSheet;
-            // create a temp file
-            _tempPath = Path.GetTempFileName();
         }
 
-        // do some cleanup
-        ~WorkbookModel()
+        protected virtual void _SaveToBuffer()
         {
-            if (File.Exists(_tempPath))
-                File.Delete(_tempPath);
+            string temp = Path.GetTempFileName();
+            _workbook.SaveCopyAs(temp);
+            _buffer = File.ReadAllBytes(temp);
+            File.Delete(temp);
         }
 
         // update the workbook according to the config
         public virtual void Update(XmlDocument config)
         {
             // do something with the configuration
-            _workbook.Save();
 
+            _SaveToBuffer();
             // raise event
             // if there are handlers registerd, give them the buffer
             if (WorkbookUpdate != null)
-            {
-                byte[] buffer = File.ReadAllBytes(_tempPath);
-                // send
-                WorkbookUpdate.Invoke(this, new WorkbookUpdateEventArgs(buffer));
-            }
+                WorkbookUpdate.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
         }
 
         public virtual void Open(string path)
         {
             FileName = Path.GetFileName(path);
             FilePath = path;
+            // get buffer
+            _buffer = File.ReadAllBytes(path);
             // open new workbook
             _application.Workbooks.Close();
             _workbook = _application.Workbooks.Open(path);
-            // save to temp file
-            try
-            {
-                _workbook.SaveAs(_tempPath);
-                // raise event
-                if (WorkbookOpen != null)
-                    WorkbookOpen.Invoke(this, new WorkbookOpenEventArgs(_tempPath, true));
-            }
-            catch(Exception e)
-            {
-                Console.WriteLine(e.Message);
-                if (WorkbookOpen != null)
-                    WorkbookOpen.Invoke(this, new WorkbookOpenEventArgs(_tempPath, false));
-            }
+            // raise event
+            if (WorkbookUpdate != null)
+                WorkbookUpdate.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
         }
 
-        public virtual void SaveAs(string path)
+        // async method
+        public virtual async void SaveAs(string path)
         {
-
+            // overwriting
+            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            {
+                fs.Seek(0, SeekOrigin.Begin);
+                await fs.WriteAsync(_buffer, 0, _buffer.Length);
+            }
         }
     }
 }
