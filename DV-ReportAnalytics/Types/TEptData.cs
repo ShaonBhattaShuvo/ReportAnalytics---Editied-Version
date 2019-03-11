@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using DV_ReportAnalytics.Algorithms;
 
 namespace DV_ReportAnalytics.Types
 {
-    [Obsolete("This struc is no longer in use. Use the corresponded class to get interpolation instead.", false)]
-    internal struct TEptData : ITEptData
+    [Serializable]
+    internal class TEptData3 : ITEptData3
     {
         public string Name { get; }
         public string XName { get; }
@@ -14,22 +12,14 @@ namespace DV_ReportAnalytics.Types
         public string YSuffix { get; }
         public string ZName { get; }
         public string ZSuffix { get; }
-        // interpolated values
-        public double[] XI { private set; get; }
-        public double[] YI { private set; get; }
-        public double[,] ZI { private set; get; }
-        // original values
         public double[] X { get; }
         public double[] Y { get; }
         public double[,] Z { get; }
-
-        public TEptData(string name, string xName, string yName, string zName,
+        // full initialization
+        public TEptData3(string name, string xName, string yName, string zName,
             string xSuffix, string ySuffix, string zSuffix,
             double[] x, double[] y, double[,] z)
         {
-            XI = X = x;
-            YI = Y = y;
-            ZI = Z = z;
             Name = name;
             XName = xName;
             YName = yName;
@@ -37,26 +27,45 @@ namespace DV_ReportAnalytics.Types
             XSuffix = xSuffix;
             YSuffix = ySuffix;
             ZSuffix = zSuffix;
+            X = x;
+            Y = y;
+            Z = z;
         }
+        // initializa with values
+        public TEptData3(double[] x, double[] y, double[,] z)
+            : this("Untitled", "X Label", "Y Label", "Z Label",
+                  "", "", "",
+                  x, y, z)
+        { }
+    }
 
-        // interpolation
-        public void Interpolate (int xInterp, int yInterp)
+    [Serializable]
+    internal class TEptData2 : ITEptData2
+    {
+        public string Name { get; }
+        public string XName { get; }
+        public string XSuffix { get; }
+        public string YName { get; }
+        public string YSuffix { get; }
+        public double[] X { get; }
+        public double[] Y { get; }
+        // full initialization
+        public TEptData2(string name, string xName, string yName,
+            string xSuffix, string ySuffix,
+            double[] x, double[] y)
         {
-            XI = Interpolation.ExtendArray(X, xInterp);
-            YI = Interpolation.ExtendArray(Y, yInterp);
-            ZI = new double[YI.Length, XI.Length];
-            // destination points
-            double dstX;
-            double dstY;
-            for (int i = 0; i < YI.Length; i++)
-            {
-                dstY = YI[i];
-                for (int j = 0; j < XI.Length; j++)
-                {
-                    dstX = XI[j];
-                    ZI[i, j] = Interpolation.BilinearInterpolation(Y, X, Z, dstX, dstY);
-                }
-            }
+            Name = name;
+            XName = xName;
+            YName = yName;
+            XSuffix = xSuffix;
+            YSuffix = ySuffix;
+            X = x;
+            Y = y;
         }
+        // initializa with values
+        public TEptData2(double[] x, double[] y)
+            : this("Untitled", "X Label", "Y Label",
+                  "", "",
+                  x, y) { }
     }
 }

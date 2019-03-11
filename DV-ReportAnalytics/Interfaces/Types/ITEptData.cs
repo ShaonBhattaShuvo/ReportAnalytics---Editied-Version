@@ -2,13 +2,23 @@
 
 namespace DV_ReportAnalytics.Types
 {
-    internal interface ITEptData : ITData3<double, double, double>
+    internal interface ITEptData3 : ITData3<double, double, double>
     {
-        // interpolated values
-        double[] XI { get; }
-        double[] YI { get; }
-        double[,] ZI { get; }
-        // do interpolation
-        void Interpolate(int xInterp, int yInterp);
+        string Name { get; }
+        string XName { get; }
+        string XSuffix { get; }
+        string YName { get; }
+        string YSuffix { get; }
+        string ZName { get; }
+        string ZSuffix { get; }
+    }
+
+    internal interface ITEptData2 : ITData2<double, double>
+    {
+        string Name { get; }
+        string XName { get; }
+        string XSuffix { get; }
+        string YName { get; }
+        string YSuffix { get; }
     }
 }

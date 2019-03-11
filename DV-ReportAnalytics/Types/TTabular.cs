@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
+    [Serializable]
     internal class TTabular3<TRow, TColumn, TValue> : ITTabular3<TRow, TColumn, TValue>
     {
         public string Name { get; }
@@ -38,4 +40,7 @@ namespace DV_ReportAnalytics.Types
                   "", "", "",
                   rows, columns, values) { }
     }
+
+    [Serializable]
+    internal class TTabular3Dictionary<TRow, TColumn, TValue> : Dictionary<string, TTabular3<TRow, TColumn, TValue>> { }
 }

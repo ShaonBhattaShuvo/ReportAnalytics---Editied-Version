@@ -20,6 +20,7 @@ namespace DV_ReportAnalytics.Models
         public EptTable() : base() { }
 
         // override base method to add more info
+        // all GetData methods get data from here
         protected override TData3<double, double, double> _GetData(double[] x, double[] y, double[,] z)
         {
             return new TData3<double, double, double>(
@@ -61,7 +62,7 @@ namespace DV_ReportAnalytics.Models
         }
 
         // add info to Tabular struct
-        // for internal use
+        // all GetTabular methods from here
         protected TTabular3<double, double, double> _GetTabular(double[] x, double[] y, double[] z)
         {
             return new TTabular3<double, double, double>(

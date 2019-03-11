@@ -2,28 +2,39 @@
 
 namespace DV_ReportAnalytics.Types
 {
-    internal interface ITData3<TX, TY, TZ>
+    internal interface ITData { }
+
+    internal interface ITData3<TX, TY, TZ> : ITData
     {
-        string Name { get; }
-        string XName { get; }
-        string XSuffix { get; }
-        string YName { get; }
-        string YSuffix { get; }
-        string ZName { get; }
-        string ZSuffix { get; }
         TX[] X { get; }
         TY[] Y { get; }
         TZ[,] Z { get; }
     }
 
-    internal interface ITData2<TX, TY>
+    internal interface ITData2<TX, TY> : ITData
     {
-        string Name { get; }
-        string XName { get; }
-        string XSuffix { get; }
-        string YName { get; }
-        string YSuffix { get; }
         TX[] X { get; }
         TY[] Y { get; }
+    }
+
+    internal interface ITDataProvider<Data>
+        where Data : ITData
+    {
+        // get all data
+        Data GetData();
+    }
+
+    internal interface ITDataProvider3<Data, TX, TY, TZ> : ITDataProvider<Data>
+        where Data : ITData3<TX, TY, TZ>
+    {
+        // get data by range
+        Data GetData(TX[] xRange, TY[] yRange);
+    }
+
+    internal interface ITDataProvider2<Data, TX, TY> : ITDataProvider<Data>
+        where Data : ITData2<TX, TY>
+    {
+        // get data by range
+        Data GetData(TX[] xRange);
     }
 }

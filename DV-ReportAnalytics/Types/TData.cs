@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Types
 {
-    internal struct TData3<TX, TY, TZ> : ITData3<TX, TY, TZ>
+    [Serializable]
+    internal class TData3<TX, TY, TZ> : ITData3<TX, TY, TZ>
     {
         public string Name { get; }
         public string XName { get; }
@@ -38,7 +39,8 @@ namespace DV_ReportAnalytics.Types
                   x, y, z) { }
     }
 
-    struct TData2<TX, TY> : ITData2<TX, TY>
+    [Serializable]
+    internal class TData2<TX, TY> : ITData2<TX, TY>
     {
         public string Name { get; }
         public string XName { get; }
@@ -67,6 +69,9 @@ namespace DV_ReportAnalytics.Types
                   x, y) { }
     }
 
-    class TData3Dictionary<TX, TY, TZ> : Dictionary<string, TData3<TX, TY, TZ>> { }
-    class TData2Dictionary<TX, TY> : Dictionary<string, TData2<TX, TY>> { }
+    [Serializable]
+    internal class TData3Dictionary<TX, TY, TZ> : Dictionary<string, TData3<TX, TY, TZ>> { }
+
+    [Serializable]
+    internal class TData2Dictionary<TX, TY> : Dictionary<string, TData2<TX, TY>> { }
 }
