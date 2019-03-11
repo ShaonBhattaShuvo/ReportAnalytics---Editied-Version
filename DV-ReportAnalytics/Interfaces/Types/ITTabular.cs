@@ -2,17 +2,26 @@
 
 namespace DV_ReportAnalytics.Types
 {
-    internal interface ITTabular3<TRow, TColumn, TValue>
+    internal interface ITTabular { }
+
+    internal interface ITTabular3<TRow, TColumn, TValue> : ITTabular
     {
-        string Name { get; }
-        string RowName { get; }
-        string RowSuffix { get; }
-        string ColumnName { get; }
-        string ColumnSuffix { get; }
-        string ValueName { get; }
-        string ValueSuffix { get; }
         TRow[] Rows { get; }
         TColumn[] Columns { get; }
         TValue[] Values { get; }
+    }
+
+    internal interface ITTabularProvider<Tabular>
+        where Tabular : ITTabular
+    {
+        // get all
+        Tabular GetTabular();
+    }
+
+    internal interface ITTabularProvider3<Tabular, TRow, TColumn, TValue> : ITTabularProvider<Tabular>
+        where Tabular : ITTabular3<TRow, TColumn, TValue>
+    {
+        // get value by range
+        Tabular GetTabular(TRow[] rowRange, TColumn ColumnRange);
     }
 }

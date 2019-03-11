@@ -68,4 +68,43 @@ namespace DV_ReportAnalytics.Types
                   "", "",
                   x, y) { }
     }
+
+    [Serializable]
+    internal class TEptTabular3 : ITEptTabular3
+    {
+        public string Name { get; }
+        public string RowName { get; }
+        public string RowSuffix { get; }
+        public string ColumnName { get; }
+        public string ColumnSuffix { get; }
+        public string ValueName { get; }
+        public string ValueSuffix { get; }
+        public double[] Rows { get; }
+        public double[] Columns { get; }
+        public double[] Values { get; }
+        // full initialization
+        public TEptTabular3(
+            string name, string rowName, string columnName, string valueName,
+            string rowSuffix, string columnSuffix, string valueSuffix,
+            double[] rows, double[] columns, double[] values)
+        {
+            Name = name;
+            RowName = rowName;
+            ColumnName = columnName;
+            ValueName = valueName;
+            RowSuffix = rowSuffix;
+            ColumnSuffix = columnSuffix;
+            ValueSuffix = valueSuffix;
+            Rows = rows;
+            Columns = columns;
+            Values = values;
+        }
+        // initialize with values
+        public TEptTabular3(double[] rows, double[] columns, double[] values)
+            : this(
+                  "Untitled", "Row Label", "Column Label", "Value Label",
+                  "", "", "",
+                  rows, columns, values)
+        { }
+    }
 }

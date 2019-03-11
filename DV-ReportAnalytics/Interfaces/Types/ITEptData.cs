@@ -21,4 +21,15 @@ namespace DV_ReportAnalytics.Types
         string YName { get; }
         string YSuffix { get; }
     }
+
+    internal interface ITEptTabular3 : ITTabular3<double, double, double>
+    {
+        string Name { get; }
+        string RowName { get; }
+        string RowSuffix { get; }
+        string ColumnName { get; }
+        string ColumnSuffix { get; }
+        string ValueName { get; }
+        string ValueSuffix { get; }
+    }
 }
