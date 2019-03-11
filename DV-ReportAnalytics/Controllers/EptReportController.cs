@@ -26,8 +26,9 @@ namespace DV_ReportAnalytics.Controllers
 
         public override void ShowModelView()
         {
+            // pass necessary params to view to display
             _view = new EptForm();
-            _view.WorkbookConfigUpdate += _ConfigUpdate;
+            _view.WorkbookConfigUpdate += _OnConfigUpdate;
             _view.Show();
         }
 
@@ -41,26 +42,31 @@ namespace DV_ReportAnalytics.Controllers
             _mainForm = mainForm;
         }
 
-        protected override void _ConfigUpdate(object sender, WorkbookConfigUpdateEventArgs e)
+        public override void Export(string path)
+        {
+            _model.SaveAs(path);
+        }
+
+        protected override void _OnConfigUpdate(object sender, WorkbookConfigUpdateEventArgs e)
         {
             _model.Update(e.Config);
         }
 
-        protected override void _Update(object sender, WorkbookUpdateEventArgs e)
+        protected override void _OnModelUpdate(object sender, WorkbookUpdateEventArgs e)
         {
             _mainForm.UpdateWorkbookView(e.Buffer);
         }
 
-        protected override void _Open(object sender, WorkbookOpenEventArgs e)
+        protected override void _OnModelOpen(object sender, WorkbookOpenEventArgs e)
         {
             if (e.Done)
-            _mainForm.OpenWorkbookView(e.Path);
+                _mainForm.OpenWorkbookView(e.Path);
         }
 
         protected override void _Bind()
         {
-            _model.WorkbookOpen += _Open;
-            _model.WorkbookUpdate += _Update;
+            _model.WorkbookOpen += _OnModelOpen;
+            _model.WorkbookUpdate += _OnModelUpdate;
         }
 
     }

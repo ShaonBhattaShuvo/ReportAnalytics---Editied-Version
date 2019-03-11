@@ -13,5 +13,8 @@ namespace DV_ReportAnalytics.Controllers
 
         // set worbookview component
         void SetMainView(IMainForm mainForm);
+
+        // save to file
+        void Export(string path);
     }
 }

@@ -22,7 +22,17 @@ namespace DV_ReportAnalytics.Models
             // initialize application object
             _application = new Application();
             _application.DisplayAlerts = false;
+            _workbook = _application.ActiveWorkbook;
+            _worksheet = _workbook.ActiveSheet;
+            // create a temp file
             _tempPath = Path.GetTempFileName();
+        }
+
+        // do some cleanup
+        ~WorkbookModel()
+        {
+            if (File.Exists(_tempPath))
+                File.Delete(_tempPath);
         }
 
         // update the workbook according to the config
@@ -45,16 +55,28 @@ namespace DV_ReportAnalytics.Models
         {
             FileName = Path.GetFileName(path);
             FilePath = path;
-            // open workbook
-            Console.WriteLine(_application.Workbooks);
+            // open new workbook
             _application.Workbooks.Close();
             _workbook = _application.Workbooks.Open(path);
-            Console.WriteLine(_application.Workbooks);
             // save to temp file
-            _workbook.SaveAs(_tempPath);
-            // raise event
-            if (WorkbookOpen != null)
-                WorkbookOpen.Invoke(this, new WorkbookOpenEventArgs(path, true));
+            try
+            {
+                _workbook.SaveAs(_tempPath);
+                // raise event
+                if (WorkbookOpen != null)
+                    WorkbookOpen.Invoke(this, new WorkbookOpenEventArgs(_tempPath, true));
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
+                if (WorkbookOpen != null)
+                    WorkbookOpen.Invoke(this, new WorkbookOpenEventArgs(_tempPath, false));
+            }
+        }
+
+        public virtual void SaveAs(string path)
+        {
+
         }
     }
 }

@@ -14,14 +14,16 @@ namespace DV_ReportAnalytics.Controllers
 
         public abstract void SetMainView(IMainForm mainForm);
 
+        public abstract void Export(string path);
+
         // bind to view's event
-        protected abstract void _ConfigUpdate(object sender, WorkbookConfigUpdateEventArgs e);
+        protected abstract void _OnConfigUpdate(object sender, WorkbookConfigUpdateEventArgs e);
 
         // bind to model's event
-        protected abstract void _Update(object sender, WorkbookUpdateEventArgs e);
+        protected abstract void _OnModelUpdate(object sender, WorkbookUpdateEventArgs e);
 
         // bind to model's event
-        protected abstract void _Open(object sender, WorkbookOpenEventArgs e);
+        protected abstract void _OnModelOpen(object sender, WorkbookOpenEventArgs e);
 
         // bind events
         protected abstract void _Bind();

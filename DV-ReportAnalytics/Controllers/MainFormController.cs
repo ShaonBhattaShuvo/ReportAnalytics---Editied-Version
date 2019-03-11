@@ -36,14 +36,13 @@ namespace DV_ReportAnalytics.Controllers
             _workbookModelController.OpenModel(path);
         }
 
-        public void AppForm_SaveButtonClicked()
+        public void AppForm_SaveButtonClicked(string path)
         {
-            _UserMessageUpdated(this, new UserMessageEventArgs("Save File: We can implement functionality in the separate class and create instance of this class in UIController."));
+            _workbookModelController.Export(path);
         }
 
         public void AppForm_TableButtonClicked()
         {
-            //_UserMessageUpdated(this, new UserMessageEventArgs("Table Display: We can implement functionality in the separate class and create instance of this class in UIController."));
             _workbookModelController.ShowModelView();
         }
 
@@ -62,6 +61,12 @@ namespace DV_ReportAnalytics.Controllers
         public void AppForm_HelpInfoButtonClicked()
         {
             _UserMessageUpdated(this, new UserMessageEventArgs("Implement Help/Info."));
+        }
+
+        private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
+        {
+            if (UserMessageUpdated != null)
+                UserMessageUpdated.Invoke(sender, args);
         }
     }
 }
