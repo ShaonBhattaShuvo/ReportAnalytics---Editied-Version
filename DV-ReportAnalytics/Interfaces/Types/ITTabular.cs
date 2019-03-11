@@ -4,11 +4,11 @@ namespace DV_ReportAnalytics.Types
 {
     internal interface ITTabular { }
 
-    internal interface ITTabular3<TRow, TColumn, TValue> : ITTabular
+    internal interface ITTabular3<TColumn1, TColumn2, TValue> : ITTabular
     {
-        TRow[] Rows { get; }
-        TColumn[] Columns { get; }
-        TValue[] Values { get; }
+        TColumn1[] Column1 { get; }
+        TColumn2[] Column2 { get; }
+        TValue[] ColumnValue { get; }
     }
 
     internal interface ITTabularProvider<Tabular>
@@ -18,10 +18,10 @@ namespace DV_ReportAnalytics.Types
         Tabular GetTabular();
     }
 
-    internal interface ITTabularProvider3<Tabular, TRow, TColumn, TValue> : ITTabularProvider<Tabular>
-        where Tabular : ITTabular3<TRow, TColumn, TValue>
+    internal interface ITTabularProvider3<Tabular, TColumn1, TColumn2, TValue> : ITTabularProvider<Tabular>
+        where Tabular : ITTabular3<TColumn1, TColumn2, TValue>
     {
         // get value by range
-        Tabular GetTabular(TRow[] rowRange, TColumn ColumnRange);
+        Tabular GetTabular(TColumn1[] col1Range, TColumn2[] col2Range);
     }
 }

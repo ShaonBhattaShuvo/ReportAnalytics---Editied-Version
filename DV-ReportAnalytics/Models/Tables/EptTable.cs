@@ -6,42 +6,74 @@ namespace DV_ReportAnalytics.Models
 {
     internal class EptTable : LookupTable<double, double, double>, IEptTable
     {
+        public string Name { set; get; }
+        public string KeyRowName { set; get; }
+        public string KeyColumnName { set; get; }
+        public string ValueName { set; get; }
+        public string KeyRowSuffix { set; get; }
+        public string KeyColumnSuffix { set; get; }
+        public string ValueSuffix { set; get; }
+
         // initialize all properties
         public EptTable(
             string name, string rowName, string columnName, string valueName, 
             string rowSuffix, string columnSuffix, string valueSuffix,
             double[] rows, double[] columns, double[,] values)
-            : base(
-                  name, rowName, columnName, valueName,
-                  rowSuffix, columnSuffix, valueSuffix,
-                  rows, columns, values) { }
+            : base(rows, columns, values)
+        {
+            Name = name;
+            KeyRowName = rowName;
+            KeyColumnName = columnName;
+            ValueName = valueName;
+            KeyRowSuffix = rowSuffix;
+            KeyColumnSuffix = columnSuffix;
+            ValueSuffix = valueSuffix;
+        }
 
         // default constructor
-        public EptTable() : base() { }
+        public EptTable() : this(
+            "Untitled", "Row Label", "Column Label", "Value Label",
+            "", "", "",
+            new double[0], new double[0], new double[0, 0]) { }
 
-        // override base method to add more info
-        // all GetData methods get data from here
-        protected override TData3<double, double, double> _GetData(double[] x, double[] y, double[,] z)
+        // ----------------------------Internal methods-------------------------------------------
+        // get provided range
+        protected void _GetRange(double[] rowRange, double[] colRange, out double[] x, out double[] y)
         {
-            return new TData3<double, double, double>(
-                    Name, KeyColumnName, KeyRowName, ValueName,
-                    KeyColumnSuffix, KeyRowSuffix, ValueSuffix,
-                    x, y, z);
+            // get x range
+            if (colRange == null)
+            {
+                x = GetKeysColumns();
+            }
+            else
+            {
+                x = colRange;
+                // columnRange may not be sorted
+                Array.Sort(x);
+            }
+            // get y range
+            if (rowRange == null)
+            {
+                y = GetKeysRows();
+            }
+            else
+            {
+                y = rowRange;
+                // rowRange may not be sorted
+                Array.Sort(y);
+            }
         }
 
-        // get interpolated by range
-        public TData3<double, double, double> GetData(double[] rowRange, double[] columnRange, int rowInterp, int columnInterp)
+        // get xyz values
+        protected void _GetXYZ(double[] rowRange, double[] colRange, out double[] x, out double[] y, out double[,] z)
         {
-            // retrive original data
-            _GetXYZ(columnRange, rowRange, out double[] x, out double[] y, out double[,] z);
-            Interpolation.TableBilinearInterpolation(x, y, z, columnInterp, rowInterp, out double[] xo, out double[] yo, out double[,] zo);
-            return _GetData(xo, yo, zo);
-        }
-
-        //get all interpolated
-        public TData3<double, double, double> GetData(int rowInterp, int columnInterp)
-        {
-            return GetData(null, null, rowInterp, columnInterp);
+            _GetRange(rowRange, colRange, out x, out y);
+            // get z
+            z = new double[y.Length, x.Length];
+            // scan by row then by column
+            for (int r = 0; r < y.Length; r++)
+                for (int c = 0; c < x.Length; c++)
+                    z[r, c] = this[y[r], x[c]];
         }
 
         // retrive values by map index to each other
@@ -61,43 +93,82 @@ namespace DV_ReportAnalytics.Models
                 }
         }
 
-        // add info to Tabular struct
-        // all GetTabular methods from here
-        protected TTabular3<double, double, double> _GetTabular(double[] x, double[] y, double[] z)
+        // all GetData methods get data from here
+        protected TEptData3 _GetData(double[] x, double[] y, double[,] z)
         {
-            return new TTabular3<double, double, double>(
-                    Name, KeyRowName, KeyColumnName, ValueName,
-                    KeyRowSuffix, KeyColumnSuffix, ValueSuffix,
-                    y, x, z);
+            return new TEptData3(
+                    Name, KeyColumnName, KeyRowName, ValueName,
+                    KeyColumnSuffix, KeyRowSuffix, ValueSuffix,
+                    x, y, z);
         }
 
-        // get data by range
-        public TTabular3<double, double, double> GetTabular(double[] rowRange, double[] columnRange)
+        // add info to Tabular struct
+        // all GetTabular methods from here
+        protected TEptTabular3 _GetTabular(double[] x, double[] y, double[] z)
         {
-            _GetXYZ(rowRange, columnRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
+            return new TEptTabular3(
+                    Name, KeyColumnName, KeyRowName, ValueName,
+                    KeyColumnSuffix, KeyRowSuffix, ValueSuffix,
+                    x, y, z);
+        }
+        
+        // -----------------------Get Data Methods------------------------------------------------
+        // get data by range
+        public TEptData3 GetData(double[] rowRange, double[] colRange)
+        {
+            _GetXYZ(rowRange, colRange, out double[] x, out double[] y, out double[,] z);
+            return _GetData(x, y, z);
+        }
+
+        // get all data
+        public TEptData3 GetData()
+        {
+            return GetData(null, null);
+        }
+
+        // get interpolated by range
+        public TEptData3 GetData(double[] rowRange, double[] colRange, int rowInterp, int colInterp)
+        {
+            // retrive original data
+            _GetXYZ(rowRange, colRange, out double[] x, out double[] y, out double[,] z);
+            Interpolation.TableBilinearInterpolation(x, y, z, colInterp, rowInterp, out double[] xo, out double[] yo, out double[,] zo);
+            return _GetData(xo, yo, zo);
+        }
+
+        //get all interpolated
+        public TEptData3 GetData(int rowInterp, int colInterp)
+        {
+            return GetData(null, null, rowInterp, colInterp);
+        }
+
+        // -----------------------Get Tabular Methods------------------------------------------------
+        // get data by range
+        public TEptTabular3 GetTabular(double[] rowRange, double[] colRange)
+        {
+            _GetXYZ(rowRange, colRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
             _FlatenXYZ(xtemp, ytemp, ztemp, out double[] x, out double[] y, out double[] z);
             return _GetTabular(x, y, z);
         }
 
         // get all data
-        public TTabular3<double, double, double> GetTabular()
+        public TEptTabular3 GetTabular()
         {
             return GetTabular(null, null);
         }
 
         // get interpolated by range
-        public TTabular3<double, double, double> GetTabular(double[] rowRange, double[] columnRange, int rowInterp, int columnInterp)
+        public TEptTabular3 GetTabular(double[] rowRange, double[] colRange, int rowInterp, int colInterp)
         {
-            _GetXYZ(rowRange, columnRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
-            Interpolation.TableBilinearInterpolation(xtemp, ytemp, ztemp, columnInterp, rowInterp, out double[] xinterp, out double[] yinterp, out double[,] zinterp);
+            _GetXYZ(rowRange, colRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
+            Interpolation.TableBilinearInterpolation(xtemp, ytemp, ztemp, colInterp, rowInterp, out double[] xinterp, out double[] yinterp, out double[,] zinterp);
             _FlatenXYZ(xinterp, yinterp, zinterp, out double[] x, out double[] y, out double[] z);
             return _GetTabular(x, y, z);
         }
 
         //get all interpolated
-        public TTabular3<double, double, double> GetTabular(int rowInterp, int columnInterp)
+        public TEptTabular3 GetTabular(int rowInterp, int colInterp)
         {
-            return GetTabular(null, null, rowInterp, columnInterp);
+            return GetTabular(null, null, rowInterp, colInterp);
         }
     }
 }

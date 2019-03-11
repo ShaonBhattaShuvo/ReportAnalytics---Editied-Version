@@ -73,31 +73,31 @@ namespace DV_ReportAnalytics.Types
     internal class TEptTabular3 : ITEptTabular3
     {
         public string Name { get; }
-        public string RowName { get; }
-        public string RowSuffix { get; }
-        public string ColumnName { get; }
-        public string ColumnSuffix { get; }
+        public string Column1Name { get; }
+        public string Column1Suffix { get; }
+        public string Column2Name { get; }
+        public string Column2Suffix { get; }
         public string ValueName { get; }
         public string ValueSuffix { get; }
-        public double[] Rows { get; }
-        public double[] Columns { get; }
-        public double[] Values { get; }
+        public double[] Column1 { get; }
+        public double[] Column2 { get; }
+        public double[] ColumnValue { get; }
         // full initialization
         public TEptTabular3(
-            string name, string rowName, string columnName, string valueName,
-            string rowSuffix, string columnSuffix, string valueSuffix,
-            double[] rows, double[] columns, double[] values)
+            string name, string col1Name, string col2Name, string valueName,
+            string col1Suffix, string col2Suffix, string valueSuffix,
+            double[] col1, double[] col2, double[] values)
         {
             Name = name;
-            RowName = rowName;
-            ColumnName = columnName;
+            Column1Name = col1Name;
+            Column2Name = col2Name;
             ValueName = valueName;
-            RowSuffix = rowSuffix;
-            ColumnSuffix = columnSuffix;
+            Column1Suffix = col1Suffix;
+            Column2Suffix = col2Suffix;
             ValueSuffix = valueSuffix;
-            Rows = rows;
-            Columns = columns;
-            Values = values;
+            Column1 = col1;
+            Column2 = col2;
+            ColumnValue = values;
         }
         // initialize with values
         public TEptTabular3(double[] rows, double[] columns, double[] values)
