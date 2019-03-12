@@ -50,15 +50,17 @@ namespace DV_ReportAnalytics.Models
         }
 
         // write memory to file
-        public virtual void SaveAs(string path)
+        public virtual void Export(string path)
         {
-            // overwriting
-            if (File.Exists(path))
-                File.Delete(path);
-            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
+            // use string quality operator
+            // overwriting the current file
+            if (FilePath == path)
             {
-                fs.Seek(0, SeekOrigin.Begin);
-                fs.Write(_buffer, 0, _buffer.Length);
+                _workbook.Save();
+            }
+            else
+            {
+                _workbook.SaveCopyAs(path);
             }
         }
 

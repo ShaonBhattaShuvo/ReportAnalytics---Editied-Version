@@ -22,6 +22,6 @@ namespace DV_ReportAnalytics.Models
         void Open(string path);
 
         // save to a file
-        void SaveAs(string path);
+        void Export(string path);
     }
 }

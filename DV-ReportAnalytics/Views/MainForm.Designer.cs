@@ -178,9 +178,7 @@
             // 
             // saveFileDialog
             // 
-            this.saveFileDialog.CheckFileExists = true;
             this.saveFileDialog.Filter = "Worksheets|*.xls;*.xlsx;*.xlsm;*.xlsb";
-            this.saveFileDialog.OverwritePrompt = false;
             // 
             // MainForm
             // 
