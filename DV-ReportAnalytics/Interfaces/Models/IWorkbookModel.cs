@@ -10,10 +10,10 @@ namespace DV_ReportAnalytics.Models
         string FilePath { get; }
 
         // send workbook in binary to view to update display
-        event WorkbookUpdateEventHandler WorkbookUpdate;
+        event WorkbookUpdateEventHandler WorkbookUpdated;
 
         // send new workbook path to view to open
-        event WorkbookOpenEventHandler WorkbookOpen;
+        event WorkbookUpdateEventHandler WorkbookOpen;
 
         // update file
         void Update(XmlDocument config);

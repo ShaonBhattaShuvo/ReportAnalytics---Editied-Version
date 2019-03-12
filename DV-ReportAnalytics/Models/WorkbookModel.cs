@@ -10,8 +10,8 @@ namespace DV_ReportAnalytics.Models
     {
         public string FileName { get; protected set; }
         public string FilePath { get; protected set; }
-        public event WorkbookUpdateEventHandler WorkbookUpdate;
-        public event WorkbookOpenEventHandler WorkbookOpen;
+        public event WorkbookUpdateEventHandler WorkbookUpdated;
+        public event WorkbookUpdateEventHandler WorkbookOpen;
         protected Application _application;
         protected Workbook _workbook;
         protected Worksheet _worksheet;
@@ -42,8 +42,8 @@ namespace DV_ReportAnalytics.Models
             _SaveToBuffer();
             // raise event
             // if there are handlers registerd, give them the buffer
-            if (WorkbookUpdate != null)
-                WorkbookUpdate.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
+            if (WorkbookUpdated != null)
+                WorkbookUpdated.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
         }
 
         public virtual void Open(string path)
@@ -56,8 +56,8 @@ namespace DV_ReportAnalytics.Models
             _application.Workbooks.Close();
             _workbook = _application.Workbooks.Open(path);
             // raise event
-            if (WorkbookUpdate != null)
-                WorkbookUpdate.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
+            if (WorkbookOpen != null)
+                WorkbookOpen.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
         }
 
         // async method

@@ -17,7 +17,12 @@ namespace DV_ReportAnalytics.Views
             MessageBox.Show(args.Message);
         }
 
-        public void OpenWorkbookView(string path)
+        public void OpenWorkbookView(byte[] buffer)
+        {
+            UpdateWorkbookView(buffer);
+        }
+
+        public void UpdateWorkbookView(byte[] buffer)
         {
             // Interrupt background calculation if necessary and acquire a lock on the workbook set.
             workbookView.GetLock();
@@ -25,23 +30,6 @@ namespace DV_ReportAnalytics.Views
             {
                 workbookView.Visible = false;
                 // close previous before open a new file
-                workbookView.ActiveWorkbookSet.Workbooks.Close();
-                workbookView.ActiveWorkbook = workbookView.ActiveWorkbookSet.Workbooks.Open(path);
-                workbookView.Visible = true;
-                printAllWorkbooks();
-            }
-            finally
-            {
-                workbookView.ReleaseLock();
-            }
-        }
-
-        public void UpdateWorkbookView(byte[] buffer)
-        {
-            workbookView.GetLock();
-            try
-            {
-                workbookView.Visible = false;
                 workbookView.ActiveWorkbookSet.Workbooks.Close();
                 workbookView.ActiveWorkbook = workbookView.ActiveWorkbookSet.Workbooks.OpenFromMemory(buffer);
                 workbookView.Visible = true;
