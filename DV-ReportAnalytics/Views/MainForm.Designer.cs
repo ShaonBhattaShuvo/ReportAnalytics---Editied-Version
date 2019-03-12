@@ -41,6 +41,7 @@
             this.workbookView = new SpreadsheetGear.Windows.Forms.WorkbookView();
             this.graphContainer = new System.Windows.Forms.WebBrowser();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
@@ -210,6 +211,7 @@
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.WebBrowser graphContainer;
         private SpreadsheetGear.Windows.Forms.WorkbookView workbookView;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }
 

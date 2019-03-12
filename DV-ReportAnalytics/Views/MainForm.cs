@@ -53,7 +53,10 @@ namespace DV_ReportAnalytics.Views
 
         private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
         {
-            _controller.AppForm_SaveButtonClicked("");
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                _controller.AppForm_SaveButtonClicked(saveFileDialog.FileName);
+            }
         }
 
         private void toolStripButtonTableDisplay_Click(object sender, EventArgs e)
