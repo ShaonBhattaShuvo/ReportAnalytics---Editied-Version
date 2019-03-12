@@ -22,16 +22,6 @@ namespace DV_ReportAnalytics.Models
             // initialize application object
             _application = new Application();
             _application.DisplayAlerts = false;
-            _workbook = _application.ActiveWorkbook;
-            _worksheet = _workbook.ActiveSheet;
-        }
-
-        protected virtual void _SaveToBuffer()
-        {
-            string temp = Path.GetTempFileName();
-            _workbook.SaveCopyAs(temp);
-            _buffer = File.ReadAllBytes(temp);
-            File.Delete(temp);
         }
 
         // update the workbook according to the config
@@ -39,7 +29,7 @@ namespace DV_ReportAnalytics.Models
         {
             // do something with the configuration
 
-            _SaveToBuffer();
+            _UpdateBuffer();
             // raise event
             // if there are handlers registerd, give them the buffer
             if (WorkbookUpdated != null)
@@ -51,7 +41,7 @@ namespace DV_ReportAnalytics.Models
             FileName = Path.GetFileName(path);
             FilePath = path;
             // get buffer
-            _buffer = File.ReadAllBytes(path);
+            _ReadFileToBuffer(path);
             // open new workbook
             _application.Workbooks.Close();
             _workbook = _application.Workbooks.Open(path);
@@ -60,14 +50,36 @@ namespace DV_ReportAnalytics.Models
                 WorkbookOpen.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
         }
 
-        // async method
-        public virtual async void SaveAs(string path)
+        // write memory to file
+        public virtual void SaveAs(string path)
         {
             // overwriting
-            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write))
+            using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 fs.Seek(0, SeekOrigin.Begin);
-                await fs.WriteAsync(_buffer, 0, _buffer.Length);
+                fs.Write(_buffer, 0, _buffer.Length);
+            }
+        }
+
+        // save current workbook to buffer
+        protected virtual void _UpdateBuffer()
+        {
+            string temp = Path.GetTempFileName();
+            _workbook.SaveCopyAs(temp);
+            _ReadFileToBuffer(temp);
+            File.Delete(temp);
+        }
+        
+        // open file to buffer
+        protected virtual void _ReadFileToBuffer(string path)
+        {
+            using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+            {
+                fs.Seek(0, SeekOrigin.Begin);
+                // initial buffer
+                _buffer = new byte[fs.Length];
+                // read bytes to buffer
+                fs.Read(_buffer, 0, _buffer.Length);
             }
         }
     }
