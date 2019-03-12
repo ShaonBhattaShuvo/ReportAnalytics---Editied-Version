@@ -21,7 +21,6 @@ namespace DV_ReportAnalytics.Models
         {
             // initialize application object
             _application = new Application();
-            _application.DisplayAlerts = false;
         }
 
         // update the workbook according to the config
@@ -54,6 +53,8 @@ namespace DV_ReportAnalytics.Models
         public virtual void SaveAs(string path)
         {
             // overwriting
+            if (File.Exists(path))
+                File.Delete(path);
             using (FileStream fs = new FileStream(path, FileMode.Create, FileAccess.Write, FileShare.None))
             {
                 fs.Seek(0, SeekOrigin.Begin);

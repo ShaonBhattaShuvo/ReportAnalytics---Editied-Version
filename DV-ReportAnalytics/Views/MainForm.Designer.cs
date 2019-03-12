@@ -174,6 +174,13 @@
             // openFileDialog
             // 
             this.openFileDialog.FileName = "openFileDialog";
+            this.openFileDialog.Filter = "Worksheets|*.xls;*.xlsx;*.xlsm;*.xlsb";
+            // 
+            // saveFileDialog
+            // 
+            this.saveFileDialog.CheckFileExists = true;
+            this.saveFileDialog.Filter = "Worksheets|*.xls;*.xlsx;*.xlsm;*.xlsb";
+            this.saveFileDialog.OverwritePrompt = false;
             // 
             // MainForm
             // 
