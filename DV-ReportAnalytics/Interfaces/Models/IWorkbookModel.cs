@@ -1,6 +1,6 @@
 ﻿using System;
 using DV_ReportAnalytics.Events;
-using System.Xml;
+using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Models
 {
@@ -16,7 +16,7 @@ namespace DV_ReportAnalytics.Models
         event WorkbookUpdateEventHandler WorkbookOpen;
 
         // update file
-        void Update(XmlDocument config);
+        void Update(TEptConfig config);
 
         // open a new file
         void Open(string path);

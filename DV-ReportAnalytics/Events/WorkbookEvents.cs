@@ -1,5 +1,5 @@
 ﻿using System;
-using System.Xml;
+using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Events
 {
@@ -20,8 +20,8 @@ namespace DV_ReportAnalytics.Events
 
     internal class WorkbookConfigUpdateEventArgs : EventArgs
     {
-        public XmlDocument Config { get; }
-        public WorkbookConfigUpdateEventArgs(XmlDocument config)
+        public TEptConfig Config { get; }
+        public WorkbookConfigUpdateEventArgs(TEptConfig config)
         {
             Config = config;
         }

@@ -12,7 +12,7 @@ namespace DV_ReportAnalytics.Controllers
     internal sealed class EptReportController : WorkbookModelController, IEptReportController
     {
         private EptReportModel _model;
-        private EptForm _view;
+        private EptConfigForm _view;
 
         public EptReportController(IMainForm mainForm)
         {
@@ -27,7 +27,7 @@ namespace DV_ReportAnalytics.Controllers
         public override void ShowModelView()
         {
             // pass necessary params to view to display
-            _view = new EptForm();
+            _view = new EptConfigForm(_model.GetConfig());
             _view.WorkbookConfigUpdate += _OnConfigUpdated;
             _view.Show();
         }

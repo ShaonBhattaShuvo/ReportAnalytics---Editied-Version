@@ -2,6 +2,7 @@
 using System.Xml;
 using System.IO;
 using DV_ReportAnalytics.Events;
+using DV_ReportAnalytics.Types;
 using Microsoft.Office.Interop.Excel;
 
 namespace DV_ReportAnalytics.Models
@@ -30,7 +31,7 @@ namespace DV_ReportAnalytics.Models
         }
 
         // update the workbook according to the config
-        public virtual void Update(XmlDocument config)
+        public virtual void Update(TEptConfig config)
         {
             // do something with the configuration
 
@@ -63,12 +64,6 @@ namespace DV_ReportAnalytics.Models
             // raise event
             if (WorkbookOpen != null)
                 WorkbookOpen.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
-        }
-
-        public void Debug()
-        {
-            Console.WriteLine("Count: {0}", _application.Workbooks.Count);
-
         }
 
         // write memory to file

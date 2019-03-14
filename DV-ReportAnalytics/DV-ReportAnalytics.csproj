@@ -88,6 +88,7 @@
     <Compile Include="Interfaces\Models\Tables\ILookupTable-2keys.cs" />
     <Compile Include="Interfaces\Models\IWorkbookModel.cs" />
     <Compile Include="Interfaces\Models\Tables\IEptTable.cs" />
+    <Compile Include="Interfaces\Types\IEptConfig.cs" />
     <Compile Include="Interfaces\Types\ITBounds.cs" />
     <Compile Include="Interfaces\Types\ITData.cs" />
     <Compile Include="Interfaces\Types\ITEptData.cs" />
@@ -101,6 +102,7 @@
     <Compile Include="Models\Tables\EptTable.cs" />
     <Compile Include="Models\Tables\Table.cs" />
     <Compile Include="Models\EptReportModel.cs" />
+    <Compile Include="Types\TEptConfig.cs" />
     <Compile Include="Types\TData.cs" />
     <Compile Include="Types\TBounds.cs" />
     <Compile Include="Types\TEptData.cs" />
@@ -113,11 +115,11 @@
     <Compile Include="Views\ConfigForm.Designer.cs">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\EptForm.cs">
+    <Compile Include="Views\EptConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\EptForm.Designer.cs">
-      <DependentUpon>EptForm.cs</DependentUpon>
+    <Compile Include="Views\EptConfigForm.Designer.cs">
+      <DependentUpon>EptConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
@@ -134,8 +136,8 @@
     <EmbeddedResource Include="Views\ConfigForm.resx">
       <DependentUpon>ConfigForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\EptForm.resx">
-      <DependentUpon>EptForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\EptConfigForm.resx">
+      <DependentUpon>EptConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
