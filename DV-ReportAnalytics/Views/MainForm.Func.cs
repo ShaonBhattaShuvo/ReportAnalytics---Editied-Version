@@ -30,10 +30,14 @@ namespace DV_ReportAnalytics.Views
             {
                 workbookView.Visible = false;
                 // close previous before open a new file
-                workbookView.ActiveWorkbookSet.Workbooks.Close();
+                workbookView.ActiveWorkbook.Close();
                 workbookView.ActiveWorkbook = workbookView.ActiveWorkbookSet.Workbooks.OpenFromMemory(buffer);
                 workbookView.Visible = true;
-                printAllWorkbooks();
+                //printAllWorkbooks();
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine(e.Message);
             }
             finally
             {
@@ -44,12 +48,12 @@ namespace DV_ReportAnalytics.Views
         private void printAllWorkbooks()
         {
             IWorkbooks wbs = workbookView.ActiveWorkbookSet.Workbooks;
-            Console.WriteLine("--------begin------------");
+            Console.WriteLine("--------WorkbookView Items------------");
             for (int i = 0; i < wbs.Count; i++)
             {
                 Console.WriteLine(wbs[i].FullName);
             }
-            Console.WriteLine("---------end-------------");
+            Console.WriteLine("--------------------------------------");
         }
     }
 }

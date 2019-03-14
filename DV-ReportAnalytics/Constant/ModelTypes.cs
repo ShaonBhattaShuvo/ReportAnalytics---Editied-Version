@@ -2,5 +2,5 @@
 
 namespace DV_ReportAnalytics.Constant
 {
-    internal enum ModelTypes : int { EptReport };
+    internal enum ModelTypes : int { None = 0, EptReport };
 }

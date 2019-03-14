@@ -80,5 +80,10 @@ namespace DV_ReportAnalytics.Views
         {
             _controller.AppForm_HelpInfoButtonClicked();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ((MainFormController)_controller).Debug();
+        }
     }
 }

@@ -44,7 +44,12 @@ namespace DV_ReportAnalytics.Controllers
 
         public override void Export(string path)
         {
-            _model.SaveAs(path);
+            _model.Export(path);
+        }
+
+        public void Debug()
+        {
+            _model.Debug();
         }
 
         protected override void _OnConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)

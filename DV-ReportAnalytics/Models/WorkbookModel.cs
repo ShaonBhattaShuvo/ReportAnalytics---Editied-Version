@@ -21,6 +21,12 @@ namespace DV_ReportAnalytics.Models
         {
             // initialize application object
             _application = new Application();
+            _application.DisplayAlerts = false;
+        }
+
+        ~WorkbookModel()
+        {
+            _application.Quit();
         }
 
         // update the workbook according to the config
@@ -41,12 +47,28 @@ namespace DV_ReportAnalytics.Models
             FilePath = path;
             // get buffer
             _ReadFileToBuffer(path);
-            // open new workbook
-            _application.Workbooks.Close();
-            _workbook = _application.Workbooks.Open(path);
+            // close the previous one and release its resource
+            try
+            {
+                _workbook.Close(false);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                _workbook = _application.Workbooks.Open(path);
+            }
             // raise event
             if (WorkbookOpen != null)
                 WorkbookOpen.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
+        }
+
+        public void Debug()
+        {
+            Console.WriteLine("Count: {0}", _application.Workbooks.Count);
+
         }
 
         // write memory to file

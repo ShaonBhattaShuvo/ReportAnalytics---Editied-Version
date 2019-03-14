@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using DV_ReportAnalytics.Events;
-using DV_ReportAnalytics.Models;
 using DV_ReportAnalytics.Views;
 using DV_ReportAnalytics.Constant;
 
@@ -21,18 +20,20 @@ namespace DV_ReportAnalytics.Controllers
         private IMainForm _mainForm;
         private IWorkbookModelController _workbookModelController;
         public event UserMessageEventHandler UserMessageUpdated = null;
+        private ModelTypes _currentModel;
 
         public MainFormController(IMainForm mainForm)
         {
             // mainform should be binded with controller here
             _mainForm = mainForm;
+            _currentModel = ModelTypes.None;
             // TODO: Create all necessary classes which require different functionality from MainForm
         }
 
         // place configuration seletor here
         public void AppForm_OpenButtonClicked(string path)
         {
-            _GetType("EptReport");
+            _GetModelControllerType("EptReport");
             _workbookModelController.OpenModel(path);
         }
 
@@ -48,7 +49,7 @@ namespace DV_ReportAnalytics.Controllers
 
         public void AppForm_GraphButtonClicked()
         {
-
+            
         }
 
         public void AppForm_SettingsButtonClicked()
@@ -67,6 +68,11 @@ namespace DV_ReportAnalytics.Controllers
         {
             if (UserMessageUpdated != null)
                 UserMessageUpdated.Invoke(sender, args);
+        }
+
+        public void Debug()
+        {
+            ((EptReportController)_workbookModelController).Debug();
         }
     }
 }
