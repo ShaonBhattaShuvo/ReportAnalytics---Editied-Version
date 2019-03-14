@@ -33,6 +33,7 @@ namespace DV_ReportAnalytics.Controllers
         // place configuration seletor here
         public void AppForm_OpenButtonClicked(string path)
         {
+            // TODO: type selector
             _GetModelControllerType("EptReport");
             _workbookModelController.OpenModel(path);
         }

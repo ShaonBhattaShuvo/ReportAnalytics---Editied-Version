@@ -14,6 +14,7 @@ namespace DV_ReportAnalytics.Controllers
             // convert string to corresponding type
             if (Enum.TryParse<ModelTypes>(type, false, out ModelTypes t))
             {
+                // avoid multiple instance initiated
                 if (_currentModel != t)
                 {
                     _currentModel = t;

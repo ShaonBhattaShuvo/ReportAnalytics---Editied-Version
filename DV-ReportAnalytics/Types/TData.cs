@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace DV_ReportAnalytics.Types
 {
     [Serializable]
-    internal class TData3<TX, TY, TZ> : ITData3<TX, TY, TZ>
+    internal struct TData3<TX, TY, TZ> : ITData3<TX, TY, TZ>
     {
         public TX[] X { get; }
         public TY[] Y { get; }
@@ -19,7 +19,7 @@ namespace DV_ReportAnalytics.Types
     }
 
     [Serializable]
-    internal class TData2<TX, TY> : ITData2<TX, TY>
+    internal struct TData2<TX, TY> : ITData2<TX, TY>
     {
         public TX[] X { get; }
         public TY[] Y { get; }

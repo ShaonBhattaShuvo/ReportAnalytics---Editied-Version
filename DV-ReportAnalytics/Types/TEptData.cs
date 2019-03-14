@@ -3,7 +3,7 @@
 namespace DV_ReportAnalytics.Types
 {
     [Serializable]
-    internal class TEptData3 : ITEptData3
+    internal struct TEptData3 : ITEptData3
     {
         public string Name { get; }
         public string XName { get; }
@@ -40,7 +40,7 @@ namespace DV_ReportAnalytics.Types
     }
 
     [Serializable]
-    internal class TEptData2 : ITEptData2
+    internal struct TEptData2 : ITEptData2
     {
         public string Name { get; }
         public string XName { get; }
@@ -70,7 +70,7 @@ namespace DV_ReportAnalytics.Types
     }
 
     [Serializable]
-    internal class TEptTabular3 : ITEptTabular3
+    internal struct TEptTabular3 : ITEptTabular3
     {
         public string Name { get; }
         public string Column1Name { get; }
@@ -104,7 +104,6 @@ namespace DV_ReportAnalytics.Types
             : this(
                   "Untitled", "Row Label", "Column Label", "Value Label",
                   "", "", "",
-                  rows, columns, values)
-        { }
+                  rows, columns, values) { }
     }
 }

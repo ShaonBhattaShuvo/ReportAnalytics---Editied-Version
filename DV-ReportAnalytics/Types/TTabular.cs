@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace DV_ReportAnalytics.Types
 {
     [Serializable]
-    internal class TTabular3<TColumn1, TColumn2, TValue> : ITTabular3<TColumn1, TColumn2, TValue>
+    internal struct TTabular3<TColumn1, TColumn2, TValue> : ITTabular3<TColumn1, TColumn2, TValue>
     {
         public TColumn1[] Column1 { get; }
         public TColumn2[] Column2 { get; }
