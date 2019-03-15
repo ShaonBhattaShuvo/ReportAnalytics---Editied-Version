@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
+using System.Xml;
 using DV_ReportAnalytics.Events;
-using DV_ReportAnalytics.Types;
 using Microsoft.Office.Interop.Excel;
 
 namespace DV_ReportAnalytics.Models
@@ -29,8 +29,8 @@ namespace DV_ReportAnalytics.Models
             _application.Quit();
         }
 
-        // update the workbook according to the config
-        public virtual void Update(TEptConfig config)
+        // update the workbook according to the settings
+        public virtual void SetDisplayConfig(XmlDocument config)
         {
             // do something with the configuration
 
@@ -39,6 +39,22 @@ namespace DV_ReportAnalytics.Models
             // if there are handlers registerd, give them the buffer
             if (WorkbookUpdated != null)
                 WorkbookUpdated.Invoke(this, new WorkbookUpdateEventArgs(_buffer));
+        }
+
+        public virtual string GetDisplayConfig()
+        {
+            // put current config into an xml and parse it to string
+            return "";
+        }
+
+        public virtual void SetProcessConfig(XmlDocument config)
+        {
+            // do something
+        }
+
+        public virtual string GetProcessConfig()
+        {
+            return "";
         }
 
         public virtual void Open(string path)

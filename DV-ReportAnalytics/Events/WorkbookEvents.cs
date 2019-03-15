@@ -1,5 +1,5 @@
 ﻿using System;
-using DV_ReportAnalytics.Types;
+using System.Xml;
 
 namespace DV_ReportAnalytics.Events
 {
@@ -18,16 +18,16 @@ namespace DV_ReportAnalytics.Events
     internal delegate void WorkbookOpenEventHandler(object sender, WorkbookOpenEventArgs e);
 
 
-    internal class WorkbookConfigUpdateEventArgs : EventArgs
+    internal class WorkbookDisplayUpdateEventArgs : EventArgs
     {
-        public TEptConfig Config { get; }
-        public WorkbookConfigUpdateEventArgs(TEptConfig config)
+        public XmlDocument Settings { get; }
+        public WorkbookDisplayUpdateEventArgs(XmlDocument settings)
         {
-            Config = config;
+            Settings = settings; 
         }
     }
 
-    internal delegate void WorkbookConfigUpdateEventHandler(object sender, WorkbookConfigUpdateEventArgs e);
+    internal delegate void WorkbookDisplayUpdateEventHandler(object sender, WorkbookDisplayUpdateEventArgs e);
 
 
     internal class WorkbookUpdateEventArgs : EventArgs

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
+using System.Xml;
 using DV_ReportAnalytics.Types;
 using DV_ReportAnalytics.Models;
 
@@ -12,6 +13,8 @@ namespace DV_ReportAnalytics.Models
         private Dictionary<string, bool> _tableCheckedStatus;
         private Regex _searchFilter;
         private Dictionary<string, EptTable> _tableDictionary;
+        private XmlDocument _processConfig;
+        private XmlDocument _displayConfig;
         public string InputSheetName { set; get; }
         public string OutputSheetName { set; get; }
         public string Name { set; get; }
@@ -58,29 +61,25 @@ namespace DV_ReportAnalytics.Models
         
 
         // --------------constructor----------------
-        public EptReportModel(string name, string input, string output, string filter,
-            int indexName, int indexValue): base()
+        public EptReportModel(XmlDocument processConfig): base()
         {
-            Name = name;
-            InputSheetName = input;
-            OutputSheetName = output;
-            SearchNameIndex = indexName;
-            SearchValueIndex = indexValue;
-            _searchFilter = new Regex(filter);
+            SetProcessConfig(processConfig);
             // refresh content
             _Refresh();
         }
 
         // ----------------methods------------------
+
+        public override void SetProcessConfig(XmlDocument config)
+        {
+            _processConfig = config;
+        }
+
         private void _Refresh()
         {
 
         }
 
-        public TEptConfig GetConfig()
-        {
-            return new TEptConfig(_tableCheckedStatus, SpeedInterp, TorqueInterp);
-        }
 
         public void Debug()
         {

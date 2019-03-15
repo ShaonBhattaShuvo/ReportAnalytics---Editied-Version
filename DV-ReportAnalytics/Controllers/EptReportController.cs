@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using DV_ReportAnalytics.Views;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Models;
@@ -14,11 +15,11 @@ namespace DV_ReportAnalytics.Controllers
         private EptReportModel _model;
         private EptConfigForm _view;
 
-        public EptReportController(IMainForm mainForm)
+        public EptReportController(IMainForm mainForm, XmlDocument config)
         {
             _mainForm = mainForm;
             _view = null;
-            _model = new EptReportModel();
+            _model = new EptReportModel(config);
             _Bind();
         }
 

@@ -20,7 +20,5 @@ namespace DV_ReportAnalytics.Models
         int SpeedInterp { set; get; }
         int TorqueInterp { set; get; }
         EptTable this[string tableName] { get; }
-
-        TEptConfig GetConfig();
     }
 }
