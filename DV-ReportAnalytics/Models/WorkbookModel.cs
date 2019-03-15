@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Xml;
 using System.IO;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Types;

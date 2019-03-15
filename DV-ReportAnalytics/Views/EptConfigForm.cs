@@ -24,6 +24,7 @@ namespace DV_ReportAnalytics.Views
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
+            // update check status
             foreach (object itemchecked in checkedListBox.CheckedItems)
                 _config.Tables[itemchecked.ToString()] = checkedListBox.GetItemChecked(checkedListBox.Items.IndexOf(itemchecked));
 
