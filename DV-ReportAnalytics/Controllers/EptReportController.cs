@@ -60,11 +60,13 @@ namespace DV_ReportAnalytics.Controllers
 
         protected override void _OnModelModified(object sender, WorkbookUpdateEventArgs e)
         {
+            // TODO: get configed data from model and update workbookview
             _mainForm.UpdateWorkbookView(e.Buffer);
         }
 
         protected override void _OnModelOpen(object sender, WorkbookUpdateEventArgs e)
         {
+            // TODO: update workbookview
             _mainForm.OpenWorkbookView(e.Buffer);
         }
 

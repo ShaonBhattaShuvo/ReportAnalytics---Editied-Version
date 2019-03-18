@@ -17,13 +17,10 @@ namespace DV_ReportAnalytics.Controllers
         public abstract void Export(string path);
 
         // bind to view's event
-        protected abstract void _OnConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e);
+        protected abstract void _OnConfigUpdated(object sender, WorkbookDisplaySettingsUpdateEventArgs e);
 
         // bind to model's event
-        protected abstract void _OnModelModified(object sender, WorkbookUpdateEventArgs e);
-
-        // bind to model's event
-        protected abstract void _OnModelOpen(object sender, WorkbookUpdateEventArgs e);
+        protected abstract void _OnModelModified<T>(object sender, WorkbookTableUpdateEventArgs<T> e);
 
         // bind events
         protected abstract void _Bind();

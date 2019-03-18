@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace DV_ReportAnalytics.Events
 {
@@ -15,30 +16,30 @@ namespace DV_ReportAnalytics.Events
         }
 
     }
+
     internal delegate void WorkbookOpenEventHandler(object sender, WorkbookOpenEventArgs e);
 
 
-    internal class WorkbookDisplayUpdateEventArgs : EventArgs
+    internal class WorkbookDisplaySettingsUpdateEventArgs : EventArgs
     {
         public XmlDocument Settings { get; }
-        public WorkbookDisplayUpdateEventArgs(XmlDocument settings)
+        public WorkbookDisplaySettingsUpdateEventArgs(XmlDocument settings)
         {
             Settings = settings; 
         }
     }
 
-    internal delegate void WorkbookDisplayUpdateEventHandler(object sender, WorkbookDisplayUpdateEventArgs e);
+    internal delegate void WorkbookDisplaySettingsUpdateEventHandler(object sender, WorkbookDisplaySettingsUpdateEventArgs e);
 
 
-    internal class WorkbookUpdateEventArgs : EventArgs
+    internal class WorkbookTableUpdateEventArgs<T> : EventArgs
     {
-        // the whole excel file in binary
-        public byte[] Buffer { get; }
-        public WorkbookUpdateEventArgs(byte[] buffer)
+        public Dictionary<string, T> Tables { get; }
+        public WorkbookTableUpdateEventArgs(Dictionary<string, T> tables)
         {
-            Buffer = buffer;
+            Tables = tables;
         }
     }
 
-    internal delegate void WorkbookUpdateEventHandler(object sender, WorkbookUpdateEventArgs e);
+    internal delegate void WorkbookTableUpdateEventHandler<T>(object sender, WorkbookTableUpdateEventArgs<T> e);
 }

@@ -30,7 +30,7 @@ namespace DV_ReportAnalytics.Controllers
             // TODO: Create all necessary classes which require different functionality from MainForm
         }
 
-        // place configuration seletor here
+        // TODO: place configuration seletor here
         public void AppForm_OpenButtonClicked(string path)
         {
             // TODO: type selector

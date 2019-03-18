@@ -6,7 +6,7 @@ using DV_ReportAnalytics.Models;
 
 namespace DV_ReportAnalytics.Models
 {
-    internal interface IEptReportModel : IWorkbookModel
+    internal interface IEptReportModel : IWorkbookModel<TEptData3>
     {
         // regex pattern
         string ResultFormat { set; get; }
