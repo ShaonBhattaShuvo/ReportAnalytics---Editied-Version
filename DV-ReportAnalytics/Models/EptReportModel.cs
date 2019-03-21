@@ -4,24 +4,21 @@ using System.Collections.Generic;
 using System.Xml;
 using DV_ReportAnalytics.Types;
 using DV_ReportAnalytics.Models;
+using DV_ReportAnalytics.Events;
+using SpreadsheetGear;
 
 namespace DV_ReportAnalytics.Models
 {
-    internal sealed class EptReportModel : WorkbookModel, IEptReportModel
+    internal sealed class EptReportModel : IEptReportModel
     {
         // ---------fields and properties-------------------------
-        private Dictionary<string, bool> _tableCheckedStatus;
         private Regex _searchFilter;
         private Dictionary<string, EptTable> _tableDictionary;
-        private XmlDocument _processConfig;
         private XmlDocument _displayConfig;
-        public string InputSheetName { set; get; }
-        public string OutputSheetName { set; get; }
-        public string Name { set; get; }
-        public int SearchNameIndex { set; get; }
-        public int SearchValueIndex { set; get; }
-        public int SpeedInterp { set; get; }
-        public int TorqueInterp { set; get; }
+        public int SearchIndexName { set; get; }
+        public int SearchIndexValue { set; get; }
+        public event WorkbookTableUpdateEventHandler<TEptData3> WorkbookTableUpdate;
+        public IRange Range { set; get; }
 
         public string[] TableNames
         {
@@ -33,13 +30,13 @@ namespace DV_ReportAnalytics.Models
             }
         }
 
-        public string ResultFormat {
+        public string SearchPattern {
             set
             {
                 if (value == _searchFilter.ToString())
                 {
                     _searchFilter = new Regex(value);
-                    _Refresh();
+                    // TODO: update tables
                 }
             }
             get
@@ -55,35 +52,68 @@ namespace DV_ReportAnalytics.Models
             {
                 return
                 _tableDictionary.TryGetValue(tableName, out EptTable table) ?
-                table : new EptTable();
+                table : null;
             }
         }
         
+        public string DisplayConfig
+        {
+            set
+            {
+                _displayConfig.LoadXml(value);
+            }
+            get
+            {
+                return _displayConfig.ToString();
+            }
+        }
 
         // --------------constructor----------------
-        public EptReportModel(XmlDocument processConfig): base()
+        public EptReportModel()
         {
-            SetProcessConfig(processConfig);
-            // refresh content
-            _Refresh();
+            
         }
 
-        // ----------------methods------------------
-
-        public override void SetProcessConfig(XmlDocument config)
+        public EptReportModel(IRange range, string pattern)
         {
-            _processConfig = config;
+            Range = range;
+            _searchFilter = new Regex(pattern);
         }
 
-        private void _Refresh()
+        // ----------------public methods------------------
+
+
+        // ---------------private methods-------------------
+        private void _UpdateModel()
         {
-
+            // search row by row
+            for (int i = 0; i < Range.ColumnCount; i++)
+            {
+                string name = (string)Range.Cells[i, SearchIndexName].Value;
+                MatchCollection matches = _searchFilter.Matches(name);
+                // if there is any match
+                if (matches.Count > 0)
+                {
+                    // 0 is the table name, 1 is the row, 0 is the column
+                    string tableName = matches[0].Value;
+                    double row = Convert.ToDouble(matches[1].Value);
+                    double column = Convert.ToDouble(matches[2].Value);
+                    EptTable table;
+                    // initiate non-existed table
+                    if (_tableDictionary.TryGetValue(tableName, out table))
+                    {
+                        _tableDictionary.Add(tableName, new EptTable());
+                        table = _tableDictionary[tableName];
+                        table.Name = tableName;
+                    }
+                    // add value
+                    table[row, column] = (double)Range.Cells[i, SearchIndexValue].Value;
+                }
+            }
         }
-
 
         public void Debug()
         {
-            Console.WriteLine("Count: {0}", _application.Workbooks.Count);
 
         }
     }

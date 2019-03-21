@@ -88,7 +88,6 @@
     <Compile Include="Interfaces\Models\Tables\ILookupTable-2keys.cs" />
     <Compile Include="Interfaces\Models\IWorkbookModel.cs" />
     <Compile Include="Interfaces\Models\Tables\IEptTable.cs" />
-    <Compile Include="Interfaces\Types\IEptConfig.cs" />
     <Compile Include="Interfaces\Types\ITBounds.cs" />
     <Compile Include="Interfaces\Types\ITData.cs" />
     <Compile Include="Interfaces\Types\ITEptData.cs" />
@@ -102,7 +101,7 @@
     <Compile Include="Models\Tables\EptTable.cs" />
     <Compile Include="Models\Tables\Table.cs" />
     <Compile Include="Models\EptReportModel.cs" />
-    <Compile Include="Types\TEptConfig.cs" />
+    <Compile Include="Templates\EptReportConfig.cs" />
     <Compile Include="Types\TData.cs" />
     <Compile Include="Types\TBounds.cs" />
     <Compile Include="Types\TEptData.cs" />

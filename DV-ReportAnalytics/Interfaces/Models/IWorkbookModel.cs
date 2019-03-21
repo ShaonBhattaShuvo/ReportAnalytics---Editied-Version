@@ -1,26 +1,22 @@
 ﻿using System;
-using System.Xml;
 using DV_ReportAnalytics.Events;
+using DV_ReportAnalytics.Types;
 using SpreadsheetGear;
 
 namespace DV_ReportAnalytics.Models
 {
     // T is the table type of the workbook
     internal interface IWorkbookModel<T>
+        where T : ITData
     {
         // send workbook in binary to view to update display
         event WorkbookTableUpdateEventHandler<T> WorkbookTableUpdate;
 
-        // update display according to settings
-        void SetDisplayConfig(XmlDocument config);
+        // udpate display settings when set
+        // in xml format
+        string DisplayConfig { set; get; }
 
-        // get current configuration
-        string GetDisplayConfig();
-
-        // bind range
-        void SetRange(IRange range);
-
-        // read data from given range
-        void Read();
+        // update model when set range
+        IRange Range { set; get; }
     }
 }
