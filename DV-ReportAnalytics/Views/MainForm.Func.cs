@@ -6,16 +6,22 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DV_ReportAnalytics.Events;
 using SpreadsheetGear;
+using SpreadsheetGear.Windows.Forms;
 
 // this part implements the public methods that the controllers can use
 namespace DV_ReportAnalytics.Views
 {
     internal partial class MainForm : IMainForm
     {
-        private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
+        // ------ properties ------
+        public WorkbookView WorkbookView
         {
-            MessageBox.Show(args.Message);
+            get
+            {
+                return workbookView;
+            }
         }
+        // ------ public ------
 
         public void OpenWorkbookView(byte[] buffer)
         {
@@ -43,6 +49,13 @@ namespace DV_ReportAnalytics.Views
             {
                 workbookView.ReleaseLock();
             }
+        }
+
+        // ------ private ------
+
+        private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
+        {
+            MessageBox.Show(args.Message);
         }
 
         private void printAllWorkbooks()

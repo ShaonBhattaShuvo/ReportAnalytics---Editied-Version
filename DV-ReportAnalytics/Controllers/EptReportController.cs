@@ -4,77 +4,81 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
+using System.Text.RegularExpressions;
 using DV_ReportAnalytics.Views;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Models;
+using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Controllers
 {
-    internal sealed class EptReportController : WorkbookModelController, IEptReportController
+    internal sealed class EptReportController : IEptReportController
     {
         private EptReportModel _model;
         private EptConfigForm _view;
+        private IMainForm _mainForm;
+        private Regex _filter;
+        private XmlDocument _processConfig;
+        private XmlDocument _displayConfig;
 
-        public EptReportController(IMainForm mainForm, XmlDocument config)
+        // ------ properties ------
+
+        // ------ public ------
+        public EptReportController(IMainForm mainForm)
         {
             _mainForm = mainForm;
-            _view = null;
-            _model = new EptReportModel(config);
-            _Bind();
         }
 
-        public EptReportController() : this(null) { }
-
-        public override void ShowModelView()
+        public void ShowModelView()
         {
-            // pass necessary params to view to display
-            _view = new EptConfigForm(_model.GetConfig());
-            _view.WorkbookConfigUpdate += _OnConfigUpdated;
+            _NewView();
             _view.Show();
         }
 
-        public override void OpenModel(string path)
+        public void RefreshModel()
         {
-            _model.Open(path);
+            // new model
+            // model.add()
         }
 
-        public override void SetMainView(IMainForm mainForm)
+        public void Export(string path)
         {
-            _mainForm = mainForm;
-        }
-
-        public override void Export(string path)
-        {
-            _model.Export(path);
+            _mainForm.WorkbookView.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
         }
 
         public void Debug()
         {
-            _model.Debug();
+            
         }
 
-        protected override void _OnConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
+        // ------ private ------
+        private void _OnProcessConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
         {
-            _model.Update(e.Config);
+
         }
 
-        protected override void _OnModelModified(object sender, WorkbookUpdateEventArgs e)
+        private void _OnDisplayConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
         {
-            // TODO: get configed data from model and update workbookview
-            _mainForm.UpdateWorkbookView(e.Buffer);
+
         }
 
-        protected override void _OnModelOpen(object sender, WorkbookUpdateEventArgs e)
+        private void _OnTableUpdated(object sender, WorkbookTableUpdateEventArgs<TEptData3> e)
         {
-            // TODO: update workbookview
-            _mainForm.OpenWorkbookView(e.Buffer);
+
         }
 
-        protected override void _Bind()
+        // generate a new model and bind necessary events
+        private void _NewModel()
         {
-            _model.WorkbookOpen += _OnModelOpen;
-            _model.WorkbookUpdated += _OnModelModified;
+            _model = new EptReportModel(config);
+            _model.WorkbookTableUpdate += _OnTableUpdated;
         }
 
+        // generate a new view and bind necessary events
+        private void _NewView()
+        {
+            _view = new EptConfigForm();
+            _view.WorkbookConfigUpdate += _OnDisplayConfigUpdated;
+        }
     }
 }

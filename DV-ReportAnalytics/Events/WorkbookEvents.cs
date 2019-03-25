@@ -20,26 +20,26 @@ namespace DV_ReportAnalytics.Events
     internal delegate void WorkbookOpenEventHandler(object sender, WorkbookOpenEventArgs e);
 
 
-    internal class WorkbookDisplaySettingsUpdateEventArgs : EventArgs
+    internal class WorkbookConfigUpdateEventArgs : EventArgs
     {
-        public XmlDocument Settings { get; }
-        public WorkbookDisplaySettingsUpdateEventArgs(XmlDocument settings)
+        public XmlDocument Config { get; }
+        public WorkbookConfigUpdateEventArgs(XmlDocument config)
         {
-            Settings = settings; 
+            Config = config; 
         }
     }
 
-    internal delegate void WorkbookDisplaySettingsUpdateEventHandler(object sender, WorkbookDisplaySettingsUpdateEventArgs e);
+    internal delegate void WorkbookConfigUpdateEventHandler(object sender, WorkbookConfigUpdateEventArgs e);
 
 
-    internal class WorkbookTableUpdateEventArgs<T> : EventArgs
+    internal class WorkbookTableUpdateEventArgs : EventArgs
     {
-        public Dictionary<string, T> Tables { get; }
-        public WorkbookTableUpdateEventArgs(Dictionary<string, T> tables)
+        public string[] TableNames;
+        public WorkbookTableUpdateEventArgs(string[] names)
         {
-            Tables = tables;
+            TableNames = names;
         }
     }
 
-    internal delegate void WorkbookTableUpdateEventHandler<T>(object sender, WorkbookTableUpdateEventArgs<T> e);
+    internal delegate void WorkbookTableUpdateEventHandler(object sender, WorkbookTableUpdateEventArgs e);
 }

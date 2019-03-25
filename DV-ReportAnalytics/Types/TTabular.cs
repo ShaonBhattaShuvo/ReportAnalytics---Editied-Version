@@ -17,7 +17,4 @@ namespace DV_ReportAnalytics.Types
             ColumnValue = values;
         }
     }
-
-    [Serializable]
-    internal class TTabular3Dictionary<TColumn1, TColumn2, TValue> : Dictionary<string, TTabular3<TColumn1, TColumn2, TValue>> { }
 }

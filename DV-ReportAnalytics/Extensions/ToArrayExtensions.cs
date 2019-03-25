@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace DV_ReportAnalytics.Extensions
 {
-    internal static class ListExtensions
+    internal static class ToArrayExtensions
     {
         /// <summary>
         /// Conerts source to 2D array.
@@ -41,6 +41,14 @@ namespace DV_ReportAnalytics.Extensions
             }
 
             return result;
+        }
+
+        // convert keyroll to array
+        public static K[] ToArray<K, V>(this Dictionary<K, V>.KeyCollection source)
+        {
+            K[] keys = new K[source.Count];
+            source.CopyTo(keys, 0);
+            return keys;
         }
     }
 }

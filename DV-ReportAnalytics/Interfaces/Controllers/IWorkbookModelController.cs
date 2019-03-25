@@ -8,11 +8,8 @@ namespace DV_ReportAnalytics.Controllers
         // open window to make configurations
         void ShowModelView();
 
-        // when path changes update model file
-        void OpenModel(string path);
-
-        // set worbookview component
-        void SetMainView(IMainForm mainForm);
+        // when workbookview changes update model file
+        void RefreshModel();
 
         // save to file
         void Export(string path);

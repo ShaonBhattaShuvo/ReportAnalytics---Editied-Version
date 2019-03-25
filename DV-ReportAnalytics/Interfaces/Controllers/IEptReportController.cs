@@ -8,10 +8,10 @@ namespace DV_ReportAnalytics.Controllers
 {
     internal interface IEptReportController : IWorkbookModelController
     {
-        // name of the report
-        string Name { get; set; }
-        string InputSheetName { set; get; }
-        string OutputSheetName { set; get; }
-        string ResultFormat { set; get; }
+        string Name { get; }
+        string Type { get; }
+        string InputSheetName { get; }
+        string OutputSheetName { get; }
+        string ResultFormat { get; }
     }
 }

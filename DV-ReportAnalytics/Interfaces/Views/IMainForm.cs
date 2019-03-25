@@ -1,4 +1,5 @@
 ﻿using System;
+using SpreadsheetGear.Windows.Forms;
 
 namespace DV_ReportAnalytics.Views
 {
@@ -9,5 +10,8 @@ namespace DV_ReportAnalytics.Views
 
         // update current workbookview component
         void UpdateWorkbookView(byte[] buffer);
+
+        // get current workbookview
+        WorkbookView WorkbookView { get; }
     }
 }
