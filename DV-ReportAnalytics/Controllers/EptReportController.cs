@@ -9,6 +9,8 @@ using DV_ReportAnalytics.Views;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Models;
 using DV_ReportAnalytics.Types;
+using SpreadsheetGear;
+using SpreadsheetGear.Windows.Forms;
 
 namespace DV_ReportAnalytics.Controllers
 {
@@ -20,6 +22,7 @@ namespace DV_ReportAnalytics.Controllers
         private Regex _filter;
         private XmlDocument _processConfig;
         private XmlDocument _displayConfig;
+        private string[] _tableName;
 
         // ------ properties ------
 
@@ -37,8 +40,37 @@ namespace DV_ReportAnalytics.Controllers
 
         public void RefreshModel()
         {
-            // new model
-            // model.add()
+            WorkbookView wbv = _mainForm.WorkbookView;
+            IRange range = wbv.ActiveWorkbook.Worksheets[_GetProcessConfigValue("InputSheetName")].UsedRange; // replace name with the name in config
+            int nameIndex = Convert.ToInt32(_GetProcessConfigValue("SearchIndexName"));
+            int valueIndex = Convert.ToInt32(_GetProcessConfigValue("SearchIndexValue"));
+
+            if (range != null)
+            {
+                // search row by row
+                for (int i = 0; i < range.ColumnCount; i++)
+                {
+                    string name = (string)range.Cells[i, nameIndex].Value;
+                    MatchCollection matches = _filter.Matches(name);
+                    // if there is any match
+                    if (matches.Count > 0)
+                    {
+                        // 0 is the table name, 1 is the row, 0is the column
+                        string tableName = matches[0].Value;
+                        double row = Convert.ToDouble(matches[1].Value);
+                        double column = Convert.ToDouble(matches[2].Value);
+                        EptTable table;
+                        // initiate non-existed table
+                        if (!_model.Contains(tableName))
+                        {
+                            _model.Add(tableName);
+
+                        }
+                        // set value
+                        _model[tableName][row, column] = (double)range.Cells[i, valueIndex].Value;
+                    }
+                }
+            }
         }
 
         public void Export(string path)
@@ -54,17 +86,19 @@ namespace DV_ReportAnalytics.Controllers
         // ------ private ------
         private void _OnProcessConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
         {
-
+            _processConfig = e.Config;
+            // TODO: refresh tables
         }
 
         private void _OnDisplayConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
         {
-
+            _displayConfig = e.Config;
+            // TODO: get tables accroding to config
         }
 
-        private void _OnTableUpdated(object sender, WorkbookTableUpdateEventArgs<TEptData3> e)
+        private void _OnTableUpdated(object sender, WorkbookTableUpdateEventArgs e)
         {
-
+            _tableName = e.TableNames;
         }
 
         // generate a new model and bind necessary events
@@ -79,6 +113,12 @@ namespace DV_ReportAnalytics.Controllers
         {
             _view = new EptConfigForm();
             _view.WorkbookConfigUpdate += _OnDisplayConfigUpdated;
+        }
+
+        private string _GetProcessConfigValue(string element)
+        {
+            XmlNode node = _processConfig.DocumentElement.SelectSingleNode(element);
+            return node.InnerText;
         }
     }
 }

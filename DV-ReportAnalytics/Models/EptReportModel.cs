@@ -18,9 +18,7 @@ namespace DV_ReportAnalytics.Models
         {
             get
             {
-                string[] keys = new string[_tableDictionary.Keys.Count];
-                _tableDictionary.Keys.CopyTo(keys, 0);
-                return keys;
+                return _tableDictionary.Keys.ToArray();
             }
         }
 
@@ -52,6 +50,7 @@ namespace DV_ReportAnalytics.Models
         {
             // throws exception if it alreay exists
             _tableDictionary.Add(name, new EptTable());
+            _tableDictionary[name].Name = name;
             _Update();
         }
 
@@ -109,40 +108,8 @@ namespace DV_ReportAnalytics.Models
         {
             if (WorkbookTableUpdate != null)
             {
-                WorkbookTableUpdate.Invoke(this, new WorkbookTableUpdateEventArgs(_tableDictionary.Keys.ToArray()));
+                WorkbookTableUpdate.Invoke(this, new WorkbookTableUpdateEventArgs(TableNames));
             }
-        }
-
-        private void _UpdateModel()
-        {
-            if (_range != null)
-            {
-                // search row by row
-                for (int i = 0; i < _range.ColumnCount; i++)
-                {
-                    string name = (string)_range.Cells[i, SearchIndexName].Value;
-                    MatchCollection matches = _searchFilter.Matches(name);
-                    // if there is any match
-                    if (matches.Count > 0)
-                    {
-                        // 0 is the table name, 1 is the row, 0 is the column
-                        string tableName = matches[0].Value;
-                        double row = Convert.ToDouble(matches[1].Value);
-                        double column = Convert.ToDouble(matches[2].Value);
-                        EptTable table;
-                        // initiate non-existed table
-                        if (_tableDictionary.TryGetValue(tableName, out table))
-                        {
-                            _tableDictionary.Add(tableName, new EptTable());
-                            table = _tableDictionary[tableName];
-                            table.Name = tableName;
-                        }
-                        // add value
-                        table[row, column] = (double)_range.Cells[i, SearchIndexValue].Value;
-                    }
-                }
-            }
-            // TODO: throw exception
         }
     }
 }
