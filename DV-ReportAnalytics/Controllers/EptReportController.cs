@@ -17,8 +17,8 @@ namespace DV_ReportAnalytics.Controllers
 {
     internal sealed class EptReportController : IEptReportController
     {
-        private EptReportModel _model;
-        private EptConfigForm _view;
+        private IEptReportModel _model;
+        private IEptConfigForm _view;
         private IMainForm _mainForm;
         private XmlDocument _processConfig;
         private XmlDocument _displayConfig;
@@ -46,7 +46,7 @@ namespace DV_ReportAnalytics.Controllers
         public void SetProcessConfig(XmlDocument config)
         {
             _processConfig = config;
-            _Refresh();
+            _RefreshModel();
         }
 
         // ------ private ------
@@ -71,11 +71,11 @@ namespace DV_ReportAnalytics.Controllers
         // generate a new view and bind necessary events
         private void _NewView()
         {
-            _view = new EptConfigForm();
+            _view = new EptConfigForm(_displayConfig);
             _view.WorkbookConfigUpdate += _OnDisplayConfigUpdated;
         }
 
-        private void _Refresh()
+        private void _RefreshModel()
         {
             Regex filter = new Regex("");
             WorkbookView wbv = _mainForm.WorkbookView;
