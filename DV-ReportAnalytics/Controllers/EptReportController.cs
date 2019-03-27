@@ -9,6 +9,7 @@ using DV_ReportAnalytics.Views;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Models;
 using DV_ReportAnalytics.Types;
+using DV_ReportAnalytics.Extensions;
 using SpreadsheetGear;
 using SpreadsheetGear.Windows.Forms;
 
@@ -41,9 +42,9 @@ namespace DV_ReportAnalytics.Controllers
         public void RefreshModel()
         {
             WorkbookView wbv = _mainForm.WorkbookView;
-            IRange range = wbv.ActiveWorkbook.Worksheets[_GetProcessConfigValue("InputSheetName")].UsedRange; // replace name with the name in config
-            int nameIndex = Convert.ToInt32(_GetProcessConfigValue("SearchIndexName"));
-            int valueIndex = Convert.ToInt32(_GetProcessConfigValue("SearchIndexValue"));
+            IRange range = wbv.ActiveWorkbook.Worksheets[_processConfig.GetValue("InputSheetName")].UsedRange; // replace name with the name in config
+            int nameIndex = _processConfig.GetValue<int>("SearchIndexName");
+            int valueIndex = _processConfig.GetValue<int>("SearchIndexValue");
 
             if (range != null)
             {
@@ -59,7 +60,6 @@ namespace DV_ReportAnalytics.Controllers
                         string tableName = matches[0].Value;
                         double row = Convert.ToDouble(matches[1].Value);
                         double column = Convert.ToDouble(matches[2].Value);
-                        EptTable table;
                         // initiate non-existed table
                         if (!_model.Contains(tableName))
                         {
@@ -76,11 +76,6 @@ namespace DV_ReportAnalytics.Controllers
         public void Export(string path)
         {
             _mainForm.WorkbookView.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
-        }
-
-        public void Debug()
-        {
-            
         }
 
         // ------ private ------
@@ -104,7 +99,7 @@ namespace DV_ReportAnalytics.Controllers
         // generate a new model and bind necessary events
         private void _NewModel()
         {
-            _model = new EptReportModel(config);
+            _model = new EptReportModel();
             _model.WorkbookTableUpdate += _OnTableUpdated;
         }
 
@@ -113,12 +108,6 @@ namespace DV_ReportAnalytics.Controllers
         {
             _view = new EptConfigForm();
             _view.WorkbookConfigUpdate += _OnDisplayConfigUpdated;
-        }
-
-        private string _GetProcessConfigValue(string element)
-        {
-            XmlNode node = _processConfig.DocumentElement.SelectSingleNode(element);
-            return node.InnerText;
         }
     }
 }
