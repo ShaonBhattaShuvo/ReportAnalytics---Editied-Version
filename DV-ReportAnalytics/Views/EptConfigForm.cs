@@ -6,7 +6,7 @@ using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal partial class EptConfigForm : Form, IWorkbookModelView
+    internal partial class EptConfigForm : Form, IEptConfigForm
     {
         public event WorkbookConfigUpdateEventHandler WorkbookConfigUpdate;
         private TEptConfig _config;

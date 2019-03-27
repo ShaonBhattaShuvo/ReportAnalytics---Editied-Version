@@ -11,14 +11,14 @@ namespace DV_ReportAnalytics.Extensions
     {
         // generic method for xml document
         // cast string to to other type
-        public static T GetValue<T>(this XmlDocument source, string xpath)
+        public static T GetNodeValue<T>(this XmlDocument source, string xpath)
         {
             string text = source.DocumentElement.SelectSingleNode(xpath).InnerText;
             return (T)Convert.ChangeType(text, typeof(T));
         }
 
         // get inner text of specified xpath
-        public static string GetValue(this XmlDocument source, string xpath)
+        public static string GetNodeValue(this XmlDocument source, string xpath)
         {
             return source.DocumentElement.SelectSingleNode(xpath).InnerText;
         }

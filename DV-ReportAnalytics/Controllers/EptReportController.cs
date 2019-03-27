@@ -20,10 +20,8 @@ namespace DV_ReportAnalytics.Controllers
         private EptReportModel _model;
         private EptConfigForm _view;
         private IMainForm _mainForm;
-        private Regex _filter;
         private XmlDocument _processConfig;
         private XmlDocument _displayConfig;
-        private string[] _tableName;
 
         // ------ properties ------
 
@@ -31,6 +29,7 @@ namespace DV_ReportAnalytics.Controllers
         public EptReportController(IMainForm mainForm)
         {
             _mainForm = mainForm;
+            _NewModel();
         }
 
         public void ShowModelView()
@@ -39,12 +38,50 @@ namespace DV_ReportAnalytics.Controllers
             _view.Show();
         }
 
-        public void RefreshModel()
+        public void Export(string path)
         {
+            _mainForm.WorkbookView.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
+        }
+
+        public void SetProcessConfig(XmlDocument config)
+        {
+            _processConfig = config;
+            _Refresh();
+        }
+
+        // ------ private ------
+        private void _OnDisplayConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
+        {
+            _displayConfig = e.Config;
+            // TODO: get tables accroding to config
+        }
+
+        private void _OnTableUpdated(object sender, WorkbookTableUpdateEventArgs e)
+        {
+
+        }
+
+        // generate a new model and bind necessary events
+        private void _NewModel()
+        {
+            _model = new EptReportModel();
+            _model.WorkbookTableUpdate += _OnTableUpdated;
+        }
+
+        // generate a new view and bind necessary events
+        private void _NewView()
+        {
+            _view = new EptConfigForm();
+            _view.WorkbookConfigUpdate += _OnDisplayConfigUpdated;
+        }
+
+        private void _Refresh()
+        {
+            Regex filter = new Regex("");
             WorkbookView wbv = _mainForm.WorkbookView;
-            IRange range = wbv.ActiveWorkbook.Worksheets[_processConfig.GetValue("InputSheetName")].UsedRange; // replace name with the name in config
-            int nameIndex = _processConfig.GetValue<int>("SearchIndexName");
-            int valueIndex = _processConfig.GetValue<int>("SearchIndexValue");
+            IRange range = wbv.ActiveWorkbook.Worksheets[_processConfig.GetNodeValue("InputSheetName")].UsedRange; // replace name with the name in config
+            int nameIndex = _processConfig.GetNodeValue<int>("SearchIndexName");
+            int valueIndex = _processConfig.GetNodeValue<int>("SearchIndexValue");
 
             if (range != null)
             {
@@ -52,7 +89,7 @@ namespace DV_ReportAnalytics.Controllers
                 for (int i = 0; i < range.ColumnCount; i++)
                 {
                     string name = (string)range.Cells[i, nameIndex].Value;
-                    MatchCollection matches = _filter.Matches(name);
+                    MatchCollection matches = filter.Matches(name);
                     // if there is any match
                     if (matches.Count > 0)
                     {
@@ -71,43 +108,6 @@ namespace DV_ReportAnalytics.Controllers
                     }
                 }
             }
-        }
-
-        public void Export(string path)
-        {
-            _mainForm.WorkbookView.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
-        }
-
-        // ------ private ------
-        private void _OnProcessConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
-        {
-            _processConfig = e.Config;
-            // TODO: refresh tables
-        }
-
-        private void _OnDisplayConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
-        {
-            _displayConfig = e.Config;
-            // TODO: get tables accroding to config
-        }
-
-        private void _OnTableUpdated(object sender, WorkbookTableUpdateEventArgs e)
-        {
-            _tableName = e.TableNames;
-        }
-
-        // generate a new model and bind necessary events
-        private void _NewModel()
-        {
-            _model = new EptReportModel();
-            _model.WorkbookTableUpdate += _OnTableUpdated;
-        }
-
-        // generate a new view and bind necessary events
-        private void _NewView()
-        {
-            _view = new EptConfigForm();
-            _view.WorkbookConfigUpdate += _OnDisplayConfigUpdated;
         }
     }
 }
