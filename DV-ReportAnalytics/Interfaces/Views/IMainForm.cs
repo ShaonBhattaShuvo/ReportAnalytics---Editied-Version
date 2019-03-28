@@ -14,5 +14,8 @@ namespace DV_ReportAnalytics.Views
 
         // get save file dialog
         SaveFileDialog SaveFileDialog { get; }
+
+        // button control
+        bool EnableTableButtons { set; get; }
     }
 }

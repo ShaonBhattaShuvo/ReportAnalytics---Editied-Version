@@ -33,9 +33,9 @@
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOpenFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSaveFile = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonTableDisplay = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonGraphToggle = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.workbookView = new SpreadsheetGear.Windows.Forms.WorkbookView();
@@ -53,16 +53,18 @@
             // toolStripMain
             // 
             this.toolStripMain.BackColor = System.Drawing.SystemColors.Control;
+            this.toolStripMain.ImageScalingSize = new System.Drawing.Size(28, 28);
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonOpenFile,
             this.toolStripButtonSaveFile,
+            this.toolStripButtonSettings,
             this.toolStripButtonTableDisplay,
             this.toolStripButtonGraphToggle,
-            this.toolStripButtonSettings,
             this.toolStripButtonHelp});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(1212, 25);
+            this.toolStripMain.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
+            this.toolStripMain.Size = new System.Drawing.Size(2222, 35);
             this.toolStripMain.TabIndex = 0;
             // 
             // toolStripButtonOpenFile
@@ -72,9 +74,9 @@
             this.toolStripButtonOpenFile.Image = global::DV_ReportAnalytics.Properties.Resources.folder_32;
             this.toolStripButtonOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonOpenFile.Name = "toolStripButtonOpenFile";
-            this.toolStripButtonOpenFile.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonOpenFile.Size = new System.Drawing.Size(32, 32);
             this.toolStripButtonOpenFile.Tag = "Open";
-            this.toolStripButtonOpenFile.Text = "toolStripButton1";
+            this.toolStripButtonOpenFile.Text = "Open File";
             this.toolStripButtonOpenFile.Click += new System.EventHandler(this.toolStripButtonOpenFile_Click);
             // 
             // toolStripButtonSaveFile
@@ -83,32 +85,10 @@
             this.toolStripButtonSaveFile.Image = global::DV_ReportAnalytics.Properties.Resources.save_as_32;
             this.toolStripButtonSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSaveFile.Name = "toolStripButtonSaveFile";
-            this.toolStripButtonSaveFile.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSaveFile.Size = new System.Drawing.Size(32, 32);
             this.toolStripButtonSaveFile.Tag = "Save";
-            this.toolStripButtonSaveFile.Text = "toolStripButton2";
+            this.toolStripButtonSaveFile.Text = "Save File";
             this.toolStripButtonSaveFile.Click += new System.EventHandler(this.toolStripButtonSaveFile_Click);
-            // 
-            // toolStripButtonTableDisplay
-            // 
-            this.toolStripButtonTableDisplay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonTableDisplay.Image = global::DV_ReportAnalytics.Properties.Resources.list_32;
-            this.toolStripButtonTableDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonTableDisplay.Name = "toolStripButtonTableDisplay";
-            this.toolStripButtonTableDisplay.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonTableDisplay.Tag = "Table";
-            this.toolStripButtonTableDisplay.Text = "toolStripButton3";
-            this.toolStripButtonTableDisplay.Click += new System.EventHandler(this.toolStripButtonTableDisplay_Click);
-            // 
-            // toolStripButtonGraphToggle
-            // 
-            this.toolStripButtonGraphToggle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonGraphToggle.Image = global::DV_ReportAnalytics.Properties.Resources.area_chart_32;
-            this.toolStripButtonGraphToggle.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonGraphToggle.Name = "toolStripButtonGraphToggle";
-            this.toolStripButtonGraphToggle.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButtonGraphToggle.Tag = "Graph";
-            this.toolStripButtonGraphToggle.Text = "toolStripButton4";
-            this.toolStripButtonGraphToggle.Click += new System.EventHandler(this.toolStripButtonGraphToggle_Click);
             // 
             // toolStripButtonSettings
             // 
@@ -116,10 +96,34 @@
             this.toolStripButtonSettings.Image = global::DV_ReportAnalytics.Properties.Resources.settings_32;
             this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSettings.Name = "toolStripButtonSettings";
-            this.toolStripButtonSettings.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonSettings.Size = new System.Drawing.Size(32, 32);
             this.toolStripButtonSettings.Tag = "Settings";
-            this.toolStripButtonSettings.Text = "toolStripButton5";
+            this.toolStripButtonSettings.Text = "Settings";
             this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
+            // 
+            // toolStripButtonTableDisplay
+            // 
+            this.toolStripButtonTableDisplay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonTableDisplay.Enabled = false;
+            this.toolStripButtonTableDisplay.Image = global::DV_ReportAnalytics.Properties.Resources.list_32;
+            this.toolStripButtonTableDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTableDisplay.Name = "toolStripButtonTableDisplay";
+            this.toolStripButtonTableDisplay.Size = new System.Drawing.Size(32, 32);
+            this.toolStripButtonTableDisplay.Tag = "Table";
+            this.toolStripButtonTableDisplay.Text = "Table Display";
+            this.toolStripButtonTableDisplay.Click += new System.EventHandler(this.toolStripButtonTableDisplay_Click);
+            // 
+            // toolStripButtonGraphToggle
+            // 
+            this.toolStripButtonGraphToggle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonGraphToggle.Enabled = false;
+            this.toolStripButtonGraphToggle.Image = global::DV_ReportAnalytics.Properties.Resources.area_chart_32;
+            this.toolStripButtonGraphToggle.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonGraphToggle.Name = "toolStripButtonGraphToggle";
+            this.toolStripButtonGraphToggle.Size = new System.Drawing.Size(32, 32);
+            this.toolStripButtonGraphToggle.Tag = "Graph";
+            this.toolStripButtonGraphToggle.Text = "Toggle Graph Window";
+            this.toolStripButtonGraphToggle.Click += new System.EventHandler(this.toolStripButtonGraphToggle_Click);
             // 
             // toolStripButtonHelp
             // 
@@ -127,15 +131,16 @@
             this.toolStripButtonHelp.Image = global::DV_ReportAnalytics.Properties.Resources.help_32;
             this.toolStripButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonHelp.Name = "toolStripButtonHelp";
-            this.toolStripButtonHelp.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButtonHelp.Size = new System.Drawing.Size(32, 32);
             this.toolStripButtonHelp.Tag = "Help";
-            this.toolStripButtonHelp.Text = "toolStripButton1";
+            this.toolStripButtonHelp.Text = "Help";
             this.toolStripButtonHelp.Click += new System.EventHandler(this.toolStripButtonHelp_Click);
             // 
             // splitContainerMain
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMain.Location = new System.Drawing.Point(0, 25);
+            this.splitContainerMain.Location = new System.Drawing.Point(0, 35);
+            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel1
@@ -146,8 +151,10 @@
             // 
             this.splitContainerMain.Panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.splitContainerMain.Panel2.Controls.Add(this.graphContainer);
-            this.splitContainerMain.Size = new System.Drawing.Size(1212, 754);
-            this.splitContainerMain.SplitterDistance = 603;
+            this.splitContainerMain.Panel2Collapsed = true;
+            this.splitContainerMain.Size = new System.Drawing.Size(2222, 1403);
+            this.splitContainerMain.SplitterDistance = 1107;
+            this.splitContainerMain.SplitterWidth = 7;
             this.splitContainerMain.TabIndex = 1;
             // 
             // workbookView
@@ -156,9 +163,10 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.workbookView.FormulaBar = null;
-            this.workbookView.Location = new System.Drawing.Point(3, 3);
+            this.workbookView.Location = new System.Drawing.Point(6, 6);
+            this.workbookView.Margin = new System.Windows.Forms.Padding(6);
             this.workbookView.Name = "workbookView";
-            this.workbookView.Size = new System.Drawing.Size(597, 748);
+            this.workbookView.Size = new System.Drawing.Size(2211, 1392);
             this.workbookView.TabIndex = 0;
             this.workbookView.Visible = false;
             this.workbookView.WorkbookSetState = resources.GetString("workbookView.WorkbookSetState");
@@ -167,9 +175,10 @@
             // 
             this.graphContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphContainer.Location = new System.Drawing.Point(0, 0);
-            this.graphContainer.MinimumSize = new System.Drawing.Size(20, 20);
+            this.graphContainer.Margin = new System.Windows.Forms.Padding(6);
+            this.graphContainer.MinimumSize = new System.Drawing.Size(37, 37);
             this.graphContainer.Name = "graphContainer";
-            this.graphContainer.Size = new System.Drawing.Size(605, 754);
+            this.graphContainer.Size = new System.Drawing.Size(1110, 1403);
             this.graphContainer.TabIndex = 0;
             // 
             // openFileDialog
@@ -183,9 +192,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(1137, 0);
+            this.button1.Location = new System.Drawing.Point(2085, 0);
+            this.button1.Margin = new System.Windows.Forms.Padding(6);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.Size = new System.Drawing.Size(138, 42);
             this.button1.TabIndex = 2;
             this.button1.Text = "Debug";
             this.button1.UseVisualStyleBackColor = true;
@@ -193,13 +203,14 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1212, 779);
+            this.ClientSize = new System.Drawing.Size(2222, 1438);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.toolStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainForm";
             this.Text = "DV Report Analytics";
             this.Load += new System.EventHandler(this.MainForm_Load);

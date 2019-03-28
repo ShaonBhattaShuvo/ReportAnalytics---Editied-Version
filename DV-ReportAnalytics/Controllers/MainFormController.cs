@@ -33,7 +33,6 @@ namespace DV_ReportAnalytics.Controllers
             // mainform should be binded with controller here
             _mainForm = mainForm;
             _currentModel = ModelTypes.None;
-            // TODO: Create all necessary classes which require different functionality from MainForm
         }
 
         public void AppForm_OpenButtonClicked()
@@ -45,6 +44,7 @@ namespace DV_ReportAnalytics.Controllers
                 // after file being selected open window to ocnfigure process parameter
                 AppForm_SettingsButtonClicked();
                 _OpenWorkbookView(ofd.FileName);
+                _mainForm.EnableTableButtons = true;
             }
         }
 

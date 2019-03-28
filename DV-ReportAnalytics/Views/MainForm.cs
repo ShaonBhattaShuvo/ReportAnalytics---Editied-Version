@@ -1,13 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Controllers;
 
 namespace DV_ReportAnalytics.Views
@@ -17,22 +9,15 @@ namespace DV_ReportAnalytics.Views
     /// </summary>
     internal partial class MainForm : Form
     {
-        private IMainFormController _controller;
-
         public MainForm()
         {
             InitializeComponent();
-
-            int panelwidth = (this.Size.Width - splitContainerMain.SplitterWidth) / 2;
-            splitContainerMain.SplitterDistance = panelwidth;
-            splitContainerMain.Panel2Collapsed = true;
+            _Initialize();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            // bind controllers and models
-            _controller = new MainFormController(this);
-            _controller.UserMessageUpdated += _UserMessageUpdated;
+            
         }
               
         private void MainForm_Resize(object sender, EventArgs e)
