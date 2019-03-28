@@ -7,12 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal partial class ConfigForm : Form
+    internal partial class ProcessConfigForm : Form, IProcessConfigForm
     {
-        public ConfigForm()
+        public event WorkbookConfigUpdateEventHandler WorkbookConfigUpdate;
+
+        public ProcessConfigForm()
         {
             InitializeComponent();
         }

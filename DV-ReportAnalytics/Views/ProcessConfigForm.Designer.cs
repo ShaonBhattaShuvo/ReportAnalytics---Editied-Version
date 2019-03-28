@@ -1,6 +1,6 @@
 ﻿namespace DV_ReportAnalytics.Views
 {
-    partial class ConfigForm
+    partial class ProcessConfigForm
     {
         /// <summary>
         /// Required designer variable.

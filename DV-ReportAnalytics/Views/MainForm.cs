@@ -44,19 +44,12 @@ namespace DV_ReportAnalytics.Views
 
         private void toolStripButtonOpenFile_Click(object sender, EventArgs e)
         {
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                // inform controller to update model
-                _controller.AppForm_OpenButtonClicked(openFileDialog.FileName); 
-            }
+            _controller.AppForm_OpenButtonClicked();
         }
 
         private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
         {
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                _controller.AppForm_SaveButtonClicked(saveFileDialog.FileName);
-            }
+            _controller.AppForm_SaveButtonClicked();
         }
 
         private void toolStripButtonTableDisplay_Click(object sender, EventArgs e)
@@ -83,7 +76,6 @@ namespace DV_ReportAnalytics.Views
 
         private void button1_Click(object sender, EventArgs e)
         {
-            ((MainFormController)_controller).Debug();
         }
     }
 }

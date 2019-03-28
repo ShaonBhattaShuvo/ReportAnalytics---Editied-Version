@@ -1,5 +1,5 @@
 ﻿using System;
-using DV_ReportAnalytics.Views;
+using System.Xml;
 
 namespace DV_ReportAnalytics.Controllers
 {
@@ -8,7 +8,7 @@ namespace DV_ReportAnalytics.Controllers
         // open window to make configurations
         void ShowModelView();
 
-        // save to file
-        void Export(string path);
+        // define how should the controller process data
+        void SetProcessConfig(XmlDocument config);
     }
 }

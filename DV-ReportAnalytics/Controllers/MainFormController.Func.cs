@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DV_ReportAnalytics.Constant;
+using DV_ReportAnalytics.Extensions;
 using SpreadsheetGear.Windows.Forms;
 
 namespace DV_ReportAnalytics.Controllers
@@ -14,12 +15,15 @@ namespace DV_ReportAnalytics.Controllers
 
 
         // ------private------
-        private void _GetModelControllerType(string type)
+        private void _InitModelController()
         {
+            // TODO: change type dynamically
+            //string type = _processConfig.GetNodeValue("Type");
+            string type = "EptReport";
             // convert string to corresponding type
             if (Enum.TryParse<ModelTypes>(type, false, out ModelTypes t))
             {
-                // avoid multiple instance initiated
+                // avoid multiple instances being initiated
                 if (_currentModel != t)
                 {
                     _currentModel = t;

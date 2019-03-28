@@ -38,11 +38,6 @@ namespace DV_ReportAnalytics.Controllers
             _view.Show();
         }
 
-        public void Export(string path)
-        {
-            _mainForm.WorkbookView.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
-        }
-
         public void SetProcessConfig(XmlDocument config)
         {
             _processConfig = config;

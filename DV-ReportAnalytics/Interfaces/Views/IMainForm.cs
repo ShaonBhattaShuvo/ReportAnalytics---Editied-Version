@@ -1,17 +1,18 @@
 ﻿using System;
+using System.Windows.Forms;
 using SpreadsheetGear.Windows.Forms;
 
 namespace DV_ReportAnalytics.Views
 {
     internal interface IMainForm
     {
-        // open file in workbookview component
-        void OpenWorkbookView(byte[] buffer);
-
-        // update current workbookview component
-        void UpdateWorkbookView(byte[] buffer);
-
         // get current workbookview
         WorkbookView WorkbookView { get; }
+
+        // get open file dialog
+        OpenFileDialog OpenFileDialog { get; }
+
+        // get save file dialog
+        SaveFileDialog SaveFileDialog { get; }
     }
 }
