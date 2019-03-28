@@ -35,7 +35,7 @@ namespace DV_ReportAnalytics.Controllers
         public void ShowModelView()
         {
             _NewView();
-            _view.Show();
+            _view.ShowDialog();
         }
 
         public void SetProcessConfig(XmlDocument config)
@@ -48,7 +48,7 @@ namespace DV_ReportAnalytics.Controllers
         private void _OnDisplayConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
         {
             _displayConfig = e.Config;
-            // TODO: get tables accroding to config
+            // TODO: update workbookview
         }
 
         private void _OnTableUpdated(object sender, WorkbookTableUpdateEventArgs e)

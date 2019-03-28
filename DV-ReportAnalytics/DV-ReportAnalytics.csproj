@@ -75,9 +75,9 @@
     <Compile Include="Constant\ModelTypes.cs" />
     <Compile Include="Controllers\EptReportController.cs" />
     <Compile Include="Controllers\MainFormController.Func.cs" />
-    <Compile Include="Controllers\WorkbookModelController.cs" />
     <Compile Include="Events\WorkbookEvents.cs" />
-    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\ToArrayExtensions.cs" />
+    <Compile Include="Extensions\XmlExtension.cs" />
     <Compile Include="Interfaces\Controllers\IEptReportController.cs" />
     <Compile Include="Interfaces\Controllers\IWorkbookModelController.cs" />
     <Compile Include="Interfaces\Controllers\IMainFormController.cs" />
@@ -92,8 +92,9 @@
     <Compile Include="Interfaces\Types\ITData.cs" />
     <Compile Include="Interfaces\Types\ITEptData.cs" />
     <Compile Include="Interfaces\Types\ITTabular.cs" />
-    <Compile Include="Interfaces\Views\IWorkbookModelView.cs" />
-    <Compile Include="Models\WorkbookModel.cs" />
+    <Compile Include="Interfaces\Views\IEptConfigForm.cs" />
+    <Compile Include="Interfaces\Views\IProcessConfigForm.cs" />
+    <Compile Include="Interfaces\Views\IConfigForm.cs" />
     <Compile Include="Interfaces\Models\Tables\ITable.cs" />
     <Compile Include="Models\Tables\LookupTable-1key.cs" />
     <Compile Include="Models\Tables\LookupTable-2keys.cs" />
@@ -108,11 +109,11 @@
     <Compile Include="Types\TTable.cs" />
     <Compile Include="Interfaces\Views\IMainForm.cs" />
     <Compile Include="Types\TTabular.cs" />
-    <Compile Include="Views\ConfigForm.cs">
+    <Compile Include="Views\ProcessConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\ConfigForm.Designer.cs">
-      <DependentUpon>ConfigForm.cs</DependentUpon>
+    <Compile Include="Views\ProcessConfigForm.Designer.cs">
+      <DependentUpon>ProcessConfigForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\EptConfigForm.cs">
       <SubType>Form</SubType>
@@ -132,8 +133,8 @@
     <Compile Include="Views\MainForm.Func.cs">
       <SubType>Form</SubType>
     </Compile>
-    <EmbeddedResource Include="Views\ConfigForm.resx">
-      <DependentUpon>ConfigForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ProcessConfigForm.resx">
+      <DependentUpon>ProcessConfigForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\EptConfigForm.resx">
       <DependentUpon>EptConfigForm.cs</DependentUpon>

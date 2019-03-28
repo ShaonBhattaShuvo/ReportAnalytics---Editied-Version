@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Windows.Forms;
 using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
@@ -10,5 +11,7 @@ namespace DV_ReportAnalytics.Views
 
         // form control function: show window
         void Show();
+
+        DialogResult ShowDialog();
     }
 }

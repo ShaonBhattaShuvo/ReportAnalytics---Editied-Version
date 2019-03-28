@@ -41,10 +41,11 @@ namespace DV_ReportAnalytics.Controllers
             OpenFileDialog ofd = _mainForm.OpenFileDialog;
             // open window to select file
             if (ofd.ShowDialog() == DialogResult.OK)
+            {
+                // after file being selected open window to ocnfigure process parameter
+                AppForm_SettingsButtonClicked();
                 _OpenWorkbookView(ofd.FileName);
-
-            // after file being selected open window to ocnfigure process parameter
-            AppForm_SettingsButtonClicked();
+            }
         }
 
         public void AppForm_SaveButtonClicked()
@@ -52,8 +53,7 @@ namespace DV_ReportAnalytics.Controllers
             SaveFileDialog sfd = _mainForm.SaveFileDialog;
             // open window to select saving location
             if (sfd.ShowDialog() == DialogResult.OK)
-                _mainForm.WorkbookView.ActiveWorkbook.SaveAs(sfd.FileName, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
-
+                _SaveWorkbookView(sfd.FileName);
         }
 
         public void AppForm_TableButtonClicked()
@@ -70,7 +70,7 @@ namespace DV_ReportAnalytics.Controllers
         {
             _processConfigForm = new ProcessConfigForm();
             _processConfigForm.WorkbookConfigUpdate += _ProcessConfigUpdated;
-            _processConfigForm.Show();
+            _processConfigForm.ShowDialog();
         }
 
         public void AppForm_HelpInfoButtonClicked()
@@ -79,9 +79,9 @@ namespace DV_ReportAnalytics.Controllers
         }
 
         // ------ private ------
+        // process config window event call back
         private void _ProcessConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
         {
-            // TODO: pass config to model
             _processConfig = e.Config;
             _InitModelController();
         }
@@ -96,6 +96,27 @@ namespace DV_ReportAnalytics.Controllers
                 // close previous before open a new file
                 wbv.ActiveWorkbook.Close();
                 wbv.ActiveWorkbook = wbv.ActiveWorkbookSet.Workbooks.Open(path);
+                wbv.Visible = true;
+                //printAllWorkbooks();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                wbv.ReleaseLock();
+            }
+        }
+
+        private void _SaveWorkbookView(string path)
+        {
+            WorkbookView wbv = _mainForm.WorkbookView;
+            // Interrupt background calculation if necessary and acquire a lock on the workbook set.
+            wbv.GetLock();
+            try
+            {
+                wbv.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
                 //printAllWorkbooks();
             }
             catch (Exception e)

@@ -26,6 +26,7 @@ namespace DV_ReportAnalytics.Controllers
                 // avoid multiple instances being initiated
                 if (_currentModel != t)
                 {
+                    // new type initiated
                     _currentModel = t;
                     switch (_currentModel)
                     {
@@ -36,6 +37,7 @@ namespace DV_ReportAnalytics.Controllers
                             break;
                     }
                 }
+                //_workbookModelController.SetProcessConfig(_processConfig);
             }
             else
             {
