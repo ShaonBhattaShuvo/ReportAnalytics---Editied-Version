@@ -38,7 +38,7 @@ namespace DV_ReportAnalytics.Models
 
         // ----------------------------Internal methods-------------------------------------------
         // get provided range
-        protected void _GetRange(double[] rowRange, double[] colRange, out double[] x, out double[] y)
+        protected void GetRange(double[] rowRange, double[] colRange, out double[] x, out double[] y)
         {
             // get x range
             if (colRange == null)
@@ -65,9 +65,9 @@ namespace DV_ReportAnalytics.Models
         }
 
         // get xyz values
-        protected void _GetXYZ(double[] rowRange, double[] colRange, out double[] x, out double[] y, out double[,] z)
+        protected void GetXYZ(double[] rowRange, double[] colRange, out double[] x, out double[] y, out double[,] z)
         {
-            _GetRange(rowRange, colRange, out x, out y);
+            GetRange(rowRange, colRange, out x, out y);
             // get z
             z = new double[y.Length, x.Length];
             // scan by row then by column
@@ -77,7 +77,7 @@ namespace DV_ReportAnalytics.Models
         }
 
         // retrive values by map index to each other
-        protected void _FlatenXYZ(double[] xi, double[] yi, double[,] zi, out double[] x, out double[] y, out double[] z)
+        protected void FlatenXYZ(double[] xi, double[] yi, double[,] zi, out double[] x, out double[] y, out double[] z)
         {
             // get xyz
             x = new double[zi.Length];
@@ -94,7 +94,7 @@ namespace DV_ReportAnalytics.Models
         }
 
         // all GetData methods get data from here
-        protected TEptData3 _GetData(double[] x, double[] y, double[,] z)
+        protected TEptData3 BuildData(double[] x, double[] y, double[,] z)
         {
             return new TEptData3(
                     Name, KeyColumnName, KeyRowName, ValueName,
@@ -104,7 +104,7 @@ namespace DV_ReportAnalytics.Models
 
         // add info to Tabular struct
         // all GetTabular methods from here
-        protected TEptTabular3 _GetTabular(double[] x, double[] y, double[] z)
+        protected TEptTabular3 BuildTabular(double[] x, double[] y, double[] z)
         {
             return new TEptTabular3(
                     Name, KeyColumnName, KeyRowName, ValueName,
@@ -116,8 +116,8 @@ namespace DV_ReportAnalytics.Models
         // get data by range
         public TEptData3 GetData(double[] rowRange, double[] colRange)
         {
-            _GetXYZ(rowRange, colRange, out double[] x, out double[] y, out double[,] z);
-            return _GetData(x, y, z);
+            GetXYZ(rowRange, colRange, out double[] x, out double[] y, out double[,] z);
+            return BuildData(x, y, z);
         }
 
         // get all data
@@ -130,9 +130,9 @@ namespace DV_ReportAnalytics.Models
         public TEptData3 GetData(double[] rowRange, double[] colRange, int rowInterp, int colInterp)
         {
             // retrive original data
-            _GetXYZ(rowRange, colRange, out double[] x, out double[] y, out double[,] z);
+            GetXYZ(rowRange, colRange, out double[] x, out double[] y, out double[,] z);
             Interpolation.TableBilinearInterpolation(x, y, z, colInterp, rowInterp, out double[] xo, out double[] yo, out double[,] zo);
-            return _GetData(xo, yo, zo);
+            return BuildData(xo, yo, zo);
         }
 
         //get all interpolated
@@ -145,9 +145,9 @@ namespace DV_ReportAnalytics.Models
         // get data by range
         public TEptTabular3 GetTabular(double[] rowRange, double[] colRange)
         {
-            _GetXYZ(rowRange, colRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
-            _FlatenXYZ(xtemp, ytemp, ztemp, out double[] x, out double[] y, out double[] z);
-            return _GetTabular(x, y, z);
+            GetXYZ(rowRange, colRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
+            FlatenXYZ(xtemp, ytemp, ztemp, out double[] x, out double[] y, out double[] z);
+            return BuildTabular(x, y, z);
         }
 
         // get all data
@@ -159,10 +159,10 @@ namespace DV_ReportAnalytics.Models
         // get interpolated by range
         public TEptTabular3 GetTabular(double[] rowRange, double[] colRange, int rowInterp, int colInterp)
         {
-            _GetXYZ(rowRange, colRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
+            GetXYZ(rowRange, colRange, out double[] xtemp, out double[] ytemp, out double[,] ztemp);
             Interpolation.TableBilinearInterpolation(xtemp, ytemp, ztemp, colInterp, rowInterp, out double[] xinterp, out double[] yinterp, out double[,] zinterp);
-            _FlatenXYZ(xinterp, yinterp, zinterp, out double[] x, out double[] y, out double[] z);
-            return _GetTabular(x, y, z);
+            FlatenXYZ(xinterp, yinterp, zinterp, out double[] x, out double[] y, out double[] z);
+            return BuildTabular(x, y, z);
         }
 
         //get all interpolated

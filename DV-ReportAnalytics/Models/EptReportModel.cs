@@ -51,13 +51,13 @@ namespace DV_ReportAnalytics.Models
             // throws exception if it alreay exists
             _tableDictionary.Add(name, new EptTable());
             _tableDictionary[name].Name = name;
-            _Update();
+            Update();
         }
 
         public void Remove(string name)
         {
             _tableDictionary.Remove(name);
-            _Update();
+            Update();
         }
 
         public bool Contains(string name)
@@ -104,7 +104,7 @@ namespace DV_ReportAnalytics.Models
         }
 
         // ---------------private methods-------------------
-        private void _Update()
+        private void Update()
         {
             if (WorkbookTableUpdate != null)
             {

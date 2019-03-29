@@ -6,7 +6,7 @@ namespace DV_ReportAnalytics.Algorithms
 {
     internal static class Interpolation
     {
-        private static TBounds _GetNeighborIndices(double[] srcArray, double value)
+        private static TBounds GetNeighborIndices(double[] srcArray, double value)
         {
             int lbound = 0; // lower bound of x
             int ubound = srcArray.Length - 1; // upper bound of x
@@ -37,7 +37,7 @@ namespace DV_ReportAnalytics.Algorithms
         }
 
         // throw an error if dimensions are not matched
-        private static void _CheckMatch(double[] x, double[] y, double[,] z)
+        private static void CheckMatch(double[] x, double[] y, double[,] z)
         {
             if (y.GetLength(0) != z.GetLength(0) || x.GetLength(0) != z.GetLength(1))
             {
@@ -71,7 +71,7 @@ namespace DV_ReportAnalytics.Algorithms
 
         public static double LinearInterpolation(double[] srcArray, double xVal)
         {
-            TBounds bound = _GetNeighborIndices(srcArray, xVal);
+            TBounds bound = GetNeighborIndices(srcArray, xVal);
             double ylbound = srcArray[bound.LBound];
             double yubound = srcArray[bound.UBound];
             // interpolation
@@ -82,8 +82,8 @@ namespace DV_ReportAnalytics.Algorithms
         // dimensions should be checked before using this interpolation
         public static double BilinearInterpolation(double[] srcXAxis, double[] srcYAxis, double[,] srcTable, double dstX, double dstY)
         {
-            TBounds xbound = _GetNeighborIndices(srcXAxis, dstX);
-            TBounds ybound = _GetNeighborIndices(srcYAxis, dstY);
+            TBounds xbound = GetNeighborIndices(srcXAxis, dstX);
+            TBounds ybound = GetNeighborIndices(srcYAxis, dstY);
             double q11 = srcTable[ybound.LBound, xbound.LBound];
             double q21 = srcTable[ybound.UBound, xbound.LBound];
             double q12 = srcTable[ybound.LBound, xbound.UBound];
@@ -115,7 +115,7 @@ namespace DV_ReportAnalytics.Algorithms
         public static void TableBilinearInterpolation(double[] xi, double[] yi, double[,] zi, int xInterp, int yInterp, out double[] xo, out double[] yo, out double[,] zo)
         {
             // examine dimensions
-            _CheckMatch(xi, yi, zi);
+            CheckMatch(xi, yi, zi);
             xo = ExtendArray(xi, xInterp);
             yo = ExtendArray(yi, yInterp);
             zo = new double[yo.Length, xo.Length];

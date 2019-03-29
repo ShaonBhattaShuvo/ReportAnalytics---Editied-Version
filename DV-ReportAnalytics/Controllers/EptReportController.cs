@@ -29,48 +29,48 @@ namespace DV_ReportAnalytics.Controllers
         public EptReportController(IMainForm mainForm)
         {
             _mainForm = mainForm;
-            _NewModel();
+            NewModel();
         }
 
         public void ShowModelView()
         {
-            _NewView();
+            NewView();
             _view.ShowDialog();
         }
 
         public void SetProcessConfig(XmlDocument config)
         {
             _processConfig = config;
-            _RefreshModel();
+            RefreshModel();
         }
 
         // ------ private ------
-        private void _OnDisplayConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
+        private void OnDisplayConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
         {
             _displayConfig = e.Config;
             // TODO: update workbookview
         }
 
-        private void _OnTableUpdated(object sender, WorkbookTableUpdateEventArgs e)
+        private void OnTableUpdated(object sender, WorkbookTableUpdateEventArgs e)
         {
 
         }
 
         // generate a new model and bind necessary events
-        private void _NewModel()
+        private void NewModel()
         {
             _model = new EptReportModel();
-            _model.WorkbookTableUpdate += _OnTableUpdated;
+            _model.WorkbookTableUpdate += OnTableUpdated;
         }
 
         // generate a new view and bind necessary events
-        private void _NewView()
+        private void NewView()
         {
             _view = new EptConfigForm(_displayConfig);
-            _view.WorkbookConfigUpdate += _OnDisplayConfigUpdated;
+            _view.WorkbookConfigUpdate += OnDisplayConfigUpdated;
         }
 
-        private void _RefreshModel()
+        private void RefreshModel()
         {
             Regex filter = new Regex("");
             WorkbookView wbv = _mainForm.WorkbookView;

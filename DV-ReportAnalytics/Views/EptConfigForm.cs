@@ -22,7 +22,7 @@ namespace DV_ReportAnalytics.Views
             
         }
 
-        private void _InitializeDisplay(XmlDocument config)
+        private void InitializeDisplay(XmlDocument config)
         {
             numericUpDownSpeedInterp.Value = config.GetNodeValue<decimal>("SpeedInterp");
             numericUpDownTorqueInterp.Value = config.GetNodeValue<decimal>("TorqueInterp");
@@ -32,7 +32,7 @@ namespace DV_ReportAnalytics.Views
                 checkedListBox.Items.Add(table.GetNodeValue("name"), table.GetNodeValue<bool>("checked"));
         }
 
-        private void _GenerateConfig()
+        private void GenerateConfig()
         {
             //// update check status
             //foreach (object itemchecked in checkedListBox.CheckedItems)

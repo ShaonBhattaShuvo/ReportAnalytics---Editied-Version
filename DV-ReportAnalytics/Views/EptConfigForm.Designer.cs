@@ -44,7 +44,7 @@
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonOK.Location = new System.Drawing.Point(403, 393);
-            this.buttonOK.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.buttonOK.Margin = new System.Windows.Forms.Padding(6);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(138, 39);
             this.buttonOK.TabIndex = 1;
@@ -64,7 +64,7 @@
             this.tableLayoutPanelInterp.Controls.Add(this.numericUpDownSpeedInterp, 1, 0);
             this.tableLayoutPanelInterp.Controls.Add(this.numericUpDownTorqueInterp, 1, 1);
             this.tableLayoutPanelInterp.Location = new System.Drawing.Point(22, 22);
-            this.tableLayoutPanelInterp.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.tableLayoutPanelInterp.Margin = new System.Windows.Forms.Padding(6);
             this.tableLayoutPanelInterp.Name = "tableLayoutPanelInterp";
             this.tableLayoutPanelInterp.RowCount = 2;
             this.tableLayoutPanelInterp.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
@@ -104,7 +104,7 @@
             this.numericUpDownSpeedInterp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownSpeedInterp.Location = new System.Drawing.Point(421, 6);
-            this.numericUpDownSpeedInterp.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.numericUpDownSpeedInterp.Margin = new System.Windows.Forms.Padding(6);
             this.numericUpDownSpeedInterp.Name = "numericUpDownSpeedInterp";
             this.numericUpDownSpeedInterp.Size = new System.Drawing.Size(92, 29);
             this.numericUpDownSpeedInterp.TabIndex = 2;
@@ -114,7 +114,7 @@
             this.numericUpDownTorqueInterp.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownTorqueInterp.Location = new System.Drawing.Point(421, 54);
-            this.numericUpDownTorqueInterp.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.numericUpDownTorqueInterp.Margin = new System.Windows.Forms.Padding(6);
             this.numericUpDownTorqueInterp.Name = "numericUpDownTorqueInterp";
             this.numericUpDownTorqueInterp.Size = new System.Drawing.Size(92, 29);
             this.numericUpDownTorqueInterp.TabIndex = 3;
@@ -126,7 +126,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.checkedListBox.FormattingEnabled = true;
             this.checkedListBox.Location = new System.Drawing.Point(22, 185);
-            this.checkedListBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.checkedListBox.Margin = new System.Windows.Forms.Padding(6);
             this.checkedListBox.Name = "checkedListBox";
             this.checkedListBox.Size = new System.Drawing.Size(516, 148);
             this.checkedListBox.TabIndex = 4;
@@ -140,7 +140,7 @@
             this.Controls.Add(this.tableLayoutPanelInterp);
             this.Controls.Add(this.buttonOK);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "EptConfigForm";

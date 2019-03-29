@@ -29,14 +29,15 @@ namespace DV_ReportAnalytics.Views
         }
 
         // ------ public ------
-        private void _Initialize()
+
+
+        // ------ private ------
+        private void Initialize()
         {
             // bind controllers and models
             _controller = new MainFormController(this);
             _controller.UserMessageUpdated += _UserMessageUpdated;
         }
-
-        // ------ private ------
 
         private void _UserMessageUpdated(object sender, UserMessageEventArgs args)
         {

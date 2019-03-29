@@ -12,7 +12,7 @@ namespace DV_ReportAnalytics.Views
         public MainForm()
         {
             InitializeComponent();
-            _Initialize();
+            Initialize();
         }
 
         private void MainForm_Load(object sender, EventArgs e)

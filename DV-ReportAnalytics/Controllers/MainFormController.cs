@@ -43,7 +43,7 @@ namespace DV_ReportAnalytics.Controllers
             {
                 // after file being selected open window to ocnfigure process parameter
                 AppForm_SettingsButtonClicked();
-                _OpenWorkbookView(ofd.FileName);
+                OpenWorkbookView(ofd.FileName);
                 _mainForm.EnableTableButtons = true;
             }
         }
@@ -53,7 +53,7 @@ namespace DV_ReportAnalytics.Controllers
             SaveFileDialog sfd = _mainForm.SaveFileDialog;
             // open window to select saving location
             if (sfd.ShowDialog() == DialogResult.OK)
-                _SaveWorkbookView(sfd.FileName);
+                SaveWorkbookView(sfd.FileName);
         }
 
         public void AppForm_TableButtonClicked()
@@ -69,24 +69,24 @@ namespace DV_ReportAnalytics.Controllers
         public void AppForm_SettingsButtonClicked()
         {
             _processConfigForm = new ProcessConfigForm();
-            _processConfigForm.WorkbookConfigUpdate += _ProcessConfigUpdated;
+            _processConfigForm.WorkbookConfigUpdate += ProcessConfigUpdated;
             _processConfigForm.ShowDialog();
         }
 
         public void AppForm_HelpInfoButtonClicked()
         {
-            _UserMessageUpdated(this, new UserMessageEventArgs("Implement Help/Info."));
+            UserMessageUpdated(this, new UserMessageEventArgs("Implement Help/Info."));
         }
 
         // ------ private ------
         // process config window event call back
-        private void _ProcessConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
+        private void ProcessConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
         {
             _processConfig = e.Config;
-            _InitModelController();
+            InitModelController();
         }
 
-        private void _OpenWorkbookView(string path)
+        private void OpenWorkbookView(string path)
         {
             WorkbookView wbv = _mainForm.WorkbookView;
             // Interrupt background calculation if necessary and acquire a lock on the workbook set.
@@ -109,7 +109,7 @@ namespace DV_ReportAnalytics.Controllers
             }
         }
 
-        private void _SaveWorkbookView(string path)
+        private void SaveWorkbookView(string path)
         {
             WorkbookView wbv = _mainForm.WorkbookView;
             // Interrupt background calculation if necessary and acquire a lock on the workbook set.
@@ -117,7 +117,7 @@ namespace DV_ReportAnalytics.Controllers
             try
             {
                 wbv.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
-                //printAllWorkbooks();
+                //PrintAllWorkbooks();
             }
             catch (Exception e)
             {
@@ -129,7 +129,7 @@ namespace DV_ReportAnalytics.Controllers
             }
         }
 
-        private void printAllWorkbooks()
+        private void PrintAllWorkbooks()
         {
             IWorkbooks wbs = _mainForm.WorkbookView.ActiveWorkbookSet.Workbooks;
             Console.WriteLine("--------WorkbookView Items------------");

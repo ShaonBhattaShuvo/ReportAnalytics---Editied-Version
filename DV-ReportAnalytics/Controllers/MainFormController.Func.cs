@@ -15,7 +15,7 @@ namespace DV_ReportAnalytics.Controllers
 
 
         // ------private------
-        private void _InitModelController()
+        private void InitModelController()
         {
             // TODO: change type dynamically
             //string type = _processConfig.GetNodeValue("Type");
