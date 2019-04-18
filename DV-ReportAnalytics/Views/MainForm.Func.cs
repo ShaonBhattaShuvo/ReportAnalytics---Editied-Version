@@ -25,6 +25,7 @@ namespace DV_ReportAnalytics.Views
                 _tableButtonEnabled = value;
                 toolStripButtonTableDisplay.Enabled = _tableButtonEnabled;
                 toolStripButtonGraphToggle.Enabled = _tableButtonEnabled;
+                toolStripButtonSaveFile.Enabled = _tableButtonEnabled;
             }
         }
 

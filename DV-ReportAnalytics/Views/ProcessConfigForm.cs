@@ -19,5 +19,15 @@ namespace DV_ReportAnalytics.Views
         {
             InitializeComponent();
         }
+
+        private void buttonCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void buttonOK_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

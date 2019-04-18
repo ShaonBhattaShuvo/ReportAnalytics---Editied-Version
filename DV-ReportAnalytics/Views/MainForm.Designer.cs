@@ -63,8 +63,7 @@
             this.toolStripButtonHelp});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Padding = new System.Windows.Forms.Padding(0, 0, 2, 0);
-            this.toolStripMain.Size = new System.Drawing.Size(2222, 35);
+            this.toolStripMain.Size = new System.Drawing.Size(1212, 35);
             this.toolStripMain.TabIndex = 0;
             // 
             // toolStripButtonOpenFile
@@ -140,7 +139,6 @@
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerMain.Location = new System.Drawing.Point(0, 35);
-            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(6);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel1
@@ -152,9 +150,8 @@
             this.splitContainerMain.Panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.splitContainerMain.Panel2.Controls.Add(this.graphContainer);
             this.splitContainerMain.Panel2Collapsed = true;
-            this.splitContainerMain.Size = new System.Drawing.Size(2222, 1403);
+            this.splitContainerMain.Size = new System.Drawing.Size(1212, 540);
             this.splitContainerMain.SplitterDistance = 1107;
-            this.splitContainerMain.SplitterWidth = 7;
             this.splitContainerMain.TabIndex = 1;
             // 
             // workbookView
@@ -163,10 +160,9 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.workbookView.FormulaBar = null;
-            this.workbookView.Location = new System.Drawing.Point(6, 6);
-            this.workbookView.Margin = new System.Windows.Forms.Padding(6);
+            this.workbookView.Location = new System.Drawing.Point(3, 3);
             this.workbookView.Name = "workbookView";
-            this.workbookView.Size = new System.Drawing.Size(2211, 1392);
+            this.workbookView.Size = new System.Drawing.Size(1206, 534);
             this.workbookView.TabIndex = 0;
             this.workbookView.Visible = false;
             this.workbookView.WorkbookSetState = resources.GetString("workbookView.WorkbookSetState");
@@ -175,10 +171,9 @@
             // 
             this.graphContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphContainer.Location = new System.Drawing.Point(0, 0);
-            this.graphContainer.Margin = new System.Windows.Forms.Padding(6);
-            this.graphContainer.MinimumSize = new System.Drawing.Size(37, 37);
+            this.graphContainer.MinimumSize = new System.Drawing.Size(20, 20);
             this.graphContainer.Name = "graphContainer";
-            this.graphContainer.Size = new System.Drawing.Size(1110, 1403);
+            this.graphContainer.Size = new System.Drawing.Size(52, 54);
             this.graphContainer.TabIndex = 0;
             // 
             // openFileDialog
@@ -192,10 +187,10 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(2085, 0);
-            this.button1.Margin = new System.Windows.Forms.Padding(6);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(1137, 0);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 42);
+            this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
             this.button1.Text = "Debug";
             this.button1.UseVisualStyleBackColor = true;
@@ -203,14 +198,13 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(2222, 1438);
+            this.ClientSize = new System.Drawing.Size(1212, 575);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.toolStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.Name = "MainForm";
             this.Text = "DV Report Analytics";
             this.Load += new System.EventHandler(this.MainForm_Load);

@@ -52,6 +52,8 @@
             this.labelEptFormat = new System.Windows.Forms.Label();
             this.panelEPT = new System.Windows.Forms.Panel();
             this.labelEptPreview = new System.Windows.Forms.Label();
+            this.buttonOK = new System.Windows.Forms.Button();
+            this.buttonCancel = new System.Windows.Forms.Button();
             this.tableLayoutPanel.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownEptTextIndex)).BeginInit();
@@ -75,16 +77,15 @@
             this.tableLayoutPanel.Controls.Add(this.textBoxOutputSheetName, 1, 3);
             this.tableLayoutPanel.Controls.Add(this.labelType, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.comboBoxType, 1, 0);
-            this.tableLayoutPanel.Location = new System.Drawing.Point(12, 40);
-            this.tableLayoutPanel.Margin = new System.Windows.Forms.Padding(6);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(7, 22);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 4;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel.Size = new System.Drawing.Size(598, 369);
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 11F));
+            this.tableLayoutPanel.Size = new System.Drawing.Size(326, 200);
             this.tableLayoutPanel.TabIndex = 0;
             // 
             // labelName
@@ -92,10 +93,9 @@
             this.labelName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(7, 93);
-            this.labelName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelName.Location = new System.Drawing.Point(4, 50);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(64, 91);
+            this.labelName.Size = new System.Drawing.Size(35, 48);
             this.labelName.TabIndex = 2;
             this.labelName.Text = "Name";
             this.labelName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -105,10 +105,9 @@
             this.labelInputSheetName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelInputSheetName.AutoSize = true;
-            this.labelInputSheetName.Location = new System.Drawing.Point(7, 185);
-            this.labelInputSheetName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelInputSheetName.Location = new System.Drawing.Point(4, 99);
             this.labelInputSheetName.Name = "labelInputSheetName";
-            this.labelInputSheetName.Size = new System.Drawing.Size(169, 91);
+            this.labelInputSheetName.Size = new System.Drawing.Size(93, 48);
             this.labelInputSheetName.TabIndex = 3;
             this.labelInputSheetName.Text = "Input Sheet Name";
             this.labelInputSheetName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -118,10 +117,9 @@
             this.labelOutputSheetName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelOutputSheetName.AutoSize = true;
-            this.labelOutputSheetName.Location = new System.Drawing.Point(7, 277);
-            this.labelOutputSheetName.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelOutputSheetName.Location = new System.Drawing.Point(4, 148);
             this.labelOutputSheetName.Name = "labelOutputSheetName";
-            this.labelOutputSheetName.Size = new System.Drawing.Size(185, 91);
+            this.labelOutputSheetName.Size = new System.Drawing.Size(101, 51);
             this.labelOutputSheetName.TabIndex = 4;
             this.labelOutputSheetName.Text = "Output Sheet Name";
             this.labelOutputSheetName.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -131,10 +129,9 @@
             this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxName.Location = new System.Drawing.Point(305, 99);
-            this.textBoxName.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxName.Location = new System.Drawing.Point(166, 53);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(286, 29);
+            this.textBoxName.Size = new System.Drawing.Size(156, 20);
             this.textBoxName.TabIndex = 7;
             this.textBoxName.Text = "EPT Report Results";
             // 
@@ -143,10 +140,9 @@
             this.textBoxInputSheetName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxInputSheetName.Location = new System.Drawing.Point(305, 191);
-            this.textBoxInputSheetName.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxInputSheetName.Location = new System.Drawing.Point(166, 102);
             this.textBoxInputSheetName.Name = "textBoxInputSheetName";
-            this.textBoxInputSheetName.Size = new System.Drawing.Size(286, 29);
+            this.textBoxInputSheetName.Size = new System.Drawing.Size(156, 20);
             this.textBoxInputSheetName.TabIndex = 8;
             this.textBoxInputSheetName.Text = "Results";
             // 
@@ -155,10 +151,9 @@
             this.textBoxOutputSheetName.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxOutputSheetName.Location = new System.Drawing.Point(305, 283);
-            this.textBoxOutputSheetName.Margin = new System.Windows.Forms.Padding(6);
+            this.textBoxOutputSheetName.Location = new System.Drawing.Point(166, 151);
             this.textBoxOutputSheetName.Name = "textBoxOutputSheetName";
-            this.textBoxOutputSheetName.Size = new System.Drawing.Size(286, 29);
+            this.textBoxOutputSheetName.Size = new System.Drawing.Size(156, 20);
             this.textBoxOutputSheetName.TabIndex = 9;
             this.textBoxOutputSheetName.Text = "Combined Results";
             // 
@@ -167,10 +162,9 @@
             this.labelType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelType.AutoSize = true;
-            this.labelType.Location = new System.Drawing.Point(7, 1);
-            this.labelType.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
+            this.labelType.Location = new System.Drawing.Point(4, 1);
             this.labelType.Name = "labelType";
-            this.labelType.Size = new System.Drawing.Size(57, 91);
+            this.labelType.Size = new System.Drawing.Size(31, 48);
             this.labelType.TabIndex = 1;
             this.labelType.Text = "Type";
             this.labelType.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -183,10 +177,9 @@
             this.comboBoxType.FormattingEnabled = true;
             this.comboBoxType.Items.AddRange(new object[] {
             "EptReport"});
-            this.comboBoxType.Location = new System.Drawing.Point(305, 7);
-            this.comboBoxType.Margin = new System.Windows.Forms.Padding(6);
+            this.comboBoxType.Location = new System.Drawing.Point(166, 4);
             this.comboBoxType.Name = "comboBoxType";
-            this.comboBoxType.Size = new System.Drawing.Size(286, 32);
+            this.comboBoxType.Size = new System.Drawing.Size(156, 21);
             this.comboBoxType.TabIndex = 11;
             // 
             // tableLayoutPanel1
@@ -204,7 +197,8 @@
             this.tableLayoutPanel1.Controls.Add(this.textBoxEptDelimiter, 1, 4);
             this.tableLayoutPanel1.Controls.Add(this.numericUpDownEptTextIndex, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.numericUpDownEptValueIndex, 1, 3);
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 61);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 33);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.99999F));
@@ -212,8 +206,8 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(575, 301);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 11F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(314, 163);
             this.tableLayoutPanel1.TabIndex = 1;
             // 
             // labelEptRow
@@ -221,9 +215,10 @@
             this.labelEptRow.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelEptRow.AutoSize = true;
-            this.labelEptRow.Location = new System.Drawing.Point(3, 0);
+            this.labelEptRow.Location = new System.Drawing.Point(2, 0);
+            this.labelEptRow.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEptRow.Name = "labelEptRow";
-            this.labelEptRow.Size = new System.Drawing.Size(103, 60);
+            this.labelEptRow.Size = new System.Drawing.Size(58, 32);
             this.labelEptRow.TabIndex = 0;
             this.labelEptRow.Text = "Row Label";
             // 
@@ -232,9 +227,10 @@
             this.labelEptCol.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelEptCol.AutoSize = true;
-            this.labelEptCol.Location = new System.Drawing.Point(3, 60);
+            this.labelEptCol.Location = new System.Drawing.Point(2, 32);
+            this.labelEptCol.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEptCol.Name = "labelEptCol";
-            this.labelEptCol.Size = new System.Drawing.Size(133, 60);
+            this.labelEptCol.Size = new System.Drawing.Size(71, 32);
             this.labelEptCol.TabIndex = 1;
             this.labelEptCol.Text = "Column Label";
             // 
@@ -243,9 +239,10 @@
             this.labelEptTextIndex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelEptTextIndex.AutoSize = true;
-            this.labelEptTextIndex.Location = new System.Drawing.Point(3, 120);
+            this.labelEptTextIndex.Location = new System.Drawing.Point(2, 64);
+            this.labelEptTextIndex.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEptTextIndex.Name = "labelEptTextIndex";
-            this.labelEptTextIndex.Size = new System.Drawing.Size(104, 60);
+            this.labelEptTextIndex.Size = new System.Drawing.Size(57, 32);
             this.labelEptTextIndex.TabIndex = 3;
             this.labelEptTextIndex.Text = "Text Index";
             // 
@@ -254,9 +251,10 @@
             this.labelEptValueIndex.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelEptValueIndex.AutoSize = true;
-            this.labelEptValueIndex.Location = new System.Drawing.Point(3, 180);
+            this.labelEptValueIndex.Location = new System.Drawing.Point(2, 96);
+            this.labelEptValueIndex.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEptValueIndex.Name = "labelEptValueIndex";
-            this.labelEptValueIndex.Size = new System.Drawing.Size(116, 60);
+            this.labelEptValueIndex.Size = new System.Drawing.Size(63, 32);
             this.labelEptValueIndex.TabIndex = 4;
             this.labelEptValueIndex.Text = "Value Index";
             // 
@@ -265,9 +263,10 @@
             this.labelEptDelimiter.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             this.labelEptDelimiter.AutoSize = true;
-            this.labelEptDelimiter.Location = new System.Drawing.Point(3, 240);
+            this.labelEptDelimiter.Location = new System.Drawing.Point(2, 128);
+            this.labelEptDelimiter.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEptDelimiter.Name = "labelEptDelimiter";
-            this.labelEptDelimiter.Size = new System.Drawing.Size(87, 61);
+            this.labelEptDelimiter.Size = new System.Drawing.Size(47, 35);
             this.labelEptDelimiter.TabIndex = 5;
             this.labelEptDelimiter.Text = "Delimiter";
             // 
@@ -276,9 +275,10 @@
             this.textEptBoxRow.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textEptBoxRow.Location = new System.Drawing.Point(250, 3);
+            this.textEptBoxRow.Location = new System.Drawing.Point(159, 2);
+            this.textEptBoxRow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textEptBoxRow.Name = "textEptBoxRow";
-            this.textEptBoxRow.Size = new System.Drawing.Size(241, 29);
+            this.textEptBoxRow.Size = new System.Drawing.Size(153, 20);
             this.textEptBoxRow.TabIndex = 7;
             // 
             // textEptBoxCol
@@ -286,9 +286,10 @@
             this.textEptBoxCol.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textEptBoxCol.Location = new System.Drawing.Point(250, 63);
+            this.textEptBoxCol.Location = new System.Drawing.Point(159, 34);
+            this.textEptBoxCol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textEptBoxCol.Name = "textEptBoxCol";
-            this.textEptBoxCol.Size = new System.Drawing.Size(241, 29);
+            this.textEptBoxCol.Size = new System.Drawing.Size(153, 20);
             this.textEptBoxCol.TabIndex = 8;
             // 
             // textBoxEptDelimiter
@@ -296,9 +297,10 @@
             this.textBoxEptDelimiter.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxEptDelimiter.Location = new System.Drawing.Point(250, 243);
+            this.textBoxEptDelimiter.Location = new System.Drawing.Point(159, 130);
+            this.textBoxEptDelimiter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.textBoxEptDelimiter.Name = "textBoxEptDelimiter";
-            this.textBoxEptDelimiter.Size = new System.Drawing.Size(241, 29);
+            this.textBoxEptDelimiter.Size = new System.Drawing.Size(153, 20);
             this.textBoxEptDelimiter.TabIndex = 12;
             // 
             // numericUpDownEptTextIndex
@@ -306,9 +308,10 @@
             this.numericUpDownEptTextIndex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownEptTextIndex.Location = new System.Drawing.Point(250, 123);
+            this.numericUpDownEptTextIndex.Location = new System.Drawing.Point(159, 66);
+            this.numericUpDownEptTextIndex.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDownEptTextIndex.Name = "numericUpDownEptTextIndex";
-            this.numericUpDownEptTextIndex.Size = new System.Drawing.Size(241, 29);
+            this.numericUpDownEptTextIndex.Size = new System.Drawing.Size(153, 20);
             this.numericUpDownEptTextIndex.TabIndex = 13;
             // 
             // numericUpDownEptValueIndex
@@ -316,26 +319,29 @@
             this.numericUpDownEptValueIndex.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownEptValueIndex.Location = new System.Drawing.Point(250, 183);
+            this.numericUpDownEptValueIndex.Location = new System.Drawing.Point(159, 98);
+            this.numericUpDownEptValueIndex.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.numericUpDownEptValueIndex.Name = "numericUpDownEptValueIndex";
-            this.numericUpDownEptValueIndex.Size = new System.Drawing.Size(241, 29);
+            this.numericUpDownEptValueIndex.Size = new System.Drawing.Size(153, 20);
             this.numericUpDownEptValueIndex.TabIndex = 14;
             // 
             // labelGeneral
             // 
             this.labelGeneral.AutoSize = true;
-            this.labelGeneral.Location = new System.Drawing.Point(51, 9);
+            this.labelGeneral.Location = new System.Drawing.Point(28, 5);
+            this.labelGeneral.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelGeneral.Name = "labelGeneral";
-            this.labelGeneral.Size = new System.Drawing.Size(81, 25);
+            this.labelGeneral.Size = new System.Drawing.Size(44, 13);
             this.labelGeneral.TabIndex = 2;
             this.labelGeneral.Text = "General";
             // 
             // labelEptFormat
             // 
             this.labelEptFormat.AutoSize = true;
-            this.labelEptFormat.Location = new System.Drawing.Point(6, 22);
+            this.labelEptFormat.Location = new System.Drawing.Point(3, 12);
+            this.labelEptFormat.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEptFormat.Name = "labelEptFormat";
-            this.labelEptFormat.Size = new System.Drawing.Size(244, 25);
+            this.labelEptFormat.Size = new System.Drawing.Size(133, 13);
             this.labelEptFormat.TabIndex = 3;
             this.labelEptFormat.Text = "EPT Result Search Format";
             // 
@@ -344,30 +350,53 @@
             this.panelEPT.Controls.Add(this.labelEptPreview);
             this.panelEPT.Controls.Add(this.labelEptFormat);
             this.panelEPT.Controls.Add(this.tableLayoutPanel1);
-            this.panelEPT.Location = new System.Drawing.Point(12, 458);
+            this.panelEPT.Location = new System.Drawing.Point(7, 248);
+            this.panelEPT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelEPT.Name = "panelEPT";
-            this.panelEPT.Size = new System.Drawing.Size(601, 504);
+            this.panelEPT.Size = new System.Drawing.Size(328, 273);
             this.panelEPT.TabIndex = 4;
             // 
             // labelEptPreview
             // 
             this.labelEptPreview.AutoSize = true;
-            this.labelEptPreview.Location = new System.Drawing.Point(25, 407);
+            this.labelEptPreview.Location = new System.Drawing.Point(14, 220);
+            this.labelEptPreview.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelEptPreview.Name = "labelEptPreview";
-            this.labelEptPreview.Size = new System.Drawing.Size(79, 25);
+            this.labelEptPreview.Size = new System.Drawing.Size(44, 13);
             this.labelEptPreview.TabIndex = 4;
             this.labelEptPreview.Text = "preview";
             // 
+            // buttonOK
+            // 
+            this.buttonOK.Location = new System.Drawing.Point(250, 540);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(75, 23);
+            this.buttonOK.TabIndex = 5;
+            this.buttonOK.Text = "OK";
+            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            // 
+            // buttonCancel
+            // 
+            this.buttonCancel.Location = new System.Drawing.Point(173, 540);
+            this.buttonCancel.Name = "buttonCancel";
+            this.buttonCancel.Size = new System.Drawing.Size(75, 23);
+            this.buttonCancel.TabIndex = 6;
+            this.buttonCancel.Text = "Cancel";
+            this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
+            // 
             // ProcessConfigForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(625, 1125);
+            this.ClientSize = new System.Drawing.Size(341, 575);
+            this.Controls.Add(this.buttonCancel);
+            this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.panelEPT);
             this.Controls.Add(this.labelGeneral);
             this.Controls.Add(this.tableLayoutPanel);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(6);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "ProcessConfigForm";
@@ -412,5 +441,7 @@
         private System.Windows.Forms.Label labelEptFormat;
         private System.Windows.Forms.Panel panelEPT;
         private System.Windows.Forms.Label labelEptPreview;
+        private System.Windows.Forms.Button buttonOK;
+        private System.Windows.Forms.Button buttonCancel;
     }
 }
