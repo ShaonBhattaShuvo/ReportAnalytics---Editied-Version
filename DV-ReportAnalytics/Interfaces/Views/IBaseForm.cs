@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
-using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal interface IConfigForm
+    /* Base form limits form's basic behaviors*/
+    internal interface IBaseForm
     {
-        // provide an event for controller to subscribe
-        event WorkbookConfigUpdateEventHandler WorkbookConfigUpdate;
-
         // form control function: show window
         void Show();
 

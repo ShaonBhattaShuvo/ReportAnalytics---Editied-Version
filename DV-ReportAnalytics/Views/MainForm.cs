@@ -12,12 +12,13 @@ namespace DV_ReportAnalytics.Views
         public MainForm()
         {
             InitializeComponent();
-            Initialize();
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            
+            // bind controllers and models
+            _controller = new MainFormController(this);
+            _controller.UserMessageUpdated += _UserMessageUpdated;
         }
               
         private void MainForm_Resize(object sender, EventArgs e)

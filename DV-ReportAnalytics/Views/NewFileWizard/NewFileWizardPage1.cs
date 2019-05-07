@@ -1,18 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DV_ReportAnalytics.Views
+namespace DV_ReportAnalytics.Views.NewFileWizard
 {
-    public partial class NewFileWizard : Form
+    public partial class NewFileWizardPage1 : UserControl
     {
-        public NewFileWizard()
+
+        public NewFileWizardPage1()
         {
             InitializeComponent();
         }

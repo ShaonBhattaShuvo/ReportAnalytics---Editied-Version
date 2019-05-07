@@ -22,14 +22,17 @@ namespace DV_ReportAnalytics.Controllers
 
         public void AppForm_OpenButtonClicked()
         {
-            OpenFileDialog ofd = _mainForm.OpenFileDialog;
-            // open window to select file
-            if (ofd.ShowDialog() == DialogResult.OK)
-            {
-                // after file being selected open window to ocnfigure process parameter
-                AppForm_SettingsButtonClicked();
-                _mainForm.EnableTableButtons = OpenWorkbookView(ofd.FileName);
-            }
+            //OpenFileDialog ofd = _mainForm.OpenFileDialog;
+            //// open window to select file
+            //if (ofd.ShowDialog() == DialogResult.OK)
+            //{
+            //    // after file being selected open window to ocnfigure process parameter
+            //    AppForm_SettingsButtonClicked();
+            //    _mainForm.EnableTableButtons = OpenWorkbookView(ofd.FileName);
+            //}
+
+            _newFileWizard = new NewFileWizard();
+            _newFileWizard.ShowDialog();
         }
 
         public void AppForm_SaveButtonClicked()

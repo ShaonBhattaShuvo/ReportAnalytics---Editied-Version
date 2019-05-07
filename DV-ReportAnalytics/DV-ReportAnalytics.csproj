@@ -93,8 +93,9 @@
     <Compile Include="Interfaces\Types\ITEptData.cs" />
     <Compile Include="Interfaces\Types\ITTabular.cs" />
     <Compile Include="Interfaces\Views\IEptConfigForm.cs" />
+    <Compile Include="Interfaces\Views\INewFileWizard.cs" />
     <Compile Include="Interfaces\Views\IProcessConfigForm.cs" />
-    <Compile Include="Interfaces\Views\IConfigForm.cs" />
+    <Compile Include="Interfaces\Views\IBaseForm.cs" />
     <Compile Include="Interfaces\Models\Tables\ITable.cs" />
     <Compile Include="Models\Tables\LookupTable-1key.cs" />
     <Compile Include="Models\Tables\LookupTable-2keys.cs" />
@@ -108,6 +109,12 @@
     <Compile Include="Types\TTable.cs" />
     <Compile Include="Interfaces\Views\IMainForm.cs" />
     <Compile Include="Types\TTabular.cs" />
+    <Compile Include="Views\NewFileWizardPage1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\NewFileWizardPage1.Designer.cs">
+      <DependentUpon>NewFileWizardPage1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\ProcessConfigForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -132,12 +139,15 @@
     <Compile Include="Views\MainForm.Func.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Wizard.cs">
+    <Compile Include="Views\NewFileWizard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\Wizard.Designer.cs">
-      <DependentUpon>Wizard.cs</DependentUpon>
+    <Compile Include="Views\NewFileWizard.Designer.cs">
+      <DependentUpon>NewFileWizard.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\NewFileWizardPage1.resx">
+      <DependentUpon>NewFileWizardPage1.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Views\ProcessConfigForm.resx">
       <DependentUpon>ProcessConfigForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -157,8 +167,8 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\Wizard.resx">
-      <DependentUpon>Wizard.cs</DependentUpon>
+    <EmbeddedResource Include="Views\NewFileWizard.resx">
+      <DependentUpon>NewFileWizard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
