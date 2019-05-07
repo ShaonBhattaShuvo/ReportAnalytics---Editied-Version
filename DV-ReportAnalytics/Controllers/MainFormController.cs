@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Xml;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Views;
 using DV_ReportAnalytics.Constant;
@@ -13,13 +12,6 @@ namespace DV_ReportAnalytics.Controllers
     /// </summary>
     internal partial class MainFormController: IMainFormController
     {
-        private IMainForm _mainForm;
-        private IWorkbookModelController _workbookModelController;
-        private IProcessConfigForm _processConfigForm;
-        public event UserMessageEventHandler UserMessageUpdated = null;
-        private XmlDocument _processConfig;
-        private ModelTypes _currentModel;
-
         // ------ public ------
         public MainFormController(IMainForm mainForm)
         {
@@ -36,8 +28,7 @@ namespace DV_ReportAnalytics.Controllers
             {
                 // after file being selected open window to ocnfigure process parameter
                 AppForm_SettingsButtonClicked();
-                OpenWorkbookView(ofd.FileName);
-                _mainForm.EnableTableButtons = true;
+                _mainForm.EnableTableButtons = OpenWorkbookView(ofd.FileName);
             }
         }
 

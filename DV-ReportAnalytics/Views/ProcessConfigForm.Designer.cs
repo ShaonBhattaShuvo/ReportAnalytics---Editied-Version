@@ -198,7 +198,7 @@
             this.tableLayoutPanel1.Controls.Add(this.numericUpDownEptTextIndex, 1, 2);
             this.tableLayoutPanel1.Controls.Add(this.numericUpDownEptValueIndex, 1, 3);
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 33);
-            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tableLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 5;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 19.99999F));
@@ -276,7 +276,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textEptBoxRow.Location = new System.Drawing.Point(159, 2);
-            this.textEptBoxRow.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textEptBoxRow.Margin = new System.Windows.Forms.Padding(2);
             this.textEptBoxRow.Name = "textEptBoxRow";
             this.textEptBoxRow.Size = new System.Drawing.Size(153, 20);
             this.textEptBoxRow.TabIndex = 7;
@@ -287,7 +287,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textEptBoxCol.Location = new System.Drawing.Point(159, 34);
-            this.textEptBoxCol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textEptBoxCol.Margin = new System.Windows.Forms.Padding(2);
             this.textEptBoxCol.Name = "textEptBoxCol";
             this.textEptBoxCol.Size = new System.Drawing.Size(153, 20);
             this.textEptBoxCol.TabIndex = 8;
@@ -298,7 +298,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxEptDelimiter.Location = new System.Drawing.Point(159, 130);
-            this.textBoxEptDelimiter.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.textBoxEptDelimiter.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxEptDelimiter.Name = "textBoxEptDelimiter";
             this.textBoxEptDelimiter.Size = new System.Drawing.Size(153, 20);
             this.textBoxEptDelimiter.TabIndex = 12;
@@ -309,7 +309,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownEptTextIndex.Location = new System.Drawing.Point(159, 66);
-            this.numericUpDownEptTextIndex.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDownEptTextIndex.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownEptTextIndex.Name = "numericUpDownEptTextIndex";
             this.numericUpDownEptTextIndex.Size = new System.Drawing.Size(153, 20);
             this.numericUpDownEptTextIndex.TabIndex = 13;
@@ -320,7 +320,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.numericUpDownEptValueIndex.Location = new System.Drawing.Point(159, 98);
-            this.numericUpDownEptValueIndex.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.numericUpDownEptValueIndex.Margin = new System.Windows.Forms.Padding(2);
             this.numericUpDownEptValueIndex.Name = "numericUpDownEptValueIndex";
             this.numericUpDownEptValueIndex.Size = new System.Drawing.Size(153, 20);
             this.numericUpDownEptValueIndex.TabIndex = 14;
@@ -351,7 +351,7 @@
             this.panelEPT.Controls.Add(this.labelEptFormat);
             this.panelEPT.Controls.Add(this.tableLayoutPanel1);
             this.panelEPT.Location = new System.Drawing.Point(7, 248);
-            this.panelEPT.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelEPT.Margin = new System.Windows.Forms.Padding(2);
             this.panelEPT.Name = "panelEPT";
             this.panelEPT.Size = new System.Drawing.Size(328, 273);
             this.panelEPT.TabIndex = 4;

@@ -81,6 +81,7 @@
             // toolStripButtonSaveFile
             // 
             this.toolStripButtonSaveFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSaveFile.Enabled = false;
             this.toolStripButtonSaveFile.Image = global::DV_ReportAnalytics.Properties.Resources.save_as_32;
             this.toolStripButtonSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSaveFile.Name = "toolStripButtonSaveFile";
@@ -92,6 +93,7 @@
             // toolStripButtonSettings
             // 
             this.toolStripButtonSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonSettings.Enabled = false;
             this.toolStripButtonSettings.Image = global::DV_ReportAnalytics.Properties.Resources.settings_32;
             this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSettings.Name = "toolStripButtonSettings";
@@ -173,7 +175,7 @@
             this.graphContainer.Location = new System.Drawing.Point(0, 0);
             this.graphContainer.MinimumSize = new System.Drawing.Size(20, 20);
             this.graphContainer.Name = "graphContainer";
-            this.graphContainer.Size = new System.Drawing.Size(52, 54);
+            this.graphContainer.Size = new System.Drawing.Size(96, 100);
             this.graphContainer.TabIndex = 0;
             // 
             // openFileDialog

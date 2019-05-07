@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Xml;
 using DV_ReportAnalytics.Constant;
 using DV_ReportAnalytics.Events;
+using DV_ReportAnalytics.Views;
 using SpreadsheetGear;
 using SpreadsheetGear.Windows.Forms;
 
@@ -8,6 +10,13 @@ namespace DV_ReportAnalytics.Controllers
 {
     internal partial class MainFormController : IMainFormController
     {
+        private IMainForm _mainForm;
+        private IWorkbookModelController _workbookModelController;
+        private IProcessConfigForm _processConfigForm;
+        public event UserMessageEventHandler UserMessageUpdated = null;
+        private XmlDocument _processConfig;
+        private ModelTypes _currentModel;
+
         // ------public------
 
 
@@ -49,9 +58,10 @@ namespace DV_ReportAnalytics.Controllers
             InitModelController();
         }
 
-        private void OpenWorkbookView(string path)
+        private bool OpenWorkbookView(string path)
         {
             WorkbookView wbv = _mainForm.WorkbookView;
+            bool success;
             // Interrupt background calculation if necessary and acquire a lock on the workbook set.
             wbv.GetLock();
             try
@@ -60,36 +70,42 @@ namespace DV_ReportAnalytics.Controllers
                 wbv.ActiveWorkbook.Close();
                 wbv.ActiveWorkbook = wbv.ActiveWorkbookSet.Workbooks.Open(path);
                 wbv.Visible = true;
+                success = true;
                 //printAllWorkbooks();
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
+                success = false;
             }
             finally
             {
                 wbv.ReleaseLock();
             }
+            return success;
         }
 
-        private void SaveWorkbookView(string path)
+        private bool SaveWorkbookView(string path)
         {
             WorkbookView wbv = _mainForm.WorkbookView;
+            bool success;
             // Interrupt background calculation if necessary and acquire a lock on the workbook set.
             wbv.GetLock();
             try
             {
                 wbv.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
+                success = true;
                 //PrintAllWorkbooks();
             }
             catch (Exception e)
             {
-                Console.WriteLine(e.Message);
+                success = false;
             }
             finally
             {
                 wbv.ReleaseLock();
             }
+            return success;
         }
 
         private void PrintAllWorkbooks()
