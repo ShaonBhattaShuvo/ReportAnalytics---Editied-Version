@@ -32,10 +32,11 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("0.0.0.2")]
-[assembly: AssemblyFileVersion("0.0.0.2")]
+[assembly: AssemblyVersion("0.0.0.4")]
+[assembly: AssemblyFileVersion("0.0.0.4")]
 
 // Version            Date            Note
-
+// 0.0.0.4          2019-May-6       - Added wizard
+// 0.0.0.3          2019-Apr-23      - first check in after receiving files from Windsor
 // 0.0.0.2          2019-Jan-25      - Refactoring
 // 0.0.0.1          2019-Jan-24      - initial build
