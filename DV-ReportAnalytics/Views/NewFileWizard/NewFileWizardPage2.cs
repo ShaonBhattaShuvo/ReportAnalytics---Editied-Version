@@ -10,10 +10,9 @@ using System.Windows.Forms;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal partial class NewFileWizardPage1 : UserControl, INewFileWizardPage
+    internal partial class NewFileWizardPage2 : UserControl, INewFileWizardPage
     {
-
-        public NewFileWizardPage1()
+        public NewFileWizardPage2()
         {
             InitializeComponent();
         }

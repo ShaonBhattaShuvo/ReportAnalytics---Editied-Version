@@ -12,13 +12,28 @@ namespace DV_ReportAnalytics.Views
 {
     public partial class FileBrowserWithLabel : UserControl
     {
-        public string Path { private set; get; }
+        [Category("Settings"), Description("Path is readonly.")]
+        public string Path
+        {
+            private set { textBox.Text = value; }
+            get { return textBox.Text; }
+        }
+        [Category("Settings"), Description("Description for this section.")]
+        public string Description
+        {
+            set { label.Text = value; }
+            get { return label.Text; }
+        }
+        [Category("Settings"), Description("Browser filter.")]
+        public string Filter
+        {
+            set { openFileDialog.Filter = value; }
+            get { return openFileDialog.Filter; }
+        }
 
-        public FileBrowserWithLabel(string title, string filter)
+        public FileBrowserWithLabel()
         {
             InitializeComponent();
-            label.Text = title;
-            openFileDialog.Filter = filter;
         }
 
         private void button_Click(object sender, EventArgs e)

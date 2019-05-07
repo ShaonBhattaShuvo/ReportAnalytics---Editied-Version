@@ -94,6 +94,7 @@
     <Compile Include="Interfaces\Types\ITTabular.cs" />
     <Compile Include="Interfaces\Views\IEptConfigForm.cs" />
     <Compile Include="Interfaces\Views\INewFileWizard.cs" />
+    <Compile Include="Interfaces\Views\INewFileWizardPage.cs" />
     <Compile Include="Interfaces\Views\IProcessConfigForm.cs" />
     <Compile Include="Interfaces\Views\IBaseForm.cs" />
     <Compile Include="Interfaces\Models\Tables\ITable.cs" />
@@ -109,11 +110,23 @@
     <Compile Include="Types\TTable.cs" />
     <Compile Include="Interfaces\Views\IMainForm.cs" />
     <Compile Include="Types\TTabular.cs" />
-    <Compile Include="Views\NewFileWizardPage1.cs">
+    <Compile Include="Views\Components\FileBrowserWithLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\NewFileWizardPage1.Designer.cs">
+    <Compile Include="Views\Components\FileBrowserWithLabel.Designer.cs">
+      <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewFileWizard\NewFileWizardPage1.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\NewFileWizard\NewFileWizardPage1.Designer.cs">
       <DependentUpon>NewFileWizardPage1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\NewFileWizard\NewFileWizardPage2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Views\NewFileWizard\NewFileWizardPage2.Designer.cs">
+      <DependentUpon>NewFileWizardPage2.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ProcessConfigForm.cs">
       <SubType>Form</SubType>
@@ -139,14 +152,20 @@
     <Compile Include="Views\MainForm.Func.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\NewFileWizard.cs">
+    <Compile Include="Views\NewFileWizard\NewFileWizard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\NewFileWizard.Designer.cs">
+    <Compile Include="Views\NewFileWizard\NewFileWizard.Designer.cs">
       <DependentUpon>NewFileWizard.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Views\NewFileWizardPage1.resx">
+    <EmbeddedResource Include="Views\Components\FileBrowserWithLabel.resx">
+      <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NewFileWizard\NewFileWizardPage1.resx">
       <DependentUpon>NewFileWizardPage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\NewFileWizard\NewFileWizardPage2.resx">
+      <DependentUpon>NewFileWizardPage2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProcessConfigForm.resx">
       <DependentUpon>ProcessConfigForm.cs</DependentUpon>
@@ -167,7 +186,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="Views\NewFileWizard.resx">
+    <EmbeddedResource Include="Views\NewFileWizard\NewFileWizard.resx">
       <DependentUpon>NewFileWizard.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">

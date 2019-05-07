@@ -48,7 +48,7 @@
             this.panelImage.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelImage.Location = new System.Drawing.Point(0, 0);
             this.panelImage.Name = "panelImage";
-            this.panelImage.Size = new System.Drawing.Size(198, 390);
+            this.panelImage.Size = new System.Drawing.Size(198, 363);
             this.panelImage.TabIndex = 1;
             // 
             // pictureBox
@@ -66,9 +66,9 @@
             this.panelNavigation.BackColor = System.Drawing.SystemColors.Control;
             this.panelNavigation.Controls.Add(this.tableLayoutPanel);
             this.panelNavigation.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panelNavigation.Location = new System.Drawing.Point(0, 390);
+            this.panelNavigation.Location = new System.Drawing.Point(0, 363);
             this.panelNavigation.Name = "panelNavigation";
-            this.panelNavigation.Size = new System.Drawing.Size(800, 60);
+            this.panelNavigation.Size = new System.Drawing.Size(764, 60);
             this.panelNavigation.TabIndex = 2;
             // 
             // tableLayoutPanel
@@ -82,7 +82,7 @@
             this.tableLayoutPanel.Controls.Add(this.buttonBack, 0, 0);
             this.tableLayoutPanel.Controls.Add(this.buttonNext, 1, 0);
             this.tableLayoutPanel.Controls.Add(this.buttonFinish, 2, 0);
-            this.tableLayoutPanel.Location = new System.Drawing.Point(535, 11);
+            this.tableLayoutPanel.Location = new System.Drawing.Point(499, 11);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
             this.tableLayoutPanel.RowCount = 1;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
@@ -100,6 +100,7 @@
             this.buttonBack.TabIndex = 0;
             this.buttonBack.Text = "Back";
             this.buttonBack.UseVisualStyleBackColor = true;
+            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // buttonNext
             // 
@@ -112,6 +113,7 @@
             this.buttonNext.TabIndex = 1;
             this.buttonNext.Text = "Next";
             this.buttonNext.UseVisualStyleBackColor = true;
+            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // buttonFinish
             // 
@@ -124,23 +126,27 @@
             this.buttonFinish.TabIndex = 2;
             this.buttonFinish.Text = "Finish";
             this.buttonFinish.UseVisualStyleBackColor = true;
+            this.buttonFinish.Click += new System.EventHandler(this.buttonFinish_Click);
             // 
             // panelContent
             // 
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(198, 0);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(602, 390);
+            this.panelContent.Size = new System.Drawing.Size(566, 363);
             this.panelContent.TabIndex = 3;
             // 
             // NewFileWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(764, 423);
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelImage);
             this.Controls.Add(this.panelNavigation);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "NewFileWizard";
             this.Text = "Wizard";
             this.panelImage.ResumeLayout(false);
