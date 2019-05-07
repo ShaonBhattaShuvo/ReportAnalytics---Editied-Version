@@ -102,7 +102,6 @@
     <Compile Include="Models\Tables\EptTable.cs" />
     <Compile Include="Models\Tables\Table.cs" />
     <Compile Include="Models\EptReportModel.cs" />
-    <Compile Include="Templates\EptReportConfig.cs" />
     <Compile Include="Types\TData.cs" />
     <Compile Include="Types\TBounds.cs" />
     <Compile Include="Types\TEptData.cs" />
@@ -214,6 +213,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Content Include="Config\EPTReport.xml" />
     <Content Include="TestFiles\figure.js" />
     <Content Include="TestFiles\index.html" />
     <Content Include="TestFiles\plotlyjs-bundle.js" />

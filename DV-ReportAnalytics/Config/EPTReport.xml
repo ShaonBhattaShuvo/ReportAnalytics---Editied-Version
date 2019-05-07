@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<ProcessConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Type>EPTReport</Type>
+  <Name>EPT Report Results</Name>
+  <InputSheetName>Results</InputSheetName>
+  <OutputSheetName>CombinedResults</OutputSheetName>
+  <ResultFormat>
+    <Delimiter>_</Delimiter>
+    <String>Name_Speed_Torque</String>
+  </ResultFormat>
+</ProcessConfiguration>

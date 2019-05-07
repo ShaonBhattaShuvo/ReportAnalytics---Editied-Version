@@ -1,10 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DV_ReportAnalytics.Constant;
-using DV_ReportAnalytics.Extensions;
+using DV_ReportAnalytics.Events;
+using SpreadsheetGear;
 using SpreadsheetGear.Windows.Forms;
 
 namespace DV_ReportAnalytics.Controllers
@@ -19,7 +16,7 @@ namespace DV_ReportAnalytics.Controllers
         {
             // TODO: change type dynamically
             //string type = _processConfig.GetNodeValue("Type");
-            string type = "EptReport";
+            string type = "EPTReport";
             // convert string to corresponding type
             if (Enum.TryParse<ModelTypes>(type, false, out ModelTypes t))
             {
@@ -30,7 +27,7 @@ namespace DV_ReportAnalytics.Controllers
                     _currentModel = t;
                     switch (_currentModel)
                     {
-                        case ModelTypes.EptReport:
+                        case ModelTypes.EPTReport:
                             _workbookModelController = new EptReportController(_mainForm);
                             break;
                         default:
@@ -43,6 +40,67 @@ namespace DV_ReportAnalytics.Controllers
             {
                 throw new Exception("Invalid type!");
             }
+        }
+
+        // process config window event call back
+        private void ProcessConfigUpdated(object sender, WorkbookConfigUpdateEventArgs e)
+        {
+            //_processConfig = e.Config;
+            InitModelController();
+        }
+
+        private void OpenWorkbookView(string path)
+        {
+            WorkbookView wbv = _mainForm.WorkbookView;
+            // Interrupt background calculation if necessary and acquire a lock on the workbook set.
+            wbv.GetLock();
+            try
+            {
+                // close previous before open a new file
+                wbv.ActiveWorkbook.Close();
+                wbv.ActiveWorkbook = wbv.ActiveWorkbookSet.Workbooks.Open(path);
+                wbv.Visible = true;
+                //printAllWorkbooks();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                wbv.ReleaseLock();
+            }
+        }
+
+        private void SaveWorkbookView(string path)
+        {
+            WorkbookView wbv = _mainForm.WorkbookView;
+            // Interrupt background calculation if necessary and acquire a lock on the workbook set.
+            wbv.GetLock();
+            try
+            {
+                wbv.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
+                //PrintAllWorkbooks();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+            finally
+            {
+                wbv.ReleaseLock();
+            }
+        }
+
+        private void PrintAllWorkbooks()
+        {
+            IWorkbooks wbs = _mainForm.WorkbookView.ActiveWorkbookSet.Workbooks;
+            Console.WriteLine("--------WorkbookView Items------------");
+            for (int i = 0; i < wbs.Count; i++)
+            {
+                Console.WriteLine(wbs[i].FullName);
+            }
+            Console.WriteLine("--------------------------------------");
         }
     }
 }
