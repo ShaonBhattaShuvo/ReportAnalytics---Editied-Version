@@ -132,6 +132,12 @@
     <Compile Include="Views\MainForm.Func.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Views\Wizard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\Wizard.Designer.cs">
+      <DependentUpon>Wizard.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Views\ProcessConfigForm.resx">
       <DependentUpon>ProcessConfigForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -151,6 +157,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Views\Wizard.resx">
+      <DependentUpon>Wizard.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
