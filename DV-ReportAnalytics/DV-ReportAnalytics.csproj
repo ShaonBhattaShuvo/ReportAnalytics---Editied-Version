@@ -251,7 +251,8 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Config\EPTReport.xml" />
+    <Content Include="Configurations\EPTReport.xml" />
+    <Content Include="Images\logo.png" />
     <Content Include="TestFiles\figure.js" />
     <Content Include="TestFiles\index.html" />
     <Content Include="TestFiles\plotlyjs-bundle.js" />

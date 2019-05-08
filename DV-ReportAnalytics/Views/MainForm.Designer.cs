@@ -53,7 +53,10 @@
             // toolStripMain
             // 
             this.toolStripMain.BackColor = System.Drawing.SystemColors.Control;
-            this.toolStripMain.ImageScalingSize = new System.Drawing.Size(28, 28);
+            this.toolStripMain.CanOverflow = false;
+            this.toolStripMain.GripMargin = new System.Windows.Forms.Padding(0);
+            this.toolStripMain.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripMain.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonOpenFile,
             this.toolStripButtonSaveFile,
@@ -61,15 +64,17 @@
             this.toolStripButtonTableDisplay,
             this.toolStripButtonGraphToggle,
             this.toolStripButtonHelp});
+            this.toolStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(1212, 35);
+            this.toolStripMain.Padding = new System.Windows.Forms.Padding(2, 0, 0, 2);
+            this.toolStripMain.Size = new System.Drawing.Size(784, 33);
             this.toolStripMain.TabIndex = 0;
             // 
             // splitContainerMain
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMain.Location = new System.Drawing.Point(0, 35);
+            this.splitContainerMain.Location = new System.Drawing.Point(0, 33);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel1
@@ -81,19 +86,17 @@
             this.splitContainerMain.Panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.splitContainerMain.Panel2.Controls.Add(this.graphContainer);
             this.splitContainerMain.Panel2Collapsed = true;
-            this.splitContainerMain.Size = new System.Drawing.Size(1212, 540);
+            this.splitContainerMain.Size = new System.Drawing.Size(784, 528);
             this.splitContainerMain.SplitterDistance = 1107;
             this.splitContainerMain.TabIndex = 1;
             // 
             // workbookView
             // 
-            this.workbookView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
+            this.workbookView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workbookView.FormulaBar = null;
-            this.workbookView.Location = new System.Drawing.Point(3, 3);
+            this.workbookView.Location = new System.Drawing.Point(0, 0);
             this.workbookView.Name = "workbookView";
-            this.workbookView.Size = new System.Drawing.Size(1206, 534);
+            this.workbookView.Size = new System.Drawing.Size(784, 528);
             this.workbookView.TabIndex = 0;
             this.workbookView.Visible = false;
             this.workbookView.WorkbookSetState = resources.GetString("workbookView.WorkbookSetState");
@@ -119,7 +122,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1137, 0);
+            this.button1.Location = new System.Drawing.Point(697, 2);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 2;
@@ -134,7 +137,7 @@
             this.toolStripButtonOpenFile.Image = global::DV_ReportAnalytics.Properties.Resources.folder_32;
             this.toolStripButtonOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonOpenFile.Name = "toolStripButtonOpenFile";
-            this.toolStripButtonOpenFile.Size = new System.Drawing.Size(32, 32);
+            this.toolStripButtonOpenFile.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonOpenFile.Tag = "Open";
             this.toolStripButtonOpenFile.Text = "Open File";
             this.toolStripButtonOpenFile.Click += new System.EventHandler(this.toolStripButtonOpenFile_Click);
@@ -146,7 +149,7 @@
             this.toolStripButtonSaveFile.Image = global::DV_ReportAnalytics.Properties.Resources.save_as_32;
             this.toolStripButtonSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSaveFile.Name = "toolStripButtonSaveFile";
-            this.toolStripButtonSaveFile.Size = new System.Drawing.Size(32, 32);
+            this.toolStripButtonSaveFile.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonSaveFile.Tag = "Save";
             this.toolStripButtonSaveFile.Text = "Save File";
             this.toolStripButtonSaveFile.Click += new System.EventHandler(this.toolStripButtonSaveFile_Click);
@@ -158,7 +161,7 @@
             this.toolStripButtonSettings.Image = global::DV_ReportAnalytics.Properties.Resources.settings_32;
             this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSettings.Name = "toolStripButtonSettings";
-            this.toolStripButtonSettings.Size = new System.Drawing.Size(32, 32);
+            this.toolStripButtonSettings.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonSettings.Tag = "Settings";
             this.toolStripButtonSettings.Text = "Settings";
             this.toolStripButtonSettings.Click += new System.EventHandler(this.toolStripButtonSettings_Click);
@@ -170,7 +173,7 @@
             this.toolStripButtonTableDisplay.Image = global::DV_ReportAnalytics.Properties.Resources.list_32;
             this.toolStripButtonTableDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonTableDisplay.Name = "toolStripButtonTableDisplay";
-            this.toolStripButtonTableDisplay.Size = new System.Drawing.Size(32, 32);
+            this.toolStripButtonTableDisplay.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonTableDisplay.Tag = "Table";
             this.toolStripButtonTableDisplay.Text = "Table Display";
             this.toolStripButtonTableDisplay.Click += new System.EventHandler(this.toolStripButtonTableDisplay_Click);
@@ -182,7 +185,7 @@
             this.toolStripButtonGraphToggle.Image = global::DV_ReportAnalytics.Properties.Resources.area_chart_32;
             this.toolStripButtonGraphToggle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonGraphToggle.Name = "toolStripButtonGraphToggle";
-            this.toolStripButtonGraphToggle.Size = new System.Drawing.Size(32, 32);
+            this.toolStripButtonGraphToggle.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonGraphToggle.Tag = "Graph";
             this.toolStripButtonGraphToggle.Text = "Toggle Graph Window";
             this.toolStripButtonGraphToggle.Click += new System.EventHandler(this.toolStripButtonGraphToggle_Click);
@@ -193,7 +196,7 @@
             this.toolStripButtonHelp.Image = global::DV_ReportAnalytics.Properties.Resources.help_32;
             this.toolStripButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonHelp.Name = "toolStripButtonHelp";
-            this.toolStripButtonHelp.Size = new System.Drawing.Size(32, 32);
+            this.toolStripButtonHelp.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonHelp.Tag = "Help";
             this.toolStripButtonHelp.Text = "Help";
             this.toolStripButtonHelp.Click += new System.EventHandler(this.toolStripButtonHelp_Click);
@@ -202,7 +205,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1212, 575);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.toolStripMain);

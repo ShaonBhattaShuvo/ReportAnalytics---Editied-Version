@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.panelImage = new System.Windows.Forms.Panel();
-            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panelNavigation = new System.Windows.Forms.Panel();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.buttonBack = new System.Windows.Forms.Button();
             this.buttonNext = new System.Windows.Forms.Button();
             this.buttonFinish = new System.Windows.Forms.Button();
             this.panelContent = new System.Windows.Forms.Panel();
+            this.pictureBox = new System.Windows.Forms.PictureBox();
             this.panelImage.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.panelNavigation.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).BeginInit();
             this.SuspendLayout();
             // 
             // panelImage
@@ -50,16 +50,6 @@
             this.panelImage.Name = "panelImage";
             this.panelImage.Size = new System.Drawing.Size(198, 363);
             this.panelImage.TabIndex = 1;
-            // 
-            // pictureBox
-            // 
-            this.pictureBox.ImageLocation = "https://media.licdn.com/dms/image/C4D0BAQErK04q8p9GCQ/company-logo_200_200/0?e=21" +
-    "59024400&v=beta&t=ZxTv7u47B3CbDBaCtIHjlsWfrjleXbqbZ5FF2cf3vE8";
-            this.pictureBox.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox.Name = "pictureBox";
-            this.pictureBox.Size = new System.Drawing.Size(194, 254);
-            this.pictureBox.TabIndex = 0;
-            this.pictureBox.TabStop = false;
             // 
             // panelNavigation
             // 
@@ -130,11 +120,24 @@
             // 
             // panelContent
             // 
+            this.panelContent.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(198, 0);
             this.panelContent.Name = "panelContent";
             this.panelContent.Size = new System.Drawing.Size(566, 363);
             this.panelContent.TabIndex = 3;
+            // 
+            // pictureBox
+            // 
+            this.pictureBox.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.pictureBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox.Image = global::DV_ReportAnalytics.Properties.Resources.logo;
+            this.pictureBox.ImageLocation = "";
+            this.pictureBox.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox.Name = "pictureBox";
+            this.pictureBox.Size = new System.Drawing.Size(198, 363);
+            this.pictureBox.TabIndex = 0;
+            this.pictureBox.TabStop = false;
             // 
             // NewFileWizard
             // 
@@ -150,9 +153,9 @@
             this.Name = "NewFileWizard";
             this.Text = "Wizard";
             this.panelImage.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panelNavigation.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.ResumeLayout(false);
 
         }

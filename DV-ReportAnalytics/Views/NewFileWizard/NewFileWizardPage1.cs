@@ -12,7 +12,6 @@ namespace DV_ReportAnalytics.Views
 {
     internal partial class NewFileWizardPage1 : UserControl, INewFileWizardPage
     {
-
         public NewFileWizardPage1()
         {
             InitializeComponent();
