@@ -62,7 +62,7 @@ namespace DV_ReportAnalytics.Controllers
 
         public void AppForm_HelpInfoButtonClicked()
         {
-            UserMessageUpdated(this, new UserMessageEventArgs("Implement Help/Info."));
+            
         }
 
         // TODO: remove them?
