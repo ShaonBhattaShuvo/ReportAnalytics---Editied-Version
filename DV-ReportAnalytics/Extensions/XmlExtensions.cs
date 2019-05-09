@@ -7,7 +7,7 @@ using System.Xml;
 
 namespace DV_ReportAnalytics.Extensions
 {
-    internal static class XmlExtension
+    internal static class XmlExtensions
     {
         // generic method for xml document
         // cast string to to other type

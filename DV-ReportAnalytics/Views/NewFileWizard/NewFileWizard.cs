@@ -14,9 +14,9 @@ namespace DV_ReportAnalytics.Views
 {
     internal partial class NewFileWizard : Form, INewFileWizard
     {
-        public event NewFileWizardFinishEventHandler NewFileWizardFinish;
+        public event WizardFinishEventHandler WizardFinish;
 
-        private INewFileWizardPage[] _pages;
+        private IWizardPage[] _pages;
         private int _index;
         private XmlDocument[] _pageDocs; // contains config for each page
         private const int _PAGES = 2; // page number
@@ -24,7 +24,7 @@ namespace DV_ReportAnalytics.Views
         public NewFileWizard()
         {
             InitializeComponent();
-            _pages = new INewFileWizardPage[]
+            _pages = new IWizardPage[]
             {
                 new NewFileWizardPage1(),
                 new NewFileWizardPage2()
@@ -32,7 +32,7 @@ namespace DV_ReportAnalytics.Views
             // register page info
             for (int i = 0; i < _PAGES; i++)
             {
-                _pages[i].NewFileWizardPageReady += PageUpdate;
+                _pages[i].WizardPageReady += PageUpdate;
                 _pages[i].Dock = DockStyle.Fill;
             }
             _pageDocs = new XmlDocument[_PAGES];
@@ -69,11 +69,11 @@ namespace DV_ReportAnalytics.Views
             buttonNext.Enabled = !(_index >= (_PAGES - 1));
         }
 
-        private void PageUpdate(object sender, NewFileWizardPageReadyEventArgs e)
+        private void PageUpdate(object sender, WizardPageReadyEventArgs e)
         {
             if (e.OK)
             {
-                int pageNumber = ((INewFileWizardPage)sender).PageNumber;
+                int pageNumber = ((IWizardPage)sender).PageNumber;
                 _pageDocs[pageNumber - 1] = e.Doc;
             }
             

@@ -262,13 +262,13 @@
             this.textBoxType.Size = new System.Drawing.Size(177, 20);
             this.textBoxType.TabIndex = 20;
             // 
-            // EPTProcess
+            // EPTProcessPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tableLayoutPanel);
             this.Controls.Add(this.labelGeneral);
-            this.Name = "EPTProcess";
+            this.Name = "EPTProcessPanel";
             this.Size = new System.Drawing.Size(369, 374);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();

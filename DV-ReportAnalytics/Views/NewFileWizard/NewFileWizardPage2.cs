@@ -9,6 +9,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using DV_ReportAnalytics.Events;
+using DV_ReportAnalytics.Extensions;
+using DV_ReportAnalytics.Constants;
 
 namespace DV_ReportAnalytics.Views
 {
@@ -31,8 +33,18 @@ namespace DV_ReportAnalytics.Views
         public void Reload(XmlDocument[] docs)
         {
             // update from page 1
-            XmlNode root = (XmlNode)docs[1].DocumentElement;
-            _doc.Load(root.SelectSingleNode("Paths/ConfigPath").InnerText);
+            _doc.Load(docs[1].GetNodeValue("Paths/ConfigPath"));
+            ModelTypes t = _doc.GetNodeValue("Type").ToModelTypes();
+            switch (t)
+            {
+                case ModelTypes.EPTReport:
+                    _processPanel = new ProcessPanels.EPTProcessPanel();
+                    _processPanel.Reload(_doc);
+                    _processPanel.Dock = DockStyle.Fill;
+                    break;
+                default:
+                    break;
+            }
         }
 
         public XmlDocument Submit()
