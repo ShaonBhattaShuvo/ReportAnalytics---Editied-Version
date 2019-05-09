@@ -28,31 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.fileBrowserWithLabel2 = new DV_ReportAnalytics.Views.FileBrowserWithLabel();
-            this.fileBrowserWithLabel1 = new DV_ReportAnalytics.Views.FileBrowserWithLabel();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.fileBrowserWithLabelResult = new DV_ReportAnalytics.Views.Components.FileBrowserWithLabel();
+            this.fileBrowserWithLabelConfig = new DV_ReportAnalytics.Views.Components.FileBrowserWithLabel();
             this.SuspendLayout();
-            // 
-            // fileBrowserWithLabel2
-            // 
-            this.fileBrowserWithLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.fileBrowserWithLabel2.Description = "Configuration file path";
-            this.fileBrowserWithLabel2.Filter = "";
-            this.fileBrowserWithLabel2.Location = new System.Drawing.Point(3, 144);
-            this.fileBrowserWithLabel2.Name = "fileBrowserWithLabel2";
-            this.fileBrowserWithLabel2.Size = new System.Drawing.Size(642, 43);
-            this.fileBrowserWithLabel2.TabIndex = 1;
-            // 
-            // fileBrowserWithLabel1
-            // 
-            this.fileBrowserWithLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
-            this.fileBrowserWithLabel1.Description = "Report file path";
-            this.fileBrowserWithLabel1.Filter = "";
-            this.fileBrowserWithLabel1.Location = new System.Drawing.Point(3, 95);
-            this.fileBrowserWithLabel1.Name = "fileBrowserWithLabel1";
-            this.fileBrowserWithLabel1.Size = new System.Drawing.Size(642, 43);
-            this.fileBrowserWithLabel1.TabIndex = 0;
             // 
             // label1
             // 
@@ -74,26 +54,43 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "Or click \"Finish\" to continue with default configurations.";
             // 
+            // fileBrowserWithLabelResult
+            // 
+            this.fileBrowserWithLabelResult.Description = "Result file path";
+            this.fileBrowserWithLabelResult.Filter = "";
+            this.fileBrowserWithLabelResult.Location = new System.Drawing.Point(8, 95);
+            this.fileBrowserWithLabelResult.Name = "fileBrowserWithLabelResult";
+            this.fileBrowserWithLabelResult.Size = new System.Drawing.Size(320, 43);
+            this.fileBrowserWithLabelResult.TabIndex = 4;
+            // 
+            // fileBrowserWithLabelConfig
+            // 
+            this.fileBrowserWithLabelConfig.Description = "Configuration file path";
+            this.fileBrowserWithLabelConfig.Filter = "";
+            this.fileBrowserWithLabelConfig.Location = new System.Drawing.Point(8, 144);
+            this.fileBrowserWithLabelConfig.Name = "fileBrowserWithLabelConfig";
+            this.fileBrowserWithLabelConfig.Size = new System.Drawing.Size(320, 43);
+            this.fileBrowserWithLabelConfig.TabIndex = 5;
+            // 
             // NewFileWizardPage1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.fileBrowserWithLabelConfig);
+            this.Controls.Add(this.fileBrowserWithLabelResult);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.fileBrowserWithLabel2);
-            this.Controls.Add(this.fileBrowserWithLabel1);
             this.Name = "NewFileWizardPage1";
-            this.Size = new System.Drawing.Size(648, 278);
+            this.Size = new System.Drawing.Size(539, 213);
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private FileBrowserWithLabel fileBrowserWithLabel1;
-        private FileBrowserWithLabel fileBrowserWithLabel2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private Components.FileBrowserWithLabel fileBrowserWithLabelResult;
+        private Components.FileBrowserWithLabel fileBrowserWithLabelConfig;
     }
 }

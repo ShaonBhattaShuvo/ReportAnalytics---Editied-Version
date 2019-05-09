@@ -5,7 +5,9 @@
   <InputSheetName>Results</InputSheetName>
   <OutputSheetName>CombinedResults</OutputSheetName>
   <ResultFormat>
+    <Text>Name_Speed_Torque</Text>
     <Delimiter>_</Delimiter>
-    <String>Name_Speed_Torque</String>
+    <TextColumn>0</TextColumn>
+    <ValueColumn>2</ValueColumn>
   </ResultFormat>
 </ProcessConfiguration>

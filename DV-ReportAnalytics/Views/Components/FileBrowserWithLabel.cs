@@ -1,16 +1,11 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using DV_ReportAnalytics.Events;
 
-namespace DV_ReportAnalytics.Views
+namespace DV_ReportAnalytics.Views.Components
 {
-    public partial class FileBrowserWithLabel : UserControl
+    internal partial class FileBrowserWithLabel : UserControl
     {
         [Category("Settings"), Description("Path is readonly.")]
         public string Path
@@ -31,6 +26,8 @@ namespace DV_ReportAnalytics.Views
             get { return openFileDialog.Filter; }
         }
 
+        public event FileBrowserWithLabelUpdateEventHandler FileBrowserWithLabelUpdate;
+
         public FileBrowserWithLabel()
         {
             InitializeComponent();
@@ -42,6 +39,8 @@ namespace DV_ReportAnalytics.Views
             {
                 Path = openFileDialog.FileName;
                 textBox.Text = Path;
+                if (FileBrowserWithLabelUpdate != null)
+                    FileBrowserWithLabelUpdate.Invoke(this, new FileBrowserWithLabelUpdateEventArgs(Path, true));
             }
         }
     }

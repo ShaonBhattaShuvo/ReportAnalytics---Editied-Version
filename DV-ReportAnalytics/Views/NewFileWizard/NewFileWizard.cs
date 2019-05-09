@@ -7,48 +7,49 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml;
+using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
     internal partial class NewFileWizard : Form, INewFileWizard
     {
-        private UserControl[] _pages;
+        public event NewFileWizardFinishEventHandler NewFileWizardFinish;
+
+        private INewFileWizardPage[] _pages;
         private int _index;
-        private int _maxIndex;
+        private XmlDocument[] _pageDocs; // contains config for each page
+        private const int _PAGES = 2; // page number
 
         public NewFileWizard()
         {
             InitializeComponent();
-            _pages = new UserControl[]
+            _pages = new INewFileWizardPage[]
             {
                 new NewFileWizardPage1(),
                 new NewFileWizardPage2()
             };
+            // register page info
+            for (int i = 0; i < _PAGES; i++)
+            {
+                _pages[i].NewFileWizardPageReady += PageUpdate;
+                _pages[i].Dock = DockStyle.Fill;
+            }
+            _pageDocs = new XmlDocument[_PAGES];
             _index = 0;
-            _maxIndex = _pages.Length - 1;
             RefreshPage();
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
-            if (_index == 0)
-                return;
-            else
-            {
-                _index -= 1;
-                RefreshPage();
-            }
+            _index -= 1;
+            RefreshPage();
         }
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
-            if (_index == _maxIndex)
-                return;
-            else
-            {
-                _index += 1;
-                RefreshPage();
-            }
+            _index += 1;
+            RefreshPage();
         }
 
         private void buttonFinish_Click(object sender, EventArgs e)
@@ -58,12 +59,24 @@ namespace DV_ReportAnalytics.Views
 
         private void RefreshPage()
         {
-            _pages[_index].Dock = DockStyle.Fill;
+            // reload configs from previous pages
+            _pages[_index].Reload(_pageDocs);
             panelContent.Controls.Clear();
-            panelContent.Controls.Add(_pages[_index]);
+            panelContent.Controls.Add((UserControl)_pages[_index]);
             _pages[_index].Show();
+            // button control
             buttonBack.Enabled = !(_index <= 0);
-            buttonNext.Enabled = !(_index >= _maxIndex);
+            buttonNext.Enabled = !(_index >= (_PAGES - 1));
+        }
+
+        private void PageUpdate(object sender, NewFileWizardPageReadyEventArgs e)
+        {
+            if (e.OK)
+            {
+                int pageNumber = ((INewFileWizardPage)sender).PageNumber;
+                _pageDocs[pageNumber - 1] = e.Doc;
+            }
+            
         }
     }
 }
