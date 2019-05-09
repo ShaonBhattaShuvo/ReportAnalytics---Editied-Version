@@ -121,6 +121,9 @@
   <data name="area_chart_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\area_chart-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ConfigurationTemplate_EPTReport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Configurations\EPTReport.xml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="folder_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Icons\folder-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
