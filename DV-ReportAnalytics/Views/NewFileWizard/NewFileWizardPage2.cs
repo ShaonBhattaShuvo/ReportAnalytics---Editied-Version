@@ -34,13 +34,14 @@ namespace DV_ReportAnalytics.Views
 
         public void Reload(XmlDocument[] docs)
         {
+
             // update from page 1
             _doc.Load(docs[0].GetNodeValue("ConfigPath"));
             ModelTypes t = _doc.GetNodeValue("Type").ToModelTypes();
+            Controls.Clear(); // clear before show new view
             switch (t)
             {
                 case ModelTypes.EPTReport:
-                    Controls.Clear();
                     _processPanel = new ProcessPanels.EPTProcessPanel();
                     _processPanel.Reload(_doc);
                     _processPanel.Dock = DockStyle.Fill;
