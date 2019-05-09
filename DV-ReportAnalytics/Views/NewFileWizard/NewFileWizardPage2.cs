@@ -12,18 +12,19 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal partial class NewFileWizardPage2 : UserControl, INewFileWizardPage
+    internal partial class NewFileWizardPage2 : UserControl, IWizardPage
     {
-        public event NewFileWizardPageReadyEventHandler NewFileWizardPageReady;
+        public event WizardPageReadyEventHandler WizardPageReady;
         public int PageNumber { get; }
-        public string Template { get; private set; }
-        public XmlDocument Doc { get; private set; }
+
+        private IProcessPanel _processPanel;
+        private XmlDocument _doc;
 
         public NewFileWizardPage2()
         {
             InitializeComponent();
-            Doc = new XmlDocument();
-            Doc.PreserveWhitespace = true;
+            _doc = new XmlDocument();
+            _doc.PreserveWhitespace = true;
             PageNumber = 2;
         }
 
@@ -31,7 +32,12 @@ namespace DV_ReportAnalytics.Views
         {
             // update from page 1
             XmlNode root = (XmlNode)docs[1].DocumentElement;
-            Doc.Load(root.SelectSingleNode("Paths/ConfigPath").InnerText);
+            _doc.Load(root.SelectSingleNode("Paths/ConfigPath").InnerText);
+        }
+
+        public XmlDocument Submit()
+        {
+            return _processPanel.Submit();
         }
     }
 }

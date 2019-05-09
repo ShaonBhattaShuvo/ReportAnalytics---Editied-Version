@@ -132,6 +132,19 @@ namespace DV_ReportAnalytics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+        ///&lt;Paths&gt;
+        ///  &lt;ResultPath&gt;&lt;/ResultPath&gt; 
+        ///  &lt;ConfigPath&gt;&lt;/ConfigPath&gt; 
+        ///&lt;/Paths&gt;.
+        /// </summary>
+        internal static string NewFileWizardPage1 {
+            get {
+                return ResourceManager.GetString("NewFileWizardPage1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap save_as_32 {

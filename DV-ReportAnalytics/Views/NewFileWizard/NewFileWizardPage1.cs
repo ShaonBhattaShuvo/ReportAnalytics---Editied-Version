@@ -6,28 +6,18 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal partial class NewFileWizardPage1 : UserControl, INewFileWizardPage
+    internal partial class NewFileWizardPage1 : UserControl, IWizardPage
     {
         private FileBrowserWithLabelUpdateEventArgs _result;
         private FileBrowserWithLabelUpdateEventArgs _config;
-        public event NewFileWizardPageReadyEventHandler NewFileWizardPageReady;
+        public event WizardPageReadyEventHandler WizardPageReady;
         public int PageNumber { get; }
-        public XmlDocument Doc { get; }
-        public string Template { get; } =
-            "<?xml version=\"1.0\" encoding=\"utf-8\"?>\n" +
-            "<Paths>\n" +
-            "   <ResultPath></ResultPath>\n" +
-            "   <ConfigPath></ConfigPath>\n" +
-            "</Paths>";
 
         public NewFileWizardPage1()
         {
             InitializeComponent();
             fileBrowserWithLabelResult.FileBrowserWithLabelUpdate += BrowserUpdate;
             fileBrowserWithLabelConfig.FileBrowserWithLabelUpdate += BrowserUpdate;
-            Doc = new XmlDocument();
-            Doc.PreserveWhitespace = true;
-            Doc.LoadXml(Template);
             PageNumber = 1;
         }
 
@@ -40,16 +30,24 @@ namespace DV_ReportAnalytics.Views
 
             if ((_result != null && _config != null) && (_result.OK && _config.OK))
             {
-                Doc.DocumentElement.SelectSingleNode("ResultPath").InnerText = _result.Path;
-                Doc.DocumentElement.SelectSingleNode("ConfigPath").InnerText = _config.Path;
-                if (NewFileWizardPageReady != null)
+                if (WizardPageReady != null)
                 {
-                    NewFileWizardPageReady.Invoke(this, new NewFileWizardPageReadyEventArgs(Doc, true));
+                    WizardPageReady.Invoke(this, new WizardPageReadyEventArgs(true));
                 }
             }
         }
 
         // generally the first page does not have to preload
         public void Reload(XmlDocument[] docs) { return; }
+
+        public XmlDocument Submit()
+        {
+            XmlDocument doc = new XmlDocument();
+            doc.PreserveWhitespace = true;
+            doc.Load(Properties.Resources.NewFileWizardPage1);
+            doc.DocumentElement.SelectSingleNode("ResultPath").InnerText = _result.Path;
+            doc.DocumentElement.SelectSingleNode("ConfigPath").InnerText = _config.Path;
+            return doc;
+        }
     }
 }

@@ -5,14 +5,13 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal interface INewFileWizardPage
+    internal interface IWizardPage
     {
-        event NewFileWizardPageReadyEventHandler NewFileWizardPageReady;
+        event WizardPageReadyEventHandler WizardPageReady;
         int PageNumber { get; }
-        string Template { get; }
-        XmlDocument Doc { get; }
         // load page according to previous pages
         void Reload(XmlDocument[] docs);
+        XmlDocument Submit();
 
         // UserControl members
         DockStyle Dock { set; get; }

@@ -11,9 +11,9 @@ using System.Xml;
 
 namespace DV_ReportAnalytics.Views.ProcessPanels
 {
-    internal partial class EPTProcess : UserControl, IProcessPanel
+    internal partial class EPTProcessPanel : UserControl, IProcessPanel
     {
-        public EPTProcess()
+        public EPTProcessPanel()
         {
             InitializeComponent();
         }

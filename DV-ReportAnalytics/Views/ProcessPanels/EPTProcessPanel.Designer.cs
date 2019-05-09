@@ -1,6 +1,6 @@
 ﻿namespace DV_ReportAnalytics.Views.ProcessPanels
 {
-    partial class EPTProcess
+    partial class EPTProcessPanel
     {
         /// <summary> 
         /// Required designer variable.
