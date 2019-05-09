@@ -13,7 +13,7 @@ namespace DV_ReportAnalytics.Controllers
         private IMainForm _mainForm;
         private IWorkbookModelController _workbookModelController;
         private IProcessConfigForm _processConfigForm;
-        private INewFileWizard _newFileWizard;
+        private IWizard _newFileWizard;
         public event UserMessageEventHandler UserMessageUpdated = null;
         private XmlDocument _processConfig;
         private ModelTypes _currentModel;

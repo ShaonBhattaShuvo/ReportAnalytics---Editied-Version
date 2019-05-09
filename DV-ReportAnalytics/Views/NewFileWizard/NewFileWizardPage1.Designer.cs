@@ -57,7 +57,7 @@
             // fileBrowserWithLabelResult
             // 
             this.fileBrowserWithLabelResult.Description = "Result file path";
-            this.fileBrowserWithLabelResult.Filter = "";
+            this.fileBrowserWithLabelResult.Filter = "Worksheets|*.xls;*.xlsx;*.xlsm;*.xlsb";
             this.fileBrowserWithLabelResult.Location = new System.Drawing.Point(8, 95);
             this.fileBrowserWithLabelResult.Name = "fileBrowserWithLabelResult";
             this.fileBrowserWithLabelResult.Size = new System.Drawing.Size(320, 43);
@@ -66,7 +66,7 @@
             // fileBrowserWithLabelConfig
             // 
             this.fileBrowserWithLabelConfig.Description = "Configuration file path";
-            this.fileBrowserWithLabelConfig.Filter = "";
+            this.fileBrowserWithLabelConfig.Filter = "Configuration Files|*.xml";
             this.fileBrowserWithLabelConfig.Location = new System.Drawing.Point(8, 144);
             this.fileBrowserWithLabelConfig.Name = "fileBrowserWithLabelConfig";
             this.fileBrowserWithLabelConfig.Size = new System.Drawing.Size(320, 43);

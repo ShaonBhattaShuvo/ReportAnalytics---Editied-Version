@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace DV_ReportAnalytics.Views
 {
-    interface INewFileWizard : IBaseForm
+    internal interface IWizard : IBaseForm
     {
     }
 }

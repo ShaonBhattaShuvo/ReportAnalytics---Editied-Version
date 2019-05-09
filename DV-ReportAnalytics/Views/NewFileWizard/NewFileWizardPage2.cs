@@ -40,10 +40,12 @@ namespace DV_ReportAnalytics.Views
             switch (t)
             {
                 case ModelTypes.EPTReport:
+                    Controls.Clear();
                     _processPanel = new ProcessPanels.EPTProcessPanel();
                     _processPanel.Reload(_doc);
                     _processPanel.Dock = DockStyle.Fill;
                     Controls.Add((UserControl)_processPanel);
+                    _processPanel.Show();
                     Ready = true;
                     break;
                 default:

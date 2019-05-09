@@ -96,7 +96,7 @@
     <Compile Include="Interfaces\Types\ITEptData.cs" />
     <Compile Include="Interfaces\Types\ITTabular.cs" />
     <Compile Include="Interfaces\Views\IEptConfigForm.cs" />
-    <Compile Include="Interfaces\Views\INewFileWizard.cs" />
+    <Compile Include="Interfaces\Views\IWizard.cs" />
     <Compile Include="Interfaces\Views\IWizardPage.cs" />
     <Compile Include="Interfaces\Views\IProcessConfigForm.cs" />
     <Compile Include="Interfaces\Views\IBaseForm.cs" />

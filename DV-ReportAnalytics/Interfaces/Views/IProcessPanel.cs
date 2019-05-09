@@ -12,5 +12,6 @@ namespace DV_ReportAnalytics.Views
         
         // UserControl members
         DockStyle Dock { set; get; }
+        void Show();
     }
 }

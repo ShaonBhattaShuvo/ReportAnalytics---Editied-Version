@@ -12,7 +12,7 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal partial class NewFileWizard : Form, INewFileWizard
+    internal partial class NewFileWizard : Form, IWizard
     {
         public event WizardFinishEventHandler WizardFinish;
 
@@ -37,21 +37,19 @@ namespace DV_ReportAnalytics.Views
             }
             _pageDocs = new XmlDocument[_PAGES];
             _index = 0;
-            RefreshPage();
+            RefreshPage(0);
         }
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
             _pageDocs[_index] = _pages[_index].Submit();
-            _index -= 1;
-            RefreshPage();
+            RefreshPage(-1);
         }
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
             _pageDocs[_index] = _pages[_index].Submit();
-            _index += 1;
-            RefreshPage();
+            RefreshPage(1);
         }
 
         private void buttonFinish_Click(object sender, EventArgs e)
@@ -71,10 +69,13 @@ namespace DV_ReportAnalytics.Views
             Close();
         }
 
-        private void RefreshPage()
+        private void RefreshPage(int step)
         {
+            _index += step;
             // reload configs from previous pages
-            _pages[_index].Reload(_pageDocs);
+            if (step == 1)
+                _pages[_index].Reload(_pageDocs);
+
             panelContent.Controls.Clear();
             panelContent.Controls.Add((UserControl)_pages[_index]);
             _pages[_index].Show();
@@ -85,7 +86,7 @@ namespace DV_ReportAnalytics.Views
         private void buttonEnable()
         {
             buttonBack.Enabled = !(_index <= 0);
-            buttonNext.Enabled = (_index < _PAGES) && (_pages[_index].Ready);
+            buttonNext.Enabled = (_index < _PAGES - 1) && (_pages[_index].Ready);
             buttonFinish.Enabled = _pages[0].Ready;
         }
 
