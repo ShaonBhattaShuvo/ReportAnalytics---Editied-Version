@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
+using DV_ReportAnalytics.Extensions;
 
 namespace DV_ReportAnalytics.Views.ProcessPanels
 {
@@ -23,27 +24,25 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
             XmlDocument doc = new XmlDocument();
             doc.PreserveWhitespace = true;
             doc.Load(Properties.Resources.ConfigurationTemplate_EPTReport);
-            XmlNode root = doc.DocumentElement;
-            root.SelectSingleNode("Name").InnerText = textBoxName.Text;
-            root.SelectSingleNode("InputSheetName").InnerText = textBoxInputSheetName.Text;
-            root.SelectSingleNode("OutputSheetName").InnerText = textBoxOutputSheetName.Text;
-            root.SelectSingleNode("ResultFormat/Text").InnerText = textBoxText.Text;
-            root.SelectSingleNode("ResultFormat/Delimiter").InnerText = textBoxDelimiter.Text;
-            root.SelectSingleNode("ResultFormat/TextColumn").InnerText = Convert.ToString(numericUpDownTextColumn.Value);
-            root.SelectSingleNode("ResultFormat/ValueColumn").InnerText = Convert.ToString(numericUpDownValueColumn.Value);
+            doc.SetNodeValue("Name", textBoxName.Text);
+            doc.SetNodeValue("InputSheetName", textBoxInputSheetName.Text);
+            doc.SetNodeValue("OutputSheetName", textBoxOutputSheetName.Text);
+            doc.SetNodeValue("ResultFormat/Text", textBoxText.Text);
+            doc.SetNodeValue("ResultFormat/Delimiter", textBoxDelimiter.Text);
+            doc.SetNodeValue("ResultFormat/TextColumn", numericUpDownTextColumn.Value);
+            doc.SetNodeValue("ResultFormat/ValueColumn", numericUpDownValueColumn.Value);
             return doc;
         }
 
         public void Reload(XmlDocument doc)
         {
-            XmlNode root = doc.DocumentElement;
-            textBoxName.Text = root.SelectSingleNode("Name").InnerText;
-            textBoxInputSheetName.Text = root.SelectSingleNode("InputSheetName").InnerText;
-            textBoxOutputSheetName.Text = root.SelectSingleNode("OutputSheetName").InnerText;
-            textBoxText.Text = root.SelectSingleNode("ResultFormat/Text").InnerText;
-            textBoxDelimiter.Text = root.SelectSingleNode("ResultFormat/Delimiter").InnerText;
-            numericUpDownTextColumn.Value = Convert.ToDecimal(root.SelectSingleNode("ResultFormat/TextColumn").InnerText);
-            numericUpDownValueColumn.Value = Convert.ToDecimal(root.SelectSingleNode("ResultFormat/ValueColumn").InnerText);
+            textBoxName.Text = doc.GetNodeValue("Name");
+            textBoxInputSheetName.Text = doc.GetNodeValue("InputSheetName");
+            textBoxOutputSheetName.Text = doc.GetNodeValue("OutputSheetName");
+            textBoxText.Text = doc.GetNodeValue("ResultFormat/Text");
+            textBoxDelimiter.Text = doc.GetNodeValue("ResultFormat/Delimiter");
+            numericUpDownTextColumn.Value = doc.GetNodeValue<decimal>("ResultFormat/TextColumn");
+            numericUpDownValueColumn.Value = doc.GetNodeValue<decimal>("ResultFormat/ValueColumn");
         }
     }
 }

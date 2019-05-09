@@ -23,6 +23,16 @@ namespace DV_ReportAnalytics.Extensions
             return source.DocumentElement.SelectSingleNode(xpath).InnerText;
         }
 
+        public static void SetNodeValue<T>(this XmlDocument source, string xpath, T value)
+        {
+            source.DocumentElement.SelectSingleNode(xpath).InnerText = Convert.ToString(value);
+        }
+
+        public static void SetNodeValue(this XmlDocument source, string xpath, string value)
+        {
+            source.DocumentElement.SelectSingleNode(xpath).InnerText = value;
+        }
+
         // generic method for xml node
         // cast string to to other type
         public static T GetNodeValue<T>(this XmlNode source, string xpath)
@@ -35,6 +45,16 @@ namespace DV_ReportAnalytics.Extensions
         public static string GetNodeValue(this XmlNode source, string xpath)
         {
             return source.SelectSingleNode(xpath).InnerText;
+        }
+
+        public static void SetNodeValue<T>(this XmlNode source, string xpath, T value)
+        {
+            source.SelectSingleNode(xpath).InnerText = Convert.ToString(value);
+        }
+
+        public static void SetNodeValue(this XmlNode source, string xpath, string value)
+        {
+            source.SelectSingleNode(xpath).InnerText = value;
         }
     }
 }
