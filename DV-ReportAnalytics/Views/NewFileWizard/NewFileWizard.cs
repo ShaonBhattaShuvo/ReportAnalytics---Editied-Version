@@ -42,18 +42,32 @@ namespace DV_ReportAnalytics.Views
 
         private void buttonBack_Click(object sender, EventArgs e)
         {
+            _pageDocs[_index] = _pages[_index].Submit();
             _index -= 1;
             RefreshPage();
         }
 
         private void buttonNext_Click(object sender, EventArgs e)
         {
+            _pageDocs[_index] = _pages[_index].Submit();
             _index += 1;
             RefreshPage();
         }
 
         private void buttonFinish_Click(object sender, EventArgs e)
         {
+            // default action
+            for (int i = 0; i < _PAGES; i++)
+            {
+                if (_pageDocs[i] == null)
+                {
+                    _pages[i].Reload(_pageDocs);
+                    _pageDocs[i] = _pages[i].Submit();
+                }
+            }
+            if (WizardFinish != null)
+                WizardFinish.Invoke(this, new WizardFinishEventArgs(_pageDocs, true));
+
             Close();
         }
 
@@ -65,18 +79,20 @@ namespace DV_ReportAnalytics.Views
             panelContent.Controls.Add((UserControl)_pages[_index]);
             _pages[_index].Show();
             // button control
+            buttonEnable();
+        }
+
+        private void buttonEnable()
+        {
             buttonBack.Enabled = !(_index <= 0);
-            buttonNext.Enabled = !(_index >= (_PAGES - 1));
+            buttonNext.Enabled = (_index < _PAGES) && (_pages[_index].Ready);
+            buttonFinish.Enabled = _pages[0].Ready;
         }
 
         private void PageUpdate(object sender, WizardPageReadyEventArgs e)
         {
-            if (e.OK)
-            {
-                int pageNumber = ((IWizardPage)sender).PageNumber;
-                _pageDocs[pageNumber - 1] = e.Doc;
-            }
-            
+            if (sender == _pages[0] && e.OK)
+                buttonEnable();
         }
     }
 }

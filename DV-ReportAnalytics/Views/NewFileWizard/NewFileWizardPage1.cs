@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.ComponentModel;
 using DV_ReportAnalytics.Events;
+using DV_ReportAnalytics.Extensions;
 
 namespace DV_ReportAnalytics.Views
 {
@@ -10,8 +11,10 @@ namespace DV_ReportAnalytics.Views
     {
         private FileBrowserWithLabelUpdateEventArgs _result;
         private FileBrowserWithLabelUpdateEventArgs _config;
+
         public event WizardPageReadyEventHandler WizardPageReady;
         public int PageNumber { get; }
+        public bool Ready { get; private set; }
 
         public NewFileWizardPage1()
         {
@@ -19,6 +22,7 @@ namespace DV_ReportAnalytics.Views
             fileBrowserWithLabelResult.FileBrowserWithLabelUpdate += BrowserUpdate;
             fileBrowserWithLabelConfig.FileBrowserWithLabelUpdate += BrowserUpdate;
             PageNumber = 1;
+            Ready = false;
         }
 
         private void BrowserUpdate(object sender, FileBrowserWithLabelUpdateEventArgs e)
@@ -32,7 +36,8 @@ namespace DV_ReportAnalytics.Views
             {
                 if (WizardPageReady != null)
                 {
-                    WizardPageReady.Invoke(this, new WizardPageReadyEventArgs(true));
+                    Ready = true;
+                    WizardPageReady.Invoke(this, new WizardPageReadyEventArgs(Ready));
                 }
             }
         }
@@ -44,9 +49,9 @@ namespace DV_ReportAnalytics.Views
         {
             XmlDocument doc = new XmlDocument();
             doc.PreserveWhitespace = true;
-            doc.Load(Properties.Resources.NewFileWizardPage1);
-            doc.DocumentElement.SelectSingleNode("ResultPath").InnerText = _result.Path;
-            doc.DocumentElement.SelectSingleNode("ConfigPath").InnerText = _config.Path;
+            doc.LoadXml(Properties.Resources.NewFileWizardPage1);
+            doc.SetNodeValue("ResultPath", _result.Path);
+            doc.SetNodeValue("ConfigPath", _config.Path);
             return doc;
         }
     }

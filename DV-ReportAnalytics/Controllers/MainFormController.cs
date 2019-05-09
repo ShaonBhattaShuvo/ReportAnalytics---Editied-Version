@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Views;
-using DV_ReportAnalytics.Constant;
+using DV_ReportAnalytics.Constants;
 
 
 namespace DV_ReportAnalytics.Controllers

@@ -72,14 +72,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Interpolation.cs" />
-    <Compile Include="Constant\ModelTypes.cs" />
+    <Compile Include="Constants\ModelTypes.cs" />
     <Compile Include="Controllers\EptReportController.cs" />
     <Compile Include="Controllers\MainFormController.Func.cs" />
     <Compile Include="Events\ComponentEvents.cs" />
-    <Compile Include="Events\NewFileWizardEvents.cs" />
+    <Compile Include="Events\WizardEvents.cs" />
     <Compile Include="Events\WorkbookEvents.cs" />
     <Compile Include="Extensions\ToArrayExtensions.cs" />
-    <Compile Include="Extensions\XmlExtension.cs" />
+    <Compile Include="Extensions\ToEnumExtensions.cs" />
+    <Compile Include="Extensions\XmlExtensions.cs" />
     <Compile Include="Interfaces\Controllers\IEptReportController.cs" />
     <Compile Include="Interfaces\Controllers\IWorkbookModelController.cs" />
     <Compile Include="Interfaces\Controllers\IMainFormController.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="Interfaces\Types\ITTabular.cs" />
     <Compile Include="Interfaces\Views\IEptConfigForm.cs" />
     <Compile Include="Interfaces\Views\INewFileWizard.cs" />
-    <Compile Include="Interfaces\Views\INewFileWizardPage.cs" />
+    <Compile Include="Interfaces\Views\IWizardPage.cs" />
     <Compile Include="Interfaces\Views\IProcessConfigForm.cs" />
     <Compile Include="Interfaces\Views\IBaseForm.cs" />
     <Compile Include="Interfaces\Models\Tables\ITable.cs" />
@@ -161,11 +162,11 @@
     <Compile Include="Views\NewFileWizard\NewFileWizard.Designer.cs">
       <DependentUpon>NewFileWizard.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\ProcessPanels\EPTProcess.cs">
+    <Compile Include="Views\ProcessPanels\EPTProcessPanel.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\ProcessPanels\EPTProcess.Designer.cs">
-      <DependentUpon>EPTProcess.cs</DependentUpon>
+    <Compile Include="Views\ProcessPanels\EPTProcessPanel.Designer.cs">
+      <DependentUpon>EPTProcessPanel.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Views\Components\FileBrowserWithLabel.resx">
       <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
@@ -198,8 +199,8 @@
     <EmbeddedResource Include="Views\NewFileWizard\NewFileWizard.resx">
       <DependentUpon>NewFileWizard.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProcessPanels\EPTProcess.resx">
-      <DependentUpon>EPTProcess.cs</DependentUpon>
+    <EmbeddedResource Include="Views\ProcessPanels\EPTProcessPanel.resx">
+      <DependentUpon>EPTProcessPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -264,6 +265,7 @@
   <ItemGroup />
   <ItemGroup>
     <Content Include="Configurations\EPTReport.xml" />
+    <Content Include="Configurations\NewFileWizardPage1.xml" />
     <Content Include="Images\logo.png" />
     <Content Include="TestFiles\figure.js" />
     <Content Include="TestFiles\index.html" />

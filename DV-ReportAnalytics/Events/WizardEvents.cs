@@ -20,9 +20,11 @@ namespace DV_ReportAnalytics.Events
     internal class WizardFinishEventArgs : EventArgs
     {
         public XmlDocument[] Config { get; }
-        public WizardFinishEventArgs(XmlDocument[] config)
+        public bool OK { get; }
+        public WizardFinishEventArgs(XmlDocument[] config, bool ok)
         {
             Config = config;
+            OK = ok;
         }
     }
     internal delegate void WizardFinishEventHandler(object sender, WizardFinishEventArgs e);

@@ -14,6 +14,8 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
 {
     internal partial class EPTProcessPanel : UserControl, IProcessPanel
     {
+        private XmlDocument _doc;
+
         public EPTProcessPanel()
         {
             InitializeComponent();
@@ -21,21 +23,20 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
 
         public XmlDocument Submit()
         {
-            XmlDocument doc = new XmlDocument();
-            doc.PreserveWhitespace = true;
-            doc.Load(Properties.Resources.ConfigurationTemplate_EPTReport);
-            doc.SetNodeValue("Name", textBoxName.Text);
-            doc.SetNodeValue("InputSheetName", textBoxInputSheetName.Text);
-            doc.SetNodeValue("OutputSheetName", textBoxOutputSheetName.Text);
-            doc.SetNodeValue("ResultFormat/Text", textBoxText.Text);
-            doc.SetNodeValue("ResultFormat/Delimiter", textBoxDelimiter.Text);
-            doc.SetNodeValue("ResultFormat/TextColumn", numericUpDownTextColumn.Value);
-            doc.SetNodeValue("ResultFormat/ValueColumn", numericUpDownValueColumn.Value);
-            return doc;
+            _doc.SetNodeValue("Type", textBoxType.Text);
+            _doc.SetNodeValue("Name", textBoxName.Text);
+            _doc.SetNodeValue("InputSheetName", textBoxInputSheetName.Text);
+            _doc.SetNodeValue("OutputSheetName", textBoxOutputSheetName.Text);
+            _doc.SetNodeValue("ResultFormat/Text", textBoxText.Text);
+            _doc.SetNodeValue("ResultFormat/Delimiter", textBoxDelimiter.Text);
+            _doc.SetNodeValue("ResultFormat/TextColumn", numericUpDownTextColumn.Value);
+            _doc.SetNodeValue("ResultFormat/ValueColumn", numericUpDownValueColumn.Value);
+            return _doc;
         }
 
         public void Reload(XmlDocument doc)
         {
+            textBoxType.Text = doc.GetNodeValue("Type");
             textBoxName.Text = doc.GetNodeValue("Name");
             textBoxInputSheetName.Text = doc.GetNodeValue("InputSheetName");
             textBoxOutputSheetName.Text = doc.GetNodeValue("OutputSheetName");
@@ -43,6 +44,7 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
             textBoxDelimiter.Text = doc.GetNodeValue("ResultFormat/Delimiter");
             numericUpDownTextColumn.Value = doc.GetNodeValue<decimal>("ResultFormat/TextColumn");
             numericUpDownValueColumn.Value = doc.GetNodeValue<decimal>("ResultFormat/ValueColumn");
+            _doc = doc;
         }
     }
 }

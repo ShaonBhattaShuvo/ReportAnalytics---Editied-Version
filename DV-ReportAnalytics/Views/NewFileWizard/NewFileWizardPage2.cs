@@ -18,6 +18,7 @@ namespace DV_ReportAnalytics.Views
     {
         public event WizardPageReadyEventHandler WizardPageReady;
         public int PageNumber { get; }
+        public bool Ready { get; private set; }
 
         private IProcessPanel _processPanel;
         private XmlDocument _doc;
@@ -28,12 +29,13 @@ namespace DV_ReportAnalytics.Views
             _doc = new XmlDocument();
             _doc.PreserveWhitespace = true;
             PageNumber = 2;
+            Ready = false;
         }
 
         public void Reload(XmlDocument[] docs)
         {
             // update from page 1
-            _doc.Load(docs[1].GetNodeValue("Paths/ConfigPath"));
+            _doc.Load(docs[0].GetNodeValue("ConfigPath"));
             ModelTypes t = _doc.GetNodeValue("Type").ToModelTypes();
             switch (t)
             {
@@ -41,6 +43,8 @@ namespace DV_ReportAnalytics.Views
                     _processPanel = new ProcessPanels.EPTProcessPanel();
                     _processPanel.Reload(_doc);
                     _processPanel.Dock = DockStyle.Fill;
+                    Controls.Add((UserControl)_processPanel);
+                    Ready = true;
                     break;
                 default:
                     break;

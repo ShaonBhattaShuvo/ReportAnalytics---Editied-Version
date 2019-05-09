@@ -9,6 +9,7 @@ namespace DV_ReportAnalytics.Views
     {
         event WizardPageReadyEventHandler WizardPageReady;
         int PageNumber { get; }
+        bool Ready { get; }
         // load page according to previous pages
         void Reload(XmlDocument[] docs);
         XmlDocument Submit();
