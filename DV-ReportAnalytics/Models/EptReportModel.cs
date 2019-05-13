@@ -111,5 +111,66 @@ namespace DV_ReportAnalytics.Models
                 WorkbookTableUpdate.Invoke(this, new WorkbookTableUpdateEventArgs(TableNames));
             }
         }
+
+        private bool OpenWorkbookView(string path)
+        {
+            WorkbookView wbv = _mainForm.WorkbookView;
+            bool success;
+            // Interrupt background calculation if necessary and acquire a lock on the workbook set.
+            wbv.GetLock();
+            try
+            {
+                // close previous before open a new file
+                wbv.ActiveWorkbook.Close();
+                wbv.ActiveWorkbook = wbv.ActiveWorkbookSet.Workbooks.Open(path);
+                wbv.Visible = true;
+                success = true;
+                //printAllWorkbooks();
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                success = false;
+            }
+            finally
+            {
+                wbv.ReleaseLock();
+            }
+            return success;
+        }
+
+        private bool SaveWorkbookView(string path)
+        {
+            WorkbookView wbv = _mainForm.WorkbookView;
+            bool success;
+            // Interrupt background calculation if necessary and acquire a lock on the workbook set.
+            wbv.GetLock();
+            try
+            {
+                wbv.ActiveWorkbook.SaveAs(path, SpreadsheetGear.FileFormat.OpenXMLWorkbook);
+                success = true;
+                //PrintAllWorkbooks();
+            }
+            catch (Exception e)
+            {
+                success = false;
+            }
+            finally
+            {
+                wbv.ReleaseLock();
+            }
+            return success;
+        }
+
+        private void PrintAllWorkbooks()
+        {
+            IWorkbooks wbs = _mainForm.WorkbookView.ActiveWorkbookSet.Workbooks;
+            Console.WriteLine("--------WorkbookView Items------------");
+            for (int i = 0; i < wbs.Count; i++)
+            {
+                Console.WriteLine(wbs[i].FullName);
+            }
+            Console.WriteLine("--------------------------------------");
+        }
     }
 }

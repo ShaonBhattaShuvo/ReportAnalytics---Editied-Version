@@ -9,59 +9,23 @@ namespace DV_ReportAnalytics.Views
     /// </summary>
     internal partial class MainForm : Form
     {
+        #region Properties and fields
+        public ToolStripButton ButtonOpenFile { get { return toolStripButtonOpenFile; } }
+        public ToolStripButton ButtonSaveFile { get { return toolStripButtonSaveFile; } }
+        public ToolStripButton ButtonSettings { get { return toolStripButtonSettings; } }
+        public ToolStripButton ButtonTableDisplay { get { return toolStripButtonTableDisplay; } }
+        public ToolStripButton ButtonGraphToggle { get { return toolStripButtonGraphToggle; } }
+        public ToolStripButton ButtonHelp { get { return toolStripButtonHelp; } }
+        public SplitContainer SplitContainer { get { return splitContainerMain; } }
+        private MainFormController _mainController;
+        #endregion
+
+        #region Methods
         public MainForm()
         {
             InitializeComponent();
+            _mainController = new MainFormController(this);
         }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
-            // bind controllers and models
-            _controller = new MainFormController(this);
-            _controller.UserMessageUpdated += _UserMessageUpdated;
-        }
-              
-        private void MainForm_Resize(object sender, EventArgs e)
-        {
-            // Adjust the sizing of the splitter panels
-            int panelwidth = (this.Size.Width - splitContainerMain.SplitterWidth) / 2;
-            splitContainerMain.SplitterDistance = panelwidth;
-        }
-
-        private void toolStripButtonOpenFile_Click(object sender, EventArgs e)
-        {
-            _controller.AppForm_OpenButtonClicked();
-        }
-
-        private void toolStripButtonSaveFile_Click(object sender, EventArgs e)
-        {
-            _controller.AppForm_SaveButtonClicked();
-        }
-
-        private void toolStripButtonTableDisplay_Click(object sender, EventArgs e)
-        {
-            _controller.AppForm_TableButtonClicked();
-        }
-
-        private void toolStripButtonGraphToggle_Click(object sender, EventArgs e)
-        {
-            // Determine whether to show the graph which depends on the state of the splitter
-            splitContainerMain.Panel2Collapsed = !splitContainerMain.Panel2Collapsed;
-            _controller.AppForm_GraphButtonClicked();
-        }
-
-        private void toolStripButtonSettings_Click(object sender, EventArgs e)
-        {
-            _controller.AppForm_SettingsButtonClicked();
-        }
-
-        private void toolStripButtonHelp_Click(object sender, EventArgs e)
-        {
-            _controller.AppForm_HelpInfoButtonClicked();
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-        }
+        #endregion
     }
 }
