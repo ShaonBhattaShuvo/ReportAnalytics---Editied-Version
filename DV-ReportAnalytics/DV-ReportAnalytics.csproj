@@ -74,7 +74,8 @@
     <Compile Include="Algorithms\Interpolation.cs" />
     <Compile Include="Constants\ModelTypes.cs" />
     <Compile Include="Controllers\EptReportController.cs" />
-    <Compile Include="Controllers\MainFormController.Func.cs" />
+    <Compile Include="Controllers\MainFormController.Bindings.cs" />
+    <Compile Include="Controllers\MainFormController.Logic.cs" />
     <Compile Include="Events\ComponentEvents.cs" />
     <Compile Include="Events\WizardEvents.cs" />
     <Compile Include="Events\WorkbookEvents.cs" />
@@ -153,9 +154,6 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Events\UserMessageEvent.cs" />
-    <Compile Include="Views\MainForm.Func.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="Views\NewFileWizard\NewFileWizard.cs">
       <SubType>Form</SubType>
     </Compile>

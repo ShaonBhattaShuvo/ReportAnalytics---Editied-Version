@@ -12,22 +12,31 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal partial class NewFileWizard : Form, IWizard
+    internal partial class OpenFileWizard : Form
     {
-        public event WizardFinishEventHandler WizardFinish;
+        #region Properties and fields
+        public Button ButtonBack { get { return buttonBack; } }
+        public Button ButtonNext { get { return buttonNext; } }
+        public Button ButtonFinish { get { return buttonFinish; } }
+        public IWizardPage[] Pages { get; }
+        #endregion
+
+        #region Events
+        public event Action<object, FormUpdateEventArgs> WizardFinished;
+        #endregion
 
         private IWizardPage[] _pages;
         private int _index;
         private XmlDocument[] _pageDocs; // contains config for each page
         private const int _PAGES = 2; // page number
 
-        public NewFileWizard()
+        public OpenFileWizard()
         {
             InitializeComponent();
             _pages = new IWizardPage[]
             {
-                new NewFileWizardPage1(),
-                new NewFileWizardPage2()
+                new OpenFileWizardPage1(),
+                new OpenFileWizardPage2()
             };
             // register page info
             for (int i = 0; i < _PAGES; i++)

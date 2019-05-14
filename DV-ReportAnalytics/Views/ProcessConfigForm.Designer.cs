@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.newFileWizardPage21 = new DV_ReportAnalytics.Views.NewFileWizardPage2();
+            this.newFileWizardPage21 = new DV_ReportAnalytics.Views.OpenFileWizardPage2();
             this.SuspendLayout();
             // 
             // newFileWizardPage21
@@ -56,6 +56,6 @@
 
         #endregion
 
-        private NewFileWizardPage2 newFileWizardPage21;
+        private OpenFileWizardPage2 newFileWizardPage21;
     }
 }

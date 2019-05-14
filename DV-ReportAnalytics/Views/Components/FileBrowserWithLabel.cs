@@ -1,24 +1,27 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Windows.Forms;
+using System.Xml;
 using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views.Components
 {
-    internal partial class FileBrowserWithLabel : UserControl
+    internal partial class FileBrowserWithLabel : UserControl, IBaseControl
     {
         [Category("Settings"), Description("Path is readonly.")]
         public string Path
         {
-            private set { textBox.Text = value; }
+            set { textBox.Text = value; }
             get { return textBox.Text; }
         }
+
         [Category("Settings"), Description("Description for this section.")]
         public string Description
         {
             set { label.Text = value; }
             get { return label.Text; }
         }
+
         [Category("Settings"), Description("Browser filter.")]
         public string Filter
         {
@@ -26,7 +29,9 @@ namespace DV_ReportAnalytics.Views.Components
             get { return openFileDialog.Filter; }
         }
 
-        public event FileBrowserWithLabelUpdateEventHandler FileBrowserWithLabelUpdate;
+        public XmlDocument Contents { set; get; }
+
+        public event Action<object, FormUpdateEventArgs> ContentsUpdated;
 
         public FileBrowserWithLabel()
         {
@@ -38,9 +43,7 @@ namespace DV_ReportAnalytics.Views.Components
             if (openFileDialog.ShowDialog() == DialogResult.OK)
             {
                 Path = openFileDialog.FileName;
-                textBox.Text = Path;
-                if (FileBrowserWithLabelUpdate != null)
-                    FileBrowserWithLabelUpdate.Invoke(this, new FileBrowserWithLabelUpdateEventArgs(Path, true));
+                ContentsUpdated?.Invoke(this, new FormUpdateEventArgs(Path));
             }
         }
     }

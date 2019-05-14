@@ -30,6 +30,5 @@ namespace DV_ReportAnalytics.Controllers
             }
         }
 
-        
     }
 }

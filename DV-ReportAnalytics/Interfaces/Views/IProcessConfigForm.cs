@@ -7,7 +7,7 @@ using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal interface IProcessConfigForm : IBaseForm
+    internal interface IProcessConfigForm : IBaseControl
     {
         // provide an event for controller to subscribe
         event WorkbookConfigUpdateEventHandler WorkbookConfigUpdate;

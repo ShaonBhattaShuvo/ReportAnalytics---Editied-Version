@@ -1,6 +1,6 @@
 ﻿namespace DV_ReportAnalytics.Views
 {
-    partial class NewFileWizard
+    partial class OpenFileWizard
     {
         /// <summary>
         /// Required designer variable.

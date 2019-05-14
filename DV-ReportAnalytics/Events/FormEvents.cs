@@ -28,4 +28,13 @@ namespace DV_ReportAnalytics.Events
         }
     }
     internal delegate void WizardFinishEventHandler(object sender, WizardFinishEventArgs e);
+
+    internal class FormUpdateEventArgs : EventArgs
+    {
+        public XmlDocument Contents { get; }
+        public string Message { get; }
+        public FormUpdateEventArgs(XmlDocument contents) { Contents = contents; }
+        public FormUpdateEventArgs(string message) { Message = message; }
+        public FormUpdateEventArgs(XmlDocument contents, string message) { Contents = contents; Message = message; }
+    }
 }
