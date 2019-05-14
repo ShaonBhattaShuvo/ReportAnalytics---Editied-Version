@@ -17,10 +17,10 @@ namespace DV_ReportAnalytics.Views
     internal partial class OpenFileWizardPage2 : UserControl, IWizardPage, IBaseControl
     {
         private IBaseControl _processPanel;
-        public event Action<object, FormUpdateEventArgs> ContentsUpdated;
+        public event Action<object, FormUpdateEventArgs> ContentUpdated;
         public int PageNumber { get; } = 2;
 
-        public XmlDocument Contents
+        public XmlDocument Content
         {
             set
             {
@@ -32,17 +32,22 @@ namespace DV_ReportAnalytics.Views
                 {
                     case ModelTypes.EPTReport:
                         _processPanel = new ProcessPanels.EPTProcessPanel();
-                        
                         break;
                     default:
+                        _processPanel = null;
                         break;
                 }
-                _processPanel?.Contents = value;
-                _processPanel?.Dock = DockStyle.Fill;
-                Controls.Add((UserControl)_processPanel);
-                _processPanel?.Show();
+                // add to panel
+                if (_processPanel != null)
+                {
+                    _processPanel.ContentUpdated += (object sender, FormUpdateEventArgs e) => UpdateContent();
+                    _processPanel.Content = value;
+                    _processPanel.Dock = DockStyle.Fill;
+                    Controls.Add((UserControl)_processPanel);
+                    _processPanel.Show();
+                }
             }
-            get { return _processPanel.Contents; }
+            get { return _processPanel.Content; }
         }
 
 
@@ -51,9 +56,9 @@ namespace DV_ReportAnalytics.Views
             InitializeComponent();
         }
 
-        private void InitializeClass()
+        private void UpdateContent()
         {
-
+            ContentUpdated?.Invoke(this, new FormUpdateEventArgs(Content));
         }
     }
 }

@@ -140,7 +140,7 @@
             this.panelContent.Size = new System.Drawing.Size(566, 363);
             this.panelContent.TabIndex = 3;
             // 
-            // NewFileWizard
+            // OpenFileWizard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -151,7 +151,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "NewFileWizard";
+            this.Name = "OpenFileWizard";
             this.Text = "Wizard";
             this.panelImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();

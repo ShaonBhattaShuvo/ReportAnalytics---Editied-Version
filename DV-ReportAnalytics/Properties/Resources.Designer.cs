@@ -71,27 +71,6 @@ namespace DV_ReportAnalytics.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;ProcessConfiguration xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
-        ///  &lt;Type&gt;EPTReport&lt;/Type&gt;
-        ///  &lt;Name&gt;EPT Report Results&lt;/Name&gt;
-        ///  &lt;InputSheetName&gt;Results&lt;/InputSheetName&gt;
-        ///  &lt;OutputSheetName&gt;CombinedResults&lt;/OutputSheetName&gt;
-        ///  &lt;ResultFormat&gt;
-        ///    &lt;Text&gt;Name_Speed_Torque&lt;/Text&gt;
-        ///    &lt;Delimiter&gt;_&lt;/Delimiter&gt;
-        ///    &lt;TextColumn&gt;0&lt;/TextColumn&gt;
-        ///    &lt;ValueColumn&gt;2&lt;/ValueColumn&gt;
-        ///  &lt;/ResultFormat&gt;
-        ///&lt;/ProcessConfiguration&gt;.
-        /// </summary>
-        internal static string ConfigurationTemplate_EPTReport {
-            get {
-                return ResourceManager.GetString("ConfigurationTemplate_EPTReport", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap folder_32 {
@@ -134,13 +113,23 @@ namespace DV_ReportAnalytics.Properties {
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
         ///&lt;Paths&gt;
-        ///  &lt;ResultPath&gt;&lt;/ResultPath&gt; 
-        ///  &lt;ConfigPath&gt;&lt;/ConfigPath&gt; 
+        ///  &lt;PathResult&gt;&lt;/PathResult&gt; 
+        ///  &lt;PathConfig&gt;&lt;/PathConfig&gt; 
         ///&lt;/Paths&gt;.
         /// </summary>
-        internal static string NewFileWizardPage1 {
+        internal static string Path {
             get {
-                return ResourceManager.GetString("NewFileWizardPage1", resourceCulture);
+                return ResourceManager.GetString("Path", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;DV_ReportAnalytics&gt;&lt;/DV_ReportAnalytics&gt;.
+        /// </summary>
+        internal static string Root {
+            get {
+                return ResourceManager.GetString("Root", resourceCulture);
             }
         }
         
@@ -161,6 +150,27 @@ namespace DV_ReportAnalytics.Properties {
             get {
                 object obj = ResourceManager.GetObject("settings_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
+        ///&lt;Settings xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
+        ///  &lt;Type&gt;EPTReport&lt;/Type&gt;
+        ///  &lt;Name&gt;EPT Report Results&lt;/Name&gt;
+        ///  &lt;InputSheetName&gt;Results&lt;/InputSheetName&gt;
+        ///  &lt;OutputSheetName&gt;CombinedResults&lt;/OutputSheetName&gt;
+        ///  &lt;ResultFormat&gt;
+        ///    &lt;Text&gt;Name_Speed_Torque&lt;/Text&gt;
+        ///    &lt;Delimiter&gt;_&lt;/Delimiter&gt;
+        ///    &lt;TextColumn&gt;0&lt;/TextColumn&gt;
+        ///    &lt;ValueColumn&gt;2&lt;/ValueColumn&gt;
+        ///  &lt;/ResultFormat&gt;
+        ///&lt;/Settings&gt;.
+        /// </summary>
+        internal static string Settings_EPTReport {
+            get {
+                return ResourceManager.GetString("Settings_EPTReport", resourceCulture);
             }
         }
     }

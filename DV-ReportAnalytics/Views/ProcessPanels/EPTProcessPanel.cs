@@ -15,9 +15,9 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
 {
     internal partial class EPTProcessPanel : UserControl, IBaseControl
     {
-        public event Action<object, FormUpdateEventArgs> ContentsUpdated;
+        public event Action<object, FormUpdateEventArgs> ContentUpdated;
 
-        public XmlDocument Contents
+        public XmlDocument Content
         {
             set
             {
@@ -25,24 +25,23 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
                 textBoxName.Text = value.GetNodeValue("Name");
                 textBoxInputSheetName.Text = value.GetNodeValue("InputSheetName");
                 textBoxOutputSheetName.Text = value.GetNodeValue("OutputSheetName");
-                textBoxText.Text = value.GetNodeValue("ResultFormat/Text");
+                textBoxParameter.Text = value.GetNodeValue("ResultFormat/Text");
                 textBoxDelimiter.Text = value.GetNodeValue("ResultFormat/Delimiter");
-                numericUpDownTextColumn.Value = value.GetNodeValue<decimal>("ResultFormat/TextColumn");
+                numericUpDownParameterColumn.Value = value.GetNodeValue<decimal>("ResultFormat/TextColumn");
                 numericUpDownValueColumn.Value = value.GetNodeValue<decimal>("ResultFormat/ValueColumn");
-                ContentsUpdated?.Invoke(this, new FormUpdateEventArgs("true"));
             }
             get
             {
                 XmlDocument doc = new XmlDocument();
                 doc.PreserveWhitespace = true;
-                doc.Load(Properties.Resources.ConfigurationTemplate_EPTReport);
+                doc.Load(Properties.Resources.Settings_EPTReport);
                 doc.SetNodeValue("Type", textBoxType.Text);
                 doc.SetNodeValue("Name", textBoxName.Text);
                 doc.SetNodeValue("InputSheetName", textBoxInputSheetName.Text);
                 doc.SetNodeValue("OutputSheetName", textBoxOutputSheetName.Text);
-                doc.SetNodeValue("ResultFormat/Text", textBoxText.Text);
+                doc.SetNodeValue("ResultFormat/Text", textBoxParameter.Text);
                 doc.SetNodeValue("ResultFormat/Delimiter", textBoxDelimiter.Text);
-                doc.SetNodeValue("ResultFormat/TextColumn", numericUpDownTextColumn.Value);
+                doc.SetNodeValue("ResultFormat/TextColumn", numericUpDownParameterColumn.Value);
                 doc.SetNodeValue("ResultFormat/ValueColumn", numericUpDownValueColumn.Value);
                 return doc;
             }
@@ -51,6 +50,24 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
         public EPTProcessPanel()
         {
             InitializeComponent();
+            BindEvents();
+        }
+
+        private void BindEvents()
+        {
+            textBoxType.TextChanged += (object sender, EventArgs e) => UpdateContents();
+            textBoxName.TextChanged += (object sender, EventArgs e) => UpdateContents();
+            textBoxInputSheetName.TextChanged += (object sender, EventArgs e) => UpdateContents();
+            textBoxOutputSheetName.TextChanged += (object sender, EventArgs e) => UpdateContents();
+            textBoxParameter.TextChanged += (object sender, EventArgs e) => UpdateContents();
+            textBoxDelimiter.TextChanged += (object sender, EventArgs e) => UpdateContents();
+            numericUpDownParameterColumn.ValueChanged += (object sender, EventArgs e) => UpdateContents();
+            numericUpDownValueColumn.ValueChanged += (object sender, EventArgs e) => UpdateContents();
+        }
+
+        private void UpdateContents()
+        {
+            ContentUpdated?.Invoke(this, new FormUpdateEventArgs(Content));
         }
     }
 }

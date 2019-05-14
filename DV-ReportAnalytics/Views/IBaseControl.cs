@@ -7,8 +7,8 @@ namespace DV_ReportAnalytics.Views
 {
     internal interface IBaseControl
     {
-        XmlDocument Contents { set; get; }
-        event Action<object, FormUpdateEventArgs> ContentsUpdated;
+        XmlDocument Content { set; get; }
+        event Action<object, FormUpdateEventArgs> ContentUpdated;
 
         #region UserControl members
         DockStyle Dock { set; get; }

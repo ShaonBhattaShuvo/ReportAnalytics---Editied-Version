@@ -18,35 +18,21 @@ namespace DV_ReportAnalytics.Views
         public Button ButtonBack { get { return buttonBack; } }
         public Button ButtonNext { get { return buttonNext; } }
         public Button ButtonFinish { get { return buttonFinish; } }
-        public IWizardPage[] Pages { get; }
+        public IBaseControl[] Pages { get; }
         #endregion
 
         #region Events
         public event Action<object, FormUpdateEventArgs> WizardFinished;
         #endregion
 
-        private IWizardPage[] _pages;
-        private int _index;
-        private XmlDocument[] _pageDocs; // contains config for each page
-        private const int _PAGES = 2; // page number
-
         public OpenFileWizard()
         {
             InitializeComponent();
-            _pages = new IWizardPage[]
+            Pages = new IBaseControl[]
             {
-                new OpenFileWizardPage1(),
-                new OpenFileWizardPage2()
+                new OpenFileWizardPage1() { Dock = DockStyle.Fill },
+                new OpenFileWizardPage2() { Dock = DockStyle.Fill }
             };
-            // register page info
-            for (int i = 0; i < _PAGES; i++)
-            {
-                _pages[i].WizardPageReady += PageUpdate;
-                _pages[i].Dock = DockStyle.Fill;
-            }
-            _pageDocs = new XmlDocument[_PAGES];
-            _index = 0;
-            RefreshPage(0);
         }
 
         private void buttonBack_Click(object sender, EventArgs e)

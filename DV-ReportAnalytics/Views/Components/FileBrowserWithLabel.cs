@@ -29,22 +29,22 @@ namespace DV_ReportAnalytics.Views.Components
             get { return openFileDialog.Filter; }
         }
 
-        public XmlDocument Contents { set; get; }
+        public XmlDocument Content { set; get; }
 
-        public event Action<object, FormUpdateEventArgs> ContentsUpdated;
+        public event Action<object, FormUpdateEventArgs> ContentUpdated;
 
         public FileBrowserWithLabel()
         {
             InitializeComponent();
+            // change event binding if validation needed
+            textBox.TextChanged += 
+                (object sender, EventArgs e) => ContentUpdated?.Invoke(this, new FormUpdateEventArgs(Path));
         }
 
         private void button_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
                 Path = openFileDialog.FileName;
-                ContentsUpdated?.Invoke(this, new FormUpdateEventArgs(Path));
-            }
         }
     }
 }

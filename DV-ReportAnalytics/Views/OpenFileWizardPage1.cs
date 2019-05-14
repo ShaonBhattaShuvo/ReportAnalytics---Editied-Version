@@ -7,10 +7,11 @@ using DV_ReportAnalytics.Extensions;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal partial class OpenFileWizardPage1 : UserControl, IWizardPage
+    internal partial class OpenFileWizardPage1 : UserControl, IWizardPage, IBaseControl
     {
-        public event Action<object, FormUpdateEventArgs> PageUpdated;
+        public event Action<object, FormUpdateEventArgs> ContentUpdated;
         public int PageNumber { get; } = 1;
+
         public string PathResult
         {
             get { return fileBrowserWithLabelResult.Path; }
@@ -21,7 +22,7 @@ namespace DV_ReportAnalytics.Views
             get { return fileBrowserWithLabelConfig.Path; }
             set { fileBrowserWithLabelConfig.Path = value; }
         }
-        public XmlDocument Contents
+        public XmlDocument Content
         {
             set
             {
@@ -32,7 +33,7 @@ namespace DV_ReportAnalytics.Views
             {
                 XmlDocument doc = new XmlDocument();
                 doc.PreserveWhitespace = true;
-                doc.LoadXml(Properties.Resources.NewFileWizardPage1);
+                doc.LoadXml(Properties.Resources.Path);
                 doc.SetNodeValue("PathResult", PathResult);
                 doc.SetNodeValue("PathConfig", PathConfig);
                 return doc;
@@ -42,21 +43,16 @@ namespace DV_ReportAnalytics.Views
         public OpenFileWizardPage1()
         {
             InitializeComponent();
-            InitializeClass();
-        }
-
-        private void InitializeClass()
-        {
-            fileBrowserWithLabelResult.ContentsUpdated += (object sender, FormUpdateEventArgs e) => UpdateFromBrowser();
-            fileBrowserWithLabelConfig.ContentsUpdated += (object sender, FormUpdateEventArgs e) => UpdateFromBrowser();
+            fileBrowserWithLabelResult.ContentUpdated += (object sender, FormUpdateEventArgs e) => UpdateFromBrowser();
+            fileBrowserWithLabelConfig.ContentUpdated += (object sender, FormUpdateEventArgs e) => UpdateFromBrowser();
         }
 
         private void UpdateFromBrowser()
         {
             if (string.IsNullOrWhiteSpace(PathResult) || string.IsNullOrWhiteSpace(PathConfig))
-                PageUpdated?.Invoke(this, new FormUpdateEventArgs("false"));
+                ContentUpdated?.Invoke(this, new FormUpdateEventArgs("false"));
             else
-                PageUpdated?.Invoke(this, new FormUpdateEventArgs(Contents, "true"));
+                ContentUpdated?.Invoke(this, new FormUpdateEventArgs(Content, "true"));
         }
     }
 }

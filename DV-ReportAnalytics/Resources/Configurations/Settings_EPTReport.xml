@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<ProcessConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Type>EPTReport</Type>
   <Name>EPT Report Results</Name>
   <InputSheetName>Results</InputSheetName>
@@ -10,4 +10,4 @@
     <TextColumn>0</TextColumn>
     <ValueColumn>2</ValueColumn>
   </ResultFormat>
-</ProcessConfiguration>
+</Settings>

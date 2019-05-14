@@ -7,34 +7,13 @@ using System.Xml;
 
 namespace DV_ReportAnalytics.Events
 {
-    internal class WizardPageReadyEventArgs : EventArgs
-    {
-        public bool OK { get; }
-        public WizardPageReadyEventArgs(bool ok)
-        {
-            OK = ok;
-        }
-    }
-    internal delegate void WizardPageReadyEventHandler(object sender, WizardPageReadyEventArgs e);
-
-    internal class WizardFinishEventArgs : EventArgs
-    {
-        public XmlDocument[] Config { get; }
-        public bool OK { get; }
-        public WizardFinishEventArgs(XmlDocument[] config, bool ok)
-        {
-            Config = config;
-            OK = ok;
-        }
-    }
-    internal delegate void WizardFinishEventHandler(object sender, WizardFinishEventArgs e);
-
     internal class FormUpdateEventArgs : EventArgs
     {
-        public XmlDocument Contents { get; }
-        public string Message { get; }
-        public FormUpdateEventArgs(XmlDocument contents) { Contents = contents; }
+        public XmlDocument Content { get; } = null;
+        public string Message { get; } = null;
+        public FormUpdateEventArgs() { }
+        public FormUpdateEventArgs(XmlDocument content) { Content = content; }
         public FormUpdateEventArgs(string message) { Message = message; }
-        public FormUpdateEventArgs(XmlDocument contents, string message) { Contents = contents; Message = message; }
+        public FormUpdateEventArgs(XmlDocument content, string message) { Content = content; Message = message; }
     }
 }

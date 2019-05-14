@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using DV_ReportAnalytics.Views;
+using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Controllers
 {
@@ -17,20 +18,20 @@ namespace DV_ReportAnalytics.Controllers
         private XmlDocument _docs;
         #endregion
 
-        #region Bindings
+        #region Methods
+        public OpenFileWizardController(OpenFileWizard wizard)
+        {
+            _wizardForm = wizard;
+        }
+
         private void InitializeClass()
         {
             _wizardForm.ButtonBack.Click += (object sender, EventArgs e) => Wizard_BackButtonClicked();
             _wizardForm.ButtonNext.Click += (object sender, EventArgs e) => Wizard_NextButtonClicked();
             _wizardForm.ButtonFinish.Click += (object sender, EventArgs e) => Wizard_FinishButtonClicked();
-
-        }
-        #endregion
-
-        #region Methods
-        public OpenFileWizardController(OpenFileWizard wizard)
-        {
-            _wizardForm = wizard;
+            // bind
+            foreach (var page in _wizardForm.Pages)
+                page.ContentUpdated += UpdateFromPage;
         }
 
         private void Wizard_NextButtonClicked()
@@ -49,6 +50,16 @@ namespace DV_ReportAnalytics.Controllers
         }
 
         private void ButtonEnable()
+        {
+
+        }
+
+        private void UpdateFromPage(object sender, FormUpdateEventArgs e)
+        {
+
+        }
+
+        private void LoadPage(int index)
         {
 
         }
