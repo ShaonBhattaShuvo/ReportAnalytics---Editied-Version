@@ -15,34 +15,34 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
 {
     internal partial class EPTProcessPanel : UserControl, IBaseControl
     {
-        public event Action<object, FormUpdateEventArgs> ContentUpdated;
+        public event Action<object, ContentUpdateEventArgs> ContentUpdated;
 
         public XmlDocument Content
         {
             set
             {
-                textBoxType.Text = value.GetNodeValue("Type");
-                textBoxName.Text = value.GetNodeValue("Name");
-                textBoxInputSheetName.Text = value.GetNodeValue("InputSheetName");
-                textBoxOutputSheetName.Text = value.GetNodeValue("OutputSheetName");
-                textBoxParameter.Text = value.GetNodeValue("ResultFormat/Text");
-                textBoxDelimiter.Text = value.GetNodeValue("ResultFormat/Delimiter");
-                numericUpDownParameterColumn.Value = value.GetNodeValue<decimal>("ResultFormat/TextColumn");
-                numericUpDownValueColumn.Value = value.GetNodeValue<decimal>("ResultFormat/ValueColumn");
+                textBoxType.Text = value.GetNodeValue("Settings/Type");
+                textBoxName.Text = value.GetNodeValue("Settings/Name");
+                textBoxInputSheetName.Text = value.GetNodeValue("Settings/InputSheetName");
+                textBoxOutputSheetName.Text = value.GetNodeValue("Settings/OutputSheetName");
+                textBoxParameter.Text = value.GetNodeValue("Settings/ResultFormat/Text");
+                textBoxDelimiter.Text = value.GetNodeValue("Settings/ResultFormat/Delimiter");
+                numericUpDownParameterColumn.Value = value.GetNodeValue<decimal>("Settings/ResultFormat/TextColumn");
+                numericUpDownValueColumn.Value = value.GetNodeValue<decimal>("Settings/ResultFormat/ValueColumn");
             }
             get
             {
                 XmlDocument doc = new XmlDocument();
                 doc.PreserveWhitespace = true;
                 doc.Load(Properties.Resources.Settings_EPTReport);
-                doc.SetNodeValue("Type", textBoxType.Text);
-                doc.SetNodeValue("Name", textBoxName.Text);
-                doc.SetNodeValue("InputSheetName", textBoxInputSheetName.Text);
-                doc.SetNodeValue("OutputSheetName", textBoxOutputSheetName.Text);
-                doc.SetNodeValue("ResultFormat/Text", textBoxParameter.Text);
-                doc.SetNodeValue("ResultFormat/Delimiter", textBoxDelimiter.Text);
-                doc.SetNodeValue("ResultFormat/TextColumn", numericUpDownParameterColumn.Value);
-                doc.SetNodeValue("ResultFormat/ValueColumn", numericUpDownValueColumn.Value);
+                doc.SetNodeValue("Settings/Type", textBoxType.Text);
+                doc.SetNodeValue("Settings/Name", textBoxName.Text);
+                doc.SetNodeValue("Settings/InputSheetName", textBoxInputSheetName.Text);
+                doc.SetNodeValue("Settings/OutputSheetName", textBoxOutputSheetName.Text);
+                doc.SetNodeValue("Settings/ResultFormat/Text", textBoxParameter.Text);
+                doc.SetNodeValue("Settings/ResultFormat/Delimiter", textBoxDelimiter.Text);
+                doc.SetNodeValue("Settings/ResultFormat/TextColumn", numericUpDownParameterColumn.Value);
+                doc.SetNodeValue("Settings/ResultFormat/ValueColumn", numericUpDownValueColumn.Value);
                 return doc;
             }
         }
@@ -67,7 +67,7 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
 
         private void UpdateContents()
         {
-            ContentUpdated?.Invoke(this, new FormUpdateEventArgs(Content));
+            ContentUpdated?.Invoke(this, new ContentUpdateEventArgs(Content, "Settings"));
         }
     }
 }

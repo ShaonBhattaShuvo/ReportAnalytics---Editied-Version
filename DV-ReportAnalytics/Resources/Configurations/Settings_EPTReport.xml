@@ -1,13 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<Settings xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <Type>EPTReport</Type>
-  <Name>EPT Report Results</Name>
-  <InputSheetName>Results</InputSheetName>
-  <OutputSheetName>CombinedResults</OutputSheetName>
-  <ResultFormat>
-    <Text>Name_Speed_Torque</Text>
-    <Delimiter>_</Delimiter>
-    <TextColumn>0</TextColumn>
-    <ValueColumn>2</ValueColumn>
-  </ResultFormat>
-</Settings>
+<DV_ReportAnalytics>
+  <Settings>
+    <Type>EPTReport</Type>
+    <Name>EPT Report Results</Name>
+    <InputSheetName>Results</InputSheetName>
+    <OutputSheetName>CombinedResults</OutputSheetName>
+    <ResultFormat>
+      <Text>Name_Speed_Torque</Text>
+      <Delimiter>_</Delimiter>
+      <TextColumn>0</TextColumn>
+      <ValueColumn>2</ValueColumn>
+    </ResultFormat>
+  </Settings>
+</DV_ReportAnalytics>

@@ -29,16 +29,23 @@ namespace DV_ReportAnalytics.Views.Components
             get { return openFileDialog.Filter; }
         }
 
+        [Category("Settings"), Description("Browser filter.")]
+        public bool EnableTextBox
+        {
+            set { textBox.Enabled = value; }
+            get { return textBox.Enabled; }
+        }
+
         public XmlDocument Content { set; get; }
 
-        public event Action<object, FormUpdateEventArgs> ContentUpdated;
+        public event Action<object, ContentUpdateEventArgs> ContentUpdated;
 
         public FileBrowserWithLabel()
         {
             InitializeComponent();
             // change event binding if validation needed
             textBox.TextChanged += 
-                (object sender, EventArgs e) => ContentUpdated?.Invoke(this, new FormUpdateEventArgs(Path));
+                (object sender, EventArgs e) => ContentUpdated?.Invoke(this, new ContentUpdateEventArgs(Path));
         }
 
         private void button_Click(object sender, EventArgs e)

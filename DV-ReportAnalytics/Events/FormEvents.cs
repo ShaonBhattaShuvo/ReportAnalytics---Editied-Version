@@ -7,13 +7,13 @@ using System.Xml;
 
 namespace DV_ReportAnalytics.Events
 {
-    internal class FormUpdateEventArgs : EventArgs
+    internal class ContentUpdateEventArgs : EventArgs
     {
         public XmlDocument Content { get; } = null;
         public string Message { get; } = null;
-        public FormUpdateEventArgs() { }
-        public FormUpdateEventArgs(XmlDocument content) { Content = content; }
-        public FormUpdateEventArgs(string message) { Message = message; }
-        public FormUpdateEventArgs(XmlDocument content, string message) { Content = content; Message = message; }
+        public ContentUpdateEventArgs() { }
+        public ContentUpdateEventArgs(XmlDocument content) { Content = content; }
+        public ContentUpdateEventArgs(string message) { Message = message; }
+        public ContentUpdateEventArgs(XmlDocument content, string message) { Content = content; Message = message; }
     }
 }

@@ -18,6 +18,7 @@ namespace DV_ReportAnalytics.Views
         public Button ButtonBack { get { return buttonBack; } }
         public Button ButtonNext { get { return buttonNext; } }
         public Button ButtonFinish { get { return buttonFinish; } }
+        public Panel PanelContent { get { return panelContent; } }
         public IBaseControl[] Pages { get; }
         #endregion
 
@@ -30,8 +31,8 @@ namespace DV_ReportAnalytics.Views
             InitializeComponent();
             Pages = new IBaseControl[]
             {
-                new OpenFileWizardPage1() { Dock = DockStyle.Fill },
-                new OpenFileWizardPage2() { Dock = DockStyle.Fill }
+                new PathControl() { Dock = DockStyle.Fill }, // page 1
+                new SettingsControl() { Dock = DockStyle.Fill } // page 2
             };
         }
 

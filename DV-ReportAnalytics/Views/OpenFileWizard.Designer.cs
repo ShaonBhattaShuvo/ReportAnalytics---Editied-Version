@@ -153,6 +153,7 @@
             this.MinimizeBox = false;
             this.Name = "OpenFileWizard";
             this.Text = "Wizard";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.close);
             this.panelImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panelNavigation.ResumeLayout(false);
