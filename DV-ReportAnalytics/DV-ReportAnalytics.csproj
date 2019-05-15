@@ -98,16 +98,12 @@
     <Compile Include="Interfaces\Types\ITData.cs" />
     <Compile Include="Interfaces\Types\ITEptData.cs" />
     <Compile Include="Interfaces\Types\ITTabular.cs" />
-    <Compile Include="Interfaces\Views\IEptConfigForm.cs" />
-    <Compile Include="Interfaces\Views\IWizard.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Views\IProcessConfigForm.cs" />
     <Compile Include="Interfaces\Models\Tables\ITable.cs" />
-    <Compile Include="Interfaces\Views\IProcessPanel.cs" />
     <Compile Include="Models\IReportModel.cs" />
     <Compile Include="Tables\LookupTable-1key.cs" />
     <Compile Include="Tables\LookupTable-2keys.cs" />
@@ -119,7 +115,6 @@
     <Compile Include="Types\TBounds.cs" />
     <Compile Include="Types\TEptData.cs" />
     <Compile Include="Types\TTable.cs" />
-    <Compile Include="Interfaces\Views\IMainForm.cs" />
     <Compile Include="Types\TTabular.cs" />
     <Compile Include="Views\Components\FileBrowserWithLabel.cs">
       <SubType>UserControl</SubType>
@@ -128,6 +123,7 @@
       <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\IBaseControl.cs" />
+    <Compile Include="Views\IBaseForm.cs" />
     <Compile Include="Views\PathControl.cs">
       <SubType>UserControl</SubType>
     </Compile>

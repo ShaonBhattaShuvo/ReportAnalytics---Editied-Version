@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal interface IEptConfigForm : IBaseControl
+    internal interface IBaseForm
     {
-        // provide an event for controller to subscribe
-        event WorkbookConfigUpdateEventHandler WorkbookConfigUpdate;
+        event Action<object, ContentUpdateEventArgs> ContentUpdated;
+        void UpdateContent(XmlDocument doc);
     }
 }

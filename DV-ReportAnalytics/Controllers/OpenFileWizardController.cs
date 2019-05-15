@@ -7,13 +7,12 @@ using DV_ReportAnalytics.Extensions;
 
 namespace DV_ReportAnalytics.Controllers
 {
-    internal class OpenFileWizardController : IBaseController
+    internal class OpenFileWizardController
     {
         #region Properties and Fields
         private OpenFileWizard _wizardForm;
         private int _index;
         private XmlDocument _doc;
-        public event Action<object, ContentUpdateEventArgs> ContentUpdated;
         #endregion
 
         #region Methods
@@ -50,17 +49,19 @@ namespace DV_ReportAnalytics.Controllers
 
         private void Wizard_FinishButtonClicked()
         {
-            ContentUpdated?.Invoke(this, new ContentUpdateEventArgs(_doc, "From Wizard"));
+            // execute default parameters
+            for (int i = _index; i < _wizardForm.Pages.Length - 1; i++)
+                LoadPage(1);
+
+            _wizardForm.UpdateContent(_doc);
             _wizardForm.Close();
         }
 
         private void ButtonEnable()
         {
-            string result = _doc.GetNodeValue("Paths/PathResult");
-            string config = _doc.GetNodeValue("Paths/PathConfig");
             bool page1Ready =
-                !string.IsNullOrWhiteSpace(result) &&
-                !string.IsNullOrWhiteSpace(config);
+                !string.IsNullOrWhiteSpace(_doc.GetNodeValue("Paths/PathResult")) &&
+                !string.IsNullOrWhiteSpace(_doc.GetNodeValue("Paths/PathConfig"));
 
             _wizardForm.ButtonBack.Enabled = _index > 0;
             _wizardForm.ButtonNext.Enabled = (_index < _wizardForm.Pages.Length - 1) && page1Ready;

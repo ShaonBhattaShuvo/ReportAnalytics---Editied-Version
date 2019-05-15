@@ -12,6 +12,7 @@ namespace DV_ReportAnalytics.Controllers
     {
         private MainForm _mainForm;
         private ModelTypes _currentModel;
+        private XmlDocument _doc;
         
         public MainFormController(MainForm mainForm)
         {

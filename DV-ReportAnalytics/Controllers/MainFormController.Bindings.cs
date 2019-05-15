@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DV_ReportAnalytics.Views;
 using DV_ReportAnalytics.Constants;
+using DV_ReportAnalytics.Events;
 
 
 namespace DV_ReportAnalytics.Controllers
@@ -29,6 +30,7 @@ namespace DV_ReportAnalytics.Controllers
         private void MainForm_OpenButtonClicked()
         {
             OpenFileWizard wizard = new OpenFileWizard();
+            wizard.ContentUpdated += UpdateFromWizard;
             OpenFileWizardController controller = new OpenFileWizardController(wizard);
             wizard.Show();
         }
@@ -61,6 +63,11 @@ namespace DV_ReportAnalytics.Controllers
         private void MainForm_Resize()
         {
 
+        }
+
+        private void UpdateFromWizard(object sender, ContentUpdateEventArgs e)
+        {
+            _doc = e.Content;
         }
         #endregion
     }

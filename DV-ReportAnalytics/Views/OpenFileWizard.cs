@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Windows.Forms;
+using System.Xml;
 using DV_ReportAnalytics.Events;
 
 namespace DV_ReportAnalytics.Views
 {
-    internal partial class OpenFileWizard : Form
+    internal partial class OpenFileWizard : Form, IBaseForm
     {
         #region Properties and fields
         public Button ButtonBack { get { return buttonBack; } }
@@ -15,7 +16,7 @@ namespace DV_ReportAnalytics.Views
         #endregion
 
         #region Events
-        public event Action<object, ContentUpdateEventArgs> WizardFinished;
+        public event Action<object, ContentUpdateEventArgs> ContentUpdated;
         #endregion
 
         public OpenFileWizard()
@@ -27,6 +28,11 @@ namespace DV_ReportAnalytics.Views
                 new PathControl() { Dock = DockStyle.Fill }, // page 1
                 new SettingsControl() { Dock = DockStyle.Fill } // page 2
             };
+        }
+
+        public void UpdateContent(XmlDocument status)
+        {
+            ContentUpdated?.Invoke(this, new ContentUpdateEventArgs(status, "From Wizard"));
         }
     }
 }
