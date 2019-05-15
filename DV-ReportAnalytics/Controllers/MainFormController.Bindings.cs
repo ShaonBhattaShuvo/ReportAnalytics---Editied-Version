@@ -30,7 +30,7 @@ namespace DV_ReportAnalytics.Controllers
         private void MainForm_OpenButtonClicked()
         {
             OpenFileWizard wizard = new OpenFileWizard();
-            wizard.ContentUpdated += UpdateFromWizard;
+            wizard.ContentUpdated += UpdateSettings;
             OpenFileWizardController controller = new OpenFileWizardController(wizard);
             wizard.Show();
         }
@@ -65,9 +65,13 @@ namespace DV_ReportAnalytics.Controllers
 
         }
 
-        private void UpdateFromWizard(object sender, ContentUpdateEventArgs e)
+        private void UpdateSettings(object sender, ContentUpdateEventArgs e)
         {
-            _doc = e.Content;
+            if (_doc == null || !_doc.DocumentElement.OuterXml.Equals(e.Content.DocumentElement.OuterXml))
+            {
+                _doc = e.Content;
+                InitializeModel();
+            }
         }
         #endregion
     }

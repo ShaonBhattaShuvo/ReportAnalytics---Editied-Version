@@ -24,16 +24,15 @@ namespace DV_ReportAnalytics.Views
         {
             set
             {
-                PathResult = value.GetNodeValue("Paths/PathResult");
-                PathConfig = value.GetNodeValue("Paths/PathConfig");
+                PathResult = value.GetNodeValue("Paths/Result");
+                PathConfig = value.GetNodeValue("Paths/Config");
             }
             get
             {
                 XmlDocument doc = new XmlDocument();
-                doc.PreserveWhitespace = true;
                 doc.LoadXml(Properties.Resources.Path);
-                doc.SetNodeValue("Paths/PathResult", PathResult);
-                doc.SetNodeValue("Paths/PathConfig", PathConfig);
+                doc.SetNodeValue("Paths/Result", PathResult);
+                doc.SetNodeValue("Paths/Config", PathConfig);
                 return doc;
             }
         }

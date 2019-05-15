@@ -26,7 +26,6 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
             get
             {
                 XmlDocument doc = new XmlDocument();
-                doc.PreserveWhitespace = true;
                 doc.LoadXml(Properties.Resources.Settings_EPTReport);
                 doc.SetNodeValue("Settings/Type", textBoxType.Text);
                 doc.SetNodeValue("Settings/Name", textBoxName.Text);

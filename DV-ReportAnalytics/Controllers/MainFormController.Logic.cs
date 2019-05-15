@@ -14,19 +14,16 @@ namespace DV_ReportAnalytics.Controllers
         private void InitializeModel()
         {
             // avoid multiple instances being initiated
-            ModelTypes t = "EPTReport".ToModelTypes();
-            if (_currentModel != t)
+            ModelTypes t = _doc.GetNodeValue("Settings/Type").ToModelTypes();
+            string p = _doc.GetNodeValue("Paths/Result");
+            switch (_currentModel)
             {
-                _currentModel = t;
-                switch (_currentModel)
-                {
-                    case ModelTypes.EPTReport:
-                        // TODO: new model
-                        //_workbookModelController = new EptReportController(_mainForm);
-                        break;
-                    default:
-                        break;
-                }
+                case ModelTypes.EPTReport:
+                    // TODO: new model
+                    
+                    break;
+                default:
+                    break;
             }
         }
 

@@ -32,7 +32,7 @@ namespace DV_ReportAnalytics.Controllers
                 page.ContentUpdated += UpdateFromPage;
             // initialize document
             _doc = new XmlDocument();
-            _doc.LoadXml(Properties.Resources.Path);
+            _doc.LoadXml(Properties.Resources.Root);
             _index = 0;
             LoadPage(0);
         }
@@ -60,8 +60,8 @@ namespace DV_ReportAnalytics.Controllers
         private void ButtonEnable()
         {
             bool page1Ready =
-                !string.IsNullOrWhiteSpace(_doc.GetNodeValue("Paths/PathResult")) &&
-                !string.IsNullOrWhiteSpace(_doc.GetNodeValue("Paths/PathConfig"));
+                !string.IsNullOrWhiteSpace(_doc.GetNodeValue("Paths/Result")) &&
+                !string.IsNullOrWhiteSpace(_doc.GetNodeValue("Paths/Config"));
 
             _wizardForm.ButtonBack.Enabled = _index > 0;
             _wizardForm.ButtonNext.Enabled = (_index < _wizardForm.Pages.Length - 1) && page1Ready;

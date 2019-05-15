@@ -10,23 +10,19 @@ namespace DV_ReportAnalytics.Views
     internal partial class SettingsControl : UserControl, IBaseControl
     {
         private IBaseControl _processPanel;
-        private string oldPath;
+        private string _currentPath;
         public event Action<object, ContentUpdateEventArgs> ContentUpdated;
 
         public XmlDocument Content
         {
             set
             {
-                string newPath = value.GetNodeValue("Paths/PathConfig");
-                if (newPath.Equals(oldPath))
-                {
+                string newPath = value.GetNodeValue("Paths/Config");
+                if (newPath.Equals(_currentPath))
                     _processPanel.Content = value;
-                }
                 else
-                {
                     NewControl(newPath);
-                    oldPath = newPath;
-                }
+                _currentPath = newPath;
             }
             get { return _processPanel.Content; }
         }

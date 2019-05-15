@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DV_ReportAnalytics>
   <Paths>
-    <PathResult></PathResult>
-    <PathConfig></PathConfig>
+    <Result></Result>
+    <Config></Config>
   </Paths>
 </DV_ReportAnalytics>
