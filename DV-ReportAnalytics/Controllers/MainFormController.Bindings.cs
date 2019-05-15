@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using DV_ReportAnalytics.Views;
+using DV_ReportAnalytics.Constants;
+
 
 namespace DV_ReportAnalytics.Controllers
 {
@@ -13,6 +15,7 @@ namespace DV_ReportAnalytics.Controllers
         #region Binding methods
         private void InitializeClass()
         {
+            _currentModel = ModelTypes.None;
             /* binding UI actions */
             _mainForm.ButtonOpenFile.Click += (object sender, EventArgs e) => MainForm_OpenButtonClicked();
             _mainForm.ButtonSaveFile.Click += (object sender, EventArgs e) => MainForm_SaveButtonClicked();
@@ -25,7 +28,9 @@ namespace DV_ReportAnalytics.Controllers
 
         private void MainForm_OpenButtonClicked()
         {
-
+            OpenFileWizard wizard = new OpenFileWizard();
+            OpenFileWizardController controller = new OpenFileWizardController(wizard);
+            wizard.Show();
         }
 
         private void MainForm_SaveButtonClicked()

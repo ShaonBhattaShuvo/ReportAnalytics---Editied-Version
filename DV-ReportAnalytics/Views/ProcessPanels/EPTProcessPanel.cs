@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using DV_ReportAnalytics.Extensions;
@@ -34,7 +27,7 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
             {
                 XmlDocument doc = new XmlDocument();
                 doc.PreserveWhitespace = true;
-                doc.Load(Properties.Resources.Settings_EPTReport);
+                doc.LoadXml(Properties.Resources.Settings_EPTReport);
                 doc.SetNodeValue("Settings/Type", textBoxType.Text);
                 doc.SetNodeValue("Settings/Name", textBoxName.Text);
                 doc.SetNodeValue("Settings/InputSheetName", textBoxInputSheetName.Text);
@@ -50,11 +43,7 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
         public EPTProcessPanel()
         {
             InitializeComponent();
-            BindEvents();
-        }
 
-        private void BindEvents()
-        {
             textBoxType.TextChanged += (object sender, EventArgs e) => UpdateContents();
             textBoxName.TextChanged += (object sender, EventArgs e) => UpdateContents();
             textBoxInputSheetName.TextChanged += (object sender, EventArgs e) => UpdateContents();

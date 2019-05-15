@@ -13,6 +13,7 @@ namespace DV_ReportAnalytics.Views
         #region UserControl members
         DockStyle Dock { set; get; }
         void Show();
+        void Hide();
         void Dispose();
         #endregion
     }

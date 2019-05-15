@@ -74,10 +74,12 @@
     <Compile Include="Algorithms\Interpolation.cs" />
     <Compile Include="Constants\ModelTypes.cs" />
     <Compile Include="Controllers\EptReportController.cs" />
+    <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\MainFormController.Bindings.cs" />
     <Compile Include="Controllers\MainFormController.Logic.cs" />
+    <Compile Include="Controllers\OpenFileWizardController.cs" />
     <Compile Include="Events\ComponentEvents.cs" />
-    <Compile Include="Events\WizardEvents.cs" />
+    <Compile Include="Events\FormEvents.cs" />
     <Compile Include="Events\WorkbookEvents.cs" />
     <Compile Include="Extensions\ToArrayExtensions.cs" />
     <Compile Include="Extensions\ToEnumExtensions.cs" />
@@ -98,16 +100,20 @@
     <Compile Include="Interfaces\Types\ITTabular.cs" />
     <Compile Include="Interfaces\Views\IEptConfigForm.cs" />
     <Compile Include="Interfaces\Views\IWizard.cs" />
-    <Compile Include="Interfaces\Views\IWizardPage.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Interfaces\Views\IProcessConfigForm.cs" />
-    <Compile Include="Interfaces\Views\IBaseForm.cs" />
     <Compile Include="Interfaces\Models\Tables\ITable.cs" />
     <Compile Include="Interfaces\Views\IProcessPanel.cs" />
-    <Compile Include="Models\Tables\LookupTable-1key.cs" />
-    <Compile Include="Models\Tables\LookupTable-2keys.cs" />
-    <Compile Include="Models\Tables\CrossTable.cs" />
-    <Compile Include="Models\Tables\EptTable.cs" />
-    <Compile Include="Models\Tables\Table.cs" />
+    <Compile Include="Models\IReportModel.cs" />
+    <Compile Include="Tables\LookupTable-1key.cs" />
+    <Compile Include="Tables\LookupTable-2keys.cs" />
+    <Compile Include="Tables\CrossTable.cs" />
+    <Compile Include="Tables\EptTable.cs" />
+    <Compile Include="Tables\Table.cs" />
     <Compile Include="Models\EptReportModel.cs" />
     <Compile Include="Types\TData.cs" />
     <Compile Include="Types\TBounds.cs" />
@@ -121,29 +127,18 @@
     <Compile Include="Views\Components\FileBrowserWithLabel.Designer.cs">
       <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewFileWizard\NewFileWizardPage1.cs">
+    <Compile Include="Views\IBaseControl.cs" />
+    <Compile Include="Views\PathControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\NewFileWizard\NewFileWizardPage1.Designer.cs">
-      <DependentUpon>NewFileWizardPage1.cs</DependentUpon>
+    <Compile Include="Views\PathControl.Designer.cs">
+      <DependentUpon>PathControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\NewFileWizard\NewFileWizardPage2.cs">
+    <Compile Include="Views\SettingsControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Views\NewFileWizard\NewFileWizardPage2.Designer.cs">
-      <DependentUpon>NewFileWizardPage2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProcessConfigForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\ProcessConfigForm.Designer.cs">
-      <DependentUpon>ProcessConfigForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\EptConfigForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\EptConfigForm.Designer.cs">
-      <DependentUpon>EptConfigForm.cs</DependentUpon>
+    <Compile Include="Views\SettingsControl.Designer.cs">
+      <DependentUpon>SettingsControl.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MainForm.cs">
       <SubType>Form</SubType>
@@ -154,11 +149,11 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Events\UserMessageEvent.cs" />
-    <Compile Include="Views\NewFileWizard\NewFileWizard.cs">
+    <Compile Include="Views\OpenFileWizard.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Views\NewFileWizard\NewFileWizard.Designer.cs">
-      <DependentUpon>NewFileWizard.cs</DependentUpon>
+    <Compile Include="Views\OpenFileWizard.Designer.cs">
+      <DependentUpon>OpenFileWizard.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\ProcessPanels\EPTProcessPanel.cs">
       <SubType>UserControl</SubType>
@@ -169,33 +164,22 @@
     <EmbeddedResource Include="Views\Components\FileBrowserWithLabel.resx">
       <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\NewFileWizard\NewFileWizardPage1.resx">
-      <DependentUpon>NewFileWizardPage1.cs</DependentUpon>
+    <EmbeddedResource Include="Views\PathControl.resx">
+      <DependentUpon>PathControl.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\NewFileWizard\NewFileWizardPage2.resx">
-      <DependentUpon>NewFileWizardPage2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProcessConfigForm.resx">
-      <DependentUpon>ProcessConfigForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\EptConfigForm.resx">
-      <DependentUpon>EptConfigForm.cs</DependentUpon>
+    <EmbeddedResource Include="Views\SettingsControl.resx">
+      <DependentUpon>SettingsControl.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <EmbeddedResource Include="Views\NewFileWizard\NewFileWizard.resx">
-      <DependentUpon>NewFileWizard.cs</DependentUpon>
+    <EmbeddedResource Include="Views\OpenFileWizard.resx">
+      <DependentUpon>OpenFileWizard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Views\ProcessPanels\EPTProcessPanel.resx">
       <DependentUpon>EPTProcessPanel.cs</DependentUpon>
@@ -214,22 +198,22 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Icons\area_chart-32.png" />
+    <None Include="Resources\Icons\area_chart-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Icons\folder-32.png" />
+    <None Include="Resources\Icons\folder-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Icons\help-32.png" />
+    <None Include="Resources\Icons\help-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Icons\list-32.png" />
+    <None Include="Resources\Icons\list-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Icons\save_as-32.png" />
+    <None Include="Resources\Icons\save_as-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Icons\settings-32.png" />
+    <None Include="Resources\Icons\settings-32.png" />
   </ItemGroup>
   <ItemGroup>
     <COMReference Include="Microsoft.Office.Core">
@@ -262,9 +246,10 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Content Include="Configurations\EPTReport.xml" />
-    <Content Include="Configurations\NewFileWizardPage1.xml" />
-    <Content Include="Images\logo.png" />
+    <Content Include="Resources\Configurations\Root.xml" />
+    <Content Include="Resources\Configurations\Settings_EPTReport.xml" />
+    <Content Include="Resources\Configurations\Path.xml" />
+    <Content Include="Resources\Images\logo.png" />
     <Content Include="TestFiles\figure.js" />
     <Content Include="TestFiles\index.html" />
     <Content Include="TestFiles\plotlyjs-bundle.js" />

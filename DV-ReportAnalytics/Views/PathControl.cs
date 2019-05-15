@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Xml;
-using System.ComponentModel;
 using DV_ReportAnalytics.Events;
 using DV_ReportAnalytics.Extensions;
 
@@ -42,6 +41,7 @@ namespace DV_ReportAnalytics.Views
         public PathControl()
         {
             InitializeComponent();
+
             fileBrowserWithLabelResult.ContentUpdated += (object sender, ContentUpdateEventArgs e) => UpdateFromBrowser();
             fileBrowserWithLabelConfig.ContentUpdated += (object sender, ContentUpdateEventArgs e) => UpdateFromBrowser();
             fileBrowserWithLabelResult.EnableTextBox = false;

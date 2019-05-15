@@ -17,7 +17,6 @@ namespace DV_ReportAnalytics.Controllers
         {
             // mainform should be binded with controller here
             _mainForm = mainForm;
-            _currentModel = ModelTypes.None;
             InitializeClass();
         }
     }

@@ -35,7 +35,7 @@ namespace DV_ReportAnalytics.Controllers
         public void ShowModelView()
         {
             NewView();
-            _view.ShowDialog();
+            //_view.ShowDialog();
         }
 
         public void SetProcessConfig(XmlDocument config)
@@ -66,7 +66,7 @@ namespace DV_ReportAnalytics.Controllers
         // generate a new view and bind necessary events
         private void NewView()
         {
-            _view = new EptConfigForm(_displayConfig);
+            //_view = new EptConfigForm(_displayConfig);
             _view.WorkbookConfigUpdate += OnDisplayConfigUpdated;
         }
 

@@ -102,7 +102,6 @@
             this.buttonBack.TabIndex = 0;
             this.buttonBack.Text = "Back";
             this.buttonBack.UseVisualStyleBackColor = true;
-            this.buttonBack.Click += new System.EventHandler(this.buttonBack_Click);
             // 
             // buttonNext
             // 
@@ -115,7 +114,6 @@
             this.buttonNext.TabIndex = 1;
             this.buttonNext.Text = "Next";
             this.buttonNext.UseVisualStyleBackColor = true;
-            this.buttonNext.Click += new System.EventHandler(this.buttonNext_Click);
             // 
             // buttonFinish
             // 
@@ -129,7 +127,6 @@
             this.buttonFinish.TabIndex = 2;
             this.buttonFinish.Text = "Finish";
             this.buttonFinish.UseVisualStyleBackColor = true;
-            this.buttonFinish.Click += new System.EventHandler(this.buttonFinish_Click);
             // 
             // panelContent
             // 
@@ -153,7 +150,6 @@
             this.MinimizeBox = false;
             this.Name = "OpenFileWizard";
             this.Text = "Wizard";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.close);
             this.panelImage.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox)).EndInit();
             this.panelNavigation.ResumeLayout(false);

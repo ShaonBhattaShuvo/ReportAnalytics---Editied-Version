@@ -1,11 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using DV_ReportAnalytics.Events;
@@ -31,8 +24,7 @@ namespace DV_ReportAnalytics.Views
                 }
                 else
                 {
-                    string type = value.GetNodeValue("Settings/Type");
-                    NewControl(type, newPath);
+                    NewControl(newPath);
                     oldPath = newPath;
                 }
             }
@@ -47,17 +39,18 @@ namespace DV_ReportAnalytics.Views
 
         private void UpdateContent()
         {
-            ContentUpdated?.Invoke(this, new ContentUpdateEventArgs(Content));
+            ContentUpdated?.Invoke(this, new ContentUpdateEventArgs(Content, "Settings"));
         }
 
-        private void NewControl(string type, string configPath)
+        private void NewControl(string configPath)
         {
             Controls.Clear(); // clear before show new view
             _processPanel?.Dispose();
 
-            ModelTypes t = type.ToModelTypes();
+            
             XmlDocument d = new XmlDocument();
             d.Load(configPath);
+            ModelTypes t = d.GetNodeValue("Settings/Type").ToModelTypes();
             switch (t)
             {
                 case ModelTypes.EPTReport:
