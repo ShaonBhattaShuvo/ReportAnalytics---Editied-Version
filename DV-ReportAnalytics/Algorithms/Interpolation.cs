@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using DV_ReportAnalytics.Types;
 
 namespace DV_ReportAnalytics.Algorithms
 {
@@ -132,5 +130,20 @@ namespace DV_ReportAnalytics.Algorithms
                 }
             }
         }
+
+        public struct TBounds
+        {
+            public int LBound { get; }
+            public int UBound { get; }
+            public bool Overlapped { get; }
+
+            public TBounds(int lbound, int ubound)
+            {
+                LBound = lbound;
+                UBound = ubound;
+                Overlapped = lbound == ubound ? true : false;
+            }
+        }
+
     }
 }
