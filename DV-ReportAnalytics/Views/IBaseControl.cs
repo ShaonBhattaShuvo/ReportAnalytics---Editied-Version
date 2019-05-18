@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Xml;
 using System.Windows.Forms;
-using DV_ReportAnalytics.Events;
 
-namespace DV_ReportAnalytics.Views
+namespace DV_ReportAnalytics
 {
     internal interface IBaseControl
     {

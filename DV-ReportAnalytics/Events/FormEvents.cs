@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 
-namespace DV_ReportAnalytics.Events
+namespace DV_ReportAnalytics
 {
     internal class ContentUpdateEventArgs : EventArgs
     {

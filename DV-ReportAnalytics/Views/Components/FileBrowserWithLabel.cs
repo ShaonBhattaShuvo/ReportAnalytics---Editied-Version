@@ -2,9 +2,8 @@
 using System.ComponentModel;
 using System.Windows.Forms;
 using System.Xml;
-using DV_ReportAnalytics.Events;
 
-namespace DV_ReportAnalytics.Views.Components
+namespace DV_ReportAnalytics
 {
     internal partial class FileBrowserWithLabel : UserControl, IBaseControl
     {
@@ -44,7 +43,7 @@ namespace DV_ReportAnalytics.Views.Components
         {
             InitializeComponent();
             // change event binding if validation needed
-            textBox.TextChanged += 
+            textBox.TextChanged +=
                 (object sender, EventArgs e) => ContentUpdated?.Invoke(this, new ContentUpdateEventArgs(Path));
         }
 

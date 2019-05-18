@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Xml;
-using DV_ReportAnalytics.Events;
-using DV_ReportAnalytics.Extensions;
-using DV_ReportAnalytics.Constants;
 
-namespace DV_ReportAnalytics.Views
+namespace DV_ReportAnalytics
 {
     internal partial class SettingsControl : UserControl, IBaseControl
     {
@@ -43,7 +40,7 @@ namespace DV_ReportAnalytics.Views
             Controls.Clear(); // clear before show new view
             _processPanel?.Dispose();
 
-            
+
             XmlDocument d = new XmlDocument();
             d.Load(configPath);
             ModelTypes t = d.GetNodeValue("Settings/Type").ToModelTypes();

@@ -75,7 +75,7 @@
     <Compile Include="Controllers\MainFormController.Bindings.cs" />
     <Compile Include="Controllers\MainFormController.Logic.cs" />
     <Compile Include="Controllers\OpenFileWizardController.cs" />
-    <Compile Include="Database\SpreadSheetData.cs" />
+    <Compile Include="SpreadSheet\SpreadSheetData.cs" />
     <Compile Include="Events\FormEvents.cs" />
     <Compile Include="Extensions\ToArrayExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions.cs" />
@@ -86,6 +86,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="SpreadSheet\SpreadSheetDrawing.cs" />
     <Compile Include="Views\Components\FileBrowserWithLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>

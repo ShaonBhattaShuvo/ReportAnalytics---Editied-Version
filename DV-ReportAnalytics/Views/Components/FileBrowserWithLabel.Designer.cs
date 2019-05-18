@@ -1,4 +1,4 @@
-﻿namespace DV_ReportAnalytics.Views.Components
+﻿namespace DV_ReportAnalytics
 {
     partial class FileBrowserWithLabel
     {

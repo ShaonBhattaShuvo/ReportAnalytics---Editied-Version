@@ -1,12 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
-using DV_ReportAnalytics.Controllers;
 
-namespace DV_ReportAnalytics.Views
+namespace DV_ReportAnalytics
 {
-    /// <summary>
-    /// Do not touch this file. All the coding must be done in UIController.cs
-    /// </summary>
     internal partial class MainForm : Form
     {
         #region Properties and fields

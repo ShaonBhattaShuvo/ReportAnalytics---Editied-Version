@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Xml;
-using DV_ReportAnalytics.Events;
-using DV_ReportAnalytics.Extensions;
 
-namespace DV_ReportAnalytics.Views
+namespace DV_ReportAnalytics
 {
     internal partial class PathControl : UserControl, IBaseControl
     {

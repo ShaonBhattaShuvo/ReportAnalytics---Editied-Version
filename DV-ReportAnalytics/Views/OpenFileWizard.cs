@@ -1,9 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Xml;
-using DV_ReportAnalytics.Events;
 
-namespace DV_ReportAnalytics.Views
+namespace DV_ReportAnalytics
 {
     internal partial class OpenFileWizard : Form, IBaseForm
     {

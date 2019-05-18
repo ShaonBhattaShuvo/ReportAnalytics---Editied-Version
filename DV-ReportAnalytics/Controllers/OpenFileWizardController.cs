@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Xml;
-using DV_ReportAnalytics.Views;
-using DV_ReportAnalytics.Events;
-using DV_ReportAnalytics.Extensions;
 
-namespace DV_ReportAnalytics.Controllers
+namespace DV_ReportAnalytics
 {
     internal class OpenFileWizardController
     {
@@ -94,7 +91,5 @@ namespace DV_ReportAnalytics.Controllers
             ButtonEnable();
         }
         #endregion
-
-
     }
 }

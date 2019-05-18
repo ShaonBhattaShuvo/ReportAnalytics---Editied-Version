@@ -5,12 +5,10 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 
 /* Static methods for database creation */
-namespace DV_ReportAnalytics.Database
+namespace DV_ReportAnalytics
 {
     internal static class SpreadSheetData
     {

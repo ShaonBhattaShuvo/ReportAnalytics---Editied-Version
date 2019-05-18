@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DV_ReportAnalytics.Constants
+namespace DV_ReportAnalytics
 {
     internal enum ModelTypes : int { None = 0, EPTReport };
 

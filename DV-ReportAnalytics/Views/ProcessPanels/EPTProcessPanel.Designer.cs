@@ -1,4 +1,4 @@
-﻿namespace DV_ReportAnalytics.Views.ProcessPanels
+﻿namespace DV_ReportAnalytics
 {
     partial class EPTProcessPanel
     {

@@ -1,4 +1,4 @@
-﻿namespace DV_ReportAnalytics.Views
+﻿namespace DV_ReportAnalytics
 {
     partial class MainForm
     {

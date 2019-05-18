@@ -1,15 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 using System.Data;
-using DV_ReportAnalytics.Extensions;
-using DV_ReportAnalytics.Database;
 using SpreadsheetGear;
 
-namespace DV_ReportAnalytics.Models
+namespace DV_ReportAnalytics
 {
     internal class EPTModel
     {

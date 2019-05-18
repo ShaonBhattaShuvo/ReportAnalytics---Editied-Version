@@ -1,11 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Xml;
 
-namespace DV_ReportAnalytics.Extensions
+namespace DV_ReportAnalytics
 {
     internal static class XmlExtensions
     {

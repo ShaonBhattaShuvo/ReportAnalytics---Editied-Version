@@ -1,23 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using DV_ReportAnalytics.Views;
-using DV_ReportAnalytics.Constants;
-using DV_ReportAnalytics.Events;
-using DV_ReportAnalytics.Models;
 
-
-namespace DV_ReportAnalytics.Controllers
+namespace DV_ReportAnalytics
 {
     internal partial class MainFormController
     {
         #region Binding methods
         private void InitializeClass()
         {
-            _currentModel = ModelTypes.None;
             /* binding UI actions */
             _mainForm.ButtonOpenFile.Click += (object sender, EventArgs e) => MainForm_OpenButtonClicked();
             _mainForm.ButtonSaveFile.Click += (object sender, EventArgs e) => MainForm_SaveButtonClicked();

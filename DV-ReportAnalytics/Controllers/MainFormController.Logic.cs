@@ -1,13 +1,6 @@
 ﻿using System;
-using System.Xml;
-using DV_ReportAnalytics.Constants;
-using DV_ReportAnalytics.Events;
-using DV_ReportAnalytics.Views;
-using DV_ReportAnalytics.Extensions;
-using SpreadsheetGear;
-using SpreadsheetGear.Windows.Forms;
 
-namespace DV_ReportAnalytics.Controllers
+namespace DV_ReportAnalytics
 {
     internal partial class MainFormController
     {
@@ -19,8 +12,8 @@ namespace DV_ReportAnalytics.Controllers
             switch (t)
             {
                 case ModelTypes.EPTReport:
-                    model = new Models.EPTModel(_doc);
-                    
+                    model = new EPTModel(_doc);
+
                     break;
                 default:
                     break;

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DV_ReportAnalytics.Extensions
+namespace DV_ReportAnalytics
 {
     internal static class ToArrayExtensions
     {

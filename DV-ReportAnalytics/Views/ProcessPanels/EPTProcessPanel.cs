@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using System.Xml;
-using DV_ReportAnalytics.Extensions;
-using DV_ReportAnalytics.Events;
 
-namespace DV_ReportAnalytics.Views.ProcessPanels
+namespace DV_ReportAnalytics
 {
     internal partial class EPTProcessPanel : UserControl, IBaseControl
     {
