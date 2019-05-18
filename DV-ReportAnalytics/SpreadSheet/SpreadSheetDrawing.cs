@@ -11,7 +11,6 @@ namespace DV_ReportAnalytics
     {
         public static TableDataRange InsertTable<T>(this IRange source, TableDataSet<T> data)
         {
-            IRange topLeft = source.Worksheet.Cells[0, 0];
             // insert title
             IRange labelRange = source.Cells[0, 0];
             labelRange.Value = data.Label;
