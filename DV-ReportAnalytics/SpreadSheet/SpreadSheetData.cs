@@ -53,26 +53,26 @@ namespace DV_ReportAnalytics
          * @param values: Table row data. Support multiple lines;
          * @return void;
          */
-        public static void AddToDataSet(DataSet dataset, string tablename, string[] fields, object[] values)
+        public static void AddTable(this DataSet source, string tablename, string[] fields, object[] values)
         {
-            if (dataset.Tables.Contains(tablename))
+            if (source.Tables.Contains(tablename))
             {
-                dataset.Tables[tablename].Rows.Add(values);
+                source.Tables[tablename].Rows.Add(values);
             }
             else
             {
                 DataTable table = CreateDataTable(tablename, fields);
                 table.Rows.Add(values);
-                dataset.Tables.Add(table);
+                source.Tables.Add(table);
             }
         }
 
-        public static TableDataSet<object> ConvertToTableDataSet(DataTable table, int rowfield, int colfield, int datafield)
+        public static TableDataSet<object> ToTableDataSet(this DataTable source, int rowfield, int colfield, int datafield)
         {
             List<object> RowHeader = new List<object>();
             List<object> ColumnHeader = new List<object>();
 
-            foreach (DataRow row in table.Rows)
+            foreach (DataRow row in source.Rows)
             {
                 RowHeader.Add(row.Field<object>(rowfield));
                 ColumnHeader.Add(row.Field<object>(colfield));
@@ -86,11 +86,33 @@ namespace DV_ReportAnalytics
 
             // build data
             object[,] value = new object[RowHeader.Count, ColumnHeader.Count];
-            foreach (DataRow row in table.Rows)
+            foreach (DataRow row in source.Rows)
                 value[RowHeader.IndexOf(row.Field<object>(rowfield)), ColumnHeader.IndexOf(row.Field<object>(colfield))]
                     = row.Field<object>(datafield);
 
             return new TableDataSet<object>(RowHeader.ToArray(), ColumnHeader.ToArray(), value);
+        }
+
+        public static TableDataSet<double> ToDouble(this TableDataSet<object> source)
+        {
+            double[] rowheader = new double[source.RowHeader.Length];
+            double[] colheader = new double[source.ColumnHeader.Length];
+            double[,] databody = new double[source.DataBody.GetLength(0), source.DataBody.GetLength(1)];
+            Array.Copy(source.RowHeader, rowheader, source.RowHeader.Length);
+            Array.Copy(source.ColumnHeader, colheader, source.ColumnHeader.Length);
+            Array.Copy(source.DataBody, databody, source.DataBody.Length);
+            return new TableDataSet<double>(rowheader, colheader, databody);
+        }
+
+        public static TableDataSet<object> ToObject(this TableDataSet<double> source)
+        {
+            object[] rowheader = new object[source.RowHeader.Length];
+            object[] colheader = new object[source.ColumnHeader.Length];
+            object[,] databody = new object[source.DataBody.GetLength(0), source.DataBody.GetLength(1)];
+            Array.Copy(source.RowHeader, rowheader, source.RowHeader.Length);
+            Array.Copy(source.ColumnHeader, colheader, source.ColumnHeader.Length);
+            Array.Copy(source.DataBody, databody, source.DataBody.Length);
+            return new TableDataSet<object>(rowheader, colheader, databody);
         }
     }
 
