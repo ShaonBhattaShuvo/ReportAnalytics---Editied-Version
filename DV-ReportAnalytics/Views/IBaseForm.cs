@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Xml;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.UI
 {
     internal interface IBaseForm
     {

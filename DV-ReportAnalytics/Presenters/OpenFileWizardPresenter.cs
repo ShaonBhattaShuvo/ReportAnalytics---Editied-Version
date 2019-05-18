@@ -2,9 +2,9 @@
 using System.Windows.Forms;
 using System.Xml;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.UI
 {
-    internal class OpenFileWizardController
+    internal class OpenFileWizardPresenter
     {
         #region Properties and Fields
         private OpenFileWizard _wizardForm;
@@ -13,7 +13,7 @@ namespace DV_ReportAnalytics
         #endregion
 
         #region Methods
-        public OpenFileWizardController(OpenFileWizard wizard)
+        public OpenFileWizardPresenter(OpenFileWizard wizard)
         {
             _wizardForm = wizard;
             InitializeClass();

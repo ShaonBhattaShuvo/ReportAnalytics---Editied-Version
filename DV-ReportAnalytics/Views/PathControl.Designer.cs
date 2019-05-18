@@ -1,4 +1,4 @@
-﻿namespace DV_ReportAnalytics
+﻿namespace DV_ReportAnalytics.UI
 {
     partial class PathControl
     {
@@ -90,7 +90,7 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private Components.FileBrowserWithLabel fileBrowserWithLabelResult;
-        private Components.FileBrowserWithLabel fileBrowserWithLabelConfig;
+        private FileBrowserWithLabel fileBrowserWithLabelResult;
+        private FileBrowserWithLabel fileBrowserWithLabelConfig;
     }
 }

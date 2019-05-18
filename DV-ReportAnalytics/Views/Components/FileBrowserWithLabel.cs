@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Xml;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.UI
 {
     internal partial class FileBrowserWithLabel : UserControl, IBaseControl
     {

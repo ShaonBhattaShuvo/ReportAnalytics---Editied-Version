@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.UI
 {
-    internal partial class MainFormController
+    internal partial class MainFormPresenter
     {
         #region Binding methods
         private void InitializeClass()
@@ -21,7 +21,7 @@ namespace DV_ReportAnalytics
         {
             OpenFileWizard wizard = new OpenFileWizard();
             wizard.ContentUpdated += UpdateSettings;
-            OpenFileWizardController controller = new OpenFileWizardController(wizard);
+            OpenFileWizardPresenter presenter = new OpenFileWizardPresenter(wizard);
             wizard.Show();
             _mainForm.ButtonSaveFile.Enabled = true;
         }

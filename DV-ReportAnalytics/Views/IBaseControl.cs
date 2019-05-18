@@ -2,7 +2,7 @@
 using System.Xml;
 using System.Windows.Forms;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.UI
 {
     internal interface IBaseControl
     {

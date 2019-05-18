@@ -1,8 +1,8 @@
 ﻿using System;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.UI
 {
-    internal partial class MainFormController
+    internal partial class MainFormPresenter
     {
         private void InitializeModel()
         {

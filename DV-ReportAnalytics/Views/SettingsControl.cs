@@ -2,7 +2,7 @@
 using System.Windows.Forms;
 using System.Xml;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.UI
 {
     internal partial class SettingsControl : UserControl, IBaseControl
     {
@@ -47,7 +47,7 @@ namespace DV_ReportAnalytics
             switch (t)
             {
                 case ModelTypes.EPTReport:
-                    _processPanel = new ProcessPanels.EPTProcessPanel();
+                    _processPanel = new EPTProcessPanel();
                     break;
                 default:
                     _processPanel = null;

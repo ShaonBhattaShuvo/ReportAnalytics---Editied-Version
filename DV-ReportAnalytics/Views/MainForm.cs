@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.UI
 {
     internal partial class MainForm : Form
     {
@@ -13,14 +13,14 @@ namespace DV_ReportAnalytics
         public ToolStripButton ButtonGraphToggle { get { return toolStripButtonGraphToggle; } }
         public ToolStripButton ButtonHelp { get { return toolStripButtonHelp; } }
         public SplitContainer SplitContainer { get { return splitContainerMain; } }
-        private MainFormController _mainController;
+        private MainFormPresenter _mainPresenter;
         #endregion
 
         #region Methods
         public MainForm()
         {
             InitializeComponent();
-            _mainController = new MainFormController(this);
+            _mainPresenter = new MainFormPresenter(this);
         }
         #endregion
     }
