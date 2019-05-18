@@ -6,10 +6,10 @@
     <InputSheetName>Results</InputSheetName>
     <OutputSheetName>CombinedResults</OutputSheetName>
     <ResultFormat>
-      <Text>Name_Speed_Torque</Text>
+      <Parameter>Name_Speed_Torque</Parameter>
       <Delimiter>_</Delimiter>
-      <TextColumn>0</TextColumn>
-      <ValueColumn>2</ValueColumn>
+      <ParameterColumn>0</ParameterColumn>
+      <ValueColumn>3</ValueColumn>
     </ResultFormat>
   </Settings>
 </DV_ReportAnalytics>

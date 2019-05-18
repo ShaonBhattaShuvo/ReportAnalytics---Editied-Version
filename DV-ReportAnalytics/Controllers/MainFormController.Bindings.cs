@@ -7,6 +7,7 @@ using System.Windows.Forms;
 using DV_ReportAnalytics.Views;
 using DV_ReportAnalytics.Constants;
 using DV_ReportAnalytics.Events;
+using DV_ReportAnalytics.Models;
 
 
 namespace DV_ReportAnalytics.Controllers
@@ -33,11 +34,13 @@ namespace DV_ReportAnalytics.Controllers
             wizard.ContentUpdated += UpdateSettings;
             OpenFileWizardController controller = new OpenFileWizardController(wizard);
             wizard.Show();
+            _mainForm.ButtonSaveFile.Enabled = true;
         }
 
+        private EPTModel model;
         private void MainForm_SaveButtonClicked()
         {
-
+            model.Build();
         }
 
         private void MainForm_TableButtonClicked()

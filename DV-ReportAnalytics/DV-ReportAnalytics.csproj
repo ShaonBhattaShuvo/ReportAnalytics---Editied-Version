@@ -56,7 +56,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SpreadsheetGear2017.Core, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
-    <Reference Include="SpreadsheetGear2017.Drawing, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
     <Reference Include="SpreadsheetGear2017.Windows.Forms, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -73,49 +72,20 @@
   <ItemGroup>
     <Compile Include="Algorithms\Interpolation.cs" />
     <Compile Include="Constants\ModelTypes.cs" />
-    <Compile Include="Controllers\EptReportController.cs" />
-    <Compile Include="Controllers\IBaseController.cs" />
     <Compile Include="Controllers\MainFormController.Bindings.cs" />
     <Compile Include="Controllers\MainFormController.Logic.cs" />
     <Compile Include="Controllers\OpenFileWizardController.cs" />
-    <Compile Include="Events\ComponentEvents.cs" />
+    <Compile Include="Database\SpreadSheetData.cs" />
     <Compile Include="Events\FormEvents.cs" />
-    <Compile Include="Events\WorkbookEvents.cs" />
     <Compile Include="Extensions\ToArrayExtensions.cs" />
-    <Compile Include="Extensions\ToEnumExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions.cs" />
-    <Compile Include="Interfaces\Controllers\IEptReportController.cs" />
-    <Compile Include="Interfaces\Controllers\IWorkbookModelController.cs" />
-    <Compile Include="Interfaces\Controllers\IMainFormController.cs" />
     <Compile Include="Controllers\MainFormController.cs" />
-    <Compile Include="Interfaces\Models\IEptReportModel.cs" />
-    <Compile Include="Interfaces\Models\Tables\ICrossTable.cs" />
-    <Compile Include="Interfaces\Models\Tables\ILookupTable-1key.cs" />
-    <Compile Include="Interfaces\Models\Tables\ILookupTable-2keys.cs" />
-    <Compile Include="Interfaces\Models\IWorkbookModel.cs" />
-    <Compile Include="Interfaces\Models\Tables\IEptTable.cs" />
-    <Compile Include="Interfaces\Types\ITBounds.cs" />
-    <Compile Include="Interfaces\Types\ITData.cs" />
-    <Compile Include="Interfaces\Types\ITEptData.cs" />
-    <Compile Include="Interfaces\Types\ITTabular.cs" />
+    <Compile Include="Models\EPTModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="Interfaces\Models\Tables\ITable.cs" />
-    <Compile Include="Models\IReportModel.cs" />
-    <Compile Include="Tables\LookupTable-1key.cs" />
-    <Compile Include="Tables\LookupTable-2keys.cs" />
-    <Compile Include="Tables\CrossTable.cs" />
-    <Compile Include="Tables\EptTable.cs" />
-    <Compile Include="Tables\Table.cs" />
-    <Compile Include="Models\EptReportModel.cs" />
-    <Compile Include="Types\TData.cs" />
-    <Compile Include="Types\TBounds.cs" />
-    <Compile Include="Types\TEptData.cs" />
-    <Compile Include="Types\TTable.cs" />
-    <Compile Include="Types\TTabular.cs" />
     <Compile Include="Views\Components\FileBrowserWithLabel.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -144,7 +114,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Events\UserMessageEvent.cs" />
     <Compile Include="Views\OpenFileWizard.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -246,9 +215,6 @@
     <Content Include="Resources\Configurations\Settings_EPTReport.xml" />
     <Content Include="Resources\Configurations\Path.xml" />
     <Content Include="Resources\Images\logo.png" />
-    <Content Include="TestFiles\figure.js" />
-    <Content Include="TestFiles\index.html" />
-    <Content Include="TestFiles\plotlyjs-bundle.js" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />

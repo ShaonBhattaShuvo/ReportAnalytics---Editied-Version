@@ -18,9 +18,9 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
                 textBoxName.Text = value.GetNodeValue("Settings/Name");
                 textBoxInputSheetName.Text = value.GetNodeValue("Settings/InputSheetName");
                 textBoxOutputSheetName.Text = value.GetNodeValue("Settings/OutputSheetName");
-                textBoxParameter.Text = value.GetNodeValue("Settings/ResultFormat/Text");
+                textBoxParameter.Text = value.GetNodeValue("Settings/ResultFormat/Parameter");
                 textBoxDelimiter.Text = value.GetNodeValue("Settings/ResultFormat/Delimiter");
-                numericUpDownParameterColumn.Value = value.GetNodeValue<decimal>("Settings/ResultFormat/TextColumn");
+                numericUpDownParameterColumn.Value = value.GetNodeValue<decimal>("Settings/ResultFormat/ParameterColumn");
                 numericUpDownValueColumn.Value = value.GetNodeValue<decimal>("Settings/ResultFormat/ValueColumn");
             }
             get
@@ -31,9 +31,9 @@ namespace DV_ReportAnalytics.Views.ProcessPanels
                 doc.SetNodeValue("Settings/Name", textBoxName.Text);
                 doc.SetNodeValue("Settings/InputSheetName", textBoxInputSheetName.Text);
                 doc.SetNodeValue("Settings/OutputSheetName", textBoxOutputSheetName.Text);
-                doc.SetNodeValue("Settings/ResultFormat/Text", textBoxParameter.Text);
+                doc.SetNodeValue("Settings/ResultFormat/Parameter", textBoxParameter.Text);
                 doc.SetNodeValue("Settings/ResultFormat/Delimiter", textBoxDelimiter.Text);
-                doc.SetNodeValue("Settings/ResultFormat/TextColumn", numericUpDownParameterColumn.Value);
+                doc.SetNodeValue("Settings/ResultFormat/ParameterColumn", numericUpDownParameterColumn.Value);
                 doc.SetNodeValue("Settings/ResultFormat/ValueColumn", numericUpDownValueColumn.Value);
                 return doc;
             }

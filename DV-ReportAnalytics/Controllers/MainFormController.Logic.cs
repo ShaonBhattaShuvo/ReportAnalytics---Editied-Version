@@ -16,10 +16,10 @@ namespace DV_ReportAnalytics.Controllers
             // avoid multiple instances being initiated
             ModelTypes t = _doc.GetNodeValue("Settings/Type").ToModelTypes();
             string p = _doc.GetNodeValue("Paths/Result");
-            switch (_currentModel)
+            switch (t)
             {
                 case ModelTypes.EPTReport:
-                    // TODO: new model
+                    model = new Models.EPTModel(_doc);
                     
                     break;
                 default:
