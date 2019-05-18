@@ -90,7 +90,15 @@ namespace DV_ReportAnalytics
                 value[RowHeader.IndexOf(row.Field<object>(rowfield)), ColumnHeader.IndexOf(row.Field<object>(colfield))]
                     = row.Field<object>(datafield);
 
-            return new TableDataSet<object>(RowHeader.ToArray(), ColumnHeader.ToArray(), value);
+            return new TableDataSet<object>()
+            {
+                Label = source.TableName,
+                RowLabel = source.Columns[rowfield].ColumnName,
+                ColumnLabel = source.Columns[colfield].ColumnName,
+                RowHeader = RowHeader.ToArray(),
+                ColumnHeader = ColumnHeader.ToArray(),
+                DataBody = value
+            };
         }
 
         public static TableDataSet<double> ToDouble(this TableDataSet<object> source)
@@ -101,10 +109,18 @@ namespace DV_ReportAnalytics
             Array.Copy(source.RowHeader, rowheader, source.RowHeader.Length);
             Array.Copy(source.ColumnHeader, colheader, source.ColumnHeader.Length);
             Array.Copy(source.DataBody, databody, source.DataBody.Length);
-            return new TableDataSet<double>(rowheader, colheader, databody);
+            return new TableDataSet<double>()
+            {
+                Label = source.Label,
+                RowLabel = source.RowLabel,
+                ColumnLabel = source.ColumnLabel,
+                RowHeader = rowheader,
+                ColumnHeader = colheader,
+                DataBody = databody
+            };
         }
 
-        public static TableDataSet<object> ToObject(this TableDataSet<double> source)
+        public static TableDataSet<object> ToObject<T>(this TableDataSet<T> source)
         {
             object[] rowheader = new object[source.RowHeader.Length];
             object[] colheader = new object[source.ColumnHeader.Length];
@@ -112,20 +128,25 @@ namespace DV_ReportAnalytics
             Array.Copy(source.RowHeader, rowheader, source.RowHeader.Length);
             Array.Copy(source.ColumnHeader, colheader, source.ColumnHeader.Length);
             Array.Copy(source.DataBody, databody, source.DataBody.Length);
-            return new TableDataSet<object>(rowheader, colheader, databody);
+            return new TableDataSet<object>()
+            {
+                Label = source.Label,
+                RowLabel = source.RowLabel,
+                ColumnLabel = source.ColumnLabel,
+                RowHeader = rowheader,
+                ColumnHeader = colheader,
+                DataBody = databody
+            };
         }
     }
 
     internal struct TableDataSet<T>
     {
-        public T[] RowHeader { get; }
-        public T[] ColumnHeader { get; }
-        public T[,] DataBody { get; }
-        public TableDataSet(T[] rowheader, T[] colheader, T[,] databody)
-        {
-            RowHeader = rowheader;
-            ColumnHeader = colheader;
-            DataBody = databody;
-        }
+        public object Label { get; set; }
+        public object RowLabel { get; set; }
+        public object ColumnLabel { get; set; }
+        public T[] RowHeader { get; set; }
+        public T[] ColumnHeader { get; set; }
+        public T[,] DataBody { get; set; }
     }
 }
