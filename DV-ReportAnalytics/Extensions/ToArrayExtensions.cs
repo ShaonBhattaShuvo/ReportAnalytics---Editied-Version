@@ -50,5 +50,28 @@ namespace DV_ReportAnalytics.Extensions
             source.CopyTo(keys, 0);
             return keys;
         }
+
+        public static object[,] ToTableColArray<T>(this T[] source)
+        {
+            object[,] result = new object[source.Length, 1];
+            for (int i = 0; i < source.Length; i++)
+                result[i, 0] = source[i];
+            return result;
+        }
+
+        public static object[,] ToTableRowArray<T>(this T[] source)
+        {
+            object[,] result = new object[1, source.Length];
+            for (int i = 0; i < source.Length; i++)
+                result[0, i] = source[i];
+            return result;
+        }
+
+        public static object[,] ToTableDataArray<T>(this T[,] source)
+        {
+            object[,] result = new object[source.GetLength(0), source.GetLength(1)];
+            Array.Copy(source, result, source.Length);
+            return result;
+        }
     }
 }

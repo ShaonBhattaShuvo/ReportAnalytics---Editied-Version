@@ -18,7 +18,7 @@ namespace DV_ReportAnalytics.Database
          * SUMMARY: Create a DataTable from given columns
          * @param fileds[]: This first element is taken as table name. Then the rest of them are considered as fields(columns);
          * @return System.Data.DataTable;
-         * NOTE: For unecessary box and unbox operations, all field types are defined as object. (Raw data from spreadsheet is object).
+         * NOTE: To avoid unecessary box and unbox operations, all field types are defined as object. (Raw data from spreadsheet is object).
          */
         public static DataTable CreateDataTable(string tablename, string[] fields)
         {

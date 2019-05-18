@@ -11,7 +11,6 @@ namespace DV_ReportAnalytics.Controllers
     internal partial class MainFormController
     {
         private MainForm _mainForm;
-        private ModelTypes _currentModel;
         private XmlDocument _doc;
         
         public MainFormController(MainForm mainForm)

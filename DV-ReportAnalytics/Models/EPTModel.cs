@@ -41,7 +41,7 @@ namespace DV_ReportAnalytics.Models
             IWorkbook workbook = Factory.GetWorkbook(ResultPath);
             IWorksheet worksheet = workbook.Worksheets[InputSheet];
             IRange range = worksheet.UsedRange;
-            string[] fields = Parameter.Split(Delimiter.ToArray()).Skip(1).ToArray();
+            string[] fields = Parameter.Split(Delimiter.ToArray()).Skip(1).ToArray(); // skip name section
 
             for (int i = 0; i < range.RowCount; i++)
             {
@@ -49,7 +49,7 @@ namespace DV_ReportAnalytics.Models
                 if (param?.Length >= 3)
                 {
                     List<object> values = new List<object>(param.Length);
-                    values.AddRange(param.Skip(1));
+                    values.AddRange(param.Skip(1)); // skip name section
                     values.Add(range[i, ValueColumn].Value);
                     SpreadSheetData.AddToDataSet(DataBase, param[0], fields, values.ToArray());
                 }
