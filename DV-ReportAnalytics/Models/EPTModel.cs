@@ -23,16 +23,24 @@ namespace DV_ReportAnalytics.Models
         public string ResultPath { set; get; }
         public DataSet DataBase { get; private set; }
 
+        public XmlDocument Settings
+        {
+            set
+            {
+                Parameter = value.GetNodeValue("Settings/ResultFormat/Parameter");
+                Delimiter = value.GetNodeValue("Settings/ResultFormat/Delimiter");
+                ParameterColumn = value.GetNodeValue<int>("Settings/ResultFormat/ParameterColumn");
+                ValueColumn = value.GetNodeValue<int>("Settings/ResultFormat/ValueColumn");
+                InputSheet = value.GetNodeValue("Settings/InputSheetName");
+                OutputSheet = value.GetNodeValue("Settings/OutputSheetName");
+                Name = value.GetNodeValue("Settings/Name");
+                ResultPath = value.GetNodeValue("Paths/Result");
+            }
+        }
+
         public EPTModel(XmlDocument settings)
         {
-            Parameter = settings.GetNodeValue("Settings/ResultFormat/Parameter");
-            Delimiter = settings.GetNodeValue("Settings/ResultFormat/Delimiter");
-            ParameterColumn = settings.GetNodeValue<int>("Settings/ResultFormat/ParameterColumn");
-            ValueColumn = settings.GetNodeValue<int>("Settings/ResultFormat/ValueColumn");
-            InputSheet = settings.GetNodeValue("Settings/InputSheetName");
-            OutputSheet = settings.GetNodeValue("Settings/OutputSheetName");
-            Name = settings.GetNodeValue("Settings/Name");
-            ResultPath = settings.GetNodeValue("Paths/Result");
+            Settings = settings;
         }
 
         public void Build()

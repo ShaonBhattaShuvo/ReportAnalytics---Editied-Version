@@ -68,5 +68,44 @@ namespace DV_ReportAnalytics.Database
                 dataset.Tables.Add(table);
             }
         }
+
+        public static TableDataSet<object> ConvertToTableDataSet(DataTable table, int rowfield, int colfield, int datafield)
+        {
+            List<object> RowHeader = new List<object>();
+            List<object> ColumnHeader = new List<object>();
+
+            foreach (DataRow row in table.Rows)
+            {
+                RowHeader.Add(row.Field<object>(rowfield));
+                ColumnHeader.Add(row.Field<object>(colfield));
+            }
+
+            // remove duplicate item and sort
+            RowHeader = RowHeader.Distinct().ToList();
+            ColumnHeader = ColumnHeader.Distinct().ToList();
+            RowHeader.Sort();
+            ColumnHeader.Sort();
+
+            // build data
+            object[,] value = new object[RowHeader.Count, ColumnHeader.Count];
+            foreach (DataRow row in table.Rows)
+                value[RowHeader.IndexOf(row.Field<object>(rowfield)), ColumnHeader.IndexOf(row.Field<object>(colfield))]
+                    = row.Field<object>(datafield);
+
+            return new TableDataSet<object>(RowHeader.ToArray(), ColumnHeader.ToArray(), value);
+        }
+    }
+
+    internal struct TableDataSet<T>
+    {
+        public T[] RowHeader { get; }
+        public T[] ColumnHeader { get; }
+        public T[,] DataBody { get; }
+        public TableDataSet(T[] rowheader, T[] colheader, T[,] databody)
+        {
+            RowHeader = rowheader;
+            ColumnHeader = colheader;
+            DataBody = databody;
+        }
     }
 }
