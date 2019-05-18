@@ -22,15 +22,15 @@ namespace DV_ReportAnalytics
             rowLabelRange.Value = data.RowLabel;
             // insert column header
             IRange columnHeaderRange = source.Cells[1, 1, 1, data.ColumnHeader.Length - 1 + 1];
-            columnHeaderRange.Value = data.ColumnHeader.ToTableRowArray();
+            columnHeaderRange.Value = data.ColumnHeader.ToRangeRowArray();
             // insert row header
             IRange rowHeaderRange = source.Cells[2, 0, data.RowHeader.Length - 1 + 2, 0];
-            rowHeaderRange.Value = data.RowHeader.ToTableColumnArray();
+            rowHeaderRange.Value = data.RowHeader.ToRangeColumnArray();
             // insert data body
             IRange dataBodyRange = source.Cells[2, 1,
                 data.DataBody.GetLength(0) - 1 + 2,
                 data.DataBody.GetLength(1) - 1 + 1];
-            dataBodyRange.Value = data.DataBody.ToTableDataArray();
+            dataBodyRange.Value = data.DataBody.ToRangeArray();
             // table range
             IRange all = source.Cells[0, 0,
                 rowLabelRange.RowCount + rowHeaderRange.RowCount,
@@ -47,28 +47,7 @@ namespace DV_ReportAnalytics
             };
         }
 
-        public static object[,] ToTableColumnArray<T>(this T[] source)
-        {
-            object[,] result = new object[source.Length, 1];
-            for (int i = 0; i < source.Length; i++)
-                result[i, 0] = source[i];
-            return result;
-        }
-
-        public static object[,] ToTableRowArray<T>(this T[] source)
-        {
-            object[,] result = new object[1, source.Length];
-            for (int i = 0; i < source.Length; i++)
-                result[0, i] = source[i];
-            return result;
-        }
-
-        public static object[,] ToTableDataArray<T>(this T[,] source)
-        {
-            object[,] result = new object[source.GetLength(0), source.GetLength(1)];
-            Array.Copy(source, result, source.Length);
-            return result;
-        }
+        
     }
 
     internal struct TableDataRange
