@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.fileBrowserWithLabelResult = new DV_ReportAnalytics.Views.Components.FileBrowserWithLabel();
-            this.fileBrowserWithLabelConfig = new DV_ReportAnalytics.Views.Components.FileBrowserWithLabel();
+            this.fileBrowserWithLabelResult = new DV_ReportAnalytics.UI.FileBrowserWithLabel();
+            this.fileBrowserWithLabelConfig = new DV_ReportAnalytics.UI.FileBrowserWithLabel();
             this.SuspendLayout();
             // 
             // label1

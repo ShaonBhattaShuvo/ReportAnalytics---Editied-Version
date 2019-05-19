@@ -72,14 +72,15 @@
   <ItemGroup>
     <Compile Include="Algorithms\Interpolation.cs" />
     <Compile Include="Constants\ModelTypes.cs" />
-    <Compile Include="Controllers\MainFormController.Bindings.cs" />
-    <Compile Include="Controllers\MainFormController.Logic.cs" />
-    <Compile Include="Controllers\OpenFileWizardController.cs" />
+    <Compile Include="Extensions\SpreadSheet.cs" />
+    <Compile Include="Presenters\MainFormPresenter.Bindings.cs" />
+    <Compile Include="Presenters\MainFormPresenter.Logic.cs" />
+    <Compile Include="Presenters\OpenFileWizardPresenter.cs" />
     <Compile Include="SpreadSheet\SpreadSheetData.cs" />
     <Compile Include="Events\FormEvents.cs" />
     <Compile Include="Extensions\ToArrayExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions.cs" />
-    <Compile Include="Controllers\MainFormController.cs" />
+    <Compile Include="Presenters\MainFormPresenter.cs" />
     <Compile Include="Models\EPTModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

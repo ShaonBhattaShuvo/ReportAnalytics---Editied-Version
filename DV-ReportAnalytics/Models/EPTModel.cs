@@ -51,6 +51,7 @@ namespace DV_ReportAnalytics
                     DataBase.AddTable(param[0], fields, values.ToArray());
                 }
             }
+            workbook.Close();
         }
 
         public void Draw(string input)
@@ -62,12 +63,24 @@ namespace DV_ReportAnalytics
 
             IRange topLeft = worksheet.Cells[0, 0]; // top-left cell
             IRange current = topLeft;
+            int count = 0;
 
             foreach (string name in TableNames)
             {
                 TableDataRange ranges = current.InsertTable(DataBase.Tables[name].ToTableDataSet(0, 1, 2));
-
+                if (++count > 3)
+                {
+                    count = 0;
+                    current = ranges.All.RowBelow().RowBelow().FirstCell();
+                }
+                else
+                {
+                    current = ranges.All.CellRight().CellRight();
+                }
             }
+
+            workbook.SaveAs("ept.xlsx", FileFormat.OpenXMLWorkbook);
+            workbook.Close();
         }
 
 

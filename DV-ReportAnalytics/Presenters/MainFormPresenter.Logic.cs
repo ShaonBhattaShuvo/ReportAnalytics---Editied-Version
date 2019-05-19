@@ -12,7 +12,7 @@ namespace DV_ReportAnalytics.UI
             switch (t)
             {
                 case ModelTypes.EPTReport:
-                    model = new EPTModel(_doc);
+                    model = new EPTModel();
 
                     break;
                 default:

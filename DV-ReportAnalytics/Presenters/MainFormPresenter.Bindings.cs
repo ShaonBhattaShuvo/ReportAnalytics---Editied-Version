@@ -29,7 +29,8 @@ namespace DV_ReportAnalytics.UI
         private EPTModel model;
         private void MainForm_SaveButtonClicked()
         {
-            model.Build();
+            model.Build(_doc.GetNodeValue("Paths/Result"), _doc);
+            model.Draw(_doc.GetNodeValue("Paths/Result"));
         }
 
         private void MainForm_TableButtonClicked()

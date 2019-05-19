@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DV_ReportAnalytics.Views;
+using DV_ReportAnalytics.UI;
 
 namespace DV_ReportAnalytics
 {
