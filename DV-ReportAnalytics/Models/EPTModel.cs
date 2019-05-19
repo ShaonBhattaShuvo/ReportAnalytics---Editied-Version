@@ -21,6 +21,7 @@ namespace DV_ReportAnalytics
                 return names.ToArray();
             }
         }
+        public event Action<object, WorkbookUpdateEventArgs> WorkbookUpdated;
 
         public EPTModel()
         {
@@ -51,10 +52,11 @@ namespace DV_ReportAnalytics
                     DataBase.AddTable(param[0], fields, values.ToArray());
                 }
             }
-            workbook.Close();
+
+            WorkbookUpdated?.Invoke(this, new WorkbookUpdateEventArgs(workbook));
         }
 
-        public void Draw(string input)
+        public void Draw(string input, XmlDocument displays)
         {
             IWorkbook workbook = Factory.GetWorkbook(input);
             workbook.Worksheets[_outputSheet]?.Delete(); // delete old one
@@ -79,8 +81,7 @@ namespace DV_ReportAnalytics
                 }
             }
 
-            workbook.SaveAs("ept.xlsx", FileFormat.OpenXMLWorkbook);
-            workbook.Close();
+            WorkbookUpdated?.Invoke(this, new WorkbookUpdateEventArgs(workbook));
         }
 
 

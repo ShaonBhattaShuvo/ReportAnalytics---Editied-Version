@@ -67,17 +67,7 @@ namespace DV_ReportAnalytics.UI
 
         private void UpdateFromPage(object sender, ContentUpdateEventArgs e)
         {
-            // refresh nodes
-            XmlNode newNode = _doc.ImportNode(e.Content.DocumentElement.SelectSingleNode(e.Message), true);
-            try
-            {
-                XmlNode oldNode = _doc.DocumentElement.SelectSingleNode(e.Message);
-                _doc.DocumentElement.ReplaceChild(newNode, oldNode);
-            }
-            catch
-            {
-                _doc.DocumentElement.AppendChild(newNode);
-            }
+            _doc.UpdateNode(e.Content, e.Message);
             ButtonEnable();
         }
 

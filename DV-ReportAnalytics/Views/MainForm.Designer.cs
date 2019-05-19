@@ -66,8 +66,8 @@
             this.toolStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Padding = new System.Windows.Forms.Padding(2, 0, 0, 2);
-            this.toolStripMain.Size = new System.Drawing.Size(784, 33);
+            this.toolStripMain.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
+            this.toolStripMain.Size = new System.Drawing.Size(1437, 35);
             this.toolStripMain.TabIndex = 0;
             // 
             // toolStripButtonOpenFile
@@ -138,7 +138,8 @@
             // splitContainerMain
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMain.Location = new System.Drawing.Point(0, 33);
+            this.splitContainerMain.Location = new System.Drawing.Point(0, 35);
+            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel1
@@ -150,8 +151,9 @@
             this.splitContainerMain.Panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.splitContainerMain.Panel2.Controls.Add(this.graphContainer);
             this.splitContainerMain.Panel2Collapsed = true;
-            this.splitContainerMain.Size = new System.Drawing.Size(784, 528);
+            this.splitContainerMain.Size = new System.Drawing.Size(1437, 1001);
             this.splitContainerMain.SplitterDistance = 392;
+            this.splitContainerMain.SplitterWidth = 7;
             this.splitContainerMain.TabIndex = 1;
             // 
             // workbookView
@@ -159,19 +161,20 @@
             this.workbookView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workbookView.FormulaBar = null;
             this.workbookView.Location = new System.Drawing.Point(0, 0);
+            this.workbookView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.workbookView.Name = "workbookView";
-            this.workbookView.Size = new System.Drawing.Size(784, 528);
+            this.workbookView.Size = new System.Drawing.Size(1437, 1001);
             this.workbookView.TabIndex = 0;
-            this.workbookView.Visible = false;
             this.workbookView.WorkbookSetState = resources.GetString("workbookView.WorkbookSetState");
             // 
             // graphContainer
             // 
             this.graphContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.graphContainer.Location = new System.Drawing.Point(0, 0);
-            this.graphContainer.MinimumSize = new System.Drawing.Size(20, 20);
+            this.graphContainer.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.graphContainer.MinimumSize = new System.Drawing.Size(37, 37);
             this.graphContainer.Name = "graphContainer";
-            this.graphContainer.Size = new System.Drawing.Size(96, 100);
+            this.graphContainer.Size = new System.Drawing.Size(176, 185);
             this.graphContainer.TabIndex = 0;
             // 
             // openFileDialog
@@ -185,12 +188,13 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(1437, 1036);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.toolStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "MainForm";
             this.Text = "DV Report Analytics";
             this.toolStripMain.ResumeLayout(false);

@@ -71,6 +71,25 @@ namespace DV_ReportAnalytics.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
+        ///&lt;DV_ReportAnalytics&gt;
+        ///  &lt;Displays&gt;
+        ///    &lt;RowInterpolation&gt;0&lt;/RowInterpolation&gt;
+        ///    &lt;ColumnInterpolation&gt;0&lt;/ColumnInterpolation&gt;
+        ///    &lt;MaximumItemsPerRow&gt;3&lt;/MaximumItemsPerRow&gt;
+        ///    &lt;Tables&gt;
+        ///      &lt;Item&gt;&lt;/Item&gt;
+        ///    &lt;/Tables&gt;
+        ///  &lt;/Displays&gt;
+        ///&lt;/DV_ReportAnalytics&gt;.
+        /// </summary>
+        internal static string Displays_EPTReport {
+            get {
+                return ResourceManager.GetString("Displays_EPTReport", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap folder_32 {
@@ -112,10 +131,13 @@ namespace DV_ReportAnalytics.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;Paths&gt;
-        ///  &lt;PathResult&gt;&lt;/PathResult&gt; 
-        ///  &lt;PathConfig&gt;&lt;/PathConfig&gt; 
-        ///&lt;/Paths&gt;.
+        ///&lt;DV_ReportAnalytics&gt;
+        ///  &lt;Paths&gt;
+        ///    &lt;Result&gt;&lt;/Result&gt;
+        ///    &lt;Config&gt;&lt;/Config&gt;
+        ///  &lt;/Paths&gt;
+        ///&lt;/DV_ReportAnalytics&gt;
+        ///.
         /// </summary>
         internal static string Path {
             get {
@@ -125,7 +147,14 @@ namespace DV_ReportAnalytics.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;DV_ReportAnalytics&gt;&lt;/DV_ReportAnalytics&gt;.
+        ///&lt;DV_ReportAnalytics&gt;
+        ///  &lt;Paths&gt;
+        ///    &lt;Result&gt;&lt;/Result&gt;
+        ///    &lt;Config&gt;&lt;/Config&gt;
+        ///  &lt;/Paths&gt;
+        ///  &lt;Settings&gt;&lt;/Settings&gt;
+        ///  &lt;Displays&gt;&lt;/Displays&gt;
+        ///&lt;/DV_ReportAnalytics&gt;.
         /// </summary>
         internal static string Root {
             get {
@@ -155,18 +184,21 @@ namespace DV_ReportAnalytics.Properties {
         
         /// <summary>
         ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;Settings xmlns:xsi=&quot;http://www.w3.org/2001/XMLSchema-instance&quot;&gt;
-        ///  &lt;Type&gt;EPTReport&lt;/Type&gt;
-        ///  &lt;Name&gt;EPT Report Results&lt;/Name&gt;
-        ///  &lt;InputSheetName&gt;Results&lt;/InputSheetName&gt;
-        ///  &lt;OutputSheetName&gt;CombinedResults&lt;/OutputSheetName&gt;
-        ///  &lt;ResultFormat&gt;
-        ///    &lt;Text&gt;Name_Speed_Torque&lt;/Text&gt;
-        ///    &lt;Delimiter&gt;_&lt;/Delimiter&gt;
-        ///    &lt;TextColumn&gt;0&lt;/TextColumn&gt;
-        ///    &lt;ValueColumn&gt;2&lt;/ValueColumn&gt;
-        ///  &lt;/ResultFormat&gt;
-        ///&lt;/Settings&gt;.
+        ///&lt;DV_ReportAnalytics&gt;
+        ///  &lt;Settings&gt;
+        ///    &lt;Type&gt;EPTReport&lt;/Type&gt;
+        ///    &lt;Name&gt;EPT Report Results&lt;/Name&gt;
+        ///    &lt;InputSheetName&gt;Results&lt;/InputSheetName&gt;
+        ///    &lt;OutputSheetName&gt;CombinedResults&lt;/OutputSheetName&gt;
+        ///    &lt;ResultFormat&gt;
+        ///      &lt;Parameter&gt;Name_Speed_Torque&lt;/Parameter&gt;
+        ///      &lt;Delimiter&gt;_&lt;/Delimiter&gt;
+        ///      &lt;ParameterColumn&gt;0&lt;/ParameterColumn&gt;
+        ///      &lt;ValueColumn&gt;3&lt;/ValueColumn&gt;
+        ///    &lt;/ResultFormat&gt;
+        ///  &lt;/Settings&gt;
+        ///&lt;/DV_ReportAnalytics&gt;
+        ///.
         /// </summary>
         internal static string Settings_EPTReport {
             get {

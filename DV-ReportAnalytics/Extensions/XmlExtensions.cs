@@ -52,5 +52,20 @@ namespace DV_ReportAnalytics
         {
             source.SelectSingleNode(xpath).InnerText = value;
         }
+
+        public static void UpdateNode(this XmlDocument source, XmlDocument target, string xpath)
+        {
+            // refresh nodes
+            XmlNode newNode = source.ImportNode(target.DocumentElement.SelectSingleNode(xpath), true);
+            try
+            {
+                XmlNode oldNode = source.DocumentElement.SelectSingleNode(xpath);
+                source.DocumentElement.ReplaceChild(newNode, oldNode);
+            }
+            catch
+            {
+                source.DocumentElement.AppendChild(newNode);
+            }
+        }
     }
 }

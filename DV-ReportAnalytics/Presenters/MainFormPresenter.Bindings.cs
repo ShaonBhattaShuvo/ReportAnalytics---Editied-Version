@@ -1,11 +1,12 @@
 ﻿using System;
 
+
 namespace DV_ReportAnalytics.UI
 {
     internal partial class MainFormPresenter
     {
         #region Binding methods
-        private void InitializeClass()
+        private void InitializeBindings()
         {
             /* binding UI actions */
             _mainForm.ButtonOpenFile.Click += (object sender, EventArgs e) => MainForm_OpenButtonClicked();
@@ -23,14 +24,11 @@ namespace DV_ReportAnalytics.UI
             wizard.ContentUpdated += UpdateSettings;
             OpenFileWizardPresenter presenter = new OpenFileWizardPresenter(wizard);
             wizard.Show();
-            _mainForm.ButtonSaveFile.Enabled = true;
         }
 
-        private EPTModel model;
         private void MainForm_SaveButtonClicked()
         {
-            model.Build(_doc.GetNodeValue("Paths/Result"), _doc);
-            model.Draw(_doc.GetNodeValue("Paths/Result"));
+            
         }
 
         private void MainForm_TableButtonClicked()

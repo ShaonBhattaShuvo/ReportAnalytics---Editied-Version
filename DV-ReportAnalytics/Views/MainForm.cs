@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using SpreadsheetGear.Windows.Forms;
 
 namespace DV_ReportAnalytics.UI
 {
@@ -13,6 +14,7 @@ namespace DV_ReportAnalytics.UI
         public ToolStripButton ButtonGraphToggle { get { return toolStripButtonGraphToggle; } }
         public ToolStripButton ButtonHelp { get { return toolStripButtonHelp; } }
         public SplitContainer SplitContainer { get { return splitContainerMain; } }
+        public WorkbookView WorkbookView { get { return workbookView; } }
         private MainFormPresenter _mainPresenter;
         #endregion
 
