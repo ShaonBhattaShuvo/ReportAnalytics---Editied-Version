@@ -69,7 +69,7 @@ namespace DV_ReportAnalytics
 
             foreach (string name in TableNames)
             {
-                TableDataRange ranges = current.InsertTable(DataBase.Tables[name].ToTableDataSet(0, 1, 2));
+                TableDataRange ranges = current.InsertTable(DataBase.Tables[name].ToTableDataSet(1, 0, 2));
                 if (++count > 3)
                 {
                     count = 0;

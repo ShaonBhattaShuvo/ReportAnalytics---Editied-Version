@@ -25,17 +25,7 @@ namespace DV_ReportAnalytics.UI
             switch (t)
             {
                 case ModelTypes.EPTReport:
-                    // TODO: this is test code. it will be removed in the future
-                    XmlDocument display = new XmlDocument();
-                    display.LoadXml(Properties.Resources.Displays_EPTReport);
-                    _doc.UpdateNode(display, "Displays");
-                    string cache = Path.GetTempFileName();
-                    File.Copy(p, cache, true);
-                    EPTModel model = new EPTModel();
-                    model.WorkbookUpdated += (object sender, WorkbookUpdateEventArgs e) =>
-                        _mainForm.WorkbookView.ActiveWorkbook = e.Workbook;
-                    model.Build(cache, _doc);
-                    model.Draw(cache, _doc);
+                    testcode(p);
                     break;
                 default:
                     break;
@@ -44,6 +34,21 @@ namespace DV_ReportAnalytics.UI
 
         private void InitializeClass()
         {
+        }
+
+        private void testcode(string p)
+        {
+            // TODO: this is test code. it will be removed in the future
+            XmlDocument display = new XmlDocument();
+            display.LoadXml(Properties.Resources.Displays_EPTReport);
+            _doc.UpdateNode(display, "Displays");
+            string cache = Path.GetTempFileName();
+            File.Copy(p, cache, true);
+            EPTModel model = new EPTModel();
+            model.WorkbookUpdated += (object sender, WorkbookUpdateEventArgs e) =>
+                _mainForm.WorkbookView.ActiveWorkbook = e.Workbook;
+            model.Build(cache, _doc);
+            model.Draw(cache, _doc);
         }
     }
 }
