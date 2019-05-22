@@ -36,6 +36,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyFileVersion("0.0.0.4")]
 
 // Version            Date            Note
+// 0.0.0.5          2019-May-20      - Refactored most code
 // 0.0.0.4          2019-May-6       - Added wizard
 // 0.0.0.3          2019-Apr-23      - first check in after receiving files from Windsor
 // 0.0.0.2          2019-Jan-25      - Refactoring
