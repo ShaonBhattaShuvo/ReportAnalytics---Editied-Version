@@ -70,6 +70,7 @@ namespace DV_ReportAnalytics
             foreach (string name in TableNames)
             {
                 TableDataRange ranges = current.InsertTable(DataBase.Tables[name].ToTableDataSet(1, 0, 2));
+                SpreadSheetDrawing.ApplyHeatMap(ranges);
                 if (++count > 3)
                 {
                     count = 0;
