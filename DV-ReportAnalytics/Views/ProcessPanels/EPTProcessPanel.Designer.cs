@@ -43,12 +43,10 @@
             this.labelParameter = new System.Windows.Forms.Label();
             this.labelValueColumn = new System.Windows.Forms.Label();
             this.textBoxParameter = new System.Windows.Forms.TextBox();
-            this.numericUpDownParameterColumn = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDownValueColumn = new System.Windows.Forms.NumericUpDown();
             this.textBoxType = new System.Windows.Forms.TextBox();
+            this.textBoxParameterColumn = new System.Windows.Forms.TextBox();
+            this.textBoxValueColumn = new System.Windows.Forms.TextBox();
             this.tableLayoutPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownParameterColumn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValueColumn)).BeginInit();
             this.SuspendLayout();
             // 
             // labelGeneral
@@ -81,9 +79,9 @@
             this.tableLayoutPanel.Controls.Add(this.labelParameter, 0, 4);
             this.tableLayoutPanel.Controls.Add(this.labelValueColumn, 0, 7);
             this.tableLayoutPanel.Controls.Add(this.textBoxParameter, 1, 4);
-            this.tableLayoutPanel.Controls.Add(this.numericUpDownParameterColumn, 1, 6);
-            this.tableLayoutPanel.Controls.Add(this.numericUpDownValueColumn, 1, 7);
             this.tableLayoutPanel.Controls.Add(this.textBoxType, 1, 0);
+            this.tableLayoutPanel.Controls.Add(this.textBoxParameterColumn, 1, 6);
+            this.tableLayoutPanel.Controls.Add(this.textBoxValueColumn, 1, 7);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(0, 13);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
@@ -188,7 +186,7 @@
             this.labelParameterColumn.Name = "labelParameterColumn";
             this.labelParameterColumn.Size = new System.Drawing.Size(179, 44);
             this.labelParameterColumn.TabIndex = 12;
-            this.labelParameterColumn.Text = "Parameter Column";
+            this.labelParameterColumn.Text = "Parameter Column\r\n(Supports letter or zero based index)";
             this.labelParameterColumn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // labelDelimiter
@@ -224,7 +222,7 @@
             this.labelValueColumn.Name = "labelValueColumn";
             this.labelValueColumn.Size = new System.Drawing.Size(179, 44);
             this.labelValueColumn.TabIndex = 13;
-            this.labelValueColumn.Text = "Value Column";
+            this.labelValueColumn.Text = "Value Column\r\n(Supports letter or zero based index)";
             this.labelValueColumn.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // textBoxParameter
@@ -236,23 +234,6 @@
             this.textBoxParameter.Size = new System.Drawing.Size(179, 20);
             this.textBoxParameter.TabIndex = 18;
             // 
-            // numericUpDownParameterColumn
-            // 
-            this.numericUpDownParameterColumn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numericUpDownParameterColumn.Location = new System.Drawing.Point(187, 273);
-            this.numericUpDownParameterColumn.Margin = new System.Windows.Forms.Padding(2);
-            this.numericUpDownParameterColumn.Name = "numericUpDownParameterColumn";
-            this.numericUpDownParameterColumn.Size = new System.Drawing.Size(179, 20);
-            this.numericUpDownParameterColumn.TabIndex = 16;
-            // 
-            // numericUpDownValueColumn
-            // 
-            this.numericUpDownValueColumn.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.numericUpDownValueColumn.Location = new System.Drawing.Point(188, 319);
-            this.numericUpDownValueColumn.Name = "numericUpDownValueColumn";
-            this.numericUpDownValueColumn.Size = new System.Drawing.Size(177, 20);
-            this.numericUpDownValueColumn.TabIndex = 19;
-            // 
             // textBoxType
             // 
             this.textBoxType.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -261,6 +242,22 @@
             this.textBoxType.ReadOnly = true;
             this.textBoxType.Size = new System.Drawing.Size(177, 20);
             this.textBoxType.TabIndex = 20;
+            // 
+            // textBoxParameterColumn
+            // 
+            this.textBoxParameterColumn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxParameterColumn.Location = new System.Drawing.Point(188, 274);
+            this.textBoxParameterColumn.Name = "textBoxParameterColumn";
+            this.textBoxParameterColumn.Size = new System.Drawing.Size(177, 20);
+            this.textBoxParameterColumn.TabIndex = 21;
+            // 
+            // textBoxValueColumn
+            // 
+            this.textBoxValueColumn.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxValueColumn.Location = new System.Drawing.Point(188, 319);
+            this.textBoxValueColumn.Name = "textBoxValueColumn";
+            this.textBoxValueColumn.Size = new System.Drawing.Size(177, 20);
+            this.textBoxValueColumn.TabIndex = 22;
             // 
             // EPTProcessPanel
             // 
@@ -272,8 +269,6 @@
             this.Size = new System.Drawing.Size(369, 374);
             this.tableLayoutPanel.ResumeLayout(false);
             this.tableLayoutPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownParameterColumn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValueColumn)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,8 +291,8 @@
         private System.Windows.Forms.Label labelParameter;
         private System.Windows.Forms.Label labelValueColumn;
         private System.Windows.Forms.TextBox textBoxParameter;
-        private System.Windows.Forms.NumericUpDown numericUpDownParameterColumn;
-        private System.Windows.Forms.NumericUpDown numericUpDownValueColumn;
         private System.Windows.Forms.TextBox textBoxType;
+        private System.Windows.Forms.TextBox textBoxParameterColumn;
+        private System.Windows.Forms.TextBox textBoxValueColumn;
     }
 }

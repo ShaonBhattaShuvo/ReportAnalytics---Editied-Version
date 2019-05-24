@@ -8,8 +8,8 @@
     <ResultFormat>
       <Parameter>Name_Speed_Torque</Parameter>
       <Delimiter>_</Delimiter>
-      <ParameterColumn>0</ParameterColumn>
-      <ValueColumn>3</ValueColumn>
+      <ParameterColumn>A</ParameterColumn>
+      <ValueColumn>D</ValueColumn>
     </ResultFormat>
   </Settings>
 </DV_ReportAnalytics>

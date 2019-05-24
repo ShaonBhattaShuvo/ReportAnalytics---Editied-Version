@@ -18,8 +18,8 @@ namespace DV_ReportAnalytics.UI
                 textBoxOutputSheetName.Text = value.GetNodeValue("Settings/OutputSheetName");
                 textBoxParameter.Text = value.GetNodeValue("Settings/ResultFormat/Parameter");
                 textBoxDelimiter.Text = value.GetNodeValue("Settings/ResultFormat/Delimiter");
-                numericUpDownParameterColumn.Value = value.GetNodeValue<decimal>("Settings/ResultFormat/ParameterColumn");
-                numericUpDownValueColumn.Value = value.GetNodeValue<decimal>("Settings/ResultFormat/ValueColumn");
+                textBoxParameterColumn.Text = value.GetNodeValue("Settings/ResultFormat/ParameterColumn");
+                textBoxValueColumn.Text = value.GetNodeValue("Settings/ResultFormat/ValueColumn");
             }
             get
             {
@@ -31,8 +31,8 @@ namespace DV_ReportAnalytics.UI
                 doc.SetNodeValue("Settings/OutputSheetName", textBoxOutputSheetName.Text);
                 doc.SetNodeValue("Settings/ResultFormat/Parameter", textBoxParameter.Text);
                 doc.SetNodeValue("Settings/ResultFormat/Delimiter", textBoxDelimiter.Text);
-                doc.SetNodeValue("Settings/ResultFormat/ParameterColumn", numericUpDownParameterColumn.Value);
-                doc.SetNodeValue("Settings/ResultFormat/ValueColumn", numericUpDownValueColumn.Value);
+                doc.SetNodeValue("Settings/ResultFormat/ParameterColumn", textBoxParameterColumn.Text);
+                doc.SetNodeValue("Settings/ResultFormat/ValueColumn", textBoxValueColumn.Text);
                 return doc;
             }
         }
@@ -47,8 +47,8 @@ namespace DV_ReportAnalytics.UI
             textBoxOutputSheetName.TextChanged += (object sender, EventArgs e) => UpdateContents();
             textBoxParameter.TextChanged += (object sender, EventArgs e) => UpdateContents();
             textBoxDelimiter.TextChanged += (object sender, EventArgs e) => UpdateContents();
-            numericUpDownParameterColumn.ValueChanged += (object sender, EventArgs e) => UpdateContents();
-            numericUpDownValueColumn.ValueChanged += (object sender, EventArgs e) => UpdateContents();
+            textBoxParameterColumn.TextChanged += (object sender, EventArgs e) => UpdateContents();
+            textBoxValueColumn.TextChanged += (object sender, EventArgs e) => UpdateContents();
         }
 
         private void UpdateContents()

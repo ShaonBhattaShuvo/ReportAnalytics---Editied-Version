@@ -31,8 +31,8 @@ namespace DV_ReportAnalytics
         {
             string parameter = settings.GetNodeValue("Settings/ResultFormat/Parameter");
             string delimiter = settings.GetNodeValue("Settings/ResultFormat/Delimiter");
-            int parameterColumn = settings.GetNodeValue<int>("Settings/ResultFormat/ParameterColumn");
-            int valueColumn = settings.GetNodeValue<int>("Settings/ResultFormat/ValueColumn");
+            int parameterColumn = settings.GetNodeValue("Settings/ResultFormat/ParameterColumn").ToNumberIndex();
+            int valueColumn = settings.GetNodeValue("Settings/ResultFormat/ValueColumn").ToNumberIndex();
             string inputSheet = settings.GetNodeValue("Settings/InputSheetName");
             _outputSheet = settings.GetNodeValue("Settings/OutputSheetName");
             DataBase = new DataSet();

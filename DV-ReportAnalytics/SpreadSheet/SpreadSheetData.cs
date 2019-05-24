@@ -138,6 +138,25 @@ namespace DV_ReportAnalytics
                 DataBody = databody
             };
         }
+
+        public static int ToNumberIndex(this string source)
+        {
+            int result;
+            try
+            {
+                result = Convert.ToInt32(source);
+            }
+            catch
+            {
+                char[] arr = source.ToUpper().ToArray();
+                result = -1; // zero indexed
+                for (int i = 0; i < arr.Length; i++)
+                {
+                    result = result + ((int)arr[i] - 64) * (int)Math.Pow(26d, i);
+                }
+            }
+            return result;
+        }
     }
 
     internal struct TableDataSet<T>
