@@ -16,7 +16,7 @@ namespace DV_ReportAnalytics
             labelRange.Value = data.Label;
             // insert column label
             IRange columnLabelRange = source.Cells[0, 1, 0, data.ColumnHeader.Length - 1 + 1];
-            columnLabelRange.Value = data.ColumnLabel;
+            columnLabelRange.Cells[0, 0].Value = data.ColumnLabel;
             // insert row label
             IRange rowLabelRange = source.Cells[1, 0];
             rowLabelRange.Value = data.RowLabel;
