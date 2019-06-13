@@ -1,34 +1,51 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.168
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28922.388
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DV-ReportAnalytics", "DV-ReportAnalytics\DV-ReportAnalytics.csproj", "{FCEF3D92-5733-4C5E-9901-6944210E93B0}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Plotly", "Plotly\Plotly.fsproj", "{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
 		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Debug|x64.ActiveCfg = Debug|x64
+		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Debug|x64.Build.0 = Debug|x64
+		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Debug|x86.ActiveCfg = Debug|x86
+		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Debug|x86.Build.0 = Debug|x86
 		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Release|x64.ActiveCfg = Release|x64
+		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Release|x64.Build.0 = Release|x64
+		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Release|x86.ActiveCfg = Release|x86
+		{FCEF3D92-5733-4C5E-9901-6944210E93B0}.Release|x86.Build.0 = Release|x86
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Debug|x64.Build.0 = Debug|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Debug|x86.Build.0 = Debug|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Release|x64.ActiveCfg = Release|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Release|x64.Build.0 = Release|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Release|x86.ActiveCfg = Release|Any CPU
+		{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15C92A2E-A864-4F33-9310-523B29ADDD90}
-	EndGlobalSection
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 2
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://dvtfs:8080/tfs/x3_projects
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = DV-ReportAnalytics\\DV-ReportAnalytics.csproj
-		SccProjectName1 = DV-ReportAnalytics
-		SccLocalPath1 = DV-ReportAnalytics
 	EndGlobalSection
 EndGlobal

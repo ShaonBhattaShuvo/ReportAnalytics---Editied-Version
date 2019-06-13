@@ -38,7 +38,8 @@ namespace DV_ReportAnalytics.UI
 
         private void MainForm_GraphButtonClicked()
         {
-
+            bool collapsed = _mainForm.SplitContainer.Panel2Collapsed;
+            _mainForm.SplitContainer.Panel2Collapsed = !collapsed;
         }
 
         private void MainForm_SettingsButtonClicked()

@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Data;
+using System.IO;
 using SpreadsheetGear;
+using Plotly;
 
 namespace DV_ReportAnalytics
 {
@@ -66,10 +68,13 @@ namespace DV_ReportAnalytics
             IRange topLeft = worksheet.Cells[0, 0]; // top-left cell
             IRange current = topLeft;
             int count = 0;
+            
+            string html = string.Empty;
 
             foreach (string name in TableNames)
             {
-                TableDataRange ranges = current.InsertTable(DataBase.Tables[name].ToTableDataSet(1, 0, 2));
+                TableDataSet<object> table = DataBase.Tables[name].ToTableDataSet(1, 0, 2);
+                TableDataRange ranges = current.InsertTable(table);
                 SpreadSheetDrawing.ApplyHeatMap(ranges);
                 if (++count > 3)
                 {
@@ -80,7 +85,25 @@ namespace DV_ReportAnalytics
                 {
                     current = ranges.All.CellRight().CellRight();
                 }
+                
+                // create html segment
+                string htmlSegment = Efficiency_Surface3D.Create((string)table.Label, table.DataBody);
+                html += htmlSegment;
             }
+
+            // create html
+            html = "<!DOCTYPE html>" +
+                "<html>" +
+                "<head>" +
+                    "<meta charset = \"UTF-8\" />" +
+                     "<script src = \"https://cdn.plot.ly/plotly-latest.min.js\"></script>" +
+                "</head>" +
+                "<body>" +
+                $"  {html}" +
+                "</body>" +
+                "</html>";
+
+            File.WriteAllText("surfaces.html", html);
 
             WorkbookUpdated?.Invoke(this, new WorkbookUpdateEventArgs(workbook));
         }

@@ -46,7 +46,10 @@ namespace DV_ReportAnalytics.UI
             File.Copy(p, cache, true);
             EPTModel model = new EPTModel();
             model.WorkbookUpdated += (object sender, WorkbookUpdateEventArgs e) =>
+            {
                 _mainForm.WorkbookView.ActiveWorkbook = e.Workbook;
+                _mainForm.Chrome.Load("file:///surfaces.html");
+            };
             model.Build(cache, _doc);
             model.Draw(cache, _doc);
         }

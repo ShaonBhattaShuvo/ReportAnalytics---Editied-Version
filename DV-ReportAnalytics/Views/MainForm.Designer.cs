@@ -39,13 +39,11 @@
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.workbookView = new SpreadsheetGear.Windows.Forms.WorkbookView();
-            this.graphContainer = new System.Windows.Forms.WebBrowser();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
             this.splitContainerMain.Panel1.SuspendLayout();
-            this.splitContainerMain.Panel2.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -66,8 +64,8 @@
             this.toolStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Padding = new System.Windows.Forms.Padding(4, 0, 0, 4);
-            this.toolStripMain.Size = new System.Drawing.Size(1437, 35);
+            this.toolStripMain.Padding = new System.Windows.Forms.Padding(2, 0, 0, 2);
+            this.toolStripMain.Size = new System.Drawing.Size(784, 33);
             this.toolStripMain.TabIndex = 0;
             // 
             // toolStripButtonOpenFile
@@ -117,7 +115,6 @@
             // toolStripButtonGraphToggle
             // 
             this.toolStripButtonGraphToggle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonGraphToggle.Enabled = false;
             this.toolStripButtonGraphToggle.Image = global::DV_ReportAnalytics.Properties.Resources.area_chart_32;
             this.toolStripButtonGraphToggle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonGraphToggle.Name = "toolStripButtonGraphToggle";
@@ -138,8 +135,7 @@
             // splitContainerMain
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainerMain.Location = new System.Drawing.Point(0, 35);
-            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.splitContainerMain.Location = new System.Drawing.Point(0, 33);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel1
@@ -149,11 +145,9 @@
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.splitContainerMain.Panel2.Controls.Add(this.graphContainer);
             this.splitContainerMain.Panel2Collapsed = true;
-            this.splitContainerMain.Size = new System.Drawing.Size(1437, 1001);
+            this.splitContainerMain.Size = new System.Drawing.Size(784, 528);
             this.splitContainerMain.SplitterDistance = 392;
-            this.splitContainerMain.SplitterWidth = 7;
             this.splitContainerMain.TabIndex = 1;
             // 
             // workbookView
@@ -161,21 +155,10 @@
             this.workbookView.Dock = System.Windows.Forms.DockStyle.Fill;
             this.workbookView.FormulaBar = null;
             this.workbookView.Location = new System.Drawing.Point(0, 0);
-            this.workbookView.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.workbookView.Name = "workbookView";
-            this.workbookView.Size = new System.Drawing.Size(1437, 1001);
+            this.workbookView.Size = new System.Drawing.Size(784, 528);
             this.workbookView.TabIndex = 0;
             this.workbookView.WorkbookSetState = resources.GetString("workbookView.WorkbookSetState");
-            // 
-            // graphContainer
-            // 
-            this.graphContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.graphContainer.Location = new System.Drawing.Point(0, 0);
-            this.graphContainer.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
-            this.graphContainer.MinimumSize = new System.Drawing.Size(37, 37);
-            this.graphContainer.Name = "graphContainer";
-            this.graphContainer.Size = new System.Drawing.Size(176, 185);
-            this.graphContainer.TabIndex = 0;
             // 
             // openFileDialog
             // 
@@ -188,19 +171,17 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(11F, 24F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1437, 1036);
+            this.ClientSize = new System.Drawing.Size(784, 561);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.toolStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.Name = "MainForm";
             this.Text = "DV Report Analytics";
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
             this.splitContainerMain.Panel1.ResumeLayout(false);
-            this.splitContainerMain.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -219,7 +200,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonHelp;
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private System.Windows.Forms.WebBrowser graphContainer;
         private SpreadsheetGear.Windows.Forms.WorkbookView workbookView;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
