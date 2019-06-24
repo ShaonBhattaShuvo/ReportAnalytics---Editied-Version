@@ -43,25 +43,22 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Content Include="packages.config" />
     <Compile Include="Efficiency_Surface3D.fs" />
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
-      <HintPath>..\packages\FSharp.Core.4.6.2\lib\net45\FSharp.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\Projects\Components\NuGetPackages\FSharp.Core.4.5.0\lib\net45\FSharp.Core.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\Projects\Components\NuGetPackages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Numerics" />
-    <Reference Include="System.ValueTuple">
-      <Private>True</Private>
-    </Reference>
     <Reference Include="XPlot.Plotly">
-      <HintPath>..\packages\XPlot.Plotly.2.0.0\lib\netstandard2.0\XPlot.Plotly.dll</HintPath>
+      <HintPath>..\..\..\..\..\Projects\Components\NuGetPackages\XPlot.Plotly.2.0.0\lib\netstandard2.0\XPlot.Plotly.dll</HintPath>
     </Reference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
