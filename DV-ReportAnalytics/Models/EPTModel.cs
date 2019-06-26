@@ -3,15 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Data;
-using System.IO;
 using SpreadsheetGear;
-using Plotly;
 
 namespace DV_ReportAnalytics
 {
-    internal class EPTModel
+    internal class EPTReportModel
     {
-        private string _outputSheet;
         public DataSet DataBase { get; private set; }
         public string[] TableNames
         {
@@ -23,29 +20,34 @@ namespace DV_ReportAnalytics
                 return names.ToArray();
             }
         }
-        public event Action<object, WorkbookUpdateEventArgs> WorkbookUpdated;
+        public event EventHandler<WorkbookUpdateEventArgs> WorkbookUpdated;
 
-        public EPTModel()
+        public EPTReportModel()
         {
         }
 
-        public void Build(string input, XmlDocument settings)
+        /// <summary>
+        /// Build EPT data model
+        /// </summary>
+        /// <param name="file">Input file</param>
+        /// <param name="parameter">Parameter</param>
+        /// <param name="delimiter">Delimiter used to split  parameter</param>
+        /// <param name="parameterColumn">Zero-indexed integer</param>
+        /// <param name="valueColumn">Zero-indexed integer</param>
+        /// <param name="inputSheet">Input sheet</param>
+        /// <returns></returns>
+        public IWorkbook Build(string file, string parameter, char delimiter,
+            int parameterColumn, int valueColumn, string inputSheet)
         {
-            string parameter = settings.GetNodeValue("Settings/ResultFormat/Parameter");
-            string delimiter = settings.GetNodeValue("Settings/ResultFormat/Delimiter");
-            int parameterColumn = settings.GetNodeValue("Settings/ResultFormat/ParameterColumn").ToNumberIndex();
-            int valueColumn = settings.GetNodeValue("Settings/ResultFormat/ValueColumn").ToNumberIndex();
-            string inputSheet = settings.GetNodeValue("Settings/InputSheetName");
-            _outputSheet = settings.GetNodeValue("Settings/OutputSheetName");
             DataBase = new DataSet();
-            IWorkbook workbook = Factory.GetWorkbook(input);
+            IWorkbook workbook = Factory.GetWorkbook(file);
             IWorksheet worksheet = workbook.Worksheets[inputSheet];
             IRange range = worksheet.UsedRange;
-            string[] fields = parameter.Split(delimiter.ToArray()).Skip(1).ToArray(); // skip name section
+            string[] fields = parameter.Split(delimiter).Skip(1).ToArray(); // skip name section
 
             for (int i = 0; i < range.RowCount; i++)
             {
-                string[] param = range[i, parameterColumn].Value?.ToString().Split(delimiter.ToArray());
+                string[] param = range[i, parameterColumn].Value?.ToString().Split(delimiter);
                 if (param?.Length >= 3)
                 {
                     List<object> values = new List<object>(param.Length);
@@ -55,28 +57,26 @@ namespace DV_ReportAnalytics
                 }
             }
 
-            WorkbookUpdated?.Invoke(this, new WorkbookUpdateEventArgs(workbook));
+            return workbook;
         }
 
-        public void Draw(string input, XmlDocument displays)
+        public IWorkbook Draw(string file, string outputSheet, string[] items,
+            int rowInterpolation, int columnInterpolation, int maxItems)
         {
-            IWorkbook workbook = Factory.GetWorkbook(input);
-            workbook.Worksheets[_outputSheet]?.Delete(); // delete old one
+            IWorkbook workbook = Factory.GetWorkbook(file);
+            workbook.Worksheets[outputSheet]?.Delete(); // delete old one
             IWorksheet worksheet = workbook.Worksheets.Add();
-            worksheet.Name = _outputSheet;
+            worksheet.Name = outputSheet;
 
             IRange topLeft = worksheet.Cells[0, 0]; // top-left cell
             IRange current = topLeft;
             int count = 0;
-            
-            string html = string.Empty;
 
-            foreach (string name in TableNames)
+            foreach (string name in items)
             {
-                TableDataSet<object> table = DataBase.Tables[name].ToTableDataSet(1, 0, 2);
-                TableDataRange ranges = current.InsertTable(table);
-                SpreadSheetDrawing.ApplyHeatMap(ranges);
-                if (++count > 3)
+                TableDataRange ranges = current.InsertTable(DataBase.Tables[name].ToTableDataSet(1, 0, 2));
+                SpreadSheet.ApplyHeatMap(ranges);
+                if (++count > maxItems)
                 {
                     count = 0;
                     current = ranges.All.RowBelow().RowBelow().FirstCell();
@@ -85,29 +85,9 @@ namespace DV_ReportAnalytics
                 {
                     current = ranges.All.CellRight().CellRight();
                 }
-                
-                // create html segment
-                string htmlSegment = Efficiency_Surface3D.Create((string)table.Label, table.DataBody);
-                html += htmlSegment;
             }
 
-            // create html
-            html = "<!DOCTYPE html>" +
-                "<html>" +
-                "<head>" +
-                    "<meta charset = \"UTF-8\" />" +
-                     "<script src = \"https://cdn.plot.ly/plotly-latest.min.js\"></script>" +
-                "</head>" +
-                "<body>" +
-                $"  {html}" +
-                "</body>" +
-                "</html>";
-
-            File.WriteAllText("surfaces.html", html);
-
-            WorkbookUpdated?.Invoke(this, new WorkbookUpdateEventArgs(workbook));
+            return workbook;
         }
-
-
     }
 }
