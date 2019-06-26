@@ -9,7 +9,7 @@ using System.Linq;
 using System.Data;
 
 /* Static methods for database creation */
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.Core
 {
     /// <summary>
     /// SpreadSheet data related
@@ -141,63 +141,6 @@ namespace DV_ReportAnalytics
                 ColumnHeader = colheader,
                 DataBody = databody
             };
-        }
-
-        public static int LetterToNumberColumn(string source)
-        {
-            int result;
-            try
-            {
-                result = Convert.ToInt32(source);
-            }
-            catch
-            {
-                string upper = source.ToUpper();
-                result = 0;
-                for (int i = 0; i < upper.Length; i++)
-                {
-                    result *= 26;
-                    result += (upper[i] - 'A') + 1;
-                }
-            }
-            return result;
-        }
-
-        public static string NumberToLetterColumn(int source)
-        {
-            string result = string.Empty;
-            int dividend = source;
-            int modulo;
-            while (dividend > 0)
-            {
-                modulo = (dividend - 1) % 26;
-                dividend = (dividend - modulo) / 26;
-                result = Convert.ToChar(modulo + 'A').ToString() + result;
-            }
-            return result;
-        }
-
-        public static object[,] ToRangeColumnArray<T>(this T[] source)
-        {
-            object[,] result = new object[source.Length, 1];
-            for (int i = 0; i < source.Length; i++)
-                result[i, 0] = source[i];
-            return result;
-        }
-
-        public static object[,] ToRangeRowArray<T>(this T[] source)
-        {
-            object[,] result = new object[1, source.Length];
-            for (int i = 0; i < source.Length; i++)
-                result[0, i] = source[i];
-            return result;
-        }
-
-        public static object[,] ToRangeArray<T>(this T[,] source)
-        {
-            object[,] result = new object[source.GetLength(0), source.GetLength(1)];
-            Array.Copy(source, result, source.Length);
-            return result;
         }
     }
 

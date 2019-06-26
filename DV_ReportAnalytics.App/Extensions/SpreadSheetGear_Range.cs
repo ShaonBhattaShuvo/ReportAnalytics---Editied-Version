@@ -5,33 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using SpreadsheetGear;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.App.SpreadsheetGear
 {
-    internal static class SpreadSheet
+    /// <summary>
+    /// SpreadSheet range related
+    /// </summary>
+    internal static partial class SpreadSheetGear_Range
     {
-        public static object[,] ToRangeColumnArray<T>(this T[] source)
-        {
-            object[,] result = new object[source.Length, 1];
-            for (int i = 0; i < source.Length; i++)
-                result[i, 0] = source[i];
-            return result;
-        }
-
-        public static object[,] ToRangeRowArray<T>(this T[] source)
-        {
-            object[,] result = new object[1, source.Length];
-            for (int i = 0; i < source.Length; i++)
-                result[0, i] = source[i];
-            return result;
-        }
-
-        public static object[,] ToRangeArray<T>(this T[,] source)
-        {
-            object[,] result = new object[source.GetLength(0), source.GetLength(1)];
-            Array.Copy(source, result, source.Length);
-            return result;
-        }
-
         public static IRange FirstCell(this IRange source)
         {
             return source.Cells[0, 0];

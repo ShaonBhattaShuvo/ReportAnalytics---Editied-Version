@@ -5,11 +5,11 @@ using System.Text;
 using System.Threading.Tasks;
 using SpreadsheetGear;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.App.SpreadsheetGear
 {
-    internal static class SpreadSheetDrawing
+    internal static class SpreadSheetGear_Table
     {
-        public static TableDataRange InsertTable<T>(this IRange source, TableDataCollection<T> data)
+        public static TableDataRange InsertTable<T>(this IRange source, DV_ReportAnalytics.Core.TableDataCollection<T> data)
         {
             // insert title
             IRange labelRange = source.Cells[0, 0];
@@ -74,7 +74,29 @@ namespace DV_ReportAnalytics
             format.ColorScale.ColorScaleCriteria[2].FormatColor.Color = Color.FromArgb(217, 95, 14);
         }
 
-        
+        public static object[,] ToRangeColumnArray<T>(this T[] source)
+        {
+            object[,] result = new object[source.Length, 1];
+            for (int i = 0; i < source.Length; i++)
+                result[i, 0] = source[i];
+            return result;
+        }
+
+        public static object[,] ToRangeRowArray<T>(this T[] source)
+        {
+            object[,] result = new object[1, source.Length];
+            for (int i = 0; i < source.Length; i++)
+                result[0, i] = source[i];
+            return result;
+        }
+
+        public static object[,] ToRangeArray<T>(this T[,] source)
+        {
+            object[,] result = new object[source.GetLength(0), source.GetLength(1)];
+            Array.Copy(source, result, source.Length);
+            return result;
+        }
+
     }
 
     internal struct TableDataRange
