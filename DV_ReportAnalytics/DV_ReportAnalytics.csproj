@@ -86,6 +86,7 @@
     </Reference>
     <Reference Include="SpreadsheetGear2017.Windows.Forms, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\..\Program Files (x86)\SpreadsheetGear\SpreadsheetGear 2017 for .NET\DotNet40\Bin\SpreadsheetGear2017.Windows.Forms.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -100,86 +101,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Algorithms\Interpolation.cs" />
-    <Compile Include="Constants\ModelTypes.cs" />
-    <Compile Include="EventArgs\ModelEvents.cs" />
-    <Compile Include="Extensions\SpreadSheet.cs" />
-    <Compile Include="Presenters\MainFormPresenter.Bindings.cs" />
-    <Compile Include="Presenters\OpenFileWizardPresenter.cs" />
-    <Compile Include="SpreadSheet\SpreadSheetData.cs" />
-    <Compile Include="EventArgs\FormEvents.cs" />
-    <Compile Include="Extensions\ToArrayExtensions.cs" />
-    <Compile Include="Extensions\XmlExtensions.cs" />
-    <Compile Include="Presenters\MainFormPresenter.cs" />
-    <Compile Include="Models\EPTModel.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SpreadSheet\SpreadSheetDrawing.cs" />
-    <Compile Include="Views\Components\FileBrowserWithLabel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\Components\FileBrowserWithLabel.Designer.cs">
-      <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IBaseControl.cs" />
-    <Compile Include="Views\IBaseForm.cs" />
-    <Compile Include="Views\PathControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\PathControl.Designer.cs">
-      <DependentUpon>PathControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SettingsControl.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\SettingsControl.Designer.cs">
-      <DependentUpon>SettingsControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\MainForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\MainForm.Designer.cs">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Views\OpenFileWizard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Views\OpenFileWizard.Designer.cs">
-      <DependentUpon>OpenFileWizard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ProcessPanels\EPTProcessPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="Views\ProcessPanels\EPTProcessPanel.Designer.cs">
-      <DependentUpon>EPTProcessPanel.cs</DependentUpon>
-    </Compile>
-    <EmbeddedResource Include="Views\Components\FileBrowserWithLabel.resx">
-      <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\PathControl.resx">
-      <DependentUpon>PathControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\SettingsControl.resx">
-      <DependentUpon>SettingsControl.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\MainForm.resx">
-      <DependentUpon>MainForm.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\OpenFileWizard.resx">
-      <DependentUpon>OpenFileWizard.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Views\ProcessPanels\EPTProcessPanel.resx">
-      <DependentUpon>EPTProcessPanel.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -196,24 +128,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Icons\area_chart-32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\folder-32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\help-32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\list-32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\save_as-32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\Icons\settings-32.png" />
-  </ItemGroup>
-  <ItemGroup>
     <COMReference Include="VBIDE">
       <Guid>{0002E157-0000-0000-C000-000000000046}</Guid>
       <VersionMajor>5</VersionMajor>
@@ -223,13 +137,6 @@
       <Isolated>False</Isolated>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Resources\Configurations\Displays_EPTReport.xml" />
-    <Content Include="Resources\Configurations\Root.xml" />
-    <Content Include="Resources\Configurations\Settings_EPTReport.xml" />
-    <Content Include="Resources\Configurations\Path.xml" />
-    <Content Include="Resources\Images\logo.png" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
@@ -245,12 +152,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Plotly\Plotly.fsproj">
-      <Project>{9d0d40ec-ea78-4638-8889-c6ecba25cb80}</Project>
-      <Name>Plotly</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.Data;
-using SpreadsheetGear;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.Core.Models
 {
     internal class EPTReportModel
     {
@@ -20,7 +19,6 @@ namespace DV_ReportAnalytics
                 return names.ToArray();
             }
         }
-        public event EventHandler<WorkbookUpdateEventArgs> WorkbookUpdated;
 
         public EPTReportModel()
         {
@@ -29,35 +27,43 @@ namespace DV_ReportAnalytics
         /// <summary>
         /// Build EPT data model
         /// </summary>
-        /// <param name="file">Input file</param>
+        /// <param name="dataRange">Used range of input data</param>
         /// <param name="parameter">Parameter</param>
         /// <param name="delimiter">Delimiter used to split  parameter</param>
         /// <param name="parameterColumn">Zero-indexed integer</param>
         /// <param name="valueColumn">Zero-indexed integer</param>
-        /// <param name="inputSheet">Input sheet</param>
         /// <returns></returns>
-        public IWorkbook Build(string file, string parameter, char delimiter,
-            int parameterColumn, int valueColumn, string inputSheet)
+        public int Build(object[,] dataRange, string parameter, char delimiter,
+            int parameterColumn, int valueColumn)
         {
             DataBase = new DataSet();
-            IWorkbook workbook = Factory.GetWorkbook(file);
-            IWorksheet worksheet = workbook.Worksheets[inputSheet];
-            IRange range = worksheet.UsedRange;
-            string[] fields = parameter.Split(delimiter).Skip(1).ToArray(); // skip name section
-
-            for (int i = 0; i < range.RowCount; i++)
+            
+            try
             {
-                string[] param = range[i, parameterColumn].Value?.ToString().Split(delimiter);
-                if (param?.Length >= 3)
-                {
-                    List<object> values = new List<object>(param.Length);
-                    values.AddRange(param.Skip(1)); // skip name section
-                    values.Add(range[i, valueColumn].Value);
-                    DataBase.AddTable(param[0], fields, values.ToArray());
-                }
-            }
+                string[] fields = parameter.Split(delimiter).Skip(1).ToArray(); // skip name section
 
-            return workbook;
+                for (int i = 0; i < dataRange.GetLength(0); i++)
+                {
+                    string[] param = dataRange[i, parameterColumn]?.ToString().Split(delimiter);
+                    if (param?.Length >= 3)
+                    {
+                        List<object> values = new List<object>(param.Length);
+                        values.AddRange(param.Skip(1)); // skip name section
+                        values.Add(dataRange[i, valueColumn]);
+                        DataBase.AddTable(param[0], fields, values.ToArray());
+                    }
+                }
+
+                return 0;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return -1;
+            }
+            
+
+            
         }
 
         public IWorkbook Draw(string file, string outputSheet, string[] items,
@@ -74,7 +80,7 @@ namespace DV_ReportAnalytics
 
             foreach (string name in items)
             {
-                TableDataRange ranges = current.InsertTable(DataBase.Tables[name].ToTableDataSet(1, 0, 2));
+                TableDataRange ranges = current.InsertTable(DataBase.Tables[name].ToTableDataCollection(1, 0, 2));
                 SpreadSheet.ApplyHeatMap(ranges);
                 if (++count > maxItems)
                 {

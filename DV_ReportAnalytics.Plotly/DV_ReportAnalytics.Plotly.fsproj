@@ -8,12 +8,12 @@
     <ProjectGuid>9d0d40ec-ea78-4638-8889-c6ecba25cb80</ProjectGuid>
     <OutputType>Library</OutputType>
     <RootNamespace>Plotly</RootNamespace>
-    <AssemblyName>DV_ReportAnalytics_Plotly</AssemblyName>
+    <AssemblyName>DV_ReportAnalytics.Plotly</AssemblyName>
     <UseStandardResourceNames>true</UseStandardResourceNames>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <WarningsAsErrors>3239;$(WarningsAsErrors)</WarningsAsErrors>
-    <Name>DV_ReportAnalytics_Plotly</Name>
+    <Name>DV_ReportAnalytics.Plotly</Name>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
