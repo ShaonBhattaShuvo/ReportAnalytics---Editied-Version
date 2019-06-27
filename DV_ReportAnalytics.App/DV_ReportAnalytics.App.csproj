@@ -34,6 +34,7 @@
     <Reference Include="SpreadsheetGear2017.Core, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
     <Reference Include="SpreadsheetGear2017.Windows.Forms, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -43,12 +44,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Configurations\EPTReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>EPTReport.settings</DependentUpon>
+    </Compile>
     <Compile Include="Constants\ModelTypes.cs" />
     <Compile Include="EventArgs\FormEvents.cs" />
     <Compile Include="EventArgs\ModelEvents.cs" />
+    <Compile Include="Extensions\Conversions.cs" />
     <Compile Include="Extensions\SpreadSheetGear_Range.cs" />
-    <Compile Include="Presenters\MainFormPresenter.Bindings.cs" />
-    <Compile Include="Presenters\MainFormPresenter.cs" />
+    <Compile Include="Management\BaseReportConfiguration.cs" />
+    <Compile Include="Management\EPTReportConfiguration.cs" />
+    <Compile Include="Management\ReportConfigurationManager.cs" />
+    <Compile Include="Management\ReportInstanceManager.cs" />
+    <Compile Include="Presenters\MainPresenter.Bindings.cs" />
+    <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Presenters\OpenFileWizardPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Extensions\SpreadSheetGear_Table.cs" />
@@ -58,6 +69,13 @@
       <Project>{cdec05e3-d5dd-45dc-9187-459a0e03e534}</Project>
       <Name>DV_ReportAnalytics.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Configurations\EPTReport.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>EPTReport.Designer.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

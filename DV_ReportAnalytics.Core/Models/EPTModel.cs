@@ -52,6 +52,8 @@ namespace DV_ReportAnalytics.Core.Models
                         values.Add(dataRange[i, valueColumn]);
                         DataBase.AddTable(param[0], fields, values.ToArray());
                     }
+                    else
+                        throw new Exception("Invalid parameter!");
                 }
 
                 return 0;
@@ -60,40 +62,21 @@ namespace DV_ReportAnalytics.Core.Models
             {
                 Console.WriteLine(e.Message);
                 return -1;
-            }
-            
-
-            
+            }   
         }
 
-        public IWorkbook Draw(string file, string outputSheet, string[] items,
-            int rowInterpolation, int columnInterpolation, int maxItems)
+        public IEnumerable<TableDataCollection<object>> GetTableDataCollections(
+            string[] items, int rowInterpolation = 0, int columnInterpolation = 0)
         {
-            IWorkbook workbook = Factory.GetWorkbook(file);
-            workbook.Worksheets[outputSheet]?.Delete(); // delete old one
-            IWorksheet worksheet = workbook.Worksheets.Add();
-            worksheet.Name = outputSheet;
-
-            IRange topLeft = worksheet.Cells[0, 0]; // top-left cell
-            IRange current = topLeft;
-            int count = 0;
-
+            List<TableDataCollection<object>> collections = new List<TableDataCollection<object>>(items.Length);
             foreach (string name in items)
-            {
-                TableDataRange ranges = current.InsertTable(DataBase.Tables[name].ToTableDataCollection(1, 0, 2));
-                SpreadSheet.ApplyHeatMap(ranges);
-                if (++count > maxItems)
-                {
-                    count = 0;
-                    current = ranges.All.RowBelow().RowBelow().FirstCell();
-                }
-                else
-                {
-                    current = ranges.All.CellRight().CellRight();
-                }
-            }
+                collections.Add(DataBase.Tables[name].ToTableDataCollection(1, 0, 2));
 
-            return workbook;
+            if (rowInterpolation == 0 && columnInterpolation == 0)
+                return collections;
+
+            // UNDONE: do interpolation
+            return collections;
         }
     }
 }

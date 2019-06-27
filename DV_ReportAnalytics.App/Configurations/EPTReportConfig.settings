@@ -1,0 +1,27 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DV_ReportAnalytics.App.Configurations" GeneratedClassName="EPTReport">
+  <Profiles />
+  <Settings>
+    <Setting Name="ReportName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">EPT Report Results</Value>
+    </Setting>
+    <Setting Name="InputSheetName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Results</Value>
+    </Setting>
+    <Setting Name="OutputSheetName" Type="System.String" Scope="User">
+      <Value Profile="(Default)">CombinedResults</Value>
+    </Setting>
+    <Setting Name="Parameter" Type="System.String" Scope="User">
+      <Value Profile="(Default)">Name_Speed_Torque</Value>
+    </Setting>
+    <Setting Name="Delimiter" Type="System.Char" Scope="User">
+      <Value Profile="(Default)">_</Value>
+    </Setting>
+    <Setting Name="ParameterColumn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">A</Value>
+    </Setting>
+    <Setting Name="ValueColumn" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using SpreadsheetGear;
 
 namespace DV_ReportAnalytics.App.SpreadsheetGear
@@ -51,6 +48,32 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             };
         }
 
+        public static void InsertTablesInNewSheet<T>(this IWorkbook source, string outputSheet, int maxItemsPerRow,
+            IEnumerable<DV_ReportAnalytics.Core.TableDataCollection<object>>tables)
+        {
+            source.Worksheets[outputSheet]?.Delete(); // delete old one
+            IWorksheet worksheet = source.Worksheets.Add();
+            worksheet.Name = outputSheet;
+
+            IRange current = worksheet.Cells[0, 0]; // top-left cell
+            int count = 0;
+
+            foreach (var table in tables)
+            {
+                TableDataRange ranges = current.InsertTable(table);
+                ApplyHeatMap(ranges);
+                if (++count > maxItemsPerRow)
+                {
+                    count = 0;
+                    current = ranges.All.RowBelow().RowBelow().FirstCell();
+                }
+                else
+                {
+                    current = ranges.All.CellRight().CellRight();
+                }
+            }
+        }
+
         public static void ApplyHeatMap(TableDataRange source)
         {
             Color color = Color.FromArgb(245, 245, 245);
@@ -96,7 +119,6 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             Array.Copy(source, result, source.Length);
             return result;
         }
-
     }
 
     internal struct TableDataRange

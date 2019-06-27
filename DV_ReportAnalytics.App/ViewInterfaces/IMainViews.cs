@@ -1,0 +1,19 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace DV_ReportAnalytics.App
+{
+    public interface IMainView
+    {
+        event EventHandler OpenClicked;
+        event EventHandler ExportClicked;
+        event EventHandler HelpClicked;
+        event EventHandler SettingsClicked;
+        event EventHandler DisplayClicked;
+
+        void UpdateWorkspace(object content);
+    }
+}
