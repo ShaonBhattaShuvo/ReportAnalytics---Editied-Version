@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 using SpreadsheetGear;
 
@@ -48,7 +49,7 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             };
         }
 
-        public static void InsertTablesInNewSheet<T>(this IWorkbook source, string outputSheet, int maxItemsPerRow,
+        public static IEnumerable<TableDataRange> InsertTablesInNewSheet(this IWorkbook source, string outputSheet, int maxItemsPerRow,
             IEnumerable<DV_ReportAnalytics.Core.TableDataCollection<object>>tables)
         {
             source.Worksheets[outputSheet]?.Delete(); // delete old one
@@ -58,23 +59,29 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             IRange current = worksheet.Cells[0, 0]; // top-left cell
             int count = 0;
 
+            List<TableDataRange> tableRanges = new List<TableDataRange>();
+
             foreach (var table in tables)
             {
-                TableDataRange ranges = current.InsertTable(table);
-                ApplyHeatMap(ranges);
+                TableDataRange range = current.InsertTable(table);
+                tableRanges.Add(range);
+
+                // move cursor
                 if (++count > maxItemsPerRow)
                 {
                     count = 0;
-                    current = ranges.All.RowBelow().RowBelow().FirstCell();
+                    current = range.All.RowBelow().RowBelow().FirstCell();
                 }
                 else
                 {
-                    current = ranges.All.CellRight().CellRight();
+                    current = range.All.CellRight().CellRight();
                 }
             }
+
+            return tableRanges.AsEnumerable();
         }
 
-        public static void ApplyHeatMap(TableDataRange source)
+        public static void ApplyHeatMap(this TableDataRange source)
         {
             Color color = Color.FromArgb(245, 245, 245);
             source.Label.Interior.Color = color;

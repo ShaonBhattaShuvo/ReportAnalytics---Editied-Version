@@ -9,5 +9,7 @@ namespace DV_ReportAnalytics.App
     public interface IView
     {
         event EventHandler RequestClosed;
+        void Close();
+        void Show();
     }
 }

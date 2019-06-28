@@ -13,11 +13,11 @@ namespace DV_ReportAnalytics.App.Configurations {
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.1.0.0")]
-    internal sealed partial class EPTReportConfig : global::System.Configuration.ApplicationSettingsBase {
+    internal sealed partial class EPTConfig : global::System.Configuration.ApplicationSettingsBase {
         
-        private static EPTReportConfig defaultInstance = ((EPTReportConfig)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new EPTReportConfig())));
+        private static EPTConfig defaultInstance = ((EPTConfig)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new EPTConfig())));
         
-        public static EPTReportConfig Default {
+        public static EPTConfig Default {
             get {
                 return defaultInstance;
             }

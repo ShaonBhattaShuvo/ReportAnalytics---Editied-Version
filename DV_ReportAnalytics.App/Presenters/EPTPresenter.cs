@@ -23,6 +23,11 @@ namespace DV_ReportAnalytics.App
         {
             set { _viewsProvider = value; }
         }
+
+        public void Export()
+        {
+
+        }
         #endregion
 
         public EPTPresenter(IWorkspaceViewsProvider<IEPTWorkspaceView, IEPTSettingsView, IEPTDisplayView> viewsProvider)

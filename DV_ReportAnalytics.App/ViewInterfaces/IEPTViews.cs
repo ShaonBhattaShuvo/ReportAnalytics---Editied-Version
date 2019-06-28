@@ -22,11 +22,10 @@ namespace DV_ReportAnalytics.App
         int RowInterpolation { get; set; }
         int ColumnInterpolation { get; set; }
         int MaximumItemsPerRow { get; set; }
-
     }
 
     public interface IEPTWorkspaceView : IView
     {
-
+        global::SpreadsheetGear.Windows.Forms.WorkbookView WorkbookView { get; }
     }
 }

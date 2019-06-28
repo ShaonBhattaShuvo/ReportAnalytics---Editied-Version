@@ -5,8 +5,8 @@
         TSettingsViewControl SettingsView { get; }
         TDisplayViewControl DisplayView { get; }
         TWorkspaceViewControl WorkspaceView { get; }
-
         IWorkspaceViewsProvider<TWorkspaceViewControl, TSettingsViewControl, TDisplayViewControl> ViewsProvider { set; }
+        void Export();
     }
 
     public interface IWorkspaceViewsProvider<TWorkspaceViewControl, TSettingsViewControl, TDisplayViewControl>

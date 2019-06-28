@@ -5,9 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
 
-namespace DV_ReportAnalytics.App.Extensions
+namespace DV_ReportAnalytics.App
 {
-    internal static class Configuration_InOut
+    internal static class Configuration_ToFile
     {
         public static void Import(this ApplicationSettingsBase source, string filePath)
         {

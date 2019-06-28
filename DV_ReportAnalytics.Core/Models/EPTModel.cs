@@ -73,10 +73,10 @@ namespace DV_ReportAnalytics.Core.Models
                 collections.Add(DataBase.Tables[name].ToTableDataCollection(1, 0, 2));
 
             if (rowInterpolation == 0 && columnInterpolation == 0)
-                return collections;
+                return collections.AsEnumerable();
 
             // UNDONE: do interpolation
-            return collections;
+            return collections.AsEnumerable();
         }
     }
 }
