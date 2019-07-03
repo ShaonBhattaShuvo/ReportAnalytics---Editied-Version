@@ -19,7 +19,7 @@ namespace DV_ReportAnalytics.GUI
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-
+            
         }
     }
 }

@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.Core
 {
-    internal static class ToArrayExtensions
+    public static class ToArrayExtensions
     {
         /// <summary>
         /// Conerts source to 2D array.

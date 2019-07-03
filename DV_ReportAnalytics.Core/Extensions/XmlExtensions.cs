@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Xml;
 
-namespace DV_ReportAnalytics
+namespace DV_ReportAnalytics.Core
 {
-    internal static class XmlExtensions
+    public static class XmlExtensions
     {
         // generic method for xml document
         // cast string to to other type

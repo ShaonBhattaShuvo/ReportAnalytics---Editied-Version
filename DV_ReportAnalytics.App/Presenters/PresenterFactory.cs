@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace DV_ReportAnalytics.App
 {
-    public interface IView
+    internal class PresenterFactory
     {
-        event EventHandler RequestClosed;
-        void Close();
-        void Show();
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DV_ReportAnalytics.App
+namespace DV_ReportAnalytics.App.Interfaces
 {
     public interface IMainView
     {

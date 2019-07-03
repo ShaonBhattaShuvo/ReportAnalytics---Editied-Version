@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using SpreadsheetGear;
 using SpreadsheetGear.Windows.Forms;
-using DV_ReportAnalytics.App.SpreadsheetGear;
+using DV_ReportAnalytics.Core;
 
 namespace DV_ReportAnalytics.App.SpreadsheetGear
 {
-    internal class SpreadsheetGearEPTPresenter
+    public class SpreadsheetGearWorkbookViewController
     {
         public WorkbookView WorkbookViewModel { get; set; }
 
-        public SpreadsheetGearEPTPresenter(WorkbookView workbookView)
+        public SpreadsheetGearWorkbookViewController(WorkbookView workbookView)
         {
             WorkbookViewModel = workbookView;
         }
@@ -62,8 +62,7 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
                 var ranges = WorkbookViewModel.ActiveWorkbook.InsertTablesInNewSheet(sheetName, maxItemsPerRow, tables);
 
                 if (heatMap)
-                    foreach (var range in ranges)
-                        range.ApplyHeatMap();
+                    ranges.ForEach(x => x.ApplyHeatMap());
 
                 WorkbookViewModel.ActiveWorkbookSet.ReleaseLock();
             }
