@@ -44,25 +44,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\EPTReport.Designer.cs">
+    <Compile Include="Configurations\EPTConfig.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
-      <DependentUpon>EPTReport.settings</DependentUpon>
+      <DependentUpon>EPTConfig.settings</DependentUpon>
     </Compile>
     <Compile Include="Constants\ModelTypes.cs" />
     <Compile Include="EventArgs\FormEvents.cs" />
     <Compile Include="EventArgs\ModelEvents.cs" />
+    <Compile Include="Extensions\Configuration_ToFile.cs" />
     <Compile Include="Extensions\Conversions.cs" />
-    <Compile Include="Extensions\SpreadSheetGear_Range.cs" />
-    <Compile Include="Management\BaseReportConfiguration.cs" />
-    <Compile Include="Management\EPTReportConfiguration.cs" />
-    <Compile Include="Management\ReportConfigurationManager.cs" />
-    <Compile Include="Management\ReportInstanceManager.cs" />
+    <Compile Include="Interfaces\IViewsProviders.cs" />
+    <Compile Include="Interfaces\IWorkspaceViewsProvider.cs" />
+    <Compile Include="Management\WorkspacePresenterFactory.cs" />
+    <Compile Include="SpreadsheetGear\SpreadsheetGearWorkbookViewController.cs" />
+    <Compile Include="SpreadsheetGear\SpreadsheetGearRangeExtensions.cs" />
+    <Compile Include="Presenters\EPTPresenter.cs" />
+    <Compile Include="Presenters\IWorkspacePresenter.cs" />
     <Compile Include="Presenters\MainPresenter.Bindings.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
     <Compile Include="Presenters\OpenFileWizardPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Extensions\SpreadSheetGear_Table.cs" />
+    <Compile Include="SpreadsheetGear\SpreadsheetGearTableExtensions.cs" />
+    <Compile Include="Interfaces\IEPTViews.cs" />
+    <Compile Include="Interfaces\IMainViews.cs" />
+    <Compile Include="Interfaces\IView.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DV_ReportAnalytics.Core\DV_ReportAnalytics.Core.csproj">
@@ -72,9 +78,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Configurations\EPTReport.settings">
+    <None Include="Configurations\EPTConfig.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>EPTReport.Designer.cs</LastGenOutput>
+      <LastGenOutput>EPTConfig.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

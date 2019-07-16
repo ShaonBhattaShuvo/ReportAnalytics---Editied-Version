@@ -42,13 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Algorithms\Interpolation.cs" />
+    <Compile Include="Extensions\CommonExtensions.cs" />
     <Compile Include="Extensions\DataSetExtensions.cs" />
-    <Compile Include="Extensions\SpreadSheet.cs" />
     <Compile Include="Extensions\ToArrayExtensions.cs" />
     <Compile Include="Extensions\XmlExtensions.cs" />
     <Compile Include="Models\EPTModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SpreadSheet\SpreadSheetDrawing.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

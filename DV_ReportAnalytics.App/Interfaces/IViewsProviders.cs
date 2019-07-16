@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DV_ReportAnalytics.App
+namespace DV_ReportAnalytics.App.Interfaces
 {
-    internal class PresenterFactory
+    public interface IViewsProviders
     {
+        IEPTViewsProvider EPTViewsProvider { get; }
     }
 }

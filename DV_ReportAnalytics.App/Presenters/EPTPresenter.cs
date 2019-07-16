@@ -7,17 +7,17 @@ using DV_ReportAnalytics.App.Interfaces;
 
 namespace DV_ReportAnalytics.App
 {
-    internal class EPTPresenter : IWorkspacePresenter<IEPTWorkspaceView, IEPTSettingsView, IEPTDisplayView>
+    internal class EPTPresenter : IWorkspacePresenter
     {
         #region Fields
         private IEPTSettingsView _settingsView;
         private IEPTDisplayView _displayView;
         private IEPTWorkspaceView _workspaceView;
-        private IWorkspaceViewsProvider<IEPTWorkspaceView, IEPTSettingsView, IEPTDisplayView> _viewsProvider;
+        private IEPTViewsProvider _viewsProvider;
         #endregion
 
         #region IWorkspacePresenter members
-        public IEPTSettingsView SettingsView
+        public IView SettingsView
         {
             get
             {
@@ -30,7 +30,7 @@ namespace DV_ReportAnalytics.App
                 return _settingsView;
             }
         }
-        public IEPTDisplayView DisplayView
+        public IView DisplayView
         {
             get
             {
@@ -43,7 +43,7 @@ namespace DV_ReportAnalytics.App
                 return _displayView;
             }
         }
-        public IEPTWorkspaceView WorkspaceView
+        public IView WorkspaceView
         {
             get
             {
@@ -56,10 +56,6 @@ namespace DV_ReportAnalytics.App
                 return _workspaceView;
             }
         }
-        public IWorkspaceViewsProvider<IEPTWorkspaceView, IEPTSettingsView, IEPTDisplayView> ViewsProvider
-        {
-            set { _viewsProvider = value; }
-        }
 
         public void Export()
         {
@@ -68,7 +64,7 @@ namespace DV_ReportAnalytics.App
         #endregion
 
         #region Constructor
-        public EPTPresenter(IWorkspaceViewsProvider<IEPTWorkspaceView, IEPTSettingsView, IEPTDisplayView> viewsProvider)
+        public EPTPresenter(IEPTViewsProvider viewsProvider)
         {
             _viewsProvider = viewsProvider;
         } 

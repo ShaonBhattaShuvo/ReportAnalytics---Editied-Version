@@ -28,4 +28,9 @@ namespace DV_ReportAnalytics.App.Interfaces
     {
         global::SpreadsheetGear.Windows.Forms.WorkbookView WorkbookView { get; }
     }
+
+    public interface IEPTViewsProvider : 
+        IWorkspaceViewsProvider<IEPTWorkspaceView, IEPTSettingsView, IEPTDisplayView>
+    {
+    }
 }
