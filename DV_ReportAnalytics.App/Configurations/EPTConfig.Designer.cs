@@ -106,5 +106,41 @@ namespace DV_ReportAnalytics.App.Configurations {
                 this["ValueColumn"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int RowInterp {
+            get {
+                return ((int)(this["RowInterp"]));
+            }
+            set {
+                this["RowInterp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int ColumnInterp {
+            get {
+                return ((int)(this["ColumnInterp"]));
+            }
+            set {
+                this["ColumnInterp"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        public int MaxItemsPerRow {
+            get {
+                return ((int)(this["MaxItemsPerRow"]));
+            }
+            set {
+                this["MaxItemsPerRow"] = value;
+            }
+        }
     }
 }

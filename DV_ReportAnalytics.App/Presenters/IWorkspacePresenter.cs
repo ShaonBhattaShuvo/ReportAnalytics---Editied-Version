@@ -7,6 +7,7 @@ namespace DV_ReportAnalytics.App
         IView SettingsView { get; }
         IView DisplayView { get; }
         IView WorkspaceView { get; }
-        void Export();
+        void Export(string path);
+        void Initialize();
     }
 }

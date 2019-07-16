@@ -19,7 +19,6 @@ namespace DV_ReportAnalytics.App
     internal class WorkspacePresenterFactory
     {
         private IViewsProviders _providers;
-        private Dictionary<ReportTypes, IWorkspacePresenter> _lookup;
         private Dictionary<ReportTypes, Func<IWorkspacePresenter>> _registry;
 
         #region Registy
@@ -27,13 +26,10 @@ namespace DV_ReportAnalytics.App
         {
             get
             {
-                if (!_lookup.TryGetValue(key, out IWorkspacePresenter presenter))
-                    if (_registry.TryGetValue(key, out Func<IWorkspacePresenter> func))
-                        return func();
-                    else
-                        return null;
+                if (_registry.TryGetValue(key, out var func))
+                    return func();
                 else
-                    return presenter;
+                    throw new Exception();
             }
         }
         #endregion
@@ -41,7 +37,6 @@ namespace DV_ReportAnalytics.App
         public WorkspacePresenterFactory(IViewsProviders providers)
         {
             _providers = providers;
-            _lookup = new Dictionary<ReportTypes, IWorkspacePresenter>();
             _registry = new Dictionary<ReportTypes, Func<IWorkspacePresenter>>
             {
                 // register here

@@ -23,16 +23,12 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             try
             {
                 WorkbookViewModel.ActiveWorkbookSet.GetLock();
-
                 WorkbookViewModel.ActiveWorkbook.Close();
                 WorkbookViewModel.ActiveWorkbook = Factory.GetWorkbook(path);
-
-                WorkbookViewModel.ActiveWorkbookSet.ReleaseLock();
-
             }
-            catch (Exception e)
+            finally
             {
-                Console.WriteLine(e.Message);
+                WorkbookViewModel.ActiveWorkbookSet.ReleaseLock();
             }
         }
 
@@ -41,19 +37,29 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             try
             {
                 WorkbookViewModel.ActiveWorkbookSet.GetLock();
-
                 WorkbookViewModel.ActiveWorkbook.Close();
-
+            }
+            finally
+            {
                 WorkbookViewModel.ActiveWorkbookSet.ReleaseLock();
             }
-            catch (Exception e)
+        }
+
+        public void SaveAs(string path)
+        {
+            try
             {
-                Console.WriteLine(e.Message);
+                WorkbookViewModel.ActiveWorkbookSet.GetLock();
+                WorkbookViewModel.ActiveWorkbook.SaveAs(path, FileFormat.OpenXMLWorkbook);
+            }
+            finally
+            {
+                WorkbookViewModel.ActiveWorkbookSet.ReleaseLock();
             }
         }
 
         public void UpdateSheetWithTables(string sheetName, int maxItemsPerRow, bool heatMap,
-            IEnumerable<DV_ReportAnalytics.Core.TableDataCollection<object>> tables)
+            IEnumerable<TableDataCollection<object>> tables)
         {
             try
             {
@@ -63,13 +69,16 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
 
                 if (heatMap)
                     ranges.ForEach(x => x.ApplyHeatMap());
-
+            }
+            finally
+            {
                 WorkbookViewModel.ActiveWorkbookSet.ReleaseLock();
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }
+        }
+
+        public object[,] GetSheetUsedRangeValue(string sheetName)
+        {
+            return (object[,])WorkbookViewModel.ActiveWorkbook.Worksheets[sheetName].UsedRange.Value;
         }
     }
 }

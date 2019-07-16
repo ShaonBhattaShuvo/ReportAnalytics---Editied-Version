@@ -6,7 +6,7 @@ using System.Data;
 
 namespace DV_ReportAnalytics.Core.Models
 {
-    internal class EPTReportModel
+    public class EPTReportModel
     {
         public DataSet DataBase { get; private set; }
         public string[] TableNames
@@ -33,7 +33,7 @@ namespace DV_ReportAnalytics.Core.Models
         /// <param name="parameterColumn">Zero-indexed integer</param>
         /// <param name="valueColumn">Zero-indexed integer</param>
         /// <returns></returns>
-        public int Build(object[,] dataRange, string parameter, char delimiter,
+        public void Build(object[,] dataRange, string parameter, char delimiter,
             int parameterColumn, int valueColumn)
         {
             DataBase = new DataSet();
@@ -55,13 +55,10 @@ namespace DV_ReportAnalytics.Core.Models
                     else
                         throw new Exception("Invalid parameter!");
                 }
-
-                return 0;
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return -1;
             }   
         }
 
