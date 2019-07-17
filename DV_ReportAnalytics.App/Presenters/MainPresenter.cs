@@ -1,57 +1,53 @@
 ﻿using System;
 using System.Xml;
 using System.IO;
+using DV_ReportAnalytics.App.Interfaces;
 
-namespace DV_ReportAnalytics.UI
+namespace DV_ReportAnalytics.App
 {
-    internal partial class MainFormPresenter
+    internal class MainFormPresenter
     {
-        private MainForm _mainForm;
-        private XmlDocument _doc;
-        
-        public MainFormPresenter(MainForm mainForm)
+        private IMainView _mainView;
+        private WorkspacePresenterFactory _factory;
+        private IWorkspacePresenter _currentPresenter; // TODO: replace this with tab views or similar if multipage design needed
+
+        public MainFormPresenter(IMainView view, IViewsProviders providers)
         {
-            // mainform should be binded with controller here
-            _mainForm = mainForm;
-            InitializeBindings();
-            InitializeClass();
+            _mainView = view;
+            _mainView.OpenClicked += (object s, EventArgs e) => OnOpenClicked();
+            _mainView.ExportClicked += (object s, EventArgs e) => OnExportClicked();
+            _mainView.HelpClicked += (object s, EventArgs e) => OnHelpClicked();
+            _mainView.SettingsClicked += (object s, EventArgs e) => OnSettingsClicked();
+            _mainView.SettingsClicked += (object s, EventArgs e) => OnDisplayClicked();
+            _factory = new WorkspacePresenterFactory(providers);
+            _factory.PresenterChanged +=
+                (object s, WorkspacePresenterFactoryChangedEventArgs e) => _currentPresenter = e.CurrentPresenter;
         }
 
-        private void InitializeModel()
+        private void OnOpenClicked()
         {
-            // avoid multiple instances being initiated
-            ModelTypes t = _doc.GetNodeValue("Settings/Type").ToModelTypes();
-            string p = _doc.GetNodeValue("Paths/Result");
-            switch (t)
-            {
-                case ModelTypes.EPTReport:
-                    testcode(p);
-                    break;
-                default:
-                    break;
-            }
+
         }
 
-        private void InitializeClass()
+        private void OnExportClicked()
         {
+
         }
 
-        private void testcode(string p)
+        private void OnHelpClicked()
         {
-            // TODO: this is test code. it will be removed in the future
-            XmlDocument display = new XmlDocument();
-            display.LoadXml(Properties.Resources.Displays_EPTReport);
-            _doc.UpdateNode(display, "Displays");
-            string cache = Path.GetTempFileName();
-            File.Copy(p, cache, true);
-            EPTModel model = new EPTModel();
-            model.WorkbookUpdated += (object sender, WorkbookUpdateEventArgs e) =>
-            {
-                _mainForm.WorkbookView.ActiveWorkbook = e.Workbook;
-                _mainForm.Chrome.Load("file:///surfaces.html");
-            };
-            model.Build(cache, _doc);
-            model.Draw(cache, _doc);
+
         }
+
+        private void OnSettingsClicked()
+        {
+
+        }
+
+        private void OnDisplayClicked()
+        {
+
+        }
+
     }
 }

@@ -21,5 +21,10 @@ namespace DV_ReportAnalytics.GUI
         {
             
         }
+
+        private void ListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

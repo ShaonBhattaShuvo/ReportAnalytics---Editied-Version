@@ -7,5 +7,7 @@
         IView WorkspaceView { get; }
         void Export(string path);
         void Initialize();
+        void ReloadWorkspace();
+        string FilePath { get; set; }
     }
 }

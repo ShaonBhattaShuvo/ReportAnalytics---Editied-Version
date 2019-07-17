@@ -9,5 +9,6 @@ namespace DV_ReportAnalytics.App.Interfaces
     public interface IViewsProviders
     {
         IEPTViewsProvider EPTViewsProvider { get; }
+        IWizardViewsProvider WizardViewsProvider { get; }
     }
 }

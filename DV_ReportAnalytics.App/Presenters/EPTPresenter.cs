@@ -62,6 +62,7 @@ namespace DV_ReportAnalytics.App
                 {
                     _workspaceView = _viewsProvider.CreateWorkspaceView();
                     _controller = new SpreadsheetGearWorkbookViewController(_workspaceView.WorkbookView);
+                    ReloadWorkspace();
                 }
 
                 return _workspaceView;
@@ -77,6 +78,14 @@ namespace DV_ReportAnalytics.App
         {
             InitModel();
         }
+
+        public void ReloadWorkspace()
+        {
+            _controller?.Close();
+            _controller?.Open(FilePath);
+        }
+
+        public string FilePath { get; set; }
         #endregion
 
         #region Constructor
