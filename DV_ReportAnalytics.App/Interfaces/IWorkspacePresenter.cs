@@ -1,8 +1,6 @@
-﻿using DV_ReportAnalytics.App.Interfaces;
-
-namespace DV_ReportAnalytics.App
+﻿namespace DV_ReportAnalytics.App.Interfaces
 {
-    internal interface IWorkspacePresenter
+    public interface IWorkspacePresenter
     {
         IView SettingsView { get; }
         IView DisplayView { get; }

@@ -110,36 +110,36 @@ namespace DV_ReportAnalytics.App.Configurations {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int RowInterp {
+        public int RowInterpolation {
             get {
-                return ((int)(this["RowInterp"]));
+                return ((int)(this["RowInterpolation"]));
             }
             set {
-                this["RowInterp"] = value;
+                this["RowInterpolation"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int ColumnInterp {
+        public int ColumnInterpolation {
             get {
-                return ((int)(this["ColumnInterp"]));
+                return ((int)(this["ColumnInterpolation"]));
             }
             set {
-                this["ColumnInterp"] = value;
+                this["ColumnInterpolation"] = value;
             }
         }
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("3")]
-        public int MaxItemsPerRow {
+        public int MaximumItemsPerRow {
             get {
-                return ((int)(this["MaxItemsPerRow"]));
+                return ((int)(this["MaximumItemsPerRow"]));
             }
             set {
-                this["MaxItemsPerRow"] = value;
+                this["MaximumItemsPerRow"] = value;
             }
         }
     }

@@ -23,13 +23,13 @@
     <Setting Name="ValueColumn" Type="System.String" Scope="User">
       <Value Profile="(Default)">D</Value>
     </Setting>
-    <Setting Name="RowInterp" Type="System.Int32" Scope="User">
+    <Setting Name="RowInterpolation" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="ColumnInterp" Type="System.Int32" Scope="User">
+    <Setting Name="ColumnInterpolation" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
-    <Setting Name="MaxItemsPerRow" Type="System.Int32" Scope="User">
+    <Setting Name="MaximumItemsPerRow" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">3</Value>
     </Setting>
   </Settings>
