@@ -32,8 +32,7 @@ namespace DV_ReportAnalytics.App
                 {
                     _settingsView = _viewsProvider.CreateSettingsView();
                     _settingsView.BindData(_config);
-                    _settingsView.RequestClosed += 
-                        (object sender, EventArgs e) => OnSettingsViewClose((IEPTSettingsView)sender);
+                    _settingsView.RequestClosed += OnSettingsViewClosed;
                 }
 
                 return _settingsView;
@@ -47,8 +46,7 @@ namespace DV_ReportAnalytics.App
                 {
                     _displayView = _viewsProvider.CreateDisplayView();
                     _displayView.BindData(_config);
-                    _displayView.RequestClosed +=
-                        (object sender, EventArgs e) => OnDisplayViewClose((IEPTDisplayView)sender);
+                    _displayView.RequestClosed += OnDisplayViewClosed;
                 }
 
                 return _displayView;
@@ -76,6 +74,7 @@ namespace DV_ReportAnalytics.App
 
         public void Initialize()
         {
+            ReloadWorkspace();
             InitModel();
         }
 
@@ -97,8 +96,9 @@ namespace DV_ReportAnalytics.App
         } 
         #endregion
 
-        private void OnSettingsViewClose(IEPTSettingsView v)
+        private void OnSettingsViewClosed(object sender, EventArgs e)
         {
+            //var v = (IEPTSettingsView)sender;
             //_config.ReportName = v.ReportName;
             //_config.InputSheetName = v.InputSheetName;
             //_config.OutputSheetName = v.OutputSheetName;
@@ -110,8 +110,9 @@ namespace DV_ReportAnalytics.App
             DrawTables(_model.TableNames, 0, 0); // TODO: pass dynamic variables
         }
 
-        private void OnDisplayViewClose(IEPTDisplayView v)
+        private void OnDisplayViewClosed(object sender, EventArgs e)
         {
+            //var v = (IEPTDisplayView)sender;
             //_config.RowInterpolation = v.RowInterpolation;
             //_config.ColumnInterpolation = v.ColumnInterpolation;
             //_config.MaximumItemsPerRow = v.MaximumItemsPerRow;

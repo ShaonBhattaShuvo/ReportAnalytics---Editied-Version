@@ -13,5 +13,10 @@ namespace DV_ReportAnalytics.Core
             foreach (T item in source)
                 action(item);
         }
+
+        public static T GetPropertyValue<T>(this object source, string property)
+        {
+            return (T)source.GetType().GetProperty(property).GetValue(source);
+        }
     }
 }

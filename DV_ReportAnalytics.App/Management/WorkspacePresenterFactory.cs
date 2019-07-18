@@ -18,7 +18,6 @@ namespace DV_ReportAnalytics.App
 
     internal class WorkspacePresenterFactory
     {
-        public event EventHandler<WorkspacePresenterFactoryChangedEventArgs> PresenterChanged;
         private IViewsProviders _providers;
         private Dictionary<ReportTypes, Func<IWorkspacePresenter>> _registry;
 
@@ -28,12 +27,7 @@ namespace DV_ReportAnalytics.App
             get
             {
                 if (_registry.TryGetValue(key, out var func))
-                {
-                    var presenter = func();
-                    PresenterChanged?.Invoke(this, new WorkspacePresenterFactoryChangedEventArgs(presenter));
-                    return presenter;
-
-                }
+                    return func();
                 else
                     throw new Exception();
             }
