@@ -19,6 +19,7 @@ namespace DV_ReportAnalytics
             MainForm mainForm = new MainForm();
             MainFormPresenter mainPresenter = new MainFormPresenter(mainForm, providers);
             Application.Run(mainForm);
+            //Application.Run(new Form1());
         }
     }
 }

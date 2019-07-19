@@ -3,6 +3,7 @@ using System.Windows.Forms;
 using SpreadsheetGear.Windows.Forms;
 using DV_ReportAnalytics.App;
 using DV_ReportAnalytics.App.Interfaces;
+using CefSharp.WinForms;
 
 namespace DV_ReportAnalytics.GUI
 {
@@ -36,7 +37,10 @@ namespace DV_ReportAnalytics.GUI
 
         private void ToolStripButtonGraphToggle_Click(object sender, EventArgs e)
         {
-            splitContainerMain.Panel2Collapsed = !splitContainerMain.Panel2Collapsed;
+            bool collapsed = splitContainerMain.Panel2Collapsed;
+            if (collapsed)
+                RefreshBrowser("file:///maps.html");
+            splitContainerMain.Panel2Collapsed = !collapsed;
         }
 
         private void ToolStripButtonHelp_Click(object sender, EventArgs e)
@@ -68,6 +72,21 @@ namespace DV_ReportAnalytics.GUI
             toolStripButtonSettings.Enabled = status;
             toolStripButtonTableDisplay.Enabled = status;
             toolStripButtonGraphToggle.Enabled = status;
+        }
+
+        ChromiumWebBrowser _chrome;
+        private void RefreshBrowser(string path)
+        {
+            _chrome.Load(path);
+        }
+
+        private void MainForm_Load(object sender, EventArgs e)
+        {
+            _chrome = new ChromiumWebBrowser("about:blank")
+            {
+                Dock = DockStyle.Fill
+            };
+            splitContainerMain.Panel2.Controls.Add(_chrome);
         }
     }
 }
