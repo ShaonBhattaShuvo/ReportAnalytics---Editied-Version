@@ -37,7 +37,6 @@
             this.toolStripButtonGraphToggle = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
@@ -150,14 +149,10 @@
             this.splitContainerMain.SplitterDistance = 392;
             this.splitContainerMain.TabIndex = 1;
             // 
-            // openFileDialog
-            // 
-            this.openFileDialog.FileName = "openFileDialog";
-            this.openFileDialog.Filter = "Worksheets|*.xls;*.xlsx;*.xlsm;*.xlsb";
-            // 
             // saveFileDialog
             // 
-            this.saveFileDialog.Filter = "Worksheets|*.xls;*.xlsx;*.xlsm;*.xlsb";
+            this.saveFileDialog.FileName = "Untitled Report";
+            this.saveFileDialog.Filter = "Spreadsheet files|*.xlsx;*.xls";
             // 
             // MainForm
             // 
@@ -188,7 +183,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonSettings;
         private System.Windows.Forms.ToolStripButton toolStripButtonHelp;
         private System.Windows.Forms.SplitContainer splitContainerMain;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

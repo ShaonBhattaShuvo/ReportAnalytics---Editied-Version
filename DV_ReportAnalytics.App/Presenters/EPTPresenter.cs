@@ -78,6 +78,7 @@ namespace DV_ReportAnalytics.App
             _controller = new SpreadsheetGearWorkbookViewController(_workspaceView.WorkbookView);
             ReloadWorkspace();
             InitModel();
+            DrawTables(_model.TableNames, 0, 0); // remove this if tables are not required to show up after loading
         }
 
         public void ReloadWorkspace()

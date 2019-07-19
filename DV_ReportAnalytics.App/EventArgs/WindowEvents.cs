@@ -9,4 +9,10 @@ namespace DV_ReportAnalytics.App
         public WizardSelectionChangedEventArgs(ReportTypes type) { Type = type; }
         public WizardSelectionChangedEventArgs(int index) { Type = (ReportTypes)index; }
     }
+
+    public class EventArgs<T> : EventArgs
+    {
+        public T Value { get; }
+        public EventArgs(T value) { Value = value; }
+    }
 }

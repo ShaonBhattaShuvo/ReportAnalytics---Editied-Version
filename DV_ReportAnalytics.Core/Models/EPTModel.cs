@@ -37,29 +37,22 @@ namespace DV_ReportAnalytics.Core.Models
             int parameterColumn, int valueColumn)
         {
             DataBase = new DataSet();
+            int indexP = parameterColumn - 1;
+            int indexV = valueColumn - 1;
             
-            try
-            {
-                string[] fields = parameter.Split(delimiter).Skip(1).ToArray(); // skip name section
+            string[] fields = parameter.Split(delimiter).Skip(1).ToArray(); // skip name section
 
-                for (int i = 0; i < dataRange.GetLength(0); i++)
+            for (int i = 0; i < dataRange.GetLength(0); i++)
+            {
+                string[] param = dataRange[i, indexP]?.ToString().Split(delimiter);
+                if (param?.Length >= 3)
                 {
-                    string[] param = dataRange[i, parameterColumn]?.ToString().Split(delimiter);
-                    if (param?.Length >= 3)
-                    {
-                        List<object> values = new List<object>(param.Length);
-                        values.AddRange(param.Skip(1)); // skip name section
-                        values.Add(dataRange[i, valueColumn]);
-                        DataBase.AddTable(param[0], fields, values.ToArray());
-                    }
-                    else
-                        throw new Exception("Invalid parameter!");
+                    List<object> values = new List<object>(param.Length);
+                    values.AddRange(param.Skip(1)); // skip name section
+                    values.Add(dataRange[i, indexV]);
+                    DataBase.AddTable(param[0], fields, values.ToArray());
                 }
             }
-            catch (Exception e)
-            {
-                Console.WriteLine(e.Message);
-            }   
         }
 
         public IEnumerable<TableDataCollection<object>> GetTableDataCollections(

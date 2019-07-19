@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using SpreadsheetGear.Windows.Forms;
+using DV_ReportAnalytics.App;
 using DV_ReportAnalytics.App.Interfaces;
 
 namespace DV_ReportAnalytics.GUI
@@ -19,7 +20,8 @@ namespace DV_ReportAnalytics.GUI
 
         private void ToolStripButtonSaveFile_Click(object sender, EventArgs e)
         {
-
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                ExportClicked?.Invoke(this, new EventArgs<string>(saveFileDialog.FileName));
         }
 
         private void ToolStripButtonSettings_Click(object sender, EventArgs e)
@@ -44,7 +46,7 @@ namespace DV_ReportAnalytics.GUI
 
         #region IMainView members
         public event EventHandler OpenClicked;
-        public event EventHandler ExportClicked;
+        public event EventHandler<EventArgs<string>> ExportClicked;
         public event EventHandler HelpClicked;
         public event EventHandler SettingsClicked;
         public event EventHandler DisplayClicked;

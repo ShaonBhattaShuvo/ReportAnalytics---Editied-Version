@@ -34,9 +34,9 @@ namespace DV_ReportAnalytics.App
             wizard.View.Show();
         }
 
-        private void OnExportClicked(object sender, EventArgs eventArgs)
+        private void OnExportClicked(object sender, EventArgs<string> eventArgs)
         {
-
+            _currentPresenter.Export(eventArgs.Value);
         }
 
         private void OnHelpClicked(object sender, EventArgs eventArgs)
