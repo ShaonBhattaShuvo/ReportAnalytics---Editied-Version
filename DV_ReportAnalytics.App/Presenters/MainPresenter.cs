@@ -31,6 +31,7 @@ namespace DV_ReportAnalytics.App
             var wizard = new WizardPresenter(_factory, _providers.WizardViewsProvider);
             wizard.WizardFinished += OnWizardFinished;
             wizard.PropertyChanged += OnWizardPresenterChanged;
+            wizard.View.Show();
         }
 
         private void OnExportClicked(object sender, EventArgs eventArgs)

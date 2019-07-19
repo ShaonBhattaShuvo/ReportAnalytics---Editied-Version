@@ -1,4 +1,4 @@
-﻿namespace DV_ReportAnalytics.UI
+﻿namespace DV_ReportAnalytics.GUI
 {
     partial class MainForm
     {
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonOpenFile = new System.Windows.Forms.ToolStripButton();
@@ -38,12 +37,10 @@
             this.toolStripButtonGraphToggle = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
-            this.workbookView = new SpreadsheetGear.Windows.Forms.WorkbookView();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.toolStripMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).BeginInit();
-            this.splitContainerMain.Panel1.SuspendLayout();
             this.splitContainerMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,75 +69,78 @@
             // 
             this.toolStripButtonOpenFile.BackColor = System.Drawing.SystemColors.Control;
             this.toolStripButtonOpenFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonOpenFile.Image = global::DV_ReportAnalytics.Properties.Resources.folder_32;
+            this.toolStripButtonOpenFile.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.folder_32;
             this.toolStripButtonOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonOpenFile.Name = "toolStripButtonOpenFile";
             this.toolStripButtonOpenFile.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonOpenFile.Tag = "Open";
             this.toolStripButtonOpenFile.Text = "Open File";
+            this.toolStripButtonOpenFile.Click += new System.EventHandler(this.ToolStripButtonOpenFile_Click);
             // 
             // toolStripButtonSaveFile
             // 
             this.toolStripButtonSaveFile.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonSaveFile.Enabled = false;
-            this.toolStripButtonSaveFile.Image = global::DV_ReportAnalytics.Properties.Resources.save_as_32;
+            this.toolStripButtonSaveFile.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.save_as_32;
             this.toolStripButtonSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSaveFile.Name = "toolStripButtonSaveFile";
             this.toolStripButtonSaveFile.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonSaveFile.Tag = "Save";
             this.toolStripButtonSaveFile.Text = "Save File";
+            this.toolStripButtonSaveFile.Click += new System.EventHandler(this.ToolStripButtonSaveFile_Click);
             // 
             // toolStripButtonSettings
             // 
             this.toolStripButtonSettings.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonSettings.Enabled = false;
-            this.toolStripButtonSettings.Image = global::DV_ReportAnalytics.Properties.Resources.settings_32;
+            this.toolStripButtonSettings.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.settings_32;
             this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSettings.Name = "toolStripButtonSettings";
             this.toolStripButtonSettings.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonSettings.Tag = "Settings";
             this.toolStripButtonSettings.Text = "Settings";
+            this.toolStripButtonSettings.Click += new System.EventHandler(this.ToolStripButtonSettings_Click);
             // 
             // toolStripButtonTableDisplay
             // 
             this.toolStripButtonTableDisplay.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonTableDisplay.Enabled = false;
-            this.toolStripButtonTableDisplay.Image = global::DV_ReportAnalytics.Properties.Resources.list_32;
+            this.toolStripButtonTableDisplay.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.list_32;
             this.toolStripButtonTableDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonTableDisplay.Name = "toolStripButtonTableDisplay";
             this.toolStripButtonTableDisplay.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonTableDisplay.Tag = "Table";
             this.toolStripButtonTableDisplay.Text = "Table Display";
+            this.toolStripButtonTableDisplay.Click += new System.EventHandler(this.ToolStripButtonTableDisplay_Click);
             // 
             // toolStripButtonGraphToggle
             // 
             this.toolStripButtonGraphToggle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonGraphToggle.Image = global::DV_ReportAnalytics.Properties.Resources.area_chart_32;
+            this.toolStripButtonGraphToggle.Enabled = false;
+            this.toolStripButtonGraphToggle.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.area_chart_32;
             this.toolStripButtonGraphToggle.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonGraphToggle.Name = "toolStripButtonGraphToggle";
             this.toolStripButtonGraphToggle.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonGraphToggle.Tag = "Graph";
             this.toolStripButtonGraphToggle.Text = "Toggle Graph Window";
+            this.toolStripButtonGraphToggle.Click += new System.EventHandler(this.ToolStripButtonGraphToggle_Click);
             // 
             // toolStripButtonHelp
             // 
             this.toolStripButtonHelp.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonHelp.Image = global::DV_ReportAnalytics.Properties.Resources.help_32;
+            this.toolStripButtonHelp.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.help_32;
             this.toolStripButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonHelp.Name = "toolStripButtonHelp";
             this.toolStripButtonHelp.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonHelp.Tag = "Help";
             this.toolStripButtonHelp.Text = "Help";
+            this.toolStripButtonHelp.Click += new System.EventHandler(this.ToolStripButtonHelp_Click);
             // 
             // splitContainerMain
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerMain.Location = new System.Drawing.Point(0, 33);
             this.splitContainerMain.Name = "splitContainerMain";
-            // 
-            // splitContainerMain.Panel1
-            // 
-            this.splitContainerMain.Panel1.Controls.Add(this.workbookView);
             // 
             // splitContainerMain.Panel2
             // 
@@ -149,16 +149,6 @@
             this.splitContainerMain.Size = new System.Drawing.Size(784, 528);
             this.splitContainerMain.SplitterDistance = 392;
             this.splitContainerMain.TabIndex = 1;
-            // 
-            // workbookView
-            // 
-            this.workbookView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.workbookView.FormulaBar = null;
-            this.workbookView.Location = new System.Drawing.Point(0, 0);
-            this.workbookView.Name = "workbookView";
-            this.workbookView.Size = new System.Drawing.Size(784, 528);
-            this.workbookView.TabIndex = 0;
-            this.workbookView.WorkbookSetState = resources.GetString("workbookView.WorkbookSetState");
             // 
             // openFileDialog
             // 
@@ -181,7 +171,6 @@
             this.Text = "DV Report Analytics";
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
-            this.splitContainerMain.Panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMain)).EndInit();
             this.splitContainerMain.ResumeLayout(false);
             this.ResumeLayout(false);
@@ -200,7 +189,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonHelp;
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
-        private SpreadsheetGear.Windows.Forms.WorkbookView workbookView;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
     }
 }

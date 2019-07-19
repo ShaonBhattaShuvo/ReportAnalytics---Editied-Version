@@ -49,21 +49,19 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>EPTConfig.settings</DependentUpon>
     </Compile>
-    <Compile Include="Constants\ModelTypes.cs" />
-    <Compile Include="EventArgs\FormEvents.cs" />
-    <Compile Include="EventArgs\ModelEvents.cs" />
+    <Compile Include="EventArgs\WindowEvents.cs" />
     <Compile Include="Extensions\Configuration_ToFile.cs" />
     <Compile Include="Extensions\Conversions.cs" />
     <Compile Include="Interfaces\IViewsProviders.cs" />
+    <Compile Include="Interfaces\IWizardViews.cs" />
     <Compile Include="Interfaces\IWorkspaceViewsProvider.cs" />
     <Compile Include="Management\WorkspacePresenterFactory.cs" />
+    <Compile Include="Presenters\WizardPresenter.cs" />
     <Compile Include="SpreadsheetGear\SpreadsheetGearWorkbookViewController.cs" />
     <Compile Include="SpreadsheetGear\SpreadsheetGearRangeExtensions.cs" />
     <Compile Include="Presenters\EPTPresenter.cs" />
-    <Compile Include="Presenters\IWorkspacePresenter.cs" />
-    <Compile Include="Presenters\MainPresenter.Bindings.cs" />
+    <Compile Include="Interfaces\IWorkspacePresenter.cs" />
     <Compile Include="Presenters\MainPresenter.cs" />
-    <Compile Include="Presenters\OpenFileWizardPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpreadsheetGear\SpreadsheetGearTableExtensions.cs" />
     <Compile Include="Interfaces\IEPTViews.cs" />

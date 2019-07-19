@@ -1,37 +1,69 @@
 ﻿using System;
 using System.Windows.Forms;
 using SpreadsheetGear.Windows.Forms;
-using CefSharp.WinForms;
+using DV_ReportAnalytics.App.Interfaces;
 
-namespace DV_ReportAnalytics.UI
+namespace DV_ReportAnalytics.GUI
 {
-    internal partial class MainForm : Form
+    public partial class MainForm : Form, IMainView
     {
-        #region Properties and fields
-        public ToolStripButton ButtonOpenFile { get { return toolStripButtonOpenFile; } }
-        public ToolStripButton ButtonSaveFile { get { return toolStripButtonSaveFile; } }
-        public ToolStripButton ButtonSettings { get { return toolStripButtonSettings; } }
-        public ToolStripButton ButtonTableDisplay { get { return toolStripButtonTableDisplay; } }
-        public ToolStripButton ButtonGraphToggle { get { return toolStripButtonGraphToggle; } }
-        public ToolStripButton ButtonHelp { get { return toolStripButtonHelp; } }
-        public SplitContainer SplitContainer { get { return splitContainerMain; } }
-        public WorkbookView WorkbookView { get { return workbookView; } }
-        private MainFormPresenter _mainPresenter;
-        private ChromiumWebBrowser _chrome;
-        public ChromiumWebBrowser Chrome { get { return _chrome; } }
-        #endregion
-
-        #region Methods
         public MainForm()
         {
             InitializeComponent();
-            _mainPresenter = new MainFormPresenter(this);
-            _chrome = new ChromiumWebBrowser("www.google.com")
-            {
-                Dock = DockStyle.Fill
-            };
-            splitContainerMain.Panel2.Controls.Add(_chrome);
         }
+
+        private void ToolStripButtonOpenFile_Click(object sender, EventArgs e)
+        {
+            OpenClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void ToolStripButtonSaveFile_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ToolStripButtonSettings_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ToolStripButtonTableDisplay_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ToolStripButtonGraphToggle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ToolStripButtonHelp_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        #region IMainView members
+        public event EventHandler OpenClicked;
+        public event EventHandler ExportClicked;
+        public event EventHandler HelpClicked;
+        public event EventHandler SettingsClicked;
+        public event EventHandler DisplayClicked;
+
+        public void UpdateWorkspace(object content)
+        {
+            splitContainerMain.Panel1.Controls.Clear();
+            splitContainerMain.Panel1.Controls.Add((Control)content);
+            ToggleButtonsEnabled();
+        } 
         #endregion
+
+        private void ToggleButtonsEnabled()
+        {
+            bool status = splitContainerMain.Panel1.Controls.Count != 0;
+            toolStripButtonSaveFile.Enabled = status;
+            toolStripButtonSettings.Enabled = status;
+            toolStripButtonTableDisplay.Enabled = status;
+            toolStripButtonGraphToggle.Enabled = status;
+        }
     }
 }

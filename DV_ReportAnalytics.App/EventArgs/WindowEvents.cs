@@ -9,11 +9,4 @@ namespace DV_ReportAnalytics.App
         public WizardSelectionChangedEventArgs(ReportTypes type) { Type = type; }
         public WizardSelectionChangedEventArgs(int index) { Type = (ReportTypes)index; }
     }
-
-    public class WorkspacePresenterFactoryChangedEventArgs : EventArgs
-    {
-        public IWorkspacePresenter CurrentPresenter { get; }
-        public WorkspacePresenterFactoryChangedEventArgs(IWorkspacePresenter presenter)
-        { CurrentPresenter = presenter; }
-    }
 }

@@ -12,6 +12,8 @@
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -31,6 +33,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SpreadsheetGear2017.Windows.Forms, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -43,80 +46,59 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Components\FileBrowserWithLabel.cs">
+    <Compile Include="EPTViews\EPTViewsProvider.cs" />
+    <Compile Include="EPTViews\EPTWorkspaceView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Components\FileBrowserWithLabel.Designer.cs">
-      <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
+    <Compile Include="EPTViews\EPTWorkspaceView.Designer.cs">
+      <DependentUpon>EPTWorkspaceView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="IBaseControl.cs" />
-    <Compile Include="IBaseForm.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="MainForm.Designer.cs">
       <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="OpenFileWizard.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OpenFileWizard.Designer.cs">
-      <DependentUpon>OpenFileWizard.cs</DependentUpon>
-    </Compile>
-    <Compile Include="PathControl.cs">
+    <Compile Include="EPTViews\EPTSettingsView.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="PathControl.Designer.cs">
-      <DependentUpon>PathControl.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ProcessPanels\EPTProcessPanel.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ProcessPanels\EPTProcessPanel.Designer.cs">
-      <DependentUpon>EPTProcessPanel.cs</DependentUpon>
+    <Compile Include="EPTViews\EPTSettingsView.Designer.cs">
+      <DependentUpon>EPTSettingsView.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SettingsControl.cs">
-      <SubType>UserControl</SubType>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Include="SettingsControl.Designer.cs">
-      <DependentUpon>SettingsControl.cs</DependentUpon>
+    <Compile Include="ViewProviders.cs" />
+    <Compile Include="Wizard\WizardView.cs">
+      <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Wizard\WizardView.Designer.cs">
+      <DependentUpon>WizardView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Wizard\WizardViewProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Components\FileBrowserWithLabel.resx">
-      <DependentUpon>FileBrowserWithLabel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="EPTViews\EPTWorkspaceView.resx">
+      <DependentUpon>EPTWorkspaceView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OpenFileWizard.resx">
-      <DependentUpon>OpenFileWizard.cs</DependentUpon>
+    <EmbeddedResource Include="EPTViews\EPTSettingsView.resx">
+      <DependentUpon>EPTSettingsView.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="PathControl.resx">
-      <DependentUpon>PathControl.cs</DependentUpon>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <EmbeddedResource Include="ProcessPanels\EPTProcessPanel.resx">
-      <DependentUpon>EPTProcessPanel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="SettingsControl.resx">
-      <DependentUpon>SettingsControl.cs</DependentUpon>
+    <EmbeddedResource Include="Wizard\WizardView.resx">
+      <DependentUpon>WizardView.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\Configurations\Displays_EPTReport.xml" />
-    <Content Include="Resources\Configurations\Path.xml" />
-    <Content Include="Resources\Configurations\Root.xml" />
-    <Content Include="Resources\Configurations\Settings_EPTReport.xml" />
     <Content Include="Resources\Images\logo.png" />
     <None Include="Resources\Icons\settings-32.png" />
     <None Include="Resources\Icons\save_as-32.png" />
@@ -125,5 +107,16 @@
     <None Include="Resources\Icons\folder-32.png" />
     <None Include="Resources\Icons\area_chart-32.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DV_ReportAnalytics.App\DV_ReportAnalytics.App.csproj">
+      <Project>{7735f2aa-0226-43bf-b408-59529322b521}</Project>
+      <Name>DV_ReportAnalytics.App</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DV_ReportAnalytics.Core\DV_ReportAnalytics.Core.csproj">
+      <Project>{cdec05e3-d5dd-45dc-9187-459a0e03e534}</Project>
+      <Name>DV_ReportAnalytics.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

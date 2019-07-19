@@ -3,18 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DV_ReportAnalytics.UI;
+using DV_ReportAnalytics.App;
+using DV_ReportAnalytics.GUI;
 
 namespace DV_ReportAnalytics
 {
     static class Program
     {
-        static MainForm _appform = null;
-        public static MainForm AppForm
-        {
-            get { return _appform; }
-        }
-
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
@@ -23,8 +18,8 @@ namespace DV_ReportAnalytics
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            _appform = new MainForm();
-            Application.Run(AppForm);
+            //_appform = new MainForm();
+            //Application.Run(AppForm);
         }
     }
 }

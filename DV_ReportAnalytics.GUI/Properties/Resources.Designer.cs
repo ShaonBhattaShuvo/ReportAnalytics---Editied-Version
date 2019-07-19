@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DV_ReportAnalytics.Properties {
+namespace DV_ReportAnalytics.GUI.Properties {
     using System;
     
     
@@ -19,7 +19,7 @@ namespace DV_ReportAnalytics.Properties {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
@@ -39,7 +39,7 @@ namespace DV_ReportAnalytics.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DV_ReportAnalytics.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("DV_ReportAnalytics.GUI.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -67,25 +67,6 @@ namespace DV_ReportAnalytics.Properties {
             get {
                 object obj = ResourceManager.GetObject("area_chart_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;DV_ReportAnalytics&gt;
-        ///  &lt;Displays&gt;
-        ///    &lt;RowInterpolation&gt;0&lt;/RowInterpolation&gt;
-        ///    &lt;ColumnInterpolation&gt;0&lt;/ColumnInterpolation&gt;
-        ///    &lt;MaximumItemsPerRow&gt;3&lt;/MaximumItemsPerRow&gt;
-        ///    &lt;Tables&gt;
-        ///      &lt;Item&gt;&lt;/Item&gt;
-        ///    &lt;/Tables&gt;
-        ///  &lt;/Displays&gt;
-        ///&lt;/DV_ReportAnalytics&gt;.
-        /// </summary>
-        internal static string Displays_EPTReport {
-            get {
-                return ResourceManager.GetString("Displays_EPTReport", resourceCulture);
             }
         }
         
@@ -130,39 +111,6 @@ namespace DV_ReportAnalytics.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-        ///&lt;DV_ReportAnalytics&gt;
-        ///  &lt;Paths&gt;
-        ///    &lt;Result&gt;&lt;/Result&gt;
-        ///    &lt;Config&gt;&lt;/Config&gt;
-        ///  &lt;/Paths&gt;
-        ///&lt;/DV_ReportAnalytics&gt;
-        ///.
-        /// </summary>
-        internal static string Path {
-            get {
-                return ResourceManager.GetString("Path", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;
-        ///&lt;DV_ReportAnalytics&gt;
-        ///  &lt;Paths&gt;
-        ///    &lt;Result&gt;&lt;/Result&gt;
-        ///    &lt;Config&gt;&lt;/Config&gt;
-        ///  &lt;/Paths&gt;
-        ///  &lt;Settings&gt;&lt;/Settings&gt;
-        ///  &lt;Displays&gt;&lt;/Displays&gt;
-        ///&lt;/DV_ReportAnalytics&gt;.
-        /// </summary>
-        internal static string Root {
-            get {
-                return ResourceManager.GetString("Root", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap save_as_32 {
@@ -179,30 +127,6 @@ namespace DV_ReportAnalytics.Properties {
             get {
                 object obj = ResourceManager.GetObject("settings_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; standalone=&quot;yes&quot;?&gt;
-        ///&lt;DV_ReportAnalytics&gt;
-        ///  &lt;Settings&gt;
-        ///    &lt;Type&gt;EPTReport&lt;/Type&gt;
-        ///    &lt;Name&gt;EPT Report Results&lt;/Name&gt;
-        ///    &lt;InputSheetName&gt;Results&lt;/InputSheetName&gt;
-        ///    &lt;OutputSheetName&gt;CombinedResults&lt;/OutputSheetName&gt;
-        ///    &lt;ResultFormat&gt;
-        ///      &lt;Parameter&gt;Name_Speed_Torque&lt;/Parameter&gt;
-        ///      &lt;Delimiter&gt;_&lt;/Delimiter&gt;
-        ///      &lt;ParameterColumn&gt;0&lt;/ParameterColumn&gt;
-        ///      &lt;ValueColumn&gt;3&lt;/ValueColumn&gt;
-        ///    &lt;/ResultFormat&gt;
-        ///  &lt;/Settings&gt;
-        ///&lt;/DV_ReportAnalytics&gt;
-        ///.
-        /// </summary>
-        internal static string Settings_EPTReport {
-            get {
-                return ResourceManager.GetString("Settings_EPTReport", resourceCulture);
             }
         }
     }

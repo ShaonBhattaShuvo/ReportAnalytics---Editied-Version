@@ -14,6 +14,7 @@ namespace DV_ReportAnalytics.App
         private WorkspacePresenterFactory _factory;
         private IWizardView _view;
         private IWorkspacePresenter _selectedPresenter;
+        private IWizardViewsProvider _provider;
         public event EventHandler WizardFinished;
         public string FilePath { get; private set; }
         public IWorkspacePresenter SelectedPresenter
@@ -26,11 +27,22 @@ namespace DV_ReportAnalytics.App
             }
         }
         public event PropertyChangedEventHandler PropertyChanged;
+        public IWizardView View
+        {
+            get
+            {
+                if (_view == null)
+                {
+                    _view = _provider.CreateWizardView();
+                    _view.WizardSelectionChanged += OnSelectionChanged;
+                }
+                return _view;
+            }
+        }
         public WizardPresenter(WorkspacePresenterFactory factory, IWizardViewsProvider provier)
         {
             _factory = factory;
-            _view = provier.CreateWizardView();
-            _view.WizardSelectionChanged += OnSelectionChanged;
+            _provider = provier;
         }
 
         private void OnSelectionChanged(object sender, WizardSelectionChangedEventArgs eventArgs)
