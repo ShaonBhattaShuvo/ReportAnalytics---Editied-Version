@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using DV_ReportAnalytics.App.Interfaces;
 using DV_ReportAnalytics.App.Configurations;
 using DV_ReportAnalytics.App.SpreadsheetGear;
 using DV_ReportAnalytics.Core;
 using DV_ReportAnalytics.Core.Models;
+using DV_ReportAnalytics.Plotly;
 
 namespace DV_ReportAnalytics.App
 {
@@ -52,20 +49,7 @@ namespace DV_ReportAnalytics.App
                 return _displayView;
             }
         }
-        public IView WorkspaceView
-        {
-            get
-            {
-                //if (_workspaceView == null)
-                //{
-                //    _workspaceView = _viewsProvider.CreateWorkspaceView();
-                //    _controller = new SpreadsheetGearWorkbookViewController(_workspaceView.WorkbookView);
-                //    ReloadWorkspace();
-                //}
-
-                return _workspaceView;
-            }
-        }
+        public IView WorkspaceView => _workspaceView;
 
         public void Export(string path)
         {
@@ -101,24 +85,13 @@ namespace DV_ReportAnalytics.App
 
         private void OnSettingsViewClosed(object sender, EventArgs e)
         {
-            //var v = (IEPTSettingsView)sender;
-            //_config.ReportName = v.ReportName;
-            //_config.InputSheetName = v.InputSheetName;
-            //_config.OutputSheetName = v.OutputSheetName;
-            //_config.Parameter = v.Parameter;
-            //_config.Delimiter = v.Delimiter;
-            //_config.ParameterColumn = v.ParameterColumn;
-            //_config.ValueColumn = v.ValueColumn;
             InitModel();
             DrawTables(_model.TableNames, 0, 0); // TODO: pass dynamic variables
         }
 
         private void OnDisplayViewClosed(object sender, EventArgs e)
         {
-            //var v = (IEPTDisplayView)sender;
-            //_config.RowInterpolation = v.RowInterpolation;
-            //_config.ColumnInterpolation = v.ColumnInterpolation;
-            //_config.MaximumItemsPerRow = v.MaximumItemsPerRow;
+
         }
 
         private void InitModel()
@@ -132,10 +105,31 @@ namespace DV_ReportAnalytics.App
 
         private void DrawTables(string[] items, int rowInterp, int colInterp)
         {
+            var tables = _model.GetTableDataCollections(items, rowInterp, colInterp);
             _controller.UpdateSheetWithTables(_config.OutputSheetName,
                 _config.MaximumItemsPerRow, 
                 true,
-                _model.GetTableDataCollections(items, rowInterp, colInterp));
+                tables);
+
+            // generate 3D efficiency map
+            // TODO: This method is not efficient considering tables are already looped in above function
+            //       Improvement may be nedded
+            string html = string.Empty;
+            foreach (var table in tables)
+                html += Surface3DEfficiencyMap.Create((string)table.Label, table.DataBody);
+
+            html = "<!DOCTYPE html>" +
+               "<html>" +
+               "<head>" +
+                   "<meta charset = \"UTF-8\" />" +
+                    "<script src = \"https://cdn.plot.ly/plotly-latest.min.js\"></script>" +
+               "</head>" +
+               "<body>" +
+               $"  {html}" +
+               "</body>" +
+               "</html>";
+
+            System.IO.File.WriteAllText("maps.html", html);
         }
     }
 }

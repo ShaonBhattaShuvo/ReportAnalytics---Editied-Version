@@ -43,7 +43,7 @@
   <Import Project="$(FSharpTargetsPath)" />
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
-    <Compile Include="Efficiency_Surface3D.fs" />
+    <Compile Include="Surface3DEfficiencyMap.fs" />
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

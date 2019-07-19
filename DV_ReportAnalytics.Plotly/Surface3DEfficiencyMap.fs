@@ -1,8 +1,8 @@
-﻿namespace Plotly
+﻿namespace DV_ReportAnalytics.Plotly
 open XPlot.Plotly
 open System
 
-module public Efficiency_Surface3D =
+module public Surface3DEfficiencyMap =
     let Create(title : string, dataZ : Object[,]) : string =
         let layout =
             Layout(

@@ -1,4 +1,4 @@
-﻿namespace Plotly.AssemblyInfo
+﻿namespace DV_ReportAnalytics.Plotly
 
 open System.Reflection
 open System.Runtime.CompilerServices

@@ -30,7 +30,6 @@ namespace DV_ReportAnalytics.App
         {
             var wizard = new WizardPresenter(_factory, _providers.WizardViewsProvider);
             wizard.WizardFinished += OnWizardFinished;
-            wizard.PropertyChanged += OnWizardPresenterChanged;
             wizard.View.Show();
         }
 
@@ -46,7 +45,9 @@ namespace DV_ReportAnalytics.App
 
         private void OnSettingsClicked(object sender, EventArgs eventArgs)
         {
-
+            var dialog = _providers.MainViewsProvider.CreateSettingsForm();
+            //dialog.BindData(_currentPresenter.SettingsView); // there is a glitch
+            dialog.Show();
         }
 
         private void OnDisplayClicked(object sender, EventArgs eventArgs)
@@ -57,15 +58,10 @@ namespace DV_ReportAnalytics.App
         private void OnWizardFinished(object sender, EventArgs eventArgs)
         {
             var wizard = (WizardPresenter)sender;
+            _currentPresenter = wizard.SelectedPresenter;
             _currentPresenter.FilePath = wizard.FilePath;
             _currentPresenter.Initialize();
             _mainView.UpdateWorkspace(_currentPresenter.WorkspaceView);
         }
-
-        private void OnWizardPresenterChanged(object sender, PropertyChangedEventArgs eventArgs)
-        {
-            _currentPresenter = ((WizardPresenter)sender).SelectedPresenter;
-        }
-
     }
 }

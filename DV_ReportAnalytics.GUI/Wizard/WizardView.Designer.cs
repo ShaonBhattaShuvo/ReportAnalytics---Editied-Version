@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panelNavigation = new System.Windows.Forms.Panel();
+            this.buttonBrowse = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonFinish = new System.Windows.Forms.Button();
             this.labelFilePath = new System.Windows.Forms.Label();
@@ -36,7 +37,6 @@
             this.panelTypeList = new System.Windows.Forms.Panel();
             this.listBoxTypeList = new System.Windows.Forms.ListBox();
             this.panelProperty = new System.Windows.Forms.Panel();
-            this.buttonBrowse = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.panelNavigation.SuspendLayout();
             this.panelTypeList.SuspendLayout();
@@ -54,6 +54,17 @@
             this.panelNavigation.Name = "panelNavigation";
             this.panelNavigation.Size = new System.Drawing.Size(741, 43);
             this.panelNavigation.TabIndex = 0;
+            // 
+            // buttonBrowse
+            // 
+            this.buttonBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonBrowse.Location = new System.Drawing.Point(443, 14);
+            this.buttonBrowse.Name = "buttonBrowse";
+            this.buttonBrowse.Size = new System.Drawing.Size(75, 23);
+            this.buttonBrowse.TabIndex = 4;
+            this.buttonBrowse.Text = "Browse";
+            this.buttonBrowse.UseVisualStyleBackColor = true;
+            this.buttonBrowse.Click += new System.EventHandler(this.ButtonBrowse_Click);
             // 
             // buttonCancel
             // 
@@ -103,7 +114,7 @@
             this.panelTypeList.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelTypeList.Location = new System.Drawing.Point(0, 0);
             this.panelTypeList.Name = "panelTypeList";
-            this.panelTypeList.Size = new System.Drawing.Size(195, 388);
+            this.panelTypeList.Size = new System.Drawing.Size(291, 388);
             this.panelTypeList.TabIndex = 1;
             // 
             // listBoxTypeList
@@ -116,28 +127,17 @@
             "EPT Report"});
             this.listBoxTypeList.Location = new System.Drawing.Point(0, 0);
             this.listBoxTypeList.Name = "listBoxTypeList";
-            this.listBoxTypeList.Size = new System.Drawing.Size(195, 388);
+            this.listBoxTypeList.Size = new System.Drawing.Size(291, 388);
             this.listBoxTypeList.TabIndex = 0;
             this.listBoxTypeList.SelectedIndexChanged += new System.EventHandler(this.ListBoxTypeList_SelectedIndexChanged);
             // 
             // panelProperty
             // 
             this.panelProperty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelProperty.Location = new System.Drawing.Point(195, 0);
+            this.panelProperty.Location = new System.Drawing.Point(291, 0);
             this.panelProperty.Name = "panelProperty";
-            this.panelProperty.Size = new System.Drawing.Size(546, 388);
+            this.panelProperty.Size = new System.Drawing.Size(450, 388);
             this.panelProperty.TabIndex = 2;
-            // 
-            // buttonBrowse
-            // 
-            this.buttonBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonBrowse.Location = new System.Drawing.Point(443, 14);
-            this.buttonBrowse.Name = "buttonBrowse";
-            this.buttonBrowse.Size = new System.Drawing.Size(75, 23);
-            this.buttonBrowse.TabIndex = 4;
-            this.buttonBrowse.Text = "Browse";
-            this.buttonBrowse.UseVisualStyleBackColor = true;
-            this.buttonBrowse.Click += new System.EventHandler(this.ButtonBrowse_Click);
             // 
             // openFileDialog
             // 
@@ -151,8 +151,10 @@
             this.Controls.Add(this.panelProperty);
             this.Controls.Add(this.panelTypeList);
             this.Controls.Add(this.panelNavigation);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "WizardView";
             this.Text = "WizardView";
+            this.Load += new System.EventHandler(this.WizardView_Load);
             this.panelNavigation.ResumeLayout(false);
             this.panelNavigation.PerformLayout();
             this.panelTypeList.ResumeLayout(false);

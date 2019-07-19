@@ -73,6 +73,10 @@
       <Project>{cdec05e3-d5dd-45dc-9187-459a0e03e534}</Project>
       <Name>DV_ReportAnalytics.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DV_ReportAnalytics.Plotly\DV_ReportAnalytics.Plotly.fsproj">
+      <Project>{9d0d40ec-ea78-4638-8889-c6ecba25cb80}</Project>
+      <Name>DV_ReportAnalytics.Plotly</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

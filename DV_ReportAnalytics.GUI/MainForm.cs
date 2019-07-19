@@ -26,22 +26,22 @@ namespace DV_ReportAnalytics.GUI
 
         private void ToolStripButtonSettings_Click(object sender, EventArgs e)
         {
-
+            SettingsClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void ToolStripButtonTableDisplay_Click(object sender, EventArgs e)
         {
-
+            DisplayClicked?.Invoke(this, EventArgs.Empty);
         }
 
         private void ToolStripButtonGraphToggle_Click(object sender, EventArgs e)
         {
-
+            splitContainerMain.Panel2Collapsed = !splitContainerMain.Panel2Collapsed;
         }
 
         private void ToolStripButtonHelp_Click(object sender, EventArgs e)
         {
-
+            HelpClicked.Invoke(this, EventArgs.Empty);
         }
 
         #region IMainView members

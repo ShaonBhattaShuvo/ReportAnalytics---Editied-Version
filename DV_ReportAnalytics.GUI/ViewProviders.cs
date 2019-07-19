@@ -6,11 +6,13 @@ namespace DV_ReportAnalytics.GUI
     {
         public IEPTViewsProvider EPTViewsProvider { get; }
         public IWizardViewsProvider WizardViewsProvider { get; }
+        public IMainViewsProvider MainViewsProvider { get; }
 
         public ViewProviders()
         {
             EPTViewsProvider = new EPTViewsProvider();
             WizardViewsProvider = new WizardViewProvider();
+            MainViewsProvider = new MainViewsProvider();
         }
     }
 }

@@ -9,24 +9,14 @@ using DV_ReportAnalytics.App.Interfaces;
 
 namespace DV_ReportAnalytics.App
 {
-    public class WizardPresenter : INotifyPropertyChanged
+    public class WizardPresenter
     {
         private WorkspacePresenterFactory _factory;
         private IWizardView _view;
-        private IWorkspacePresenter _selectedPresenter;
         private IWizardViewsProvider _provider;
         public event EventHandler WizardFinished;
         public string FilePath { get; private set; }
-        public IWorkspacePresenter SelectedPresenter
-        {
-            get { return _selectedPresenter; }
-            set
-            {
-                _selectedPresenter = value;
-                NotifyPresenterChanged();
-            }
-        }
-        public event PropertyChangedEventHandler PropertyChanged;
+        public IWorkspacePresenter SelectedPresenter { get; private set; }
         public IWizardView View
         {
             get
@@ -56,11 +46,6 @@ namespace DV_ReportAnalytics.App
         {
             FilePath = _view.Path;
             WizardFinished?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void NotifyPresenterChanged([CallerMemberName] string property = "")
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
         }
     }
 }

@@ -58,12 +58,26 @@ namespace DV_ReportAnalytics.GUI
                     break;
             }
             WizardSelectionChanged?.Invoke(this, new WizardSelectionChangedEventArgs(type));
+            ValidateFinish();
         }
 
         private void ButtonBrowse_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
                 textBoxFilePath.Text = openFileDialog.FileName;
+            ValidateFinish();
+        }
+
+        private void ValidateFinish()
+        {
+            buttonFinish.Enabled = 
+                listBoxTypeList.SelectedIndex >= 0 && 
+                !string.IsNullOrEmpty(textBoxFilePath.Text);
+        }
+
+        private void WizardView_Load(object sender, EventArgs e)
+        {
+            ValidateFinish();
         }
     }
 }

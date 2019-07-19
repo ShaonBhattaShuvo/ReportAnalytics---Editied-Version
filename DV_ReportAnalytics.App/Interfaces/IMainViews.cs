@@ -16,4 +16,9 @@ namespace DV_ReportAnalytics.App.Interfaces
 
         void UpdateWorkspace(object content);
     }
+
+    public interface IMainViewsProvider
+    {
+        IView CreateSettingsForm();
+    }
 }
