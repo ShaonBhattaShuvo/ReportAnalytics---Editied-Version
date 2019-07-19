@@ -11,7 +11,7 @@ using DV_ReportAnalytics.Core.Models;
 
 namespace DV_ReportAnalytics.App
 {
-    internal class EPTPresenter : IWorkspacePresenter
+    public class EPTPresenter : IWorkspacePresenter
     {
         #region Fields
         private IEPTSettingsView _settingsView;
@@ -56,12 +56,12 @@ namespace DV_ReportAnalytics.App
         {
             get
             {
-                if (_workspaceView == null)
-                {
-                    _workspaceView = _viewsProvider.CreateWorkspaceView();
-                    _controller = new SpreadsheetGearWorkbookViewController(_workspaceView.WorkbookView);
-                    ReloadWorkspace();
-                }
+                //if (_workspaceView == null)
+                //{
+                //    _workspaceView = _viewsProvider.CreateWorkspaceView();
+                //    _controller = new SpreadsheetGearWorkbookViewController(_workspaceView.WorkbookView);
+                //    ReloadWorkspace();
+                //}
 
                 return _workspaceView;
             }
@@ -74,6 +74,8 @@ namespace DV_ReportAnalytics.App
 
         public void Initialize()
         {
+            _workspaceView = _viewsProvider.CreateWorkspaceView();
+            _controller = new SpreadsheetGearWorkbookViewController(_workspaceView.WorkbookView);
             ReloadWorkspace();
             InitModel();
         }

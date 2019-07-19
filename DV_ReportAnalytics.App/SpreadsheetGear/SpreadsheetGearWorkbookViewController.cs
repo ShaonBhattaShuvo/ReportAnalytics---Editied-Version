@@ -23,7 +23,6 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             try
             {
                 WorkbookViewModel.ActiveWorkbookSet.GetLock();
-                WorkbookViewModel.ActiveWorkbook.Close();
                 WorkbookViewModel.ActiveWorkbook = Factory.GetWorkbook(path);
             }
             finally
@@ -78,7 +77,17 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
 
         public object[,] GetSheetUsedRangeValue(string sheetName)
         {
-            return (object[,])WorkbookViewModel.ActiveWorkbook.Worksheets[sheetName].UsedRange.Value;
+            object[,] value;
+            try
+            {
+                WorkbookViewModel.ActiveWorkbookSet.GetLock();
+                value = (object[,])WorkbookViewModel.ActiveWorkbook.Worksheets[sheetName].UsedRange.Value;
+            }
+            finally
+            {
+                WorkbookViewModel.ActiveWorkbookSet.ReleaseLock();
+            }
+            return value;
         }
     }
 }

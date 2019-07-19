@@ -51,8 +51,10 @@ namespace DV_ReportAnalytics.GUI
 
         public void UpdateWorkspace(object content)
         {
+            var control = (Control)content;
+            control.Dock = DockStyle.Fill;
             splitContainerMain.Panel1.Controls.Clear();
-            splitContainerMain.Panel1.Controls.Add((Control)content);
+            splitContainerMain.Panel1.Controls.Add(control);
             ToggleButtonsEnabled();
         } 
         #endregion

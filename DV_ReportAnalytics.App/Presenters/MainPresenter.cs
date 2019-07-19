@@ -7,7 +7,7 @@ using DV_ReportAnalytics.App.Interfaces;
 
 namespace DV_ReportAnalytics.App
 {
-    internal class MainFormPresenter
+    public class MainFormPresenter
     {
         private IMainView _mainView;
         private WorkspacePresenterFactory _factory;

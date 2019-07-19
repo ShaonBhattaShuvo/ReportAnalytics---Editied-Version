@@ -16,7 +16,7 @@ namespace DV_ReportAnalytics.App
         EPTReport
     }
 
-    internal class WorkspacePresenterFactory
+    public class WorkspacePresenterFactory
     {
         private IViewsProviders _providers;
         private Dictionary<ReportTypes, Func<IWorkspacePresenter>> _registry;

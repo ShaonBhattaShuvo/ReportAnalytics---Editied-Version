@@ -28,8 +28,10 @@ namespace DV_ReportAnalytics.GUI
 
         public void BindData(object source)
         {
+            var control = (Control)source;
+            control.Dock = DockStyle.Fill;
             panelProperty.Controls.Clear();
-            panelProperty.Controls.Add((Control)source);
+            panelProperty.Controls.Add(control);
         } 
         #endregion
         private void ButtonCancel_Click(object sender, EventArgs e)
@@ -40,6 +42,7 @@ namespace DV_ReportAnalytics.GUI
         private void ButtonFinish_Click(object sender, EventArgs e)
         {
             RequestClosed?.Invoke(this, EventArgs.Empty);
+            Close();
         }
 
         private void ListBoxTypeList_SelectedIndexChanged(object sender, EventArgs e)

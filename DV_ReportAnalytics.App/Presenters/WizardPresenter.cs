@@ -9,7 +9,7 @@ using DV_ReportAnalytics.App.Interfaces;
 
 namespace DV_ReportAnalytics.App
 {
-    internal class WizardPresenter : INotifyPropertyChanged
+    public class WizardPresenter : INotifyPropertyChanged
     {
         private WorkspacePresenterFactory _factory;
         private IWizardView _view;
@@ -35,6 +35,7 @@ namespace DV_ReportAnalytics.App
                 {
                     _view = _provider.CreateWizardView();
                     _view.WizardSelectionChanged += OnSelectionChanged;
+                    _view.RequestClosed += OnViewClosed;
                 }
                 return _view;
             }
@@ -53,6 +54,7 @@ namespace DV_ReportAnalytics.App
 
         private void OnViewClosed(object sender, EventArgs eventArgs)
         {
+            FilePath = _view.Path;
             WizardFinished?.Invoke(this, EventArgs.Empty);
         }
 

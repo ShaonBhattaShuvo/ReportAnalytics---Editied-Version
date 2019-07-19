@@ -81,10 +81,10 @@
             // 
             this.labelFilePath.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.labelFilePath.AutoSize = true;
-            this.labelFilePath.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelFilePath.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelFilePath.Location = new System.Drawing.Point(12, 17);
             this.labelFilePath.Name = "labelFilePath";
-            this.labelFilePath.Size = new System.Drawing.Size(85, 17);
+            this.labelFilePath.Size = new System.Drawing.Size(79, 16);
             this.labelFilePath.TabIndex = 1;
             this.labelFilePath.Text = "Report Path";
             // 
@@ -103,31 +103,34 @@
             this.panelTypeList.Dock = System.Windows.Forms.DockStyle.Left;
             this.panelTypeList.Location = new System.Drawing.Point(0, 0);
             this.panelTypeList.Name = "panelTypeList";
-            this.panelTypeList.Size = new System.Drawing.Size(518, 388);
+            this.panelTypeList.Size = new System.Drawing.Size(195, 388);
             this.panelTypeList.TabIndex = 1;
             // 
             // listBoxTypeList
             // 
             this.listBoxTypeList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listBoxTypeList.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.listBoxTypeList.FormattingEnabled = true;
+            this.listBoxTypeList.ItemHeight = 24;
             this.listBoxTypeList.Items.AddRange(new object[] {
             "EPT Report"});
             this.listBoxTypeList.Location = new System.Drawing.Point(0, 0);
             this.listBoxTypeList.Name = "listBoxTypeList";
-            this.listBoxTypeList.Size = new System.Drawing.Size(518, 388);
+            this.listBoxTypeList.Size = new System.Drawing.Size(195, 388);
             this.listBoxTypeList.TabIndex = 0;
             this.listBoxTypeList.SelectedIndexChanged += new System.EventHandler(this.ListBoxTypeList_SelectedIndexChanged);
             // 
             // panelProperty
             // 
             this.panelProperty.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelProperty.Location = new System.Drawing.Point(518, 0);
+            this.panelProperty.Location = new System.Drawing.Point(195, 0);
             this.panelProperty.Name = "panelProperty";
-            this.panelProperty.Size = new System.Drawing.Size(223, 388);
+            this.panelProperty.Size = new System.Drawing.Size(546, 388);
             this.panelProperty.TabIndex = 2;
             // 
             // buttonBrowse
             // 
+            this.buttonBrowse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonBrowse.Location = new System.Drawing.Point(443, 14);
             this.buttonBrowse.Name = "buttonBrowse";
             this.buttonBrowse.Size = new System.Drawing.Size(75, 23);
