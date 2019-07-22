@@ -4,7 +4,7 @@ using System.Linq;
 using System.Xml;
 using System.Data;
 
-namespace DV_ReportAnalytics.Core.Models
+namespace DV_ReportAnalytics.Core
 {
     public class EPTReportModel
     {
@@ -65,7 +65,7 @@ namespace DV_ReportAnalytics.Core.Models
             if (rowInterpolation == 0 && columnInterpolation == 0)
                 return collections.AsEnumerable();
 
-            // UNDONE: do interpolation
+            // TODO: do interpolation
             return collections.AsEnumerable();
         }
     }

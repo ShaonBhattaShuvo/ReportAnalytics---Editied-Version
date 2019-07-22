@@ -2,7 +2,7 @@
 
 namespace DV_ReportAnalytics.App
 {
-    public static class Conversions
+    internal static class Conversions
     {
         public static int LetterToNumberColumn(string source)
         {

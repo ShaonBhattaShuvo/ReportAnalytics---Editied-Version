@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DV_ReportAnalytics.Algorithms
+namespace DV_ReportAnalytics.Core
 {
     internal static class Interpolation
     {

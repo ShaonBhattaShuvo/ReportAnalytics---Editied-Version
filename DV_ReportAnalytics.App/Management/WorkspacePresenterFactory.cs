@@ -10,15 +10,10 @@ namespace DV_ReportAnalytics.App
     /// <summary>
     /// New workspace presenter should be registred here
     /// </summary>
-    public enum ReportTypes : int
-    {
-        None = 0,
-        EPTReport
-    }
-
     public class WorkspacePresenterFactory
     {
         private IViewsProviders _providers;
+        private ConfigurationManager _configmgr;
         private Dictionary<ReportTypes, Func<IWorkspacePresenter>> _registry;
 
         #region Registy
@@ -34,13 +29,15 @@ namespace DV_ReportAnalytics.App
         }
         #endregion
 
-        public WorkspacePresenterFactory(IViewsProviders providers)
+        public WorkspacePresenterFactory(IViewsProviders providers, ConfigurationManager configmrg)
         {
             _providers = providers;
+            _configmgr = configmrg;
             _registry = new Dictionary<ReportTypes, Func<IWorkspacePresenter>>
             {
                 // register here
-                { ReportTypes.EPTReport, () => new EPTPresenter(_providers.EPTViewsProvider) }
+                { ReportTypes.EPTReport,
+                    () => new EPTPresenter(_providers[ReportTypes.EPTReport], _configmgr[ReportTypes.EPTReport]) }
             };
         }
     }

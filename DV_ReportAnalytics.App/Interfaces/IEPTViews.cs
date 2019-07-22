@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace DV_ReportAnalytics.App.Interfaces
+﻿namespace DV_ReportAnalytics.App.Interfaces
 {
     public interface IEPTSettingsView : IView
     {
@@ -26,11 +20,10 @@ namespace DV_ReportAnalytics.App.Interfaces
 
     public interface IEPTWorkspaceView : IView
     {
-        global::SpreadsheetGear.Windows.Forms.WorkbookView WorkbookView { get; }
+        System.Windows.Forms.Control WorkbookView { get; }
     }
 
-    public interface IEPTViewsProvider : 
-        IWorkspaceViewsProvider<IEPTWorkspaceView, IEPTSettingsView, IEPTDisplayView>
+    public interface IEPTViewsProvider : IWorkspaceViewsProvider
     {
     }
 }

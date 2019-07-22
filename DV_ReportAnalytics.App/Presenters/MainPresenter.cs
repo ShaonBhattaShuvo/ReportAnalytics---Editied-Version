@@ -14,7 +14,7 @@ namespace DV_ReportAnalytics.App
         private IViewsProviders _providers;
         private IWorkspacePresenter _currentPresenter; // TODO: replace this with tab views or similar if multipage design needed
 
-        public MainFormPresenter(IMainView view, IViewsProviders providers)
+        public MainFormPresenter(IMainView view, IViewsProviders providers, ConfigurationManager configmgr)
         {
             _mainView = view;
             _mainView.OpenClicked += OnOpenClicked;
@@ -23,7 +23,7 @@ namespace DV_ReportAnalytics.App
             _mainView.SettingsClicked += OnSettingsClicked;
             _mainView.SettingsClicked += OnDisplayClicked;
             _providers = providers;
-            _factory = new WorkspacePresenterFactory(providers);
+            _factory = new WorkspacePresenterFactory(providers, configmgr);
         }
 
         private void OnOpenClicked(object sender, EventArgs eventArgs)
@@ -63,5 +63,7 @@ namespace DV_ReportAnalytics.App
             _currentPresenter.Initialize();
             _mainView.UpdateWorkspace(_currentPresenter.WorkspaceView);
         }
+
+        public IMainView View => _mainView;
     }
 }

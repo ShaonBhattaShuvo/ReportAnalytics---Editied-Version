@@ -153,7 +153,7 @@
             this.Controls.Add(this.panelNavigation);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "WizardView";
-            this.Text = "WizardView";
+            this.Text = "New Report Wizard";
             this.Load += new System.EventHandler(this.WizardView_Load);
             this.panelNavigation.ResumeLayout(false);
             this.panelNavigation.PerformLayout();

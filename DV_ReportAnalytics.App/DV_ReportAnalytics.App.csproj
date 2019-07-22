@@ -74,6 +74,7 @@
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -82,17 +83,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Configurations\EPTConfig.Designer.cs">
+    <Compile Include="Management\ConfigurationManager.cs" />
+    <Compile Include="Management\EPTConfig.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>EPTConfig.settings</DependentUpon>
     </Compile>
     <Compile Include="EventArgs\WindowEvents.cs" />
-    <Compile Include="Extensions\Configuration_ToFile.cs" />
     <Compile Include="Extensions\Conversions.cs" />
     <Compile Include="Interfaces\IViewsProviders.cs" />
     <Compile Include="Interfaces\IWizardViews.cs" />
     <Compile Include="Interfaces\IWorkspaceViewsProvider.cs" />
+    <Compile Include="Management\ReportTypes.cs" />
     <Compile Include="Management\WorkspacePresenterFactory.cs" />
     <Compile Include="Presenters\WizardPresenter.cs" />
     <Compile Include="SpreadsheetGear\SpreadsheetGearWorkbookViewController.cs" />
@@ -118,7 +120,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="Configurations\EPTConfig.settings">
+    <None Include="Management\EPTConfig.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>EPTConfig.Designer.cs</LastGenOutput>
     </None>

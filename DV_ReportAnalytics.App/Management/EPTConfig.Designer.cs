@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DV_ReportAnalytics.App.Configurations {
+namespace DV_ReportAnalytics.App {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

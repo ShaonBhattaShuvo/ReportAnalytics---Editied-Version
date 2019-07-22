@@ -4,19 +4,8 @@ namespace DV_ReportAnalytics.GUI
 {
     public class EPTViewsProvider : IEPTViewsProvider
     {
-        public IEPTSettingsView CreateSettingsView()
-        {
-            return new EPTSettingsView();
-        }
-
-        public IEPTDisplayView CreateDisplayView()
-        {
-            return null;
-        }
-
-        public IEPTWorkspaceView CreateWorkspaceView()
-        {
-            return new EPTWorkspaceView();
-        }
+        public IView CreateSettingsView() => new EPTSettingsView();
+        public IView CreateDisplayView() => null;
+        public IView CreateWorkspaceView() => new EPTWorkspaceView();
     }
 }

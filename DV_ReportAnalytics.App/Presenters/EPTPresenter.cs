@@ -1,14 +1,14 @@
 ﻿using System;
+using System.Configuration;
 using DV_ReportAnalytics.App.Interfaces;
-using DV_ReportAnalytics.App.Configurations;
 using DV_ReportAnalytics.App.SpreadsheetGear;
 using DV_ReportAnalytics.Core;
-using DV_ReportAnalytics.Core.Models;
 using DV_ReportAnalytics.Plotly;
+using SpreadsheetGear.Windows.Forms;
 
 namespace DV_ReportAnalytics.App
 {
-    public class EPTPresenter : IWorkspacePresenter
+    internal class EPTPresenter : IWorkspacePresenter
     {
         #region Fields
         private IEPTSettingsView _settingsView;
@@ -27,7 +27,7 @@ namespace DV_ReportAnalytics.App
             {
                 if (_settingsView == null)
                 {
-                    _settingsView = _viewsProvider.CreateSettingsView();
+                    _settingsView = (IEPTSettingsView)_viewsProvider.CreateSettingsView();
                     _settingsView.BindData(_config);
                     _settingsView.RequestClosed += OnSettingsViewClosed;
                 }
@@ -41,7 +41,7 @@ namespace DV_ReportAnalytics.App
             {
                 if (_displayView == null)
                 {
-                    _displayView = _viewsProvider.CreateDisplayView();
+                    _displayView = (IEPTDisplayView)_viewsProvider.CreateDisplayView();
                     _displayView.BindData(_config);
                     _displayView.RequestClosed += OnDisplayViewClosed;
                 }
@@ -58,8 +58,8 @@ namespace DV_ReportAnalytics.App
 
         public void Initialize()
         {
-            _workspaceView = _viewsProvider.CreateWorkspaceView();
-            _controller = new SpreadsheetGearWorkbookViewController(_workspaceView.WorkbookView);
+            _workspaceView = (IEPTWorkspaceView)_viewsProvider.CreateWorkspaceView();
+            _controller = new SpreadsheetGearWorkbookViewController((WorkbookView)_workspaceView.WorkbookView);
             ReloadWorkspace();
             InitModel();
             DrawTables(_model.TableNames, 0, 0); // remove this if tables are not required to show up after loading
@@ -75,18 +75,18 @@ namespace DV_ReportAnalytics.App
         #endregion
 
         #region Constructor
-        public EPTPresenter(IEPTViewsProvider viewsProvider)
+        public EPTPresenter(IWorkspaceViewsProvider viewsProvider, ApplicationSettingsBase config)
         {
-            _viewsProvider = viewsProvider;
+            _viewsProvider = (IEPTViewsProvider)viewsProvider;
             _model = new EPTReportModel();
-            _config = EPTConfig.Default;
+            _config = (EPTConfig)config;
         } 
         #endregion
 
         private void OnSettingsViewClosed(object sender, EventArgs e)
         {
             InitModel();
-            DrawTables(_model.TableNames, 0, 0); // TODO: pass dynamic variables
+            DrawTables(_model.TableNames, _config.RowInterpolation, _config.ColumnInterpolation); // TODO: pass dynamic variables
         }
 
         private void OnDisplayViewClosed(object sender, EventArgs e)

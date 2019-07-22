@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 using DV_ReportAnalytics.App;
+using DV_ReportAnalytics.App.Interfaces;
 using DV_ReportAnalytics.GUI;
 
 namespace DV_ReportAnalytics
@@ -15,11 +16,11 @@ namespace DV_ReportAnalytics
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            ViewProviders providers = new ViewProviders();
-            MainForm mainForm = new MainForm();
-            MainFormPresenter mainPresenter = new MainFormPresenter(mainForm, providers);
-            Application.Run(mainForm);
-            //Application.Run(new Form1());
+            MainFormPresenter mainPresenter = new MainFormPresenter(
+                new MainForm(),
+                new ViewsProviders(),
+                new ConfigurationManager());
+            Application.Run((Form)mainPresenter.View);
         }
     }
 }

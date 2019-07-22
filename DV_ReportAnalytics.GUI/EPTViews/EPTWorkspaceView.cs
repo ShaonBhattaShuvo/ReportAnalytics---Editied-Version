@@ -13,7 +13,7 @@ namespace DV_ReportAnalytics.GUI
         }
 
         #region IEPTWorkspaceView member
-        public WorkbookView WorkbookView => workbookView1;
+        public Control WorkbookView => workbookView1;
         #endregion
 
         public event EventHandler RequestClosed;
