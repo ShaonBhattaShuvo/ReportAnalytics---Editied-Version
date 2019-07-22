@@ -10,6 +10,17 @@ namespace DV_ReportAnalytics.App
     public class ConfigurationManager
     {
         private Dictionary<ReportTypes, ApplicationSettingsBase> _configs;
+        private static ConfigurationManager defaultInstance; // singlton instance
+        public static event EventHandler<EventArgs<string>> ExceptionThrown; // handle exception for GUI presentation
+        public static ConfigurationManager Default
+        {
+            get
+            {
+                if (defaultInstance == null)
+                    defaultInstance = new ConfigurationManager();
+                return defaultInstance;
+            }
+        }
 
         // register new config here
         public ConfigurationManager()
@@ -31,64 +42,44 @@ namespace DV_ReportAnalytics.App
         public void ResetAll()
         {
             foreach (var i in _configs)
-                i.Value.Reset();
+                Reset(i.Value);
         }
 
         public void ReloadAll()
         {
             foreach (var i in _configs)
-                i.Value.Reload();
+                Reload(i.Value);
         }
 
         public void SaveAll()
         {
             foreach (var i in _configs)
-                i.Value.Save();
+                Save(i.Value);
         }
 
         public void Reset(ReportTypes type)
         {
-            _configs[type].Reset();
+            Reset(_configs[type]);
         }
 
         public void Reload(ReportTypes type)
         {
-            _configs[type].Reload();
+            Reload(_configs[type]);
         }
 
         public void Save(ReportTypes type)
         {
-            _configs[type].Save();
+            Save(_configs[type]);
         }
 
         public void Import(ReportTypes type, string path)
         {
-            XDocument xml = XDocument.Load(path);
-            var config = _configs[type];
-            var props = config.GetType().GetProperties(
-                BindingFlags.DeclaredOnly |
-                BindingFlags.Instance |
-                BindingFlags.Public);
-            foreach (var p in props)
-            {
-                var pt = p.PropertyType;
-                p.SetValue(config, Convert.ChangeType(xml.Root.Element(p.Name).Value, pt));
-            }
+            Import(_configs[type], path);
         }
 
         public void Export(ReportTypes type, string path)
         {
-            XDocument xml = new XDocument(new XElement("DV_ReportAnalytics"));
-            var config = _configs[type];
-            var props = config.GetType().GetProperties(
-                BindingFlags.DeclaredOnly |
-                BindingFlags.Instance |
-                BindingFlags.Public);
-            foreach (var p in props)
-            {
-                xml.Root.Add(new XElement(p.Name, p.GetValue(config)));
-            }
-            xml.Save(path);
+            Export(_configs[type], path);
         }
 
         public static void Reset(ApplicationSettingsBase config)
@@ -109,16 +100,33 @@ namespace DV_ReportAnalytics.App
         public static void Import(ApplicationSettingsBase config, string path)
         {
             XDocument xml = XDocument.Load(path);
-            var props = config.GetType().GetProperties(
-                BindingFlags.DeclaredOnly |
-                BindingFlags.Instance |
-                BindingFlags.Public);
-            foreach (var p in props)
+            try
             {
-                if (p.Name == "ReportType")
-                    continue;
-                var pt = p.PropertyType;
-                p.SetValue(config, Convert.ChangeType(xml.Root.Element(p.Name).Value, pt));
+                // validate config before importing
+                const string typeParam = "ReportType";
+                string configType = (string)config.GetType().GetProperty(typeParam).GetValue(config);
+                string xmlType = xml.Root.Element(typeParam).Value;
+                if (!string.Equals(configType, xmlType))
+                    throw new Exception();
+
+                // starting importing
+                var props = config.GetType().GetProperties(
+                    BindingFlags.DeclaredOnly |
+                    BindingFlags.Instance |
+                    BindingFlags.Public);
+                foreach (var p in props)
+                {
+                    if (p.Name == typeParam)
+                        continue;
+                    var pt = p.PropertyType;
+                    p.SetValue(config, Convert.ChangeType(xml.Root.Element(p.Name).Value, pt));
+                }
+            }
+            catch
+            {
+                string errormsg = "Invalid config!";
+                Console.WriteLine(errormsg);
+                ExceptionThrown?.Invoke(Default, new EventArgs<string>(errormsg));
             }
         }
 

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Windows.Forms;
 using DV_ReportAnalytics.App;
 using DV_ReportAnalytics.App.Interfaces;
 
@@ -27,6 +28,11 @@ namespace DV_ReportAnalytics.GUI
             {
                 return _viewProviders[type];
             }
+        }
+
+        public static void ShowMessageBox(string message)
+        {
+            MessageBox.Show(message);
         }
     }
 }

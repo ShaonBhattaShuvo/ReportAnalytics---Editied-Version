@@ -16,11 +16,16 @@ namespace DV_ReportAnalytics
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            MainFormPresenter mainPresenter = new MainFormPresenter(
-                new MainForm(),
-                new ViewsProviders(),
-                new ConfigurationManager());
-            Application.Run((Form)mainPresenter.View);
+
+            // initialize
+            MainForm view = new MainForm();
+            ViewsProviders providers = new ViewsProviders();
+            ConfigurationManager manager = ConfigurationManager.Default;
+            ConfigurationManager.ExceptionThrown +=
+                (s, e) => ViewsProviders.ShowMessageBox(e.Value);
+            MainFormPresenter presenter = new MainFormPresenter(view, providers, manager);
+
+            Application.Run((Form)presenter.View);
         }
     }
 }
