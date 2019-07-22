@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace DV_ReportAnalytics.App {
+namespace DV_ReportAnalytics.App.Management {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
@@ -140,6 +140,15 @@ namespace DV_ReportAnalytics.App {
             }
             set {
                 this["MaximumItemsPerRow"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("EPTReport")]
+        public string ReportType {
+            get {
+                return ((string)(this["ReportType"]));
             }
         }
     }

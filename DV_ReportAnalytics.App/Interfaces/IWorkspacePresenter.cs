@@ -3,11 +3,14 @@
     public interface IWorkspacePresenter
     {
         IView SettingsView { get; }
-        IView DisplayView { get; }
+        IView DisplaysView { get; }
         IView WorkspaceView { get; }
         void Export(string path);
-        void Initialize();
+        void Initialize(string path);
         void ReloadWorkspace();
-        string FilePath { get; set; }
+        void ImportConfig(string path);
+        void ExportConfig(string path);
+        void ResetConfig();
+        string FilePath { get; }
     }
 }

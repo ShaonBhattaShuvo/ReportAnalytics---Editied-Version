@@ -11,7 +11,7 @@
         //char Delimiter { get; set; }
     }
 
-    public interface IEPTDisplayView : IView
+    public interface IEPTDisplaysView : IView
     {
         //int RowInterpolation { get; set; }
         //int ColumnInterpolation { get; set; }

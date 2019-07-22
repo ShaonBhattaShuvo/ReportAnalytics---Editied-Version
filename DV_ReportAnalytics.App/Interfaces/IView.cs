@@ -8,6 +8,6 @@ namespace DV_ReportAnalytics.App.Interfaces
         event EventHandler RequestClosed;
         void Close();
         void Show();
-        void BindData(object source);
+        void BindData(object source, object arguments);
     }
 }

@@ -22,7 +22,7 @@ namespace DV_ReportAnalytics.GUI
             this.Dispose();
         }
 
-        public void BindData(object source)
+        public void BindData(object source, object arguments)
         {
             textBoxName.DataBindings.Add("Text", source, "ReportName");
             textBoxInputSheetName.DataBindings.Add("Text", source, "InputSheetName");

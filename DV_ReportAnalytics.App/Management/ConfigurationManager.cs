@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Configuration;
 using System.Xml.Linq;
+using System.Reflection;
+using DV_ReportAnalytics.App.Management;
 
 namespace DV_ReportAnalytics.App
 {
@@ -14,7 +16,7 @@ namespace DV_ReportAnalytics.App
         {
             _configs = new Dictionary<ReportTypes, ApplicationSettingsBase>()
             {
-                {ReportTypes.EPTReport, EPTConfig.Default }
+                { ReportTypes.EPTReport, EPTConfig.Default }
             };
         }
 
@@ -63,7 +65,10 @@ namespace DV_ReportAnalytics.App
         {
             XDocument xml = XDocument.Load(path);
             var config = _configs[type];
-            var props = config.GetType().GetProperties();
+            var props = config.GetType().GetProperties(
+                BindingFlags.DeclaredOnly |
+                BindingFlags.Instance |
+                BindingFlags.Public);
             foreach (var p in props)
             {
                 var pt = p.PropertyType;
@@ -75,7 +80,10 @@ namespace DV_ReportAnalytics.App
         {
             XDocument xml = new XDocument(new XElement("DV_ReportAnalytics"));
             var config = _configs[type];
-            var props = config.GetType().GetProperties();
+            var props = config.GetType().GetProperties(
+                BindingFlags.DeclaredOnly |
+                BindingFlags.Instance |
+                BindingFlags.Public);
             foreach (var p in props)
             {
                 xml.Root.Add(new XElement(p.Name, p.GetValue(config)));
@@ -83,12 +91,32 @@ namespace DV_ReportAnalytics.App
             xml.Save(path);
         }
 
+        public static void Reset(ApplicationSettingsBase config)
+        {
+            config.Reset();
+        }
+
+        public static void Reload(ApplicationSettingsBase config)
+        {
+            config.Reload();
+        }
+
+        public static void Save(ApplicationSettingsBase config)
+        {
+            config.Save();
+        }
+
         public static void Import(ApplicationSettingsBase config, string path)
         {
             XDocument xml = XDocument.Load(path);
-            var props = config.GetType().GetProperties();
+            var props = config.GetType().GetProperties(
+                BindingFlags.DeclaredOnly |
+                BindingFlags.Instance |
+                BindingFlags.Public);
             foreach (var p in props)
             {
+                if (p.Name == "ReportType")
+                    continue;
                 var pt = p.PropertyType;
                 p.SetValue(config, Convert.ChangeType(xml.Root.Element(p.Name).Value, pt));
             }
@@ -97,7 +125,10 @@ namespace DV_ReportAnalytics.App
         public static void Export(ApplicationSettingsBase config, string path)
         {
             XDocument xml = new XDocument(new XElement("DV_ReportAnalytics"));
-            var props = config.GetType().GetProperties();
+            var props = config.GetType().GetProperties(
+                BindingFlags.DeclaredOnly|
+                BindingFlags.Instance|
+                BindingFlags.Public);
             foreach (var p in props)
             {
                 xml.Root.Add(new XElement(p.Name, p.GetValue(config)));

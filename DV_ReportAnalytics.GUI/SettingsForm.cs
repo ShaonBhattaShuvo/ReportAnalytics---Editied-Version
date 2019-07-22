@@ -23,7 +23,7 @@ namespace DV_ReportAnalytics.GUI
 
         public event EventHandler RequestClosed; // not necessary for this form
         
-        public void BindData(object source)
+        public void BindData(object source, object arguments)
         {
             var control = (Control)source;
             control.Dock = DockStyle.Fill;

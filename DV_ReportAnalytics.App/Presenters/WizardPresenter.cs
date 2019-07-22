@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel;
-using System.Runtime.CompilerServices;
 using DV_ReportAnalytics.App.Interfaces;
 
 namespace DV_ReportAnalytics.App
@@ -12,7 +6,6 @@ namespace DV_ReportAnalytics.App
     public class WizardPresenter
     {
         private WorkspacePresenterFactory _factory;
-        private IWizardView _view;
         private IWizardViewsProvider _provider;
         public event EventHandler WizardFinished;
         public string FilePath { get; private set; }
@@ -21,13 +14,13 @@ namespace DV_ReportAnalytics.App
         {
             get
             {
-                if (_view == null)
-                {
-                    _view = _provider.CreateWizardView();
-                    _view.WizardSelectionChanged += OnSelectionChanged;
-                    _view.RequestClosed += OnViewClosed;
-                }
-                return _view;
+                var view = _provider.CreateWizardView();
+                view.WizardSelectionChanged += OnSelectionChanged;
+                view.RequestClosed += OnViewClosed;
+                view.ConfigExportClicked += OnConfigExportClicked;
+                view.ConfigImportClicked += OnConfigImportClicked;
+                view.ConfigResetClicked += OnConfigResetClicked;
+                return view;
             }
         }
         public WizardPresenter(WorkspacePresenterFactory factory, IWizardViewsProvider provier)
@@ -39,13 +32,29 @@ namespace DV_ReportAnalytics.App
         private void OnSelectionChanged(object sender, WizardSelectionChangedEventArgs eventArgs)
         {
             SelectedPresenter = _factory[eventArgs.Type];
-            _view.BindData(SelectedPresenter.SettingsView);
+            ((IWizardView)sender).BindData(SelectedPresenter.SettingsView, 1);
+            ((IWizardView)sender).BindData(SelectedPresenter.DisplaysView, 2);
         }
 
         private void OnViewClosed(object sender, EventArgs eventArgs)
         {
-            FilePath = _view.Path;
+            FilePath = ((IWizardView)sender).Path;
             WizardFinished?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void OnConfigImportClicked(object sender, EventArgs<string> eventArgs)
+        {
+            SelectedPresenter.ImportConfig(eventArgs.Value);
+        }
+
+        private void OnConfigExportClicked(object sender, EventArgs<string> eventArgs)
+        {
+            SelectedPresenter.ExportConfig(eventArgs.Value);
+        }
+
+        private void OnConfigResetClicked(object sender, EventArgs eventArgs)
+        {
+            SelectedPresenter.ResetConfig();
         }
     }
 }

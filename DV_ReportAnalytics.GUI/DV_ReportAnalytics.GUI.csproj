@@ -68,6 +68,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EPTViews\EPTDisplaysView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EPTViews\EPTDisplaysView.Designer.cs">
+      <DependentUpon>EPTDisplaysView.cs</DependentUpon>
+    </Compile>
     <Compile Include="EPTViews\EPTViewsProvider.cs" />
     <Compile Include="EPTViews\EPTWorkspaceView.cs">
       <SubType>UserControl</SubType>
@@ -110,6 +116,9 @@
     <Compile Include="Wizard\WizardViewProvider.cs" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="EPTViews\EPTDisplaysView.resx">
+      <DependentUpon>EPTDisplaysView.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EPTViews\EPTWorkspaceView.resx">
       <DependentUpon>EPTWorkspaceView.cs</DependentUpon>
     </EmbeddedResource>

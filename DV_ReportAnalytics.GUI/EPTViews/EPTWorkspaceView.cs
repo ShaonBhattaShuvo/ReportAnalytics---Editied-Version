@@ -24,7 +24,7 @@ namespace DV_ReportAnalytics.GUI
             this.Dispose();
         }
 
-        public void BindData(object source)
+        public void BindData(object source, object arguments)
         {
             // not necessary for this control
         }

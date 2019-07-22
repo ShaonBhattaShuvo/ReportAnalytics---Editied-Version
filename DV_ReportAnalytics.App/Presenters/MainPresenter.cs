@@ -59,8 +59,7 @@ namespace DV_ReportAnalytics.App
         {
             var wizard = (WizardPresenter)sender;
             _currentPresenter = wizard.SelectedPresenter;
-            _currentPresenter.FilePath = wizard.FilePath;
-            _currentPresenter.Initialize();
+            _currentPresenter.Initialize(wizard.FilePath);
             _mainView.UpdateWorkspace(_currentPresenter.WorkspaceView);
         }
 

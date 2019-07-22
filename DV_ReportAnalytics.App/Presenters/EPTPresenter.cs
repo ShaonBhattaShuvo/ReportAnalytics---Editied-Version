@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using DV_ReportAnalytics.App.Interfaces;
+using DV_ReportAnalytics.App.Management;
 using DV_ReportAnalytics.App.SpreadsheetGear;
 using DV_ReportAnalytics.Core;
 using DV_ReportAnalytics.Plotly;
@@ -12,12 +13,12 @@ namespace DV_ReportAnalytics.App
     {
         #region Fields
         private IEPTSettingsView _settingsView;
-        private IEPTDisplayView _displayView;
+        private IEPTDisplaysView _displaysView;
         private IEPTWorkspaceView _workspaceView;
         private IEPTViewsProvider _viewsProvider;
         private EPTReportModel _model;
-        private SpreadsheetGearWorkbookViewController _controller;
         private EPTConfig _config;
+        private SpreadsheetGearWorkbookViewController _controller;
         #endregion
 
         #region IWorkspacePresenter members
@@ -28,25 +29,25 @@ namespace DV_ReportAnalytics.App
                 if (_settingsView == null)
                 {
                     _settingsView = (IEPTSettingsView)_viewsProvider.CreateSettingsView();
-                    _settingsView.BindData(_config);
+                    _settingsView.BindData(_config, null);
                     _settingsView.RequestClosed += OnSettingsViewClosed;
                 }
 
                 return _settingsView;
             }
         }
-        public IView DisplayView
+        public IView DisplaysView
         {
             get
             {
-                if (_displayView == null)
+                if (_displaysView == null)
                 {
-                    _displayView = (IEPTDisplayView)_viewsProvider.CreateDisplayView();
-                    _displayView.BindData(_config);
-                    _displayView.RequestClosed += OnDisplayViewClosed;
+                    _displaysView = (IEPTDisplaysView)_viewsProvider.CreateDisplaysView();
+                    _displaysView.BindData(_config, null);
+                    _displaysView.RequestClosed += OnDisplayViewClosed;
                 }
 
-                return _displayView;
+                return _displaysView;
             }
         }
         public IView WorkspaceView => _workspaceView;
@@ -56,8 +57,9 @@ namespace DV_ReportAnalytics.App
             _controller.SaveAs(path);
         }
 
-        public void Initialize()
+        public void Initialize(string path)
         {
+            FilePath = path;
             _workspaceView = (IEPTWorkspaceView)_viewsProvider.CreateWorkspaceView();
             _controller = new SpreadsheetGearWorkbookViewController((WorkbookView)_workspaceView.WorkbookView);
             ReloadWorkspace();
@@ -71,7 +73,20 @@ namespace DV_ReportAnalytics.App
             _controller?.Open(FilePath);
         }
 
-        public string FilePath { get; set; }
+        public void ImportConfig(string path)
+        {
+            ConfigurationManager.Import(_config, path);
+        }
+        public void ExportConfig(string path)
+        {
+            ConfigurationManager.Export(_config, path);
+        }
+        public void ResetConfig()
+        {
+            ConfigurationManager.Reset(_config);
+        }
+
+        public string FilePath { get; private set; }
         #endregion
 
         #region Constructor
@@ -80,16 +95,16 @@ namespace DV_ReportAnalytics.App
             _viewsProvider = (IEPTViewsProvider)viewsProvider;
             _model = new EPTReportModel();
             _config = (EPTConfig)config;
-        } 
+        }
         #endregion
 
-        private void OnSettingsViewClosed(object sender, EventArgs e)
+        private void OnSettingsViewClosed(object sender, EventArgs eventArgs)
         {
             InitModel();
             DrawTables(_model.TableNames, _config.RowInterpolation, _config.ColumnInterpolation); // TODO: pass dynamic variables
         }
 
-        private void OnDisplayViewClosed(object sender, EventArgs e)
+        private void OnDisplayViewClosed(object sender, EventArgs eventArgs)
         {
 
         }

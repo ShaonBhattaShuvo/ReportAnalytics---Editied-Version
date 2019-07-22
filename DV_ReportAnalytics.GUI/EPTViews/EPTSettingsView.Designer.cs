@@ -80,10 +80,10 @@
             // 
             // textBoxDelimiter
             // 
-            this.textBoxDelimiter.Location = new System.Drawing.Point(206, 175);
+            this.textBoxDelimiter.Location = new System.Drawing.Point(182, 175);
             this.textBoxDelimiter.Margin = new System.Windows.Forms.Padding(10);
             this.textBoxDelimiter.Name = "textBoxDelimiter";
-            this.textBoxDelimiter.Size = new System.Drawing.Size(177, 20);
+            this.textBoxDelimiter.Size = new System.Drawing.Size(150, 20);
             this.textBoxDelimiter.TabIndex = 12;
             // 
             // labelOutputSheetName
@@ -99,30 +99,27 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(206, 47);
+            this.textBoxName.Location = new System.Drawing.Point(182, 47);
             this.textBoxName.Margin = new System.Windows.Forms.Padding(10);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(177, 20);
+            this.textBoxName.Size = new System.Drawing.Size(150, 20);
             this.textBoxName.TabIndex = 7;
-            this.textBoxName.Text = "EPT Report Results";
             // 
             // textBoxInputSheetName
             // 
-            this.textBoxInputSheetName.Location = new System.Drawing.Point(206, 80);
+            this.textBoxInputSheetName.Location = new System.Drawing.Point(182, 80);
             this.textBoxInputSheetName.Margin = new System.Windows.Forms.Padding(10);
             this.textBoxInputSheetName.Name = "textBoxInputSheetName";
-            this.textBoxInputSheetName.Size = new System.Drawing.Size(177, 20);
+            this.textBoxInputSheetName.Size = new System.Drawing.Size(150, 20);
             this.textBoxInputSheetName.TabIndex = 8;
-            this.textBoxInputSheetName.Text = "Results";
             // 
             // textBoxOutputSheetName
             // 
-            this.textBoxOutputSheetName.Location = new System.Drawing.Point(206, 113);
+            this.textBoxOutputSheetName.Location = new System.Drawing.Point(182, 113);
             this.textBoxOutputSheetName.Margin = new System.Windows.Forms.Padding(10);
             this.textBoxOutputSheetName.Name = "textBoxOutputSheetName";
-            this.textBoxOutputSheetName.Size = new System.Drawing.Size(177, 20);
+            this.textBoxOutputSheetName.Size = new System.Drawing.Size(150, 20);
             this.textBoxOutputSheetName.TabIndex = 9;
-            this.textBoxOutputSheetName.Text = "Combined Results";
             // 
             // labelParameterColumn
             // 
@@ -170,32 +167,33 @@
             // 
             // textBoxParameter
             // 
-            this.textBoxParameter.Location = new System.Drawing.Point(206, 146);
+            this.textBoxParameter.Location = new System.Drawing.Point(182, 146);
             this.textBoxParameter.Margin = new System.Windows.Forms.Padding(10);
             this.textBoxParameter.Name = "textBoxParameter";
-            this.textBoxParameter.Size = new System.Drawing.Size(177, 20);
+            this.textBoxParameter.Size = new System.Drawing.Size(150, 20);
             this.textBoxParameter.TabIndex = 18;
             // 
             // textBoxParameterColumn
             // 
-            this.textBoxParameterColumn.Location = new System.Drawing.Point(206, 212);
+            this.textBoxParameterColumn.Location = new System.Drawing.Point(182, 212);
             this.textBoxParameterColumn.Margin = new System.Windows.Forms.Padding(10);
             this.textBoxParameterColumn.Name = "textBoxParameterColumn";
-            this.textBoxParameterColumn.Size = new System.Drawing.Size(177, 20);
+            this.textBoxParameterColumn.Size = new System.Drawing.Size(150, 20);
             this.textBoxParameterColumn.TabIndex = 21;
             // 
             // textBoxValueColumn
             // 
-            this.textBoxValueColumn.Location = new System.Drawing.Point(206, 245);
+            this.textBoxValueColumn.Location = new System.Drawing.Point(182, 245);
             this.textBoxValueColumn.Margin = new System.Windows.Forms.Padding(10);
             this.textBoxValueColumn.Name = "textBoxValueColumn";
-            this.textBoxValueColumn.Size = new System.Drawing.Size(177, 20);
+            this.textBoxValueColumn.Size = new System.Drawing.Size(150, 20);
             this.textBoxValueColumn.TabIndex = 22;
             // 
             // EPTSettingsView
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.Controls.Add(this.textBoxValueColumn);
             this.Controls.Add(this.labelValueColumn);
             this.Controls.Add(this.labelParameterColumn);
@@ -213,7 +211,7 @@
             this.Controls.Add(this.textBoxName);
             this.Margin = new System.Windows.Forms.Padding(10);
             this.Name = "EPTSettingsView";
-            this.Size = new System.Drawing.Size(398, 281);
+            this.Size = new System.Drawing.Size(346, 278);
             this.ResumeLayout(false);
             this.PerformLayout();
 
