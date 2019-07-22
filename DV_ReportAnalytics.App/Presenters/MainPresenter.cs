@@ -21,7 +21,7 @@ namespace DV_ReportAnalytics.App
             _mainView.ExportClicked += OnExportClicked;
             _mainView.HelpClicked += OnHelpClicked;
             _mainView.SettingsClicked += OnSettingsClicked;
-            _mainView.SettingsClicked += OnDisplayClicked;
+            _mainView.DisplayClicked += OnDisplayClicked;
             _providers = providers;
             _factory = new WorkspacePresenterFactory(providers, configmgr);
         }
@@ -46,13 +46,15 @@ namespace DV_ReportAnalytics.App
         private void OnSettingsClicked(object sender, EventArgs eventArgs)
         {
             var dialog = _providers.MainViewsProvider.CreateSettingsForm();
-            //dialog.BindData(_currentPresenter.SettingsView); // there is a glitch
+            dialog.BindData(_currentPresenter.SettingsView, null);
             dialog.Show();
         }
 
         private void OnDisplayClicked(object sender, EventArgs eventArgs)
         {
-
+            var dialog = _providers.MainViewsProvider.CreateSettingsForm();
+            dialog.BindData(_currentPresenter.DisplaysView, null);
+            dialog.Show();
         }
 
         private void OnWizardFinished(object sender, EventArgs eventArgs)

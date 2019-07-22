@@ -57,8 +57,7 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             }
         }
 
-        public void UpdateSheetWithTables(string sheetName, int maxItemsPerRow, bool heatMap,
-            IEnumerable<TableDataCollection<object>> tables)
+        public void UpdateSheetWithTables(IEnumerable<TableInfo> tables, string sheetName, int maxItemsPerRow, bool heatMap)
         {
             try
             {

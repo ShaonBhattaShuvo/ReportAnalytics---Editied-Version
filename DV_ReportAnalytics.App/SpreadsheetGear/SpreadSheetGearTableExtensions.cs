@@ -2,12 +2,13 @@
 using System.Linq;
 using System.Collections.Generic;
 using SpreadsheetGear;
+using DV_ReportAnalytics.Core;
 
 namespace DV_ReportAnalytics.App.SpreadsheetGear
 {
     internal static class SpreadSheetGear_Table
     {
-        public static TableDataRange InsertTable<T>(this IRange source, DV_ReportAnalytics.Core.TableDataCollection<T> data)
+        public static TableDataRange InsertTable(this IRange source, TableInfo data)
         {
             // insert title
             IRange labelRange = source.Cells[0, 0];
@@ -28,7 +29,7 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             IRange dataBodyRange = source.Cells[2, 1,
                 data.DataBody.GetLength(0) - 1 + 2,
                 data.DataBody.GetLength(1) - 1 + 1];
-            dataBodyRange.Value = data.DataBody.ToRangeArray();
+            dataBodyRange.Value = data.DataBody;
             // table range
             IRange all = source.Cells[0, 0,
                 rowLabelRange.RowCount + rowHeaderRange.RowCount,
@@ -50,7 +51,7 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
         }
 
         public static IEnumerable<TableDataRange> InsertTablesInNewSheet(this IWorkbook source, string outputSheet, int maxItemsPerRow,
-            IEnumerable<DV_ReportAnalytics.Core.TableDataCollection<object>>tables)
+            IEnumerable<TableInfo>tables)
         {
             source.Worksheets[outputSheet]?.Delete(); // delete old one
             IWorksheet worksheet = source.Worksheets.Add();
@@ -67,7 +68,7 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
                 tableRanges.Add(range);
 
                 // move cursor
-                if (++count > maxItemsPerRow)
+                if (++count >= maxItemsPerRow)
                 {
                     count = 0;
                     current = range.All.RowBelow().RowBelow().FirstCell();
@@ -102,29 +103,6 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             format.ColorScale.ColorScaleCriteria[2].Type = ConditionValueTypes.Percentile;
             format.ColorScale.ColorScaleCriteria[2].Value = 100;
             format.ColorScale.ColorScaleCriteria[2].FormatColor.Color = Color.FromArgb(217, 95, 14);
-        }
-
-        public static object[,] ToRangeColumnArray<T>(this T[] source)
-        {
-            object[,] result = new object[source.Length, 1];
-            for (int i = 0; i < source.Length; i++)
-                result[i, 0] = source[i];
-            return result;
-        }
-
-        public static object[,] ToRangeRowArray<T>(this T[] source)
-        {
-            object[,] result = new object[1, source.Length];
-            for (int i = 0; i < source.Length; i++)
-                result[0, i] = source[i];
-            return result;
-        }
-
-        public static object[,] ToRangeArray<T>(this T[,] source)
-        {
-            object[,] result = new object[source.GetLength(0), source.GetLength(1)];
-            Array.Copy(source, result, source.Length);
-            return result;
         }
     }
 

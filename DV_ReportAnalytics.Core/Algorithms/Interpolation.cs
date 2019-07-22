@@ -4,6 +4,7 @@ namespace DV_ReportAnalytics.Core
 {
     internal static class Interpolation
     {
+        #region General double precision methods
         private static TBounds GetNeighborIndices(double[] srcArray, double value)
         {
             int lbound = 0; // lower bound of x
@@ -34,15 +35,6 @@ namespace DV_ReportAnalytics.Core
             return new TBounds(lbound, ubound);
         }
 
-        // throw an error if dimensions are not matched
-        private static void CheckMatch(double[] x, double[] y, double[,] z)
-        {
-            if (y.GetLength(0) != z.GetLength(0) || x.GetLength(0) != z.GetLength(1))
-            {
-                throw new Exception("Dimensions are not matched!");
-            }
-        }
-
         public static double[] ExtendArray(double[] srcArray, int points)
         {
             if (points < 1)
@@ -61,7 +53,7 @@ namespace DV_ReportAnalytics.Core
                         extended[baseIndex + j] = baseValue + interValue * j;
                 }
                 // last element
-                extended[extended.Length - 1] = srcArray[srcLength - 1]; 
+                extended[extended.Length - 1] = srcArray[srcLength - 1];
 
                 return extended;
             }
@@ -102,34 +94,14 @@ namespace DV_ReportAnalytics.Core
             else if (ybound.Overlapped)
                 interp = q11 + (q12 - q11) * (dstX - x1) / (x2 - x1);
             else
-                interp = (q11 * (y2 - dstY) * (x2 - dstX) + 
-                    q21 * (dstY - y1) * (x2 - dstX) + 
-                    q12 * (y2 - dstY) * (dstX - x1) + 
+                interp = (q11 * (y2 - dstY) * (x2 - dstX) +
+                    q21 * (dstY - y1) * (x2 - dstX) +
+                    q12 * (y2 - dstY) * (dstX - x1) +
                     q22 * (dstY - y1) * (dstX - x1)) / ((y2 - y1) * (x2 - x1));
 
             return interp;
-        }
-
-        public static void TableBilinearInterpolation(double[] xi, double[] yi, double[,] zi, int xInterp, int yInterp, out double[] xo, out double[] yo, out double[,] zo)
-        {
-            // examine dimensions
-            CheckMatch(xi, yi, zi);
-            xo = ExtendArray(xi, xInterp);
-            yo = ExtendArray(yi, yInterp);
-            zo = new double[yo.Length, xo.Length];
-            // destination points
-            double dstX;
-            double dstY;
-            for (int r = 0; r < yo.Length; r++)
-            {
-                dstY = yo[r];
-                for (int c = 0; c < xo.Length; c++)
-                {
-                    dstX = xo[c];
-                    zo[r, c] = BilinearInterpolation(xi, yi, zi, dstX, dstY);
-                }
-            }
-        }
+        } 
+        #endregion
 
         public struct TBounds
         {

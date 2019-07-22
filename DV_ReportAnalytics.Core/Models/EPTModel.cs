@@ -55,15 +55,19 @@ namespace DV_ReportAnalytics.Core
             }
         }
 
-        public IEnumerable<TableDataCollection<object>> GetTableDataCollections(
+        public IEnumerable<TableInfo> GetTableInfoCollection(
             string[] items, int rowInterpolation = 0, int columnInterpolation = 0)
         {
-            List<TableDataCollection<object>> collections = new List<TableDataCollection<object>>(items.Length);
+            List<TableInfo> collections = new List<TableInfo>(items.Length);
             foreach (string name in items)
-                collections.Add(DataBase.Tables[name].ToTableDataCollection(1, 0, 2));
+            {
+                var table = DataBase.Tables[name].GetTableInfo(1, 0, 2);
+                table.Interpolate(rowInterpolation, columnInterpolation);
+                collections.Add(table);
+            }
 
-            if (rowInterpolation == 0 && columnInterpolation == 0)
-                return collections.AsEnumerable();
+            //if (rowInterpolation == 0 && columnInterpolation == 0)
+            //    return collections.AsEnumerable();
 
             // TODO: do interpolation
             return collections.AsEnumerable();

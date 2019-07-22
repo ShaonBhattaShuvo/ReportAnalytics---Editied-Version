@@ -71,7 +71,15 @@ namespace DV_ReportAnalytics.Core
             }
         }
 
-        public static TableDataCollection<object> ToTableDataCollection(this DataTable source, int rowfield, int colfield, int datafield)
+        /// <summary>
+        /// Converter for DataTable to TableInfo
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="rowfield"></param>
+        /// <param name="colfield"></param>
+        /// <param name="datafield"></param>
+        /// <returns></returns>
+        public static TableInfo GetTableInfo(this DataTable source, int rowfield, int colfield, int datafield)
         {
             List<object> RowHeader = new List<object>();
             List<object> ColumnHeader = new List<object>();
@@ -94,7 +102,7 @@ namespace DV_ReportAnalytics.Core
                 value[RowHeader.IndexOf(row.Field<object>(rowfield)), ColumnHeader.IndexOf(row.Field<object>(colfield))]
                     = row.Field<object>(datafield);
 
-            return new TableDataCollection<object>()
+            return new TableInfo()
             {
                 Label = source.TableName,
                 RowLabel = source.Columns[rowfield].ColumnName,
@@ -105,52 +113,51 @@ namespace DV_ReportAnalytics.Core
             };
         }
 
-        public static TableDataCollection<double> ToDouble(this TableDataCollection<object> source)
+        /// <summary>
+        /// In-place interpolation for TableInfo
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="rowInterp"></param>
+        /// <param name="colInterp"></param>
+        public static void Interpolate(ref this TableInfo source, int rowInterp, int colInterp)
         {
-            double[] rowheader = new double[source.RowHeader.Length];
-            double[] colheader = new double[source.ColumnHeader.Length];
-            double[,] databody = new double[source.DataBody.GetLength(0), source.DataBody.GetLength(1)];
-            Array.Copy(source.RowHeader, rowheader, source.RowHeader.Length);
-            Array.Copy(source.ColumnHeader, colheader, source.ColumnHeader.Length);
-            Array.Copy(source.DataBody, databody, source.DataBody.Length);
-            return new TableDataCollection<double>()
-            {
-                Label = source.Label,
-                RowLabel = source.RowLabel,
-                ColumnLabel = source.ColumnLabel,
-                RowHeader = rowheader,
-                ColumnHeader = colheader,
-                DataBody = databody
-            };
-        }
+            double[] xi = source.ColumnHeader.ToArray<object, double>();
+            double[] yi = source.RowHeader.ToArray<object, double>();
+            double[,] zi = source.DataBody.ToArray<object, double>();
+            // check dimension if match
+            if (yi.GetLength(0) != zi.GetLength(0) || xi.GetLength(0) != zi.GetLength(1))
+                throw new Exception("Dimensions are not matched!");
 
-        public static TableDataCollection<object> ToObject<T>(this TableDataCollection<T> source)
-        {
-            object[] rowheader = new object[source.RowHeader.Length];
-            object[] colheader = new object[source.ColumnHeader.Length];
-            object[,] databody = new object[source.DataBody.GetLength(0), source.DataBody.GetLength(1)];
-            Array.Copy(source.RowHeader, rowheader, source.RowHeader.Length);
-            Array.Copy(source.ColumnHeader, colheader, source.ColumnHeader.Length);
-            Array.Copy(source.DataBody, databody, source.DataBody.Length);
-            return new TableDataCollection<object>()
+            double[] xo = Interpolation.ExtendArray(xi, colInterp);
+            double[] yo = Interpolation.ExtendArray(yi, rowInterp);
+            object[,] zo = new object[yo.Length, xo.Length];
+
+            // destination points
+            double dstX;
+            double dstY;
+            for (int y = 0; y < yo.Length; y++)
             {
-                Label = source.Label,
-                RowLabel = source.RowLabel,
-                ColumnLabel = source.ColumnLabel,
-                RowHeader = rowheader,
-                ColumnHeader = colheader,
-                DataBody = databody
-            };
+                dstY = yo[y];
+                for (int x = 0; x < xo.Length; x++)
+                {
+                    dstX = xo[x];
+                    zo[y, x] = Interpolation.BilinearInterpolation(xi, yi, zi, dstX, dstY);
+                }
+            }
+           
+            source.ColumnHeader = xo.ToArray<double, object>();
+            source.RowHeader = yo.ToArray<double, object>();
+            source.DataBody = zo;
         }
     }
 
-    public struct TableDataCollection<T>
+    public struct TableInfo
     {
         public object Label { get; set; }
         public object RowLabel { get; set; }
         public object ColumnLabel { get; set; }
-        public T[] RowHeader { get; set; }
-        public T[] ColumnHeader { get; set; }
-        public T[,] DataBody { get; set; }
+        public object[] RowHeader { get; set; }
+        public object[] ColumnHeader { get; set; }
+        public object[,] DataBody { get; set; }
     }
 }

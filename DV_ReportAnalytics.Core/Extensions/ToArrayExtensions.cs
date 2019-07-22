@@ -50,5 +50,55 @@ namespace DV_ReportAnalytics.Core
             source.CopyTo(keys, 0);
             return keys;
         }
+
+        public static T[] ToArray<S, T>(this S[] source, Converter<S, T> converter)
+        {
+            var result = Array.ConvertAll(source, converter);
+            return result;
+        }
+
+        public static T[] ToArray<S, T>(this S[] source)
+        {
+            Type type = typeof(T);
+            T[] result = new T[source.Length];
+            for (int i = 0; i < source.Length; i++)
+                result[i] = (T)Convert.ChangeType(source[i], type);
+            return result;
+        }
+
+        public static T[,] ToArray<S, T>(this S[,] source, Converter<S, T> converter)
+        {
+            T[,] result = new T[source.GetLength(0), source.GetLength(1)];
+            for (int i = 0; i < source.GetLength(0); i++)
+                for (int j = 0; j < source.GetLength(1); j++)
+                    result[i, j] = converter(source[i, j]); // TODO: optimize this O(n2) method
+            return result;
+        }
+
+        public static T[,] ToArray<S, T>(this S[,] source)
+        {
+            Type type = typeof(T);
+            T[,] result = new T[source.GetLength(0), source.GetLength(1)];
+            for (int i = 0; i < source.GetLength(0); i++)
+                for (int j = 0; j < source.GetLength(1); j++)
+                    result[i, j] = (T)Convert.ChangeType(source[i, j], type); // TODO: optimize this O(n2) method
+            return result;
+        }
+
+        public static T[,] ToRangeColumnArray<T>(this T[] source)
+        {
+            T[,] result = new T[source.Length, 1];
+            for (int i = 0; i < source.Length; i++)
+                result[i, 0] = source[i];
+            return result;
+        }
+
+        public static T[,] ToRangeRowArray<T>(this T[] source)
+        {
+            T[,] result = new T[1, source.Length];
+            for (int i = 0; i < source.Length; i++)
+                result[0, i] = source[i];
+            return result;
+        }
     }
 }

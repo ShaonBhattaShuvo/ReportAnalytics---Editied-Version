@@ -12,8 +12,6 @@ namespace DV_ReportAnalytics.App
     internal class EPTPresenter : IWorkspacePresenter
     {
         #region Fields
-        private IEPTSettingsView _settingsView;
-        private IEPTDisplaysView _displaysView;
         private IEPTWorkspaceView _workspaceView;
         private IEPTViewsProvider _viewsProvider;
         private EPTReportModel _model;
@@ -26,28 +24,20 @@ namespace DV_ReportAnalytics.App
         {
             get
             {
-                if (_settingsView == null)
-                {
-                    _settingsView = (IEPTSettingsView)_viewsProvider.CreateSettingsView();
-                    _settingsView.BindData(_config, null);
-                    _settingsView.RequestClosed += OnSettingsViewClosed;
-                }
-
-                return _settingsView;
+                var view = (IEPTSettingsView)_viewsProvider.CreateSettingsView();
+                view.BindData(_config, null);
+                view.RequestClosed += OnSettingsViewClosed;
+                return view;
             }
         }
         public IView DisplaysView
         {
             get
             {
-                if (_displaysView == null)
-                {
-                    _displaysView = (IEPTDisplaysView)_viewsProvider.CreateDisplaysView();
-                    _displaysView.BindData(_config, null);
-                    _displaysView.RequestClosed += OnDisplayViewClosed;
-                }
-
-                return _displaysView;
+                var view = (IEPTDisplaysView)_viewsProvider.CreateDisplaysView();
+                view.BindData(_config, null);
+                view.RequestClosed += OnDisplayViewClosed;
+                return view;
             }
         }
         public IView WorkspaceView => _workspaceView;
@@ -64,7 +54,7 @@ namespace DV_ReportAnalytics.App
             _controller = new SpreadsheetGearWorkbookViewController((WorkbookView)_workspaceView.WorkbookView);
             ReloadWorkspace();
             InitModel();
-            DrawTables(_model.TableNames, 0, 0); // remove this if tables are not required to show up after loading
+            DrawTables(); // remove this if tables are not required to show up after loading
         }
 
         public void ReloadWorkspace()
@@ -101,12 +91,12 @@ namespace DV_ReportAnalytics.App
         private void OnSettingsViewClosed(object sender, EventArgs eventArgs)
         {
             InitModel();
-            DrawTables(_model.TableNames, _config.RowInterpolation, _config.ColumnInterpolation); // TODO: pass dynamic variables
+            DrawTables();
         }
 
         private void OnDisplayViewClosed(object sender, EventArgs eventArgs)
         {
-
+            DrawTables();
         }
 
         private void InitModel()
@@ -118,13 +108,18 @@ namespace DV_ReportAnalytics.App
                 Conversions.LetterToNumberColumn(_config.ValueColumn));
         }
 
-        private void DrawTables(string[] items, int rowInterp, int colInterp)
+        private void DrawTables()
         {
-            var tables = _model.GetTableDataCollections(items, rowInterp, colInterp);
-            _controller.UpdateSheetWithTables(_config.OutputSheetName,
-                _config.MaximumItemsPerRow, 
-                true,
-                tables);
+            var tables = _model.GetTableInfoCollection(
+                _model.TableNames, 
+                _config.RowInterpolation, 
+                _config.ColumnInterpolation);
+
+            _controller.UpdateSheetWithTables(
+                tables,
+                _config.OutputSheetName,
+                _config.MaximumItemsPerRow,
+                true);
 
             // generate 3D efficiency map
             // TODO: This method is not efficient considering tables are already looped in above function

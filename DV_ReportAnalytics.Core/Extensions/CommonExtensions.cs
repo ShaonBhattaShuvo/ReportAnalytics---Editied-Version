@@ -18,5 +18,10 @@ namespace DV_ReportAnalytics.Core
         {
             return (T)source.GetType().GetProperty(property).GetValue(source);
         }
+
+        public static object ToObject<T>(T source)
+        {
+            return (object)source;
+        }
     }
 }

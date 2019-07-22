@@ -39,7 +39,7 @@ namespace DV_ReportAnalytics.GUI
         {
             bool collapsed = splitContainerMain.Panel2Collapsed;
             if (collapsed)
-                RefreshBrowser("file:///maps.html");
+                RefreshBrowser("file:///maps.html"); // TODO: remove this hard coding path
             splitContainerMain.Panel2Collapsed = !collapsed;
         }
 
