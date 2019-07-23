@@ -119,12 +119,16 @@ namespace DV_ReportAnalytics.Core
         /// <param name="source"></param>
         /// <param name="rowInterp"></param>
         /// <param name="colInterp"></param>
-        public static void Interpolate(ref this TableInfo source, int rowInterp, int colInterp)
+        public static void Interpolate(this ref TableInfo source, int rowInterp, int colInterp)
         {
+            // skip interpolation if not specified
+            if (rowInterp == 0 && colInterp == 0)
+                return;
+
             double[] xi = source.ColumnHeader.ToArray<object, double>();
             double[] yi = source.RowHeader.ToArray<object, double>();
             double[,] zi = source.DataBody.ToArray<object, double>();
-            // check dimension if match
+            // check dimension if match before interpolating
             if (yi.GetLength(0) != zi.GetLength(0) || xi.GetLength(0) != zi.GetLength(1))
                 throw new Exception("Dimensions are not matched!");
 
@@ -132,7 +136,7 @@ namespace DV_ReportAnalytics.Core
             double[] yo = Interpolation.ExtendArray(yi, rowInterp);
             object[,] zo = new object[yo.Length, xo.Length];
 
-            // destination points
+            // do interpolation for every point
             double dstX;
             double dstY;
             for (int y = 0; y < yo.Length; y++)

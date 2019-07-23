@@ -122,12 +122,11 @@ namespace DV_ReportAnalytics.App
                 true);
 
             // generate 3D efficiency map
-            // TODO: This method is not efficient considering tables are already looped in above function
-            //       Improvement may be nedded
+            // TODO: add more style and fix x/y axis
             string html = string.Empty;
             foreach (var table in tables)
                 html += Surface3DEfficiencyMap.Create((string)table.Label, table.DataBody);
-
+            // TODO: put HTMl into a template
             html = "<!DOCTYPE html>" +
                "<html>" +
                "<head>" +

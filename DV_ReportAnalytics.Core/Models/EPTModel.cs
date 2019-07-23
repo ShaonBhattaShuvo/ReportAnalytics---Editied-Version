@@ -66,10 +66,6 @@ namespace DV_ReportAnalytics.Core
                 collections.Add(table);
             }
 
-            //if (rowInterpolation == 0 && columnInterpolation == 0)
-            //    return collections.AsEnumerable();
-
-            // TODO: do interpolation
             return collections.AsEnumerable();
         }
     }
