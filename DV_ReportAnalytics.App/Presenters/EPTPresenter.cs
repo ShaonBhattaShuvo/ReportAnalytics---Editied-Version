@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Configuration;
+using System.Collections.Generic;
 using DV_ReportAnalytics.App.Interfaces;
 using DV_ReportAnalytics.App.Management;
 using DV_ReportAnalytics.App.SpreadsheetGear;
@@ -121,6 +122,11 @@ namespace DV_ReportAnalytics.App
                 _config.MaximumItemsPerRow,
                 true);
 
+            GenerateSurfaceMap(tables, "maps.html");
+        }
+
+        private void GenerateSurfaceMap(IEnumerable<TableInfo> tables, string path)
+        {
             // generate 3D efficiency map
             // TODO: add more style and fix x/y axis
             string html = string.Empty;
@@ -138,7 +144,7 @@ namespace DV_ReportAnalytics.App
                "</body>" +
                "</html>";
 
-            System.IO.File.WriteAllText("maps.html", html);
+            System.IO.File.WriteAllText(path, html);
         }
     }
 }

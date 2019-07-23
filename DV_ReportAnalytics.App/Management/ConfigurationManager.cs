@@ -23,7 +23,7 @@ namespace DV_ReportAnalytics.App
         }
 
         // register new config here
-        public ConfigurationManager()
+        private ConfigurationManager()
         {
             _configs = new Dictionary<ReportTypes, ApplicationSettingsBase>()
             {
