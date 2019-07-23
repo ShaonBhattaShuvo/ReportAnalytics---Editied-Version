@@ -14,7 +14,7 @@ namespace DV_ReportAnalytics.GUI
 
         #region IWizardView members
         public event EventHandler RequestClosed;
-        public event EventHandler<WizardSelectionChangedEventArgs> WizardSelectionChanged;
+        public event EventHandler<EventArgs<ReportTypes>> WizardSelectionChanged;
         public event EventHandler<EventArgs<string>> ConfigImportClicked;
         public event EventHandler<EventArgs<string>> ConfigExportClicked;
         public event EventHandler ConfigResetClicked;
@@ -64,7 +64,7 @@ namespace DV_ReportAnalytics.GUI
                 default:
                     return;
             }
-            WizardSelectionChanged?.Invoke(this, new WizardSelectionChangedEventArgs(type));
+            WizardSelectionChanged?.Invoke(this, new EventArgs<ReportTypes>(type));
             ToggleButtonstatus();
         }
 

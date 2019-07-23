@@ -29,9 +29,9 @@ namespace DV_ReportAnalytics.App
             _provider = provier;
         }
 
-        private void OnSelectionChanged(object sender, WizardSelectionChangedEventArgs eventArgs)
+        private void OnSelectionChanged(object sender, EventArgs<ReportTypes> eventArgs)
         {
-            SelectedPresenter = _factory[eventArgs.Type];
+            SelectedPresenter = _factory[eventArgs.Value];
             ((IWizardView)sender).BindData(SelectedPresenter.SettingsView, 1);
             ((IWizardView)sender).BindData(SelectedPresenter.DisplaysView, 2);
         }
