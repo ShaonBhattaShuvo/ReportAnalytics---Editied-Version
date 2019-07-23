@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Xml;
-using System.IO;
-using System.ComponentModel;
-using DV_ReportAnalytics.Core;
 using DV_ReportAnalytics.App.Interfaces;
 
 namespace DV_ReportAnalytics.App
@@ -40,7 +36,8 @@ namespace DV_ReportAnalytics.App
 
         private void OnHelpClicked(object sender, EventArgs eventArgs)
         {
-
+            var about = _providers.MainViewsProvider.CreateAboutForm();
+            about.Show();
         }
 
         private void OnSettingsClicked(object sender, EventArgs eventArgs)

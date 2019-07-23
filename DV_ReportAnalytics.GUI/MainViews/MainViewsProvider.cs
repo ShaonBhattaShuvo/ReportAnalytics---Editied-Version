@@ -1,5 +1,4 @@
-﻿using System;
-using DV_ReportAnalytics.App.Interfaces;
+﻿using DV_ReportAnalytics.App.Interfaces;
 
 namespace DV_ReportAnalytics.GUI
 {
@@ -8,6 +7,11 @@ namespace DV_ReportAnalytics.GUI
         public IView CreateSettingsForm()
         {
             return new SettingsForm();
+        }
+
+        public IView CreateAboutForm()
+        {
+            return new AboutForm();
         }
     }
 }

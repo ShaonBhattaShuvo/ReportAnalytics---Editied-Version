@@ -9,7 +9,7 @@
     <OutputType>Library</OutputType>
     <RootNamespace>Plotly</RootNamespace>
     <AssemblyName>DV_ReportAnalytics.Plotly</AssemblyName>
-    <UseStandardResourceNames>true</UseStandardResourceNames>
+    <UseStandardResourceNames>True</UseStandardResourceNames>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <WarningsAsErrors>3239;$(WarningsAsErrors)</WarningsAsErrors>

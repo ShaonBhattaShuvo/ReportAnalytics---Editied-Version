@@ -1,9 +1,4 @@
-﻿/* +---------------------
- * Created by Fang Deng 
- * 2019/05/07
- * +---------------------
- */
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;

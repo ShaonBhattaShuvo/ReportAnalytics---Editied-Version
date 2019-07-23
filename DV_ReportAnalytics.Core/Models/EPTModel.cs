@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Xml;
 using System.Data;
 
 namespace DV_ReportAnalytics.Core

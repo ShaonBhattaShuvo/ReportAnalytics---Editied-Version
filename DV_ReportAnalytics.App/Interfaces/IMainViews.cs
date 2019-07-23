@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DV_ReportAnalytics.App.Interfaces
 {
@@ -20,5 +16,6 @@ namespace DV_ReportAnalytics.App.Interfaces
     public interface IMainViewsProvider
     {
         IView CreateSettingsForm();
+        IView CreateAboutForm();
     }
 }

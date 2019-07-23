@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
-using System.Xml;
 using DV_ReportAnalytics.App.Interfaces;
-using DV_ReportAnalytics.App;
 
 namespace DV_ReportAnalytics.GUI
 {
