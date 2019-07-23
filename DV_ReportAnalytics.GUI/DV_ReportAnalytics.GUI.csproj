@@ -163,6 +163,7 @@
     <ProjectReference Include="..\DV_ReportAnalytics.App\DV_ReportAnalytics.App.csproj">
       <Project>{7735f2aa-0226-43bf-b408-59529322b521}</Project>
       <Name>DV_ReportAnalytics.App</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
@@ -180,4 +181,8 @@
   </Target>
   <Import Project="..\..\..\..\..\Projects\Components\NuGetPackages\CefSharp.Common.73.1.130\build\CefSharp.Common.targets" Condition="Exists('..\..\..\..\..\Projects\Components\NuGetPackages\CefSharp.Common.73.1.130\build\CefSharp.Common.targets')" />
   <Import Project="..\..\..\..\..\Projects\Components\NuGetPackages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.targets" Condition="Exists('..\..\..\..\..\Projects\Components\NuGetPackages\CefSharp.WinForms.73.1.130\build\CefSharp.WinForms.targets')" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

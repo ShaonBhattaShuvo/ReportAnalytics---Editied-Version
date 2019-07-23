@@ -69,8 +69,12 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SpreadsheetGear2017.Core, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
-    <Reference Include="SpreadsheetGear2017.Windows.Forms, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL" />
+    <Reference Include="SpreadsheetGear2017.Core, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
+    <Reference Include="SpreadsheetGear2017.Windows.Forms, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
@@ -94,7 +98,7 @@
     <Compile Include="Interfaces\IViewsProviders.cs" />
     <Compile Include="Interfaces\IWizardViews.cs" />
     <Compile Include="Interfaces\IWorkspaceViewsProvider.cs" />
-    <Compile Include="Management\ReportTypes.cs" />
+    <Compile Include="Management\Constants.cs" />
     <Compile Include="Management\WorkspacePresenterFactory.cs" />
     <Compile Include="Presenters\WizardPresenter.cs" />
     <Compile Include="SpreadsheetGear\SpreadsheetGearWorkbookViewController.cs" />
@@ -112,10 +116,12 @@
     <ProjectReference Include="..\DV_ReportAnalytics.Core\DV_ReportAnalytics.Core.csproj">
       <Project>{cdec05e3-d5dd-45dc-9187-459a0e03e534}</Project>
       <Name>DV_ReportAnalytics.Core</Name>
+      <Private>False</Private>
     </ProjectReference>
     <ProjectReference Include="..\DV_ReportAnalytics.Plotly\DV_ReportAnalytics.Plotly.fsproj">
       <Project>{9d0d40ec-ea78-4638-8889-c6ecba25cb80}</Project>
       <Name>DV_ReportAnalytics.Plotly</Name>
+      <Private>False</Private>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -125,4 +131,8 @@
     </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>

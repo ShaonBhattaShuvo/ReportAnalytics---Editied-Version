@@ -122,7 +122,7 @@ namespace DV_ReportAnalytics.App
                 _config.MaximumItemsPerRow,
                 true);
 
-            GenerateSurfaceMap(tables, "maps.html");
+            GenerateSurfaceMap(tables, CONSTANTS.SURFACE_MAP_FILE);
         }
 
         private void GenerateSurfaceMap(IEnumerable<TableInfo> tables, string path)

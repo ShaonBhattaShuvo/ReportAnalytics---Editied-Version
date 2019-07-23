@@ -65,6 +65,7 @@
     <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
     <Prefer32Bit>true</Prefer32Bit>
+    <Optimize>false</Optimize>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <OutputPath>bin\x86\Release\</OutputPath>
@@ -151,11 +152,25 @@
     <ProjectReference Include="..\DV_ReportAnalytics.App\DV_ReportAnalytics.App.csproj">
       <Project>{7735f2aa-0226-43bf-b408-59529322b521}</Project>
       <Name>DV_ReportAnalytics.App</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\DV_ReportAnalytics.Core\DV_ReportAnalytics.Core.csproj">
+      <Project>{cdec05e3-d5dd-45dc-9187-459a0e03e534}</Project>
+      <Name>DV_ReportAnalytics.Core</Name>
     </ProjectReference>
     <ProjectReference Include="..\DV_ReportAnalytics.GUI\DV_ReportAnalytics.GUI.csproj">
       <Project>{4eb0e122-a3b0-4ce2-b96c-06d1356e5bb1}</Project>
       <Name>DV_ReportAnalytics.GUI</Name>
+      <Private>True</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\DV_ReportAnalytics.Plotly\DV_ReportAnalytics.Plotly.fsproj">
+      <Project>{9d0d40ec-ea78-4638-8889-c6ecba25cb80}</Project>
+      <Name>DV_ReportAnalytics.Plotly</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
