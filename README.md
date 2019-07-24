@@ -9,20 +9,55 @@
 
 ![](READMEFILES/badge-buildpassing.svg)
 ![](READMEFILES/badge-version.svg)  
-![](READMEFILES/badge-dotnet.svg)
-![](READMEFILES/badge-spreadsheetgear.svg)
-![](READMEFILES/badge-cefsharp.svg)
-![](READMEFILES/badge-xplot.svg)
-![](READMEFILES/badge-plotlyjs.svg)
+[![](READMEFILES/badge-dotnet.svg)][dotnet]
+[![](READMEFILES/badge-spreadsheetgear.svg)][spreadsheetgear]
+[![](READMEFILES/badge-cefsharp.svg)][cefsharp]
+[![](READMEFILES/badge-xplot.svg)][xplot]
+[![](READMEFILES/badge-plotlyjs.svg)][plotlyjs]
+
+## Contents
+- [Built With](#Built-With)
+- [Get Started](#Get-Started)
+- [Architecture](#Architecture)
+- [Inheritance](#Inheritance)
+  - [Main View](#Main-View)
+  - [Views](#Views)
+  - [View Providers](#View-Providers)
+  - [Presenter](#Presenter)
+- [APIs](#APIs)
+  - [DV_ReportAnalytics.App](#DV_ReportAnalytics.App)
+    - [Interfaces](#interfaces)
+      - [IViews](#IViews)
+      - [IMainView](#IMainView)
+      - [IWizardView](#IWizardView)
+      - [IWorkspaceViewsProvider](#IWorkspaceViewsProvider)
+      - [IViewsProviders](#IViewsProviders)
+      - [IWorkspacePresenter](#IWorkspacePresenter)
+    - [SpreadsheetGear Wrapper](#SpreadsheetGear-Wrapper)
+    - [Table Data Struct](#Table-Data-Struct)
+    - [Range Extensions](#Range-Extensions)
+    - [Table Extensions](#Table-Extensions)
+    - [WorkbookView Controller](#WorkbookView-Controller)
+    - [Report Type Enum](#Report-Type-Enum)
+    - [Configuration Manager](#Configuration-Manager)
+    - [Workspace Presenter Factory](#Workspace-Presenter-Factory)
+  - [DV_ReportAnalytics.Core](#DV_ReportAnalytics.Core)
+    - [Data Set Wrapper](#Data-Set-Wrapper)
+    - [Table Info](#Table-Info)
+    - [Data Set Extensions](#Data-Set-Extensions)
+    - [Algorithms](#Algorithms)
+      - [Interpolation](#Interpolation)
+    - [Models](#Models)
+      - [EPT Model](#EPT-Model)
 
 ## Built With
 This project is based on .Net Framework 4.7.1.  
 Open source library XPlot and Plotly.js are used for 3D surface plotting. The proprietary library SpreadsheetGear is also used for Excel sheet displaying and manipulation.
-- [.Net Framework](https://dotnet.microsoft.com/)
-- [SpreadSheetGear](https://www.spreadsheetgear.com/)
-- [XPlot.Plotly](https://fslab.org/XPlot/plotly.html)
-- [Plotly.js](https://plot.ly/javascript/)
-- [CefSharp](https://github.com/cefsharp/CefSharp)
+- [.Net Framework][dotnet]
+- [SpreadSheetGear][spreadsheetgear]
+- [CefSharp][cefsharp]
+- [XPlot.Plotly][xplot]
+- [Plotly.js][plotlyjs]
 
 ## Get Started
 This project is developed with Visual Studio 2019 Community version and compatible with older versions. Once the project is opened, the NuGet Package Manager should automatically resolve dependent packages.
@@ -388,3 +423,10 @@ EPT Model is designed for EPT Report data processing.
 
 ## Copyright
 Copyright ©  2019 D&&V ELECTRONICS LTD.
+
+<!-- Links -->
+[dotnet]:https://dotnet.microsoft.com/
+[xplot]:https://fslab.org/XPlot/plotly.html
+[plotlyjs]:https://plot.ly/javascript/
+[spreadsheetgear]:https://www.spreadsheetgear.com/
+[cefsharp]:https://github.com/cefsharp/CefSharp
