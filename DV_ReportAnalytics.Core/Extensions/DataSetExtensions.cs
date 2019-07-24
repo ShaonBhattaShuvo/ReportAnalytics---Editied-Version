@@ -9,7 +9,7 @@ namespace DV_ReportAnalytics.Core
     /// <summary>
     /// SpreadSheet data related
     /// </summary>
-    public static partial class DataSetExtensions
+    public static class DataSetExtensions
     {
         /// <summary>
         /// Create a DataTable from given columns

@@ -10,7 +10,9 @@ using System.Runtime.InteropServices;
 @"This software uses following
 
 * Open source library:
-    - CEFSharp: github.com/cefsharp/CefSharp
+    - CefSharp: github.com/cefsharp/CefSharp
+    - Plotly.js: plot.ly/javascript
+    - XPlot.Plotly: fslab.org/XPlot/plotly.html
 
 * Proprietary library:
     - SpreadsheetGear: www.spreadsheetgear.com

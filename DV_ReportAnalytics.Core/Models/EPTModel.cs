@@ -6,13 +6,13 @@ namespace DV_ReportAnalytics.Core
 {
     public class EPTReportModel
     {
-        public DataSet DataBase { get; private set; }
+        public DataSet Database { get; private set; }
         public string[] TableNames
         {
             get
             {
-                List<string> names = new List<string>(DataBase.Tables.Count);
-                foreach (DataTable table in DataBase.Tables)
+                List<string> names = new List<string>(Database.Tables.Count);
+                foreach (DataTable table in Database.Tables)
                     names.Add(table.TableName);
                 return names.ToArray();
             }
@@ -34,7 +34,7 @@ namespace DV_ReportAnalytics.Core
         public void Build(object[,] dataRange, string parameter, char delimiter,
             int parameterColumn, int valueColumn)
         {
-            DataBase = new DataSet();
+            Database = new DataSet();
             int indexP = parameterColumn - 1;
             int indexV = valueColumn - 1;
             
@@ -48,7 +48,7 @@ namespace DV_ReportAnalytics.Core
                     List<object> values = new List<object>(param.Length);
                     values.AddRange(param.Skip(1)); // skip name section
                     values.Add(dataRange[i, indexV]);
-                    DataBase.AddTable(param[0], fields, values.ToArray());
+                    Database.AddTable(param[0], fields, values.ToArray());
                 }
             }
         }
@@ -59,7 +59,7 @@ namespace DV_ReportAnalytics.Core
             List<TableInfo> collections = new List<TableInfo>(items.Length);
             foreach (string name in items)
             {
-                var table = DataBase.Tables[name].GetTableInfo(1, 0, 2);
+                var table = Database.Tables[name].GetTableInfo(1, 0, 2);
                 table.Interpolate(rowInterpolation, columnInterpolation);
                 collections.Add(table);
             }

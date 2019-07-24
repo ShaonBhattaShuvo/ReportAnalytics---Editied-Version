@@ -6,7 +6,6 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1768F2B9-B473-48F6-AE0A-19F800B5E0D1}"
 	ProjectSection(SolutionItems) = preProject
 		NuGet.config = NuGet.config
-		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DV_ReportAnalytics", "DV_ReportAnalytics\DV_ReportAnalytics.csproj", "{FCEF3D92-5733-4C5E-9901-6944210E93B0}"
@@ -16,8 +15,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DV_ReportAnalytics.GUI", "DV_ReportAnalytics.GUI\DV_ReportAnalytics.GUI.csproj", "{4EB0E122-A3B0-4CE2-B96C-06D1356E5BB1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DV_ReportAnalytics.App", "DV_ReportAnalytics.App\DV_ReportAnalytics.App.csproj", "{7735F2AA-0226-43BF-B408-59529322B521}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ReadmeResources", "ReadmeResources", "{0F3BD8CD-E74C-48C0-B74C-67A9669B61A1}"
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "DV_ReportAnalytics.Plot", "DV_ReportAnalytics.Plot\DV_ReportAnalytics.Plot.fsproj", "{9D0D40EC-EA78-4638-8889-C6ECBA25CB80}"
 EndProject
@@ -94,9 +91,6 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{0F3BD8CD-E74C-48C0-B74C-67A9669B61A1} = {1768F2B9-B473-48F6-AE0A-19F800B5E0D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15C92A2E-A864-4F33-9310-523B29ADDD90}
