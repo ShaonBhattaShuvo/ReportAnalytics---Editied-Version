@@ -5,7 +5,7 @@ using DV_ReportAnalytics.App.Interfaces;
 using DV_ReportAnalytics.App.Management;
 using DV_ReportAnalytics.App.SpreadsheetGear;
 using DV_ReportAnalytics.Core;
-using DV_ReportAnalytics.Plotly;
+using DV_ReportAnalytics.Plot;
 using SpreadsheetGear.Windows.Forms;
 
 namespace DV_ReportAnalytics.App

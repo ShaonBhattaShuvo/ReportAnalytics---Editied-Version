@@ -1,4 +1,4 @@
-﻿namespace DV_ReportAnalytics.Plotly
+﻿namespace DV_ReportAnalytics.Plot
 open XPlot.Plotly
 open System
 

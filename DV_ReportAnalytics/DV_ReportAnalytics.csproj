@@ -163,9 +163,10 @@
       <Name>DV_ReportAnalytics.GUI</Name>
       <Private>True</Private>
     </ProjectReference>
-    <ProjectReference Include="..\DV_ReportAnalytics.Plotly\DV_ReportAnalytics.Plotly.fsproj">
+    <ProjectReference Include="..\DV_ReportAnalytics.Plot\DV_ReportAnalytics.Plot.fsproj">
       <Project>{9d0d40ec-ea78-4638-8889-c6ecba25cb80}</Project>
-      <Name>DV_ReportAnalytics.Plotly</Name>
+      <Name>DV_ReportAnalytics.Plot</Name>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
