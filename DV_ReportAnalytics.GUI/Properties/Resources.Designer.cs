@@ -71,15 +71,6 @@ namespace DV_ReportAnalytics.GUI.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to DV_ReportAnalytics.
-        /// </summary>
-        internal static string ASSEMBLY_INFO_SOURCE {
-            get {
-                return ResourceManager.GetString("ASSEMBLY_INFO_SOURCE", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap banner {

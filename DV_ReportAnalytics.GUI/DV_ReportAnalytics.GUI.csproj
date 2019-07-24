@@ -149,15 +149,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Images\banner.png" />
-    <Content Include="Resources\Images\logo.png" />
     <None Include="packages.config" />
-    <None Include="Resources\Icons\settings-32.png" />
-    <None Include="Resources\Icons\save_as-32.png" />
-    <None Include="Resources\Icons\list-32.png" />
-    <None Include="Resources\Icons\help-32.png" />
-    <None Include="Resources\Icons\folder-32.png" />
-    <None Include="Resources\Icons\area_chart-32.png" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DV_ReportAnalytics.App\DV_ReportAnalytics.App.csproj">

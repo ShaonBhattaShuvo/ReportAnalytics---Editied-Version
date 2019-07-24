@@ -28,7 +28,7 @@ namespace DV_ReportAnalytics.GUI
         {
             get
             {
-                object[] attributes = Assembly.Load(Properties.Resources.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
+                object[] attributes = Assembly.Load(App.CONSTANTS.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyTitleAttribute), false);
                 if (attributes.Length > 0)
                 {
                     AssemblyTitleAttribute titleAttribute = (AssemblyTitleAttribute)attributes[0];
@@ -37,7 +37,7 @@ namespace DV_ReportAnalytics.GUI
                         return titleAttribute.Title;
                     }
                 }
-                return System.IO.Path.GetFileNameWithoutExtension(Assembly.Load(Properties.Resources.ASSEMBLY_INFO_SOURCE).CodeBase);
+                return System.IO.Path.GetFileNameWithoutExtension(Assembly.Load(App.CONSTANTS.ASSEMBLY_INFO_SOURCE).CodeBase);
             }
         }
 
@@ -45,7 +45,7 @@ namespace DV_ReportAnalytics.GUI
         {
             get
             {
-                return Assembly.Load(Properties.Resources.ASSEMBLY_INFO_SOURCE).GetName().Version.ToString();
+                return Assembly.Load(App.CONSTANTS.ASSEMBLY_INFO_SOURCE).GetName().Version.ToString();
             }
         }
 
@@ -53,7 +53,7 @@ namespace DV_ReportAnalytics.GUI
         {
             get
             {
-                object[] attributes = Assembly.Load(Properties.Resources.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
+                object[] attributes = Assembly.Load(App.CONSTANTS.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyDescriptionAttribute), false);
                 if (attributes.Length == 0)
                 {
                     return "";
@@ -66,7 +66,7 @@ namespace DV_ReportAnalytics.GUI
         {
             get
             {
-                object[] attributes = Assembly.Load(Properties.Resources.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyProductAttribute), false);
+                object[] attributes = Assembly.Load(App.CONSTANTS.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyProductAttribute), false);
                 if (attributes.Length == 0)
                 {
                     return "";
@@ -79,7 +79,7 @@ namespace DV_ReportAnalytics.GUI
         {
             get
             {
-                object[] attributes = Assembly.Load(Properties.Resources.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
+                object[] attributes = Assembly.Load(App.CONSTANTS.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyCopyrightAttribute), false);
                 if (attributes.Length == 0)
                 {
                     return "";
@@ -92,7 +92,7 @@ namespace DV_ReportAnalytics.GUI
         {
             get
             {
-                object[] attributes = Assembly.Load(Properties.Resources.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
+                object[] attributes = Assembly.Load(App.CONSTANTS.ASSEMBLY_INFO_SOURCE).GetCustomAttributes(typeof(AssemblyCompanyAttribute), false);
                 if (attributes.Length == 0)
                 {
                     return "";

@@ -9,5 +9,6 @@
     public static class CONSTANTS
     {
         public const string SURFACE_MAP_FILE = "surface.html";
+        public const string ASSEMBLY_INFO_SOURCE = "DV_ReportAnalytics";
     }
 }

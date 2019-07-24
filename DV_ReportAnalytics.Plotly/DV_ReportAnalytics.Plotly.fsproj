@@ -84,10 +84,15 @@
     <PlatformTarget>x86</PlatformTarget>
   </PropertyGroup>
   <Import Project="$(FSharpTargetsPath)" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Surface3DEfficiencyMap.fs" />
     <Content Include="packages.config" />
+    <EmbeddedResource Include="Resource.resx" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
@@ -104,10 +109,6 @@
       <HintPath>..\..\..\..\..\Projects\Components\NuGetPackages\XPlot.Plotly.2.0.0\lib\netstandard2.0\XPlot.Plotly.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
