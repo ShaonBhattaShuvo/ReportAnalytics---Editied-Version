@@ -2,12 +2,13 @@
 
 # D&V ReportAnalytics
 
-- Read and process *xls/*xlsx files
+- Read and process xls/xlsx files
 - Data interpolation
 - 3D surface graph plotting
 - Configuration import / export
 
 ![](READMEFILES/badge-buildpassing.svg)
+![](READMEFILES/badge-version.svg)  
 ![](READMEFILES/badge-dotnet.svg)
 ![](READMEFILES/badge-spreadsheetgear.svg)
 ![](READMEFILES/badge-cefsharp.svg)
@@ -24,7 +25,7 @@ Open source library XPlot and Plotly.js are used for 3D surface plotting. The pr
 - [CefSharp](https://github.com/cefsharp/CefSharp)
 
 ## Get Started
-This project is developed with Visual Studio 2019 Community version and compatible with older versions. Once the project is opened, NuGet Package Manager should automatically resolve dependent packages.
+This project is developed with Visual Studio 2019 Community version and compatible with older versions. Once the project is opened, the NuGet Package Manager should automatically resolve dependent packages.
 
 ## Architecture
 The application uses MVP (Model View Presenter) architecture which decouples visual presentation from actual logics.
@@ -32,10 +33,10 @@ The application uses MVP (Model View Presenter) architecture which decouples vis
 ![architecture](READMEFILES/architecture.png)
 
 There are four layers exist in this project: GUI, App, Plot, Core.
-- GUI: This layer implements view interfaces specified in App layer. Generally the GUI layer does not contain any logics other than necessary code for view interactions. All user actions will be sent to App layer through events. It is suggest that all views should implement interfaces defined in App layer. If a view interface is not designed specifically for a view, that view should implement general IView interface. Otherwise App layer will possiblly not work functionally. Data binding mechanism could be used for simplify data flow.
-- APP: This layer acts as a headquarter of this project. All logics, user actions, view update etc. should be implemented here. App layer does not interact with GUI directly. Instead, it interacts with view interfaces. Thus, It is suggest that design a view interface before designing an actually view. In order to create views without knowing implementation details, provider service injection method is used for this purpose.
+- GUI: This layer implements view interfaces specified in App layer. Generally the GUI layer **does not contain any logics** other than necessary code for view interactions. All user actions will be sent to App layer through events. It is suggested that all views should implement *interfaces* defined in App layer. If a view interface is not designed specifically for a view, that view should implement general `IView` interface. Otherwise App layer will possiblly not work functionally. Data binding mechanism could be used for simplify data flow.
+- APP: This layer acts as a headquarter of this project. All logics, user actions, view update etc. should be implemented here. App layer **does not interact with GUI directly**. Instead, it interacts with view interfaces. Thus, It is suggested that designing a view interface before designing an actually view. In order to create views without knowing implementation details, *provider service injection* method is used for this purpose.
 - Plot: This layer is developed with F# scripts. It handles all plot requests and outputs them into HTML files. Then the GUI layer is able to load those 3D graphs.
-- Core: This layer contains all algorithms, data models, helper functions etc. needed for data processing. It is called by App layer directly.
+- Core: This layer contains all algorithms, data models, helper functions etc. needed for data processing. It is called by App layer (presenters) directly.
 
 
 
@@ -45,22 +46,22 @@ This section will brifely demonstrate how the inheritance works.
 ### Main View
 ![main_view](READMEFILES/inheritance_mainview.png)
 
-Since Main View is unique so it does not have to implement general view interface. MainForm simply implements IMainView.
+Since Main View is unique so it does not have to implement general view interface. MainForm simply implements `IMainView`.
 
 ### Views
 ![views](READMEFILES/inheritance_views.png)
 
-Views which are managed by Main View (Main Presenter) should implement general view interface (IView). You can design specific view interfaces for certain tasks. But all of them should inherit from IView (common base).
+Views which are managed by Main View (Main Presenter) should implement general view interface `IView`. You can design specific view interfaces for certain tasks. But all of them should inherit from `IView` (common base).
 
 ### View Providers
 ![view_providers](READMEFILES/inheritance_viewproviders.png)
 
-Views which are designed above should be wrapped by view provider. This is the part where magic comes from. In general, presenters do not interact with actual views so they also do not know how to create them. But by injecting view provider into presenter constructor, the presenter then has the ability to create views by using this view provider (factory).
+Views which are designed above **should be wrapped** by view provider. This is the part where magic comes from. In general, presenters do not interact with actual views so they also do not know how to create them. But by *injecting* view provider into presenter constructor, the presenter then has the ability to create views by using this view provider (factory).
 
 ### Presenter
 ![view_providers](READMEFILES/inheritance_presenter.png)
 
-In general, the Main Presenter and Wizard Presenter are unique so they do not have to implement a generic interface. However, considering there might be not just one type of reports in the future, report presenter should implement generic workspace presenter so that Main Presenter can know how to manipulate them.
+In general, the Main Presenter and Wizard Presenter are unique so they do not have to implement a generic interface. However, considering there might be not just one type of reports in the future, report presenter should **implement generic workspace presenter** so that Main Presenter can know how to manipulate them.
 
 ## APIs
 This section will introduce key APIs in this project.
@@ -124,7 +125,7 @@ public interface IWorkspaceViewsProvider
         IView CreateWorkspaceView();
     }
 ```
-Generally, workspace consist of three views: workspace view, process settings view and table display options view. This provider is used by workspace presenter so you should keep in mind to implement this interface in your GUI implementation.
+Generally, workspace consist of three views: *workspace view*, *process settings view* and *table display options view*. This provider is used by workspace presenter so you should keep in mind to implement this interface in your GUI implementation.
 
 ##### IViewsProviders
 ```c#
@@ -135,7 +136,7 @@ Generally, workspace consist of three views: workspace view, process settings vi
         IMainViewsProvider MainViewsProvider { get; }
     }
 ```
-This wrapper is used for collect all provider needed by presenters. You should implement this interface in your GUi implementation.
+This wrapper is used for collecting all providers needed by presenters. You should implement this interface in your GUI implementation.
 
 ##### IWorkspacePresenter
 ```c#
@@ -158,7 +159,7 @@ This is the general workspace presenter. You should implement this interface for
 
 #### SpreadsheetGear Wrapper
 `namespace DV_ReportAnalytics.App.SpreadsheetGear`  
-Under this namespace are the SpreadsheetGear wrapper functions. All SpreadsheetGear related operations should be defined here so the plugin APIs will not pollute your code.
+Under this namespace are the SpreadsheetGear wrapper functions. All SpreadsheetGear related operations **should be defined here** so the plugin APIs will not pollute your code.
 
 ##### Table Data Struct
 ```c#
@@ -225,7 +226,7 @@ public class SpreadsheetGearWorkbookViewController
     public object[,] GetSheetUsedRangeValue(string sheetName);
 }
 ```
-This wrapper class is used for WorkbookView manipulation. It is recommended to use this class to control your WorkbookView.
+This wrapper class is used for WorkbookView manipulation. It is **recommended** to use this class to control your WorkbookView.
 
 #### Report Type Enum
 `namespace DV_ReportAnalytics.App`
@@ -267,8 +268,8 @@ New type of report should be registered here.
 }
 ```
 Configuration manager is used for manage all configurations in this application. It is a singleton so there is only one instance of manager exist in application at a time. It is not possible to create an instance by `new` key word. Instead, you are supposed to access manager instance by static property `Default` of this class.  
-Configuration manage provides two ways to store, read and reset configurations. Instance methods can be used for retrive or write configuration in current manager instance. Static methods can be for any `ApplicationSettingsBase` configuration since they use reflection to read and write properties.  
-New configuration should be registered in constructor during registry initialization.
+Configuration manage provides two ways to store, read and reset configurations. Instance methods can be used for retrive or write configuration in current manager instance. Static methods can be for any `ApplicationSettingsBase` configuration since they use *reflection* to read and write properties.  
+**New configuration should be registered in constructor during registry initialization.**  
 Configurations should inherit from `ApplicationSettingsBase` class.
 
 #### Workspace Presenter Factory
@@ -286,7 +287,7 @@ Configurations should inherit from `ApplicationSettingsBase` class.
 }
 ```
 Workspace presenter factory is used in main presenter to generate workspace presneter instances.  
-New presenter should be registered in constructor during registry initialization.  
+**New presenter should be registered in constructor during registry initialization.**  
 View providers and configuration manager should be injected during factory construction.  
 
 ### DV_ReportAnalytics.Core
@@ -307,7 +308,7 @@ public struct TableInfo
     public object[,] DataBody { get; set; }
 }
 ```
-This structure is similiar with `TableDataRange` but it provides actual data of a table. To avoid unnecessary boxing and unboxing, all data type are defined as object as it is the default value type read from or write to SpreadsheetGear APIs.
+This structure is similiar with `TableDataRange` but it provides actual data of a table. *To avoid unnecessary boxing and unboxing*, all data type are defined as object as it is the default value type read from or write to SpreadsheetGear APIs.
 
 ##### Data Set Extensions
 ```c#
