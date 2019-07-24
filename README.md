@@ -25,7 +25,7 @@
   - [View Providers](#View-Providers)
   - [Presenter](#Presenter)
 - [APIs](#APIs)
-  - [DV_ReportAnalytics.App](#DV_ReportAnalytics.App)
+  - [DV_ReportAnalytics.App](#DV_ReportAnalyticsApp)
     - [Interfaces](#interfaces)
       - [IViews](#IViews)
       - [IMainView](#IMainView)
@@ -41,7 +41,7 @@
     - [Report Type Enum](#Report-Type-Enum)
     - [Configuration Manager](#Configuration-Manager)
     - [Workspace Presenter Factory](#Workspace-Presenter-Factory)
-  - [DV_ReportAnalytics.Core](#DV_ReportAnalytics.Core)
+  - [DV_ReportAnalytics.Core](#DV_ReportAnalyticsCore)
     - [Data Set Wrapper](#Data-Set-Wrapper)
     - [Table Info](#Table-Info)
     - [Data Set Extensions](#Data-Set-Extensions)
@@ -49,6 +49,9 @@
       - [Interpolation](#Interpolation)
     - [Models](#Models)
       - [EPT Model](#EPT-Model)
+- [Team](#Team)
+- [Progression](#Progression)
+- [Copyright](#Copyright)
 
 ## Built With
 This project is based on .Net Framework 4.7.1.  
@@ -413,16 +416,24 @@ EPT Model is designed for EPT Report data processing.
 --- | ---
 <img src="https://avatars2.githubusercontent.com/u/37849386?s=200&v=4" width="100" height="100" /> | <img src="https://avatars1.githubusercontent.com/u/10389606?s=460&v=4" width="100" height="100" />
 
-## Future Work
-- [ ] Selection for tables to display.
-- [ ] 3D graph export function.
+## Progression
+- [x] Integration of SpreadsheetGear.
+- [x] EPT data structure.
+- [x] Support of report export.
+- [x] Support of wizard.
+- [x] Support of configuration.
+- [x] Support of configuration import / export.
+- [x] EPT data interpolation algorithm.
+- [x] 3D graph surface plotting.
 - [ ] 3D graph visual optimization.
+- [ ] 3D graph export function.
+- [ ] Selective display of tables
+- [ ] Support of CLI
 - [ ] Build scripts for organizing file hierarchy and cleaning garbage files.
-- [ ] CLI support.
 
 
 ## Copyright
-Copyright ©  2019 D&&V ELECTRONICS LTD.
+Copyright ©  2019 D&V ELECTRONICS LTD.
 
 <!-- Links -->
 [dotnet]:https://dotnet.microsoft.com/
