@@ -90,9 +90,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="AssemblyInfo.fs" />
+    <Compile Include="Constants.fs" />
+    <Compile Include="DataTypes.fs" />
     <Compile Include="Surface3DEfficiencyMap.fs" />
+    <Compile Include="Plot.fs" />
     <Content Include="packages.config" />
-    <EmbeddedResource Include="Resource.resx" />
+    <Content Include="plotly-latest.min.js">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
@@ -104,10 +109,17 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml" />
     <Reference Include="XPlot.Plotly">
       <HintPath>..\..\..\..\..\Projects\Components\NuGetPackages\XPlot.Plotly.2.0.0\lib\netstandard2.0\XPlot.Plotly.dll</HintPath>
     </Reference>
+    <ProjectReference Include="..\DV_ReportAnalytics.Core\DV_ReportAnalytics.Core.csproj">
+      <Name>DV_ReportAnalytics.Core</Name>
+      <Project>{cdec05e3-d5dd-45dc-9187-459a0e03e534}</Project>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -122,29 +122,7 @@ namespace DV_ReportAnalytics.App
                 _config.MaximumItemsPerRow,
                 true);
 
-            GenerateSurfaceMap(tables, CONSTANTS.SURFACE_MAP_FILE);
-        }
-
-        private void GenerateSurfaceMap(IEnumerable<TableInfo> tables, string path)
-        {
-            // generate 3D efficiency map
-            // TODO: add more style and fix x/y axis
-            string html = string.Empty;
-            foreach (var table in tables)
-                html += Surface3DEfficiencyMap.Create((string)table.Label, table.DataBody);
-            // TODO: put HTMl into a template
-            html = "<!DOCTYPE html>" +
-               "<html>" +
-               "<head>" +
-                   "<meta charset = \"UTF-8\" />" +
-                    "<script src = \"https://cdn.plot.ly/plotly-latest.min.js\"></script>" +
-               "</head>" +
-               "<body>" +
-               $"  {html}" +
-               "</body>" +
-               "</html>";
-
-            System.IO.File.WriteAllText(path, html);
+            PlotChart.CreateSurfaceHTML(CONSTANTS.SURFACE_MAP_FILE, tables);
         }
     }
 }
