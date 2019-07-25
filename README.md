@@ -7,8 +7,8 @@
 - 3D surface graph plotting
 - Configuration import / export
 
-![](READMEFILES/badge-buildpassing.svg)
-![](READMEFILES/badge-version.svg)  
+[![](READMEFILES/badge-buildpassing.svg)][this]
+[![](READMEFILES/badge-version.svg)][this]  
 [![](READMEFILES/badge-dotnet.svg)][dotnet]
 [![](READMEFILES/badge-spreadsheetgear.svg)][spreadsheetgear]
 [![](READMEFILES/badge-cefsharp.svg)][cefsharp]
@@ -216,7 +216,7 @@ This structure defines a complete table and provides ways to access an individua
 
 ##### Range Extensions
 ```c#
-internal static partial class SpreadSheetGear_Range
+internal static class SpreadSheetGear_Range
 {
     public static IRange FirstCell(this IRange source);
     public static IRange LastCell(this IRange source);
@@ -441,3 +441,4 @@ Copyright ©  2019 D&V ELECTRONICS LTD.
 [plotlyjs]:https://plot.ly/javascript/
 [spreadsheetgear]:https://www.spreadsheetgear.com/
 [cefsharp]:https://github.com/cefsharp/CefSharp
+[this]:#DV-ReportAnalytics
