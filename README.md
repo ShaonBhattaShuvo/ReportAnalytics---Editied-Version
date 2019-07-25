@@ -15,6 +15,8 @@
 [![](READMEFILES/badge-xplot.svg)][xplot]
 [![](READMEFILES/badge-plotlyjs.svg)][plotlyjs]
 
+<img src="READMEFILES/screenshot.png" width=600/>
+
 ## Contents
 - [Built With](#Built-With)
 - [Get Started](#Get-Started)
@@ -113,85 +115,85 @@ All interfaces should be implemented by GUI.
 ##### IViews
 ```c#
 public interface IView
-    {
-        event EventHandler RequestClosed; // View close event. Used for triggering certain
-                                            // actions like data update.
-        void Close(); // This function is supposed to trigger RequestClosed event.
-        void Show(); // For View displaying.
-        void BindData(object source, object arguments); // Data binding from presenter.
-    }
+{
+    event EventHandler RequestClosed; // View close event. Used for triggering certain
+                                        // actions like data update.
+    void Close(); // This function is supposed to trigger RequestClosed event.
+    void Show(); // For View displaying.
+    void BindData(object source, object arguments); // Data binding from presenter.
+}
 ```
 IView is the base interface for all visual forms and user controls. You **MUST** implement this interface so that presenters can know how to manipulate views.
 
 ##### IMainView
 ```c#
 public interface IMainView
-    {
-        // Button actions
-        event EventHandler OpenClicked;
-        event EventHandler<EventArgs<string>> ExportClicked;
-        event EventHandler HelpClicked;
-        event EventHandler SettingsClicked;
-        event EventHandler DisplayClicked;
+{
+    // Button actions
+    event EventHandler OpenClicked;
+    event EventHandler<EventArgs<string>> ExportClicked;
+    event EventHandler HelpClicked;
+    event EventHandler SettingsClicked;
+    event EventHandler DisplayClicked;
 
-        void UpdateWorkspace(object content); // This function updates main window workspace.
-    }
+    void UpdateWorkspace(object content); // This function updates main window workspace.
+}
 ```
 Main View **MUST** implement this interface.
 
 ##### IWizardView
 ```c#
 public interface IWizardView : IView
-    {
-        // UI actions
-        event EventHandler<EventArgs<ReportTypes>> WizardSelectionChanged;
-        event EventHandler<EventArgs<string>> ConfigImportClicked;
-        event EventHandler<EventArgs<string>> ConfigExportClicked;
-        event EventHandler ConfigResetClicked;
-        string Path { get; } // Stirng for report file path.
-        IWorkspacePresenter SelectedPresenter { get; } // Currently selected presenter.
-    }
+{
+    // UI actions
+    event EventHandler<EventArgs<ReportTypes>> WizardSelectionChanged;
+    event EventHandler<EventArgs<string>> ConfigImportClicked;
+    event EventHandler<EventArgs<string>> ConfigExportClicked;
+    event EventHandler ConfigResetClicked;
+    string Path { get; } // Stirng for report file path.
+    IWorkspacePresenter SelectedPresenter { get; } // Currently selected presenter.
+}
 ```
 Wizard View **MUST** implement this interface.
 
 ##### IWorkspaceViewsProvider
 ```c#
 public interface IWorkspaceViewsProvider
-    {
-        IView CreateSettingsView();
-        IView CreateDisplaysView();
-        IView CreateWorkspaceView();
-    }
+{
+    IView CreateSettingsView();
+    IView CreateDisplaysView();
+    IView CreateWorkspaceView();
+}
 ```
 Generally, workspace consist of three views: *workspace view*, *process settings view* and *table display options view*. This provider is used by workspace presenter so you should keep in mind to implement this interface in your GUI implementation.
 
 ##### IViewsProviders
 ```c#
- public interface IViewsProviders
-    {
-        IWorkspaceViewsProvider this [ReportTypes type] { get; } // Workspace view provider selector
-        IWizardViewsProvider WizardViewsProvider { get; }
-        IMainViewsProvider MainViewsProvider { get; }
-    }
+public interface IViewsProviders
+{
+    IWorkspaceViewsProvider this [ReportTypes type] { get; } // Workspace view provider selector
+    IWizardViewsProvider WizardViewsProvider { get; }
+    IMainViewsProvider MainViewsProvider { get; }
+}
 ```
 This wrapper is used for collecting all providers needed by presenters. You should implement this interface in your GUI implementation.
 
 ##### IWorkspacePresenter
 ```c#
 public interface IWorkspacePresenter
-    {
-        // Views getter
-        IView SettingsView { get; }
-        IView DisplaysView { get; }
-        IView WorkspaceView { get; }
-        void Export(string path); // Report export
-        void Initialize(string path); // Initilize data model with specified report file.
-        void ReloadWorkspace(); // Refresh workspace view.
-        void ImportConfig(string path); // config import
-        void ExportConfig(string path); // config export
-        void ResetConfig(); // config reset
-        string FilePath { get; } // currently working report file.
-    }
+{
+    // Views getter
+    IView SettingsView { get; }
+    IView DisplaysView { get; }
+    IView WorkspaceView { get; }
+    void Export(string path); // Report export
+    void Initialize(string path); // Initilize data model with specified report file.
+    void ReloadWorkspace(); // Refresh workspace view.
+    void ImportConfig(string path); // config import
+    void ExportConfig(string path); // config export
+    void ResetConfig(); // config reset
+    string FilePath { get; } // currently working report file.
+}
 ```
 This is the general workspace presenter. You should implement this interface for every new type of report presneter.
 
@@ -246,7 +248,7 @@ internal static class SpreadSheetGear_Table
         string outputSheet, 
         int maxItemsPerRow,
         IEnumerable<TableInfo>tables); // insert multiple table in a new sheet.
-    public static void ApplyHeatMap(this TableDataRange source); // Apply heat map for selected table.
+    public static void ApplyHeatMap(this TableDataRange source, Color low, Color mid, Color high); // Apply heat map for selected table.
 }
 ```
 Extensions for table insertion and heat map.
@@ -280,7 +282,7 @@ New type of report should be registered here.
 #### Configuration Manager
 `namespace DV_ReportAnalytics.App`  
 ```c#
- public class ConfigurationManager
+public class ConfigurationManager
 {
     private Dictionary<ReportTypes, ApplicationSettingsBase> _configs; // Configuration registery.
     private static ConfigurationManager defaultInstance; // Singlton instance.
@@ -313,7 +315,7 @@ Configurations should inherit from `ApplicationSettingsBase` class.
 #### Workspace Presenter Factory
 `namespace DV_ReportAnalytics.App`  
 ```c#
- public class WorkspacePresenterFactory
+public class WorkspacePresenterFactory
 {
     private IViewsProviders _providers; // View providers instance.
     private ConfigurationManager _configmgr; // Configuration manager instance.
@@ -350,7 +352,7 @@ This structure is similiar with `TableDataRange` but it provides actual data of 
 
 ##### Data Set Extensions
 ```c#
- public static class DataSetExtensions
+public static class DataSetExtensions
 {
     private static DataTable CreateDataTable(string tablename, string[] fields);
     public static void AddTable(this DataSet source, string tablename, string[] fields, object[] values);
@@ -366,7 +368,7 @@ Algorithms for data processing.
 
 ##### Interpolation
 ```c#
- internal static class Interpolation
+internal static class Interpolation
 {
     // Uses binary search to find left and right elements' indices.
     private static TBounds GetNeighborIndices(double[] srcArray, double value);
@@ -392,7 +394,7 @@ Models for data processing. A model should provide methods to update, retrive da
 
 ##### EPT Model
 ```c#
- public class EPTReportModel
+public class EPTReportModel
 {
     public DataSet Database { get; private set; }
     public string[] TableNames; // Table name collection of Database.
@@ -425,7 +427,7 @@ EPT Model is designed for EPT Report data processing.
 - [x] Support of configuration import / export.
 - [x] EPT data interpolation algorithm.
 - [x] 3D graph surface plotting.
-- [ ] 3D graph visual optimization.
+- [x] 3D graph visual optimization.
 - [ ] 3D graph export function.
 - [ ] Selective display of tables
 - [ ] Support of CLI
