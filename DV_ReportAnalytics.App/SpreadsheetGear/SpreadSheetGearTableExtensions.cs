@@ -81,7 +81,7 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             return tableRanges.AsEnumerable();
         }
 
-        public static void ApplyHeatMap(this TableDataRange source)
+        public static void ApplyHeatMap(this TableDataRange source, Color low, Color mid, Color high)
         {
             Color color = Color.FromArgb(245, 245, 245);
             source.Label.Interior.Color = color;
@@ -93,15 +93,15 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             IFormatCondition format = source.DataBody.FormatConditions.AddColorScale(3);
             format.ColorScale.ColorScaleCriteria[0].Type = ConditionValueTypes.Percentile;
             format.ColorScale.ColorScaleCriteria[0].Value = 0;
-            format.ColorScale.ColorScaleCriteria[0].FormatColor.Color = Color.FromArgb(255, 247, 188);
+            format.ColorScale.ColorScaleCriteria[0].FormatColor.Color = low;
 
             format.ColorScale.ColorScaleCriteria[1].Type = ConditionValueTypes.Percentile;
             format.ColorScale.ColorScaleCriteria[1].Value = 50;
-            format.ColorScale.ColorScaleCriteria[1].FormatColor.Color = Color.FromArgb(254, 196, 79);
+            format.ColorScale.ColorScaleCriteria[1].FormatColor.Color = mid;
 
             format.ColorScale.ColorScaleCriteria[2].Type = ConditionValueTypes.Percentile;
             format.ColorScale.ColorScaleCriteria[2].Value = 100;
-            format.ColorScale.ColorScaleCriteria[2].FormatColor.Color = Color.FromArgb(217, 95, 14);
+            format.ColorScale.ColorScaleCriteria[2].FormatColor.Color = high;
         }
     }
 

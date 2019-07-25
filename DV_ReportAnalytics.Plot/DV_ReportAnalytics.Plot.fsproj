@@ -93,7 +93,7 @@
     <Compile Include="Constants.fs" />
     <Compile Include="DataTypes.fs" />
     <Compile Include="Surface3DEfficiencyMap.fs" />
-    <Compile Include="Plot.fs" />
+    <Compile Include="PlotChart.fs" />
     <Content Include="packages.config" />
     <Content Include="plotly-latest.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

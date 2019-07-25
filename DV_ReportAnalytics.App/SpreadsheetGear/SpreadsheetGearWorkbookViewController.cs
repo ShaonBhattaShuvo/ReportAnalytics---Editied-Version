@@ -62,7 +62,12 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
                 var ranges = WorkbookViewModel.ActiveWorkbook.InsertTablesInNewSheet(sheetName, maxItemsPerRow, tables);
 
                 if (heatMap)
-                    ranges.ForEach(x => x.ApplyHeatMap());
+                {
+                    var low = Color.FromArgb(171, 221, 164);
+                    var mid = Color.FromArgb(255, 255, 191);
+                    var high = Color.FromArgb(253, 174, 97);
+                    ranges.ForEach(x => x.ApplyHeatMap(low, mid, high));
+                }
             }
             finally
             {

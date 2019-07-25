@@ -30,7 +30,7 @@ module public Surface3DEfficiencyMap =
                         Xaxis(
                             title = xtext,
                             autorange = true,
-                            ticks = 3,
+                            ticks = "inside",
                             ticklen = 4.0,
                             tickwidth = 3.0
                         ),
@@ -38,7 +38,7 @@ module public Surface3DEfficiencyMap =
                         Yaxis(
                             title = ytext,
                             autorange = true,
-                            ticks = 3,
+                            ticks = "inside",
                             ticklen = 4.0,
                             tickwidth = 3.0
                         ),
@@ -46,7 +46,7 @@ module public Surface3DEfficiencyMap =
                         Zaxis(
                             title = ztext,
                             autorange = true,
-                            ticks = 3,
+                            ticks = "inside",
                             ticklen = 4.0,
                             tickwidth = 3.0
                         )
@@ -56,16 +56,16 @@ module public Surface3DEfficiencyMap =
     let GetDefaultColorScale() =
         let colorscale = 
             [
-                [box 0.0; box "#9e0142"]
-                [0.1; "#d53e4f"]
-                [0.2; "#f46d43"]
-                [0.3; "#fdae61"]
-                [0.4; "#fee08b"]
+                [box 0.0; box "#5e4fa2"]
+                [0.1; "#3288bd"]
+                [0.2; "#66c2a5"]
+                [0.3; "#abdda4"]
+                [0.4; "#e6f598"]
                 [0.5; "#ffffbf"]
-                [0.6; "#e6f598"]
-                [0.7; "#abdda4"]
-                [0.8; "#66c2a5"]
-                [0.9; "#3288bd"]
-                [1.0; "#5e4fa2"]
+                [0.6; "#fee08b"]
+                [0.7; "#fdae61"]
+                [0.8; "#f46d43"]
+                [0.9; "#d53e4f"]
+                [1.0; "#9e0142"]
             ]
         colorscale
