@@ -5,7 +5,7 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
     /// <summary>
     /// SpreadSheet range related
     /// </summary>
-    internal static partial class SpreadSheetGear_Range
+    internal static class SpreadSheetGear_Range
     {
         public static IRange FirstCell(this IRange source)
         {

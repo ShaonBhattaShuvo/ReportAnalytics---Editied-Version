@@ -355,7 +355,7 @@ This structure is similiar with `TableDataRange` but it provides actual data of 
     private static DataTable CreateDataTable(string tablename, string[] fields);
     public static void AddTable(this DataSet source, string tablename, string[] fields, object[] values);
     public static TableInfo GetTableInfo(this DataTable source, int rowfield, int colfield, int datafield);
-    public static void Interpolate(this ref TableInfo source, int rowInterp, int colInterp)
+    public static void Interpolate(this ref TableInfo source, int rowInterp, int colInterp);
 }
 ```
 This static class provides ways to create, get and interpolate tables.
