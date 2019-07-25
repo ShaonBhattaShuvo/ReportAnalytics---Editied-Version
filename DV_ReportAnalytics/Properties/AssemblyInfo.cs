@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 @"This software uses following
 
 * Open source library:
+    - .Net Framework: dotnet.microsoft.com
     - CefSharp: github.com/cefsharp/CefSharp
     - Plotly.js: plot.ly/javascript
     - XPlot.Plotly: fslab.org/XPlot/plotly.html
@@ -44,11 +45,12 @@ Created by Fang Deng
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 //[assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("1.1.0.0")]
-[assembly: AssemblyFileVersion("1.1.0.0")]
+[assembly: AssemblyVersion("1.2.2.1")]
+[assembly: AssemblyFileVersion("1.2.2.1")]
 
 // Version              Date                    Note
-// 1.0.0.0          2019-Jul-23         - Revamped. Stable version.
+// 1.2.2.1          2019-Jul-25         - Minor update
+// 1.1.0.0          2019-Jul-23         - Revamped. Stable version.
 // 0.0.0.6          2019-May-24         - Added color scale
 // 0.0.0.5          2019-May-20         - Refactored most code
 // 0.0.0.4          2019-May-6          - Added wizard
