@@ -51,6 +51,9 @@
       - [Interpolation](#Interpolation)
     - [Models](#Models)
       - [EPT Model](#EPT-Model)
+  - [DV_ReportAnalytics.Plot](#DV_ReportAnalyticsPlot)
+    - [3D Surface Plotting](#3D-Surface-Plotting)
+    - [Chart Plotting](#Chart-Plotting)
 - [Team](#Team)
 - [Progression](#Progression)
 - [Copyright](#Copyright)
@@ -73,12 +76,10 @@ The application uses MVP (Model View Presenter) architecture which decouples vis
 ![architecture](READMEFILES/architecture.png)
 
 There are four layers exist in this project: GUI, App, Plot, Core.
-- GUI: This layer implements view interfaces specified in App layer. Generally the GUI layer **does not contain any logics** other than necessary code for view interactions. All user actions will be sent to App layer through events. It is suggested that all views should implement *interfaces* defined in App layer. If a view interface is not designed specifically for a view, that view should implement general `IView` interface. Otherwise App layer will possiblly not work functionally. Data binding mechanism could be used for simplify data flow.
-- APP: This layer acts as a headquarter of this project. All logics, user actions, view update etc. should be implemented here. App layer **does not interact with GUI directly**. Instead, it interacts with view interfaces. Thus, It is suggested that designing a view interface before designing an actually view. In order to create views without knowing implementation details, *provider service injection* method is used for this purpose.
-- Plot: This layer is developed with F# scripts. It handles all plot requests and outputs them into HTML files. Then the GUI layer is able to load those 3D graphs.
-- Core: This layer contains all algorithms, data models, helper functions etc. needed for data processing. It is called by App layer (presenters) directly.
-
-
+- *GUI*: This layer implements view interfaces specified in App layer. Generally the GUI layer **does not contain any logics** other than necessary code for view interactions. All user actions will be sent to App layer through events. It is suggested that all views should implement *interfaces* defined in App layer. If a view interface is not designed specifically for a view, that view should implement general `IView` interface. Otherwise App layer will possiblly not work functionally. Data binding mechanism could be used for simplify data flow.
+- *APP*: This layer acts as a headquarter of this project. All logics, user actions, view update etc. should be implemented here. App layer **does not interact with GUI directly**. Instead, it interacts with view interfaces. Thus, It is suggested that designing a view interface before designing an actually view. In order to create views without knowing implementation details, *provider service injection* method is used for this purpose.
+- *Plot*: This layer is developed with F# scripts. It handles all plot requests and outputs them into HTML files. Then the GUI layer is able to load those 3D graphs.
+- *Core*: This layer contains all algorithms, data models, helper functions etc. needed for data processing. It is called by App layer (presenters) directly.
 
 ## Inheritance
 This section will brifely demonstrate how the inheritance works.
