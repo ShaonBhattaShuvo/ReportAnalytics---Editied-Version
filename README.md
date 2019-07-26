@@ -413,6 +413,27 @@ public class EPTReportModel
 ```
 EPT Model is designed for EPT Report data processing.
 
+### DV_ReportAnalytics.Plot
+All plotting scripts are written in F#. It utilizes .Net objects which are the same as C# so it is easy to pass C# data structure to F# scripts.
+
+#### 3D Surface Plotting
+`namespace DV_ReportAnalytics.Plot`
+```f#
+module public Surface3DEfficiencyMap =
+    let CreateInlineHTML(table : TableInfo, layout : XPlot.Plotly.Layout.Layout, colorscale : obj list list) : string
+    let GetDefaultLayout(title : string, xtext : string, ytext : string, ztext : string) : XPlot.Plotly.Layout.Layout
+    let GetDefaultColorScale() : obj list list
+```
+This static module is designed for the generation of 3D surface HTML segment. You can use `GetDefaultLayout` and `GetDefaultColorScale` to retrive default layout and color scale, or build them from scratch. Then use `CreateInlineHTML` to generate inline HTML segment in string and embedded it into your HTML.
+
+#### Chart Plotting
+`namespace DV_ReportAnalytics.Plot`
+```f#
+module public PlotChart =
+    let CreateSurfaceHTML(path : string, tables : seq<DV_ReportAnalytics.Core.TableInfo>) : unit
+```
+Simple static module which is designed for generating static HTML file by feeding file path and tables to be plotted. tables is a generic **enumerable** type `seq<'a>` whose elements are `TableInfo` defined in `Core` layer. `seq<'a>` is compatible with `IEnumerable<T>` in C# so it is a wise choice that pass a type which implementes `IEnumerable<TableInfo>`.
+
 ## Team
 [D&V Electronics](https://github.com/dvelectronics) | [Fang Deng](https://github.com/peromage)
 --- | ---
