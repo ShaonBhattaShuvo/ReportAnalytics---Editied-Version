@@ -69,6 +69,10 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\Projects\Components\NuGetPackages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="SpreadsheetGear2017.Core, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -100,6 +104,7 @@
     <Compile Include="Interfaces\IWorkspaceViewsProvider.cs" />
     <Compile Include="Management\Constants.cs" />
     <Compile Include="Management\WorkspacePresenterFactory.cs" />
+    <Compile Include="Presenters\EPTPresenterProxy.cs" />
     <Compile Include="Presenters\WizardPresenter.cs" />
     <Compile Include="SpreadsheetGear\SpreadsheetGearWorkbookViewController.cs" />
     <Compile Include="SpreadsheetGear\SpreadsheetGearRangeExtensions.cs" />
@@ -129,6 +134,10 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>EPTConfig.Designer.cs</LastGenOutput>
     </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="DV_ReportAnalytics\App\SpreadsheetGear\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

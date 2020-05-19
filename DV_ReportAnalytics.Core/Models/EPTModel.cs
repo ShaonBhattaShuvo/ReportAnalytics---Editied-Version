@@ -32,27 +32,35 @@ namespace DV_ReportAnalytics.Core
         /// <param name="valueColumn">Zero-indexed integer</param>
         /// <returns></returns>
         public void Build(object[,] dataRange, string parameter, char delimiter,
-            int parameterColumn, int valueColumn)
+            int parameterColumn, int valueColumn, int prefix = 0)
         {
+            // Shaon
             Database = new DataSet();
             int indexP = parameterColumn - 1;
             int indexV = valueColumn - 1;
-            
-            string[] fields = parameter.Split(delimiter).Skip(1).ToArray(); // skip name section
 
-            for (int i = 0; i < dataRange.GetLength(0); i++)
+            string[] fields = parameter.Split(delimiter).Skip(1).ToArray(); // skip name section
+            if (prefix == 1) indexP++;
+            for (int i = 0 + prefix; i < dataRange.GetLength(0) + prefix; i++)
             {
                 string[] param = dataRange[i, indexP]?.ToString().Split(delimiter);
                 if (param?.Length >= 3)
                 {
                     List<object> values = new List<object>(param.Length);
                     values.AddRange(param.Skip(1)); // skip name section
-                    values.Add(dataRange[i, indexV]);
+
+                    if (prefix == 1)
+                    {
+                        values.Add(dataRange[i, indexV + 1]);
+                    }
+                    else
+                    {
+                        values.Add(dataRange[i, indexV]);
+                    }
                     Database.AddTable(param[0], fields, values.ToArray());
                 }
             }
         }
-
         public IEnumerable<TableInfo> GetTableInfoCollection(
             string[] items, int rowInterpolation = 0, int columnInterpolation = 0)
         {

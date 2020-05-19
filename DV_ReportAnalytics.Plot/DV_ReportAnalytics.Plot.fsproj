@@ -94,18 +94,18 @@
     <Compile Include="DataTypes.fs" />
     <Compile Include="Surface3DEfficiencyMap.fs" />
     <Compile Include="PlotChart.fs" />
-    <Content Include="packages.config" />
     <Content Include="plotly-latest.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">
-      <HintPath>..\..\..\..\..\Projects\Components\NuGetPackages\FSharp.Core.4.5.0\lib\net45\FSharp.Core.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Projects\Components\NuGetPackages\FSharp.Core.4.5.0\lib\net45\FSharp.Core.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib" />
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\..\Projects\Components\NuGetPackages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Projects\Components\NuGetPackages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -113,12 +113,14 @@
     <Reference Include="System.Numerics" />
     <Reference Include="System.Xml" />
     <Reference Include="XPlot.Plotly">
-      <HintPath>..\..\..\..\..\Projects\Components\NuGetPackages\XPlot.Plotly.2.0.0\lib\netstandard2.0\XPlot.Plotly.dll</HintPath>
+      <HintPath>..\..\..\..\..\..\Projects\Components\NuGetPackages\XPlot.Plotly.2.0.0\lib\netstandard2.0\XPlot.Plotly.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\DV_ReportAnalytics.Core\DV_ReportAnalytics.Core.csproj">
       <Name>DV_ReportAnalytics.Core</Name>
       <Project>{cdec05e3-d5dd-45dc-9187-459a0e03e534}</Project>
-      <Private>False</Private>
+      <Private>True</Private>
     </ProjectReference>
   </ItemGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

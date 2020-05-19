@@ -98,6 +98,12 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="IronPdf, Version=2020.3.2.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\Projects\Components\NuGetPackages\IronPdf.2020.3.2\lib\net40\IronPdf.dll</HintPath>
+    </Reference>
+    <Reference Include="IronPdf.Assets.Rendering.Windows, Version=18.0.0.0, Culture=neutral, PublicKeyToken=94e1c31412563c75, processorArchitecture=MSIL">
+      <HintPath>..\..\..\..\..\..\Projects\Components\NuGetPackages\Iron.Assets.Rendering.Windows.18.0.1\lib\net40\IronPdf.Assets.Rendering.Windows.dll</HintPath>
+    </Reference>
     <Reference Include="SpreadsheetGear2017.Core, Version=8.1.56.102, Culture=neutral, PublicKeyToken=39c186f5904944ec, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
     </Reference>
@@ -107,6 +113,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -147,7 +154,9 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DV_ReportAnalytics.App\DV_ReportAnalytics.App.csproj">
       <Project>{7735f2aa-0226-43bf-b408-59529322b521}</Project>

@@ -8,7 +8,10 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
     public class SpreadsheetGearWorkbookViewController
     {
         public WorkbookView WorkbookViewModel { get; set; }
-
+    
+        public SpreadsheetGearWorkbookViewController() { 
+            //Shaon
+        }
         public SpreadsheetGearWorkbookViewController(WorkbookView workbookView)
         {
             WorkbookViewModel = workbookView;
@@ -75,6 +78,30 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             }
         }
 
+        public void UpdateSheetWithTablesCLI(string path, IEnumerable<TableInfo> tables, string sheetName, int maxItemsPerRow, bool heatMap)
+        {   
+            // Shaon
+            try
+            {
+                WorkbookViewModel.ActiveWorkbookSet.GetLock();
+
+                var ranges = WorkbookViewModel.ActiveWorkbook.InsertTablesInNewSheet(sheetName, maxItemsPerRow, tables);
+
+                if (heatMap)
+                {
+                    var low = Color.FromArgb(171, 221, 164);
+                    var mid = Color.FromArgb(255, 255, 191);
+                    var high = Color.FromArgb(253, 174, 97);
+                    ranges.ForEach(x => x.ApplyHeatMap(low, mid, high));
+                }
+                WorkbookViewModel.ActiveWorkbook.SaveAs(path, FileFormat.OpenXMLWorkbook);
+
+            }
+            finally
+            {
+                WorkbookViewModel.ActiveWorkbookSet.ReleaseLock();
+            }
+        }
         public object[,] GetSheetUsedRangeValue(string sheetName)
         {
             object[,] value;
