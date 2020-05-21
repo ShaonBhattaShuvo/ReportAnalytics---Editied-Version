@@ -38,7 +38,7 @@ namespace DV_ReportAnalytics
                 //svc.SaveAs(args[0]);
                 System.Windows.Forms.SendKeys.SendWait("{ENTER}");
                 Application.Exit();
-                // "C:\Users\Downloads\test-Copy.xlsx" "C:\Users\Downloads\test-Copy.Result.html"
+                // pass input/output path as arguent e.g. "C:\Users\Downloads\test-Copy.xlsx" "C:\Users\Downloads\test-Copy.Result.html"
             }
             else
             {
