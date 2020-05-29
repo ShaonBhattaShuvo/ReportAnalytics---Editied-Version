@@ -1,11 +1,13 @@
 ﻿using System;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 using DV_ReportAnalytics.App;
 using DV_ReportAnalytics.App.Presenters;
-using DV_ReportAnalytics.App.SpreadsheetGear;
 using DV_ReportAnalytics.GUI;
+using OpenQA.Selenium;
+using OpenQA.Selenium.Chrome;
 
 namespace DV_ReportAnalytics
 {
@@ -27,13 +29,15 @@ namespace DV_ReportAnalytics
             AttachConsole(ATTACH_PARENT_PROCESS);
 
             if (args.Length == 2)
-            {   //Shaon
+            {   
                 // sending the enter key is not really needed, but otherwise the user thinks the app is still running by looking at the commandline. The enter key takes care of displaying the prompt again.
                 EPTPresenterProxy proxy = new EPTPresenterProxy();
                 //SpreadsheetGearWorkbookViewController svc = new SpreadsheetGearWorkbookViewController();
                 WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[1]);
-                //WriteAsPdf(args[1]);
-                //svc.SaveAs(args[0]);
+                //Opening the html file in default browser
+                OpenHTML(args[1]);
+                //Capturing Screenshop as png format. 
+                Screenshot(args[1]);
                 System.Windows.Forms.SendKeys.SendWait("{ENTER}");
                 Application.Exit();
                 // pass input/output path as arguent e.g. "C:\Users\Downloads\test-Copy.xlsx" "C:\Users\Downloads\test-Copy.Result.html"
@@ -42,7 +46,6 @@ namespace DV_ReportAnalytics
             {
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
-
                 // initialize
                 MainForm view = new MainForm();
                 ViewsProviders providers = new ViewsProviders();
@@ -59,33 +62,25 @@ namespace DV_ReportAnalytics
         private static void WriteSurfaceHtml(string html, string destinationFileName)
         {
             File.WriteAllText(destinationFileName, html);
-            
         }
-        //private static void WriteAsPdf(string destinationFileName) {
-        //    //Render any HTML fragment or document to HTML
-        //     var Renderer = new IronPdf.HtmlToPdf();
-        //    //string to pdf
-        //    //var PDF = Renderer.RenderHtmlAsPdf(html);
-        //    //var PDF = Renderer.RenderHTMLFileAsPdf("C:/Users/User/Desktop/Output.html");
-        //    var PDF = Renderer.RenderHTMLFileAsPdf(destinationFileName);
-        //    //writing the output path
-        //    //var OutputPath = "C:/Users/User/Desktop/HtmlToPDF.pdf";
-        //    Char charRange = '\\';
-        //    int startIndex = destinationFileName.IndexOf(charRange);
-        //    int endIndex = destinationFileName.LastIndexOf(charRange);
-        //    int length = endIndex - startIndex + 1;
-        //    string outputPath = destinationFileName.Substring(startIndex, length) + "HtmlToPdf.pdf";
-        //    PDF.SaveAs(outputPath);
-        //}
-        
-        private static void JavaStriptFileValue(string stringJS, string destinationFileName)
-        {
+        private static void OpenHTML(string url) {
+            System.Diagnostics.Process.Start(url);
+        }
+        private static void Screenshot(string url) {
+            ChromeOptions options = new ChromeOptions();
+            options.AddArgument("headless");//Comment if we want to see the window. 
+            var driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), options);
+            driver.Manage().Window.Size = new System.Drawing.Size(800, 7100);
+            driver.Navigate().GoToUrl(url);
+            var screenshot = (driver as ITakesScreenshot).GetScreenshot();
             Char charRange = '\\';
-            int startIndex = destinationFileName.IndexOf(charRange);
-            int endIndex = destinationFileName.LastIndexOf(charRange);
+            int startIndex = url.IndexOf(charRange);
+            int endIndex = url.LastIndexOf(charRange);
             int length = endIndex - startIndex + 1;
-            string newJSFileLocation = destinationFileName.Substring(startIndex, length) + "plotly-latest.min.js";
-            File.WriteAllText(newJSFileLocation, stringJS);
+            string outputPath = url.Substring(startIndex, length) + "screenshot.png";
+            screenshot.SaveAsFile(outputPath);
+            driver.Close();
+            driver.Quit();
         }
     }
 }
