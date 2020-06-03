@@ -32,7 +32,7 @@ namespace DV_ReportAnalytics
                 //SpreadsheetGearWorkbookViewController svc = new SpreadsheetGearWorkbookViewController();
                 string htmlLocation = proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[0]);
                 //Opening the html file in default browser
-                proxy.OpenHTML(htmlLocation);
+                //proxy.OpenHTML(htmlLocation);
                 //Capturing Screenshop as png format. 
                 proxy.Screenshot(htmlLocation);
                 System.Windows.Forms.SendKeys.SendWait("{ENTER}");
@@ -45,7 +45,7 @@ namespace DV_ReportAnalytics
                 //SpreadsheetGearWorkbookViewController svc = new SpreadsheetGearWorkbookViewController();
                 proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[1]);
                 //Opening the html file in default browser
-                proxy.OpenHTML(args[1]);
+                //proxy.OpenHTML(args[1]);
                 //Capturing Screenshop as png format. 
                 proxy.Screenshot(args[1]);
                 System.Windows.Forms.SendKeys.SendWait("{ENTER}");
