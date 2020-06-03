@@ -30,11 +30,11 @@ namespace DV_ReportAnalytics
             {
                 // sending the enter key is not really needed, but otherwise the user thinks the app is still running by looking at the commandline. The enter key takes care of displaying the prompt again.
                 //SpreadsheetGearWorkbookViewController svc = new SpreadsheetGearWorkbookViewController();
-                proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[0]);
+                string htmlLocation = proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[0]);
                 //Opening the html file in default browser
-                //proxy.OpenHTML(args[0]);
+                proxy.OpenHTML(htmlLocation);
                 //Capturing Screenshop as png format. 
-                proxy.Screenshot(args[0]);
+                proxy.Screenshot(htmlLocation);
                 System.Windows.Forms.SendKeys.SendWait("{ENTER}");
                 Application.Exit();
                 // pass input/output path as arguent e.g. "C:\Users\Downloads\test-Copy.xlsx"
@@ -54,6 +54,7 @@ namespace DV_ReportAnalytics
             }
             else
             {
+             
                 Application.EnableVisualStyles();
                 Application.SetCompatibleTextRenderingDefault(false);
                 // initialize
