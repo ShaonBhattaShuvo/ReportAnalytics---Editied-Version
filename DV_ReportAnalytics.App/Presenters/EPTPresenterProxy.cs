@@ -1,6 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Reflection;
 
@@ -21,18 +22,19 @@ namespace DV_ReportAnalytics.App.Presenters
             presenter.DrawTablesCLI(filePath);
             //presenter.Export(filePath);
         }
-        public void Screenshot(string url)
+        public string Screenshot(string url)
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("headless");//Comment if we want to see the window. 
             var driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), options);
-            driver.Manage().Window.Size = new System.Drawing.Size(800, 7100);
+            driver.Manage().Window.Size = new System.Drawing.Size(800, 7110);
             driver.Navigate().GoToUrl(url);
             var screenshot = (driver as ITakesScreenshot).GetScreenshot();
             string outputPath = GetPath(url) + "output.png";
             screenshot.SaveAsFile(outputPath);
             driver.Close();
             driver.Quit();
+            return outputPath; 
         }
         public string WriteSurfaceHtml(string html, string destinationFileLocation)
         {
@@ -40,12 +42,34 @@ namespace DV_ReportAnalytics.App.Presenters
             File.WriteAllText(outputPath, html);
             return outputPath; 
         }
-        public string GetPath(string destinationFileLocation) {
+        public string GetPath(string fileLocation) {
             Char charRange = '\\';
             int startIndex = 0;
-            int endIndex = destinationFileLocation.LastIndexOf(charRange);
+            int endIndex = fileLocation.LastIndexOf(charRange);
             int length = endIndex - startIndex + 1;
-            return destinationFileLocation.Substring(startIndex, length);
+            return fileLocation.Substring(startIndex, length);
+        }
+        public string GetDirectory(string fileLocation) {
+            Char charRange = '.';
+            int startIndex = 0;
+            int endIndex = fileLocation.LastIndexOf(charRange);
+            int length = endIndex - startIndex + 1;
+            return fileLocation.Substring(startIndex, length);
+        }
+        public void SplitImage(string imageLocation, string directoryLocation) {
+            string[] plot_names = new string[] {"Copper_Loss", "Output_Power", "Input_Power", "Rotational_Loss", "Total_Loss","DC_Power",
+                "Calculated_System_Efficiency", "Calculated_Motor_Efficiency", "Calculated_Inverter_Efficiency", "Inverter_Loss", "Motor_Loss",
+                "System_Loss", "CurrentArms", "CurrentArmsAvr"};
+            Bitmap originalImage = new Bitmap(Image.FromFile(imageLocation));
+            Rectangle rect;
+            Bitmap newPic;
+            for (int i = 0, k = 100; i < plot_names.Length; i++, k = k + 500)
+            {
+                rect = new Rectangle(70, k, originalImage.Width - 200, originalImage.Height / 14);
+                newPic = originalImage.Clone(rect, originalImage.PixelFormat);
+                string savingLocation = directoryLocation + "/" + plot_names[i] + ".png";
+                newPic.Save(savingLocation);
+            }
         }
         public void OpenHTML(string url)
         {
