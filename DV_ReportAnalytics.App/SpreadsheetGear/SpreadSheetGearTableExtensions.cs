@@ -77,10 +77,8 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
                     current = range.All.CellRight().CellRight();
                 }
             }
-
-            return tableRanges.AsEnumerable();
+                        return tableRanges.AsEnumerable();
         }
-
         public static void ApplyHeatMap(this TableDataRange source, Color low, Color mid, Color high)
         {
             Color color = Color.FromArgb(245, 245, 245);

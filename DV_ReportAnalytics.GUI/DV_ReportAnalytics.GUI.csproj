@@ -117,6 +117,12 @@
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ViewsProviders.cs" />
+    <Compile Include="Wizard\LoadingWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Wizard\LoadingWindow.Designer.cs">
+      <DependentUpon>LoadingWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Wizard\WizardView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -147,6 +153,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="MainViews\SettingsForm.resx">
       <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Wizard\LoadingWindow.resx">
+      <DependentUpon>LoadingWindow.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Wizard\WizardView.resx">
       <DependentUpon>WizardView.cs</DependentUpon>

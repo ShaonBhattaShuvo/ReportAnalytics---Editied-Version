@@ -98,7 +98,8 @@ namespace DV_ReportAnalytics.App
             _controller = new SpreadsheetGearWorkbookViewController((WorkbookView)_workspaceView.WorkbookView);
             ReloadWorkspace();
             InitModel();
-           DrawTables(); // remove this if tables are not required to show up after loading
+            DrawTables(); // remove this if tables are not required to show up after loading
+           //DrawImage(path);
         }
 
         private void OnSettingsViewClosed(object sender, EventArgs eventArgs)
@@ -159,42 +160,15 @@ namespace DV_ReportAnalytics.App
                 _config.OutputSheetName,
                 _config.MaximumItemsPerRow,
                 true);
-
             PlotChart.CreateSurfaceHTML(CONSTANTS.SURFACE_MAP_FILE, tables);
         }
-
-        internal void DrawTablesCLI(string path)
-        {
-            //Shaon
-            var tables = _model.GetTableInfoCollection(
-                _model.TableNames,
-                _config.RowInterpolation,
-                _config.ColumnInterpolation);
-
-            _controller.UpdateSheetWithTablesCLI(
-                path,
-                tables,
-                _config.OutputSheetName,
-                _config.MaximumItemsPerRow,
-                true);
-            
-           // PlotChart.CreateSurfaceHTML(CONSTANTS.SURFACE_MAP_FILE, tables);
-        }
-
-        internal IEnumerable<TableInfo> ShowTable() {
-            //Shaon 
-            var tables = _model.GetTableInfoCollection(
-                _model.TableNames,
-                _config.RowInterpolation,
-                _config.ColumnInterpolation);
-
-            _controller.UpdateSheetWithTables(
-                tables,
-                _config.OutputSheetName,
-                _config.MaximumItemsPerRow,
-                true);
-            return tables;
-        }
+        //internal void DrawImage(string imageLocation) 
+        //{
+        //    _controller.UpdateSheetWithImage(
+        //       //_config.OutputSheetName,
+        //       imageLocation
+        //        );
+        //}
 
         internal string GetHtmlTable()
         {

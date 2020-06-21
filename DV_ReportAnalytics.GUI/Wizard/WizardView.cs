@@ -2,6 +2,7 @@
 using System.Windows.Forms;
 using DV_ReportAnalytics.App;
 using DV_ReportAnalytics.App.Interfaces;
+using DV_ReportAnalytics.GUI.Wizard;
 
 namespace DV_ReportAnalytics.GUI
 {
@@ -47,10 +48,24 @@ namespace DV_ReportAnalytics.GUI
             Close();
         }
 
+
         private void ButtonFinish_Click(object sender, EventArgs e)
         {
-            RequestClosed?.Invoke(this, EventArgs.Empty);
-            Close();
+            LoadingWindow loadingWindow = new LoadingWindow ();
+
+            try
+            {
+                loadingWindow.Show();
+                Hide();
+                RequestClosed?.Invoke(this, EventArgs.Empty);
+                Close();
+                loadingWindow.Close();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Exception EXPORT: " + ex.Message);
+            }
+            
         }
 
         private void ListBoxTypeList_SelectedIndexChanged(object sender, EventArgs e)

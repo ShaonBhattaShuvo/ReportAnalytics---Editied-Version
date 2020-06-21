@@ -56,7 +56,9 @@ namespace DV_ReportAnalytics.App
 
         private void OnWizardFinished(object sender, EventArgs eventArgs)
         {
+            DV_ReportAnalytics.App.Presenters.EPTPresenterProxy proxy = new Presenters.EPTPresenterProxy();
             var wizard = (WizardPresenter)sender;
+            proxy.CreateHTMLandPng(wizard.FilePath);
             _currentPresenter = wizard.SelectedPresenter;
             _currentPresenter.Initialize(wizard.FilePath);
             _mainView.UpdateWorkspace(_currentPresenter.WorkspaceView);

@@ -16,12 +16,6 @@ namespace DV_ReportAnalytics.App.Presenters
             presenter.InitModelFromFile(filePath);
             return presenter.GetHtmlTable();
         }
-        public void SaveExcel(string filePath) {
-            EPTPresenter presenter = new EPTPresenter();
-            presenter.InitModelFromFile(filePath);
-            presenter.DrawTablesCLI(filePath);
-            //presenter.Export(filePath);
-        }
         public string Screenshot(string url)
         {
             ChromeOptions options = new ChromeOptions();
@@ -74,6 +68,15 @@ namespace DV_ReportAnalytics.App.Presenters
         public void OpenHTML(string url)
         {
             System.Diagnostics.Process.Start(url);
+        }
+        public string CreateHTMLandPng(string path) {
+            string htmlLocation = WriteSurfaceHtml(GetSurfaceHTML(path), path); 
+            string imageLocation = Screenshot(htmlLocation);
+            //string directoryLocation = GetDirectory(path); //if we want to create directory in the same location of the input file
+            string directoryLocation = @"C:\Temp\DV_Imagefiles";
+            Directory.CreateDirectory(directoryLocation);
+            SplitImage(imageLocation, directoryLocation);
+            return directoryLocation;
         }
     }
 }
