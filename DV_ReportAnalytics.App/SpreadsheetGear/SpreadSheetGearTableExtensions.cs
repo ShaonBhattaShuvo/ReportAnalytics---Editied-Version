@@ -81,7 +81,7 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
             string[] plot_names = new string[] {"Copper_Loss", "Output_Power", "Input_Power", "Rotational_Loss", "Total_Loss","DC_Power",
                 "Calculated_System_Efficiency", "Calculated_Motor_Efficiency", "Calculated_Inverter_Efficiency", "Inverter_Loss", "Motor_Loss",
                 "System_Loss", "CurrentArms", "CurrentArmsAvr"};
-            for (int i = 0,t=825; i < plot_names.Length; i++)
+            for (int i = 0,t=1155; i < plot_names.Length; i++)
             {
                 System.String imageFile = @"C:\Temp\DV_Imagefiles\" + plot_names[i]+".png";
                 // Get the width and height of the picture in pixels and convert to 
@@ -108,15 +108,16 @@ namespace DV_ReportAnalytics.App.SpreadsheetGear
                 //double top = windowInfo.RowToPoints(1.5);
 
                 // Add the picture from file. 
-                //worksheet.Shapes.AddPicture(imageFile, left, top, width, height);
+                //worksheet.Shapes.AddPicture(imageFile, left, top, width, height); 
+                //in Excel each cell has approximate width = 15 and height = 50 
                 if (i % 2 == 0)
                 {
-                    worksheet.Shapes.AddPicture(imageFile, 1.5, t, 280, 250);
+                    worksheet.Shapes.AddPicture(imageFile, 1.5, t, 253, 250);
                 }
                 else
                 {
-                    worksheet.Shapes.AddPicture(imageFile, 281.5, t, 280, 250);
-                    t = t + 255;
+                    worksheet.Shapes.AddPicture(imageFile, 251.5, t, 253, 250);
+                    t = t + 234; //t = t+251 (without overlap)
                 }
             }
             return tableRanges.AsEnumerable();

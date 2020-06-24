@@ -11,7 +11,6 @@ namespace DV_ReportAnalytics.App.Presenters
     {
         public string GetSurfaceHTML(string filePath)
         {
-            // Shaon
             EPTPresenter presenter = new EPTPresenter();
             presenter.InitModelFromFile(filePath);
             return presenter.GetHtmlTable();

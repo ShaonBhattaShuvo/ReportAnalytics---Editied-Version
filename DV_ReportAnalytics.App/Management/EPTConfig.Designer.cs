@@ -12,7 +12,7 @@ namespace DV_ReportAnalytics.App.Management {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.1.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.4.0.0")]
     internal sealed partial class EPTConfig : global::System.Configuration.ApplicationSettingsBase {
         
         private static EPTConfig defaultInstance = ((EPTConfig)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new EPTConfig())));
@@ -133,7 +133,7 @@ namespace DV_ReportAnalytics.App.Management {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("3")]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
         public int MaximumItemsPerRow {
             get {
                 return ((int)(this["MaximumItemsPerRow"]));

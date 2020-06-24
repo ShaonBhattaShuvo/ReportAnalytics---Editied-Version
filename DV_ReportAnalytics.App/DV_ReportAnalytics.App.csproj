@@ -112,7 +112,6 @@
     <Compile Include="Management\Constants.cs" />
     <Compile Include="Management\WorkspacePresenterFactory.cs" />
     <Compile Include="Presenters\EPTPresenterProxy.cs" />
-    <Compile Include="Presenters\PleaseWaitForm.cs" />
     <Compile Include="Presenters\WizardPresenter.cs" />
     <Compile Include="SpreadsheetGear\SpreadsheetGearWorkbookViewController.cs" />
     <Compile Include="SpreadsheetGear\SpreadsheetGearRangeExtensions.cs" />
@@ -138,6 +137,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="Management\EPTConfig.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>EPTConfig.Designer.cs</LastGenOutput>
