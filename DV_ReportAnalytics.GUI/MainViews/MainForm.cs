@@ -34,14 +34,6 @@ namespace DV_ReportAnalytics.GUI
             DisplayClicked?.Invoke(this, EventArgs.Empty);
         }
 
-        private void ToolStripButtonGraphToggle_Click(object sender, EventArgs e)
-        {
-            bool collapsed = splitContainerMain.Panel2Collapsed;
-            if (collapsed)
-                RefreshBrowser("file:///" + CONSTANTS.SURFACE_MAP_FILE);
-            splitContainerMain.Panel2Collapsed = !collapsed;
-        }
-
         private void ToolStripButtonHelp_Click(object sender, EventArgs e)
         {
             HelpClicked.Invoke(this, EventArgs.Empty);
@@ -70,7 +62,7 @@ namespace DV_ReportAnalytics.GUI
             toolStripButtonSaveFile.Enabled = status;
             toolStripButtonSettings.Enabled = status;
             toolStripButtonTableDisplay.Enabled = status;
-            toolStripButtonGraphToggle.Enabled = status;
+            toolStripDropDownButton1.Enabled = status;
         }
 
         ChromiumWebBrowser _chrome;
@@ -86,6 +78,22 @@ namespace DV_ReportAnalytics.GUI
                 Dock = DockStyle.Fill
             };
             splitContainerMain.Panel2.Controls.Add(_chrome);
+        }
+
+        private void contourPlotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool collapsed = splitContainerMain.Panel2Collapsed;
+            if (collapsed)
+                RefreshBrowser("file:///" + CONSTANTS.CONTOUR_MAP_FILE);
+            splitContainerMain.Panel2Collapsed = !collapsed;
+        }
+
+        private void dPlotToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            bool collapsed = splitContainerMain.Panel2Collapsed;
+            if (collapsed)
+                RefreshBrowser("file:///" + CONSTANTS.SURFACE_MAP_FILE);
+            splitContainerMain.Panel2Collapsed = !collapsed;
         }
     }
 }

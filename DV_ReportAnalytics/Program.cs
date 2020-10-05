@@ -29,11 +29,12 @@ namespace DV_ReportAnalytics
                 //Sending the enter key is not really needed, but otherwise the user thinks the app is still running by looking at the commandline. 
                 //The enter key takes care of displaying the prompt again.
                 //SpreadsheetGearWorkbookViewController svc = new SpreadsheetGearWorkbookViewController();
-                string htmlLocation = proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[0]);
+                string contourHtmlLocation = proxy.WriteContourHtml(proxy.GetContourHTML(args[0]), args[0]);
+                string surfaceHtmlLocatoin = proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[0]);
                 //Opening the html file in default browser
                 //proxy.OpenHTML(htmlLocation);
                 //Capturing Screenshop as png format. 
-                string imageLocation = proxy.Screenshot(htmlLocation);
+                string imageLocation = proxy.Screenshot(contourHtmlLocation);
                 string directoryLocation = proxy.GetDirectory(args[0]);
                 Directory.CreateDirectory(directoryLocation);
                 proxy.SplitImage(imageLocation,directoryLocation);
@@ -46,11 +47,12 @@ namespace DV_ReportAnalytics
                 //Sending the enter key is not really needed, but otherwise the user thinks the app is still running by looking at the commandline. 
                 //The enter key takes care of displaying the prompt again.
                 //SpreadsheetGearWorkbookViewController svc = new SpreadsheetGearWorkbookViewController();
-                string htmlLocation= proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[1]);
+                string contourHtmlLocation= proxy.WriteContourHtml(proxy.GetContourHTML(args[0]), args[1]);
+                string surfaceHtmlLocation = proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[1]);
                 //Opening the html file in default browser
                 //proxy.OpenHTML(args[1]);
                 //Capturing Screenshop as png format. 
-                string imageLocation = proxy.Screenshot(htmlLocation);
+                string imageLocation = proxy.Screenshot(contourHtmlLocation);
                 string directoryLocation = proxy.GetDirectory(args[1]);
                 Directory.CreateDirectory(directoryLocation);
                 proxy.SplitImage(imageLocation, directoryLocation);

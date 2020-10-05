@@ -6,15 +6,15 @@ open DV_ReportAnalytics.Core
 module public PlotChart =
     let CreateSurfaceHTML(path : string, tables : seq<TableInfo>) : string =
         let segments = new System.Text.StringBuilder()
-        let colorscale = Surface3DEfficiencyMap.GetDefaultColorScale()
+        let colorscale = ContourMap.GetDefaultColorScale()
 
         for table in tables do
-            let layout = Surface3DEfficiencyMap.GetDefaultLayout(
+            let layout = ContourMap.GetDefaultLayout(
                 table.Label :?> string, 
                 table.ColumnLabel :?> string, 
                 table.RowLabel :?> string, 
                 "")
-            let seg = Surface3DEfficiencyMap.CreateInlineHTML(table, layout, colorscale)
+            let seg = ContourMap.CreateInlineHTML(table, layout, colorscale)
             segments.Append(seg)
 
         let html = String.Format(CONSTANTS.HTML_TEMPLATE, segments.ToString())

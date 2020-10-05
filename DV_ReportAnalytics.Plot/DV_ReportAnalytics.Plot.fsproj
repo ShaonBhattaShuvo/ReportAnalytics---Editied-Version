@@ -15,6 +15,8 @@
     <WarningsAsErrors>3239;$(WarningsAsErrors)</WarningsAsErrors>
     <Name>DV_ReportAnalytics.Plot</Name>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -92,12 +94,14 @@
     <Compile Include="AssemblyInfo.fs" />
     <Compile Include="Constants.fs" />
     <Compile Include="DataTypes.fs" />
-    <Compile Include="Surface3DEfficiencyMap.fs" />
+    <Compile Include="ContourMap.fs" />
     <Compile Include="PlotChart.fs" />
     <Content Include="plotly-latest.min.js">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="packages.config" />
+    <Compile Include="Surface3DEfficiencyMap.fs" />
+    <Compile Include="PlotChart3D.fs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="FSharp.Core">

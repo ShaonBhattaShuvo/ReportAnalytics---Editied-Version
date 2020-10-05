@@ -98,6 +98,7 @@ namespace DV_ReportAnalytics.App
             _controller = new SpreadsheetGearWorkbookViewController((WorkbookView)_workspaceView.WorkbookView);
             ReloadWorkspace();
             InitModel();
+            DrawTables3D();
             DrawTables(); // remove this if tables are not required to show up after loading
            //DrawImage(path);
         }
@@ -106,11 +107,13 @@ namespace DV_ReportAnalytics.App
         {
             InitModel();
             DrawTables();
+            //DrawTables3D();
         }
 
         private void OnDisplayViewClosed(object sender, EventArgs eventArgs)
         {
             DrawTables();
+            //DrawTables3D();
         }
 
         private void InitModel()
@@ -160,7 +163,21 @@ namespace DV_ReportAnalytics.App
                 _config.OutputSheetName,
                 _config.MaximumItemsPerRow,
                 true);
-            PlotChart.CreateSurfaceHTML(CONSTANTS.SURFACE_MAP_FILE, tables);
+            PlotChart.CreateSurfaceHTML(CONSTANTS.CONTOUR_MAP_FILE, tables);
+        }
+        internal void DrawTables3D()
+        {
+            var tables = _model.GetTableInfoCollection(
+                _model.TableNames,
+                _config.RowInterpolation,
+                _config.ColumnInterpolation);
+
+            _controller.UpdateSheetWithTables(
+                tables,
+                _config.OutputSheetName,
+                _config.MaximumItemsPerRow,
+                true);
+            PlotChart3D.CreateSurfaceHTML(CONSTANTS.SURFACE_MAP_FILE, tables);
         }
         //internal void DrawImage(string imageLocation) 
         //{
@@ -177,8 +194,18 @@ namespace DV_ReportAnalytics.App
                 _model.TableNames,
                 _config.RowInterpolation,
                 _config.ColumnInterpolation);
-            return PlotChart.CreateSurfaceHTML(CONSTANTS.SURFACE_MAP_FILE, tables);
+            return PlotChart.CreateSurfaceHTML(CONSTANTS.CONTOUR_MAP_FILE, tables);
         }
-       
+        internal string GetHtmlTable3D()
+        {
+            // Shaon
+            var tables = _model.GetTableInfoCollection(
+                _model.TableNames,
+                _config.RowInterpolation,
+                _config.ColumnInterpolation);
+            return PlotChart3D.CreateSurfaceHTML(CONSTANTS.SURFACE_MAP_FILE, tables);
+        }
+
+
     }
 }

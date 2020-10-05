@@ -9,11 +9,17 @@ namespace DV_ReportAnalytics.App.Presenters
 {
     public class EPTPresenterProxy
     {
-        public string GetSurfaceHTML(string filePath)
+        public string GetContourHTML(string filePath)
         {
             EPTPresenter presenter = new EPTPresenter();
             presenter.InitModelFromFile(filePath);
             return presenter.GetHtmlTable();
+        }
+        public string GetSurfaceHTML(string filePath)
+        {
+            EPTPresenter presenter = new EPTPresenter();
+            presenter.InitModelFromFile(filePath);
+            return presenter.GetHtmlTable3D();
         }
         public string Screenshot(string url)
         {
@@ -29,11 +35,17 @@ namespace DV_ReportAnalytics.App.Presenters
             driver.Quit();
             return outputPath; 
         }
-        public string WriteSurfaceHtml(string html, string destinationFileLocation)
+        public string WriteContourHtml(string html, string destinationFileLocation)
         {
-            string outputPath = GetPath(destinationFileLocation) + "output.html";
+            string outputPath = GetPath(destinationFileLocation) + "Contour.html";
             File.WriteAllText(outputPath, html);
             return outputPath; 
+        }
+        public string WriteSurfaceHtml(string html, string destinationFileLocation)
+        {
+            string outputPath = GetPath(destinationFileLocation) + "Surface3D.html";
+            File.WriteAllText(outputPath, html);
+            return outputPath;
         }
         public string GetPath(string fileLocation) {
             Char charRange = '\\';
@@ -69,8 +81,9 @@ namespace DV_ReportAnalytics.App.Presenters
             System.Diagnostics.Process.Start(url);
         }
         public string CreateHTMLandPng(string path) {
-            string htmlLocation = WriteSurfaceHtml(GetSurfaceHTML(path), path); 
-            string imageLocation = Screenshot(htmlLocation);
+            string surfacehtmlLocation = WriteSurfaceHtml(GetSurfaceHTML(path), path);
+            string contourhtmlLocation = WriteContourHtml(GetContourHTML(path), path); 
+            string imageLocation = Screenshot(contourhtmlLocation);
             //string directoryLocation = GetDirectory(path); //if we want to create directory in the same location of the input file
             string directoryLocation = @"C:\Temp\DV_Imagefiles";
             Directory.CreateDirectory(directoryLocation);

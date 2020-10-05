@@ -10,5 +10,6 @@
     {
         public const string SURFACE_MAP_FILE = "surface.html";
         public const string ASSEMBLY_INFO_SOURCE = "DV_ReportAnalytics";
+        public const string CONTOUR_MAP_FILE = "contour.html";
     }
 }

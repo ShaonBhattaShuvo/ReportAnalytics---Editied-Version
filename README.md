@@ -5,7 +5,9 @@
 - Read and process xls/xlsx files
 - Data interpolation
 - 3D surface graph plotting
+- Contour map plotting
 - Configuration import / export
+- GUI and CLI integration
 
 [![](READMEFILES/badge-buildpassing.svg)][this]
 [![](READMEFILES/badge-version.svg)][this]  
@@ -436,11 +438,16 @@ module public PlotChart =
 Simple static module which is designed for generating static HTML file by feeding file path and tables to be plotted. tables is a generic **enumerable** type `seq<'a>` whose elements are `TableInfo` defined in `Core` layer. `seq<'a>` is compatible with `IEnumerable<T>` in C# so it is a wise choice that pass a type which implementes `IEnumerable<TableInfo>`.
 
 ## Team
-[D&V Electronics](https://github.com/dvelectronics) | [Fang Deng](https://github.com/peromage)
+[D&V Electronics](https://github.com/dvelectronics) | [Fang Deng](https://github.com/peromage) | [Shaon Bhatta Shuvo] (https://github.com/shaonbhattashuvo)
 --- | ---
-<img src="https://avatars2.githubusercontent.com/u/37849386?s=200&v=4" width="100" height="100" /> | <img src="https://avatars1.githubusercontent.com/u/10389606?s=460&v=4" width="100" height="100" />
+<img src="https://avatars2.githubusercontent.com/u/37849386?s=200&v=4" width="100" height="100" /> | <img src="https://avatars1.githubusercontent.com/u/10389606?s=460&v=4" width="100" height="100" /> | <<img src="https://avatars1.githubusercontent.com/u/10389606?s=460&v=4" width="100" height="100" />>
 
 ## Progression
+ 
+ Saving each contour map separately.
+Generating report along with contour maps. 
+Report export function.
+ Support of Command Line Argument (CLI).
 - [x] Integration of SpreadsheetGear.
 - [x] EPT data structure.
 - [x] Support of report export.
@@ -448,16 +455,19 @@ Simple static module which is designed for generating static HTML file by feedin
 - [x] Support of configuration.
 - [x] Support of configuration import / export.
 - [x] EPT data interpolation algorithm.
-- [x] 3D graph surface plotting.
-- [x] 3D graph visual optimization.
-- [ ] 3D graph export function.
-- [ ] Selective display of tables
-- [ ] Support of CLI
-- [ ] Build scripts for organizing file hierarchy and cleaning garbage files.
+- [x] 3D surface graph plotting.
+- [x] Contour map plotting.
+- [x] Graph visual optimization.
+- [x] 3D surface graph export function.
+- [x] Countour Plot export function.
+- [x] Saving each plot separately.
+- [x] Adding contour plots to the report.
+- [x] Support of CLI.
+- [] Build scripts for organizing file hierarchy and cleaning garbage files.
 
 
 ## Copyright
-Copyright ©  2019 D&V ELECTRONICS LTD.
+Copyright ©  2020 D&V ELECTRONICS LTD.
 
 <!-- Links -->
 [dotnet]:https://dotnet.microsoft.com/

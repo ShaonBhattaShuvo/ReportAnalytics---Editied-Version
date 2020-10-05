@@ -34,7 +34,9 @@
             this.toolStripButtonSaveFile = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSettings = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonTableDisplay = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonGraphToggle = new System.Windows.Forms.ToolStripButton();
+            this.toolStripDropDownButton1 = new System.Windows.Forms.ToolStripDropDownButton();
+            this.contourPlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dPlotToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripButtonHelp = new System.Windows.Forms.ToolStripButton();
             this.splitContainerMain = new System.Windows.Forms.SplitContainer();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
@@ -55,13 +57,13 @@
             this.toolStripButtonSaveFile,
             this.toolStripButtonSettings,
             this.toolStripButtonTableDisplay,
-            this.toolStripButtonGraphToggle,
+            this.toolStripDropDownButton1,
             this.toolStripButtonHelp});
             this.toolStripMain.LayoutStyle = System.Windows.Forms.ToolStripLayoutStyle.HorizontalStackWithOverflow;
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Padding = new System.Windows.Forms.Padding(2, 0, 0, 2);
-            this.toolStripMain.Size = new System.Drawing.Size(784, 33);
+            this.toolStripMain.Padding = new System.Windows.Forms.Padding(3, 0, 0, 2);
+            this.toolStripMain.Size = new System.Drawing.Size(1045, 33);
             this.toolStripMain.TabIndex = 0;
             // 
             // toolStripButtonOpenFile
@@ -71,7 +73,7 @@
             this.toolStripButtonOpenFile.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.folder_32;
             this.toolStripButtonOpenFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonOpenFile.Name = "toolStripButtonOpenFile";
-            this.toolStripButtonOpenFile.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonOpenFile.Size = new System.Drawing.Size(29, 28);
             this.toolStripButtonOpenFile.Tag = "Open";
             this.toolStripButtonOpenFile.Text = "Open File";
             this.toolStripButtonOpenFile.Click += new System.EventHandler(this.ToolStripButtonOpenFile_Click);
@@ -83,7 +85,7 @@
             this.toolStripButtonSaveFile.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.save_as_32;
             this.toolStripButtonSaveFile.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSaveFile.Name = "toolStripButtonSaveFile";
-            this.toolStripButtonSaveFile.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonSaveFile.Size = new System.Drawing.Size(29, 28);
             this.toolStripButtonSaveFile.Tag = "Save";
             this.toolStripButtonSaveFile.Text = "Save File";
             this.toolStripButtonSaveFile.Click += new System.EventHandler(this.ToolStripButtonSaveFile_Click);
@@ -95,7 +97,7 @@
             this.toolStripButtonSettings.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.settings_32;
             this.toolStripButtonSettings.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSettings.Name = "toolStripButtonSettings";
-            this.toolStripButtonSettings.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonSettings.Size = new System.Drawing.Size(29, 28);
             this.toolStripButtonSettings.Tag = "Settings";
             this.toolStripButtonSettings.Text = "Settings";
             this.toolStripButtonSettings.Click += new System.EventHandler(this.ToolStripButtonSettings_Click);
@@ -107,22 +109,38 @@
             this.toolStripButtonTableDisplay.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.list_32;
             this.toolStripButtonTableDisplay.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonTableDisplay.Name = "toolStripButtonTableDisplay";
-            this.toolStripButtonTableDisplay.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonTableDisplay.Size = new System.Drawing.Size(29, 28);
             this.toolStripButtonTableDisplay.Tag = "Table";
             this.toolStripButtonTableDisplay.Text = "Table Display";
             this.toolStripButtonTableDisplay.Click += new System.EventHandler(this.ToolStripButtonTableDisplay_Click);
             // 
-            // toolStripButtonGraphToggle
+            // toolStripDropDownButton1
             // 
-            this.toolStripButtonGraphToggle.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonGraphToggle.Enabled = false;
-            this.toolStripButtonGraphToggle.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.area_chart_32;
-            this.toolStripButtonGraphToggle.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonGraphToggle.Name = "toolStripButtonGraphToggle";
-            this.toolStripButtonGraphToggle.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButtonGraphToggle.Tag = "Graph";
-            this.toolStripButtonGraphToggle.Text = "Toggle Graph Window";
-            this.toolStripButtonGraphToggle.Click += new System.EventHandler(this.ToolStripButtonGraphToggle_Click);
+            this.toolStripDropDownButton1.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripDropDownButton1.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.contourPlotToolStripMenuItem,
+            this.dPlotToolStripMenuItem});
+            this.toolStripDropDownButton1.Enabled = false;
+            this.toolStripDropDownButton1.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.area_chart_32;
+            this.toolStripDropDownButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripDropDownButton1.Name = "toolStripDropDownButton1";
+            this.toolStripDropDownButton1.Size = new System.Drawing.Size(38, 28);
+            this.toolStripDropDownButton1.Tag = "Graph";
+            this.toolStripDropDownButton1.Text = "Toggle Graph Window";
+            // 
+            // contourPlotToolStripMenuItem
+            // 
+            this.contourPlotToolStripMenuItem.Name = "contourPlotToolStripMenuItem";
+            this.contourPlotToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.contourPlotToolStripMenuItem.Text = "Contour Map";
+            this.contourPlotToolStripMenuItem.Click += new System.EventHandler(this.contourPlotToolStripMenuItem_Click);
+            // 
+            // dPlotToolStripMenuItem
+            // 
+            this.dPlotToolStripMenuItem.Name = "dPlotToolStripMenuItem";
+            this.dPlotToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dPlotToolStripMenuItem.Text = "3D Surface Plot";
+            this.dPlotToolStripMenuItem.Click += new System.EventHandler(this.dPlotToolStripMenuItem_Click);
             // 
             // toolStripButtonHelp
             // 
@@ -130,7 +148,7 @@
             this.toolStripButtonHelp.Image = global::DV_ReportAnalytics.GUI.Properties.Resources.help_32;
             this.toolStripButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonHelp.Name = "toolStripButtonHelp";
-            this.toolStripButtonHelp.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonHelp.Size = new System.Drawing.Size(29, 28);
             this.toolStripButtonHelp.Tag = "Help";
             this.toolStripButtonHelp.Text = "Help";
             this.toolStripButtonHelp.Click += new System.EventHandler(this.ToolStripButtonHelp_Click);
@@ -139,14 +157,16 @@
             // 
             this.splitContainerMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.splitContainerMain.Location = new System.Drawing.Point(0, 33);
+            this.splitContainerMain.Margin = new System.Windows.Forms.Padding(4);
             this.splitContainerMain.Name = "splitContainerMain";
             // 
             // splitContainerMain.Panel2
             // 
             this.splitContainerMain.Panel2.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.splitContainerMain.Panel2Collapsed = true;
-            this.splitContainerMain.Size = new System.Drawing.Size(784, 528);
+            this.splitContainerMain.Size = new System.Drawing.Size(1045, 657);
             this.splitContainerMain.SplitterDistance = 392;
+            this.splitContainerMain.SplitterWidth = 5;
             this.splitContainerMain.TabIndex = 1;
             // 
             // saveFileDialog
@@ -156,12 +176,13 @@
             // 
             // MainForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 561);
+            this.ClientSize = new System.Drawing.Size(1045, 690);
             this.Controls.Add(this.splitContainerMain);
             this.Controls.Add(this.toolStripMain);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "MainForm";
             this.Text = "DV Report Analytics";
             this.Load += new System.EventHandler(this.MainForm_Load);
@@ -180,11 +201,13 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonOpenFile;
         private System.Windows.Forms.ToolStripButton toolStripButtonSaveFile;
         private System.Windows.Forms.ToolStripButton toolStripButtonTableDisplay;
-        private System.Windows.Forms.ToolStripButton toolStripButtonGraphToggle;
         private System.Windows.Forms.ToolStripButton toolStripButtonSettings;
         private System.Windows.Forms.ToolStripButton toolStripButtonHelp;
         private System.Windows.Forms.SplitContainer splitContainerMain;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripDropDownButton1;
+        private System.Windows.Forms.ToolStripMenuItem contourPlotToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem dPlotToolStripMenuItem;
     }
 }
 
