@@ -438,16 +438,12 @@ module public PlotChart =
 Simple static module which is designed for generating static HTML file by feeding file path and tables to be plotted. tables is a generic **enumerable** type `seq<'a>` whose elements are `TableInfo` defined in `Core` layer. `seq<'a>` is compatible with `IEnumerable<T>` in C# so it is a wise choice that pass a type which implementes `IEnumerable<TableInfo>`.
 
 ## Team
-[D&V Electronics](https://github.com/dvelectronics) | [Fang Deng](https://github.com/peromage) | [Shaon Bhatta Shuvo] (https://github.com/shaonbhattashuvo)
+[D&V Electronics](https://github.com/dvelectronics) | [Fang Deng](https://github.com/peromage) | [Shaon Bhatta Shuvo](https://github.com/shaonbhattashuvo)
 --- | ---
-<img src="https://avatars2.githubusercontent.com/u/37849386?s=200&v=4" width="100" height="100" /> | <img src="https://avatars1.githubusercontent.com/u/10389606?s=460&v=4" width="100" height="100" /> | <<img src="https://avatars1.githubusercontent.com/u/10389606?s=460&v=4" width="100" height="100" />>
+<img src="https://avatars2.githubusercontent.com/u/37849386?s=200&v=4" width="100" height="100" /> | <img src="https://avatars1.githubusercontent.com/u/10389606?s=460&v=4" width="100" height="100" /> | <<img src="https://avatars.githubusercontent.com/shaonbhattashuvo?s=460&v=4" width="100" height="100" />>
 
 ## Progression
  
- Saving each contour map separately.
-Generating report along with contour maps. 
-Report export function.
- Support of Command Line Argument (CLI).
 - [x] Integration of SpreadsheetGear.
 - [x] EPT data structure.
 - [x] Support of report export.
@@ -462,9 +458,8 @@ Report export function.
 - [x] Countour Plot export function.
 - [x] Saving each plot separately.
 - [x] Adding contour plots to the report.
-- [x] Support of CLI.
-- [] Build scripts for organizing file hierarchy and cleaning garbage files.
-
+- [x] Support of Command Line Argument (CLI).
+- [ ] Build scripts for organizing file hierarchy and cleaning garbage files.
 
 ## Copyright
 Copyright ©  2020 D&V ELECTRONICS LTD.
