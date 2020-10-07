@@ -70,7 +70,7 @@ namespace DV_ReportAnalytics.App.Presenters
             Bitmap newPic;
             for (int i = 0, k = 100; i < plot_names.Length; i++, k = k + 500)
             {
-                rect = new Rectangle(70, k, originalImage.Width - 180, originalImage.Height / 14);
+                rect = new Rectangle(20, k, originalImage.Width - 120, originalImage.Height / 14);
                 newPic = originalImage.Clone(rect, originalImage.PixelFormat);
                 string savingLocation = directoryLocation + "/" + plot_names[i] + ".png";
                 newPic.Save(savingLocation);
