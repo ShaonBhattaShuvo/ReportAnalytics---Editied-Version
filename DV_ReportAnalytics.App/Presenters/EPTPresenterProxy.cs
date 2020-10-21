@@ -21,7 +21,7 @@ namespace DV_ReportAnalytics.App.Presenters
             presenter.InitModelFromFile(filePath);
             return presenter.GetHtmlTable3D();
         }
-        public string Screenshot(string url)
+        public string Screenshot(string url, string imageName)
         {
             ChromeOptions options = new ChromeOptions();
             options.AddArgument("headless");//Comment if we want to see the window. 
@@ -29,7 +29,7 @@ namespace DV_ReportAnalytics.App.Presenters
             driver.Manage().Window.Size = new System.Drawing.Size(800, 7110);
             driver.Navigate().GoToUrl(url);
             var screenshot = (driver as ITakesScreenshot).GetScreenshot();
-            string outputPath = GetPath(url) + "output.png";
+            string outputPath = GetPath(url) + imageName;
             screenshot.SaveAsFile(outputPath);
             driver.Close();
             driver.Quit();
@@ -83,7 +83,7 @@ namespace DV_ReportAnalytics.App.Presenters
         public string CreateHTMLandPng(string path) {
             string surfacehtmlLocation = WriteSurfaceHtml(GetSurfaceHTML(path), path);
             string contourhtmlLocation = WriteContourHtml(GetContourHTML(path), path); 
-            string imageLocation = Screenshot(contourhtmlLocation);
+            string imageLocation = Screenshot(contourhtmlLocation, "Contour.png");
             //string directoryLocation = GetDirectory(path); //if we want to create directory in the same location of the input file
             string directoryLocation = @"C:\Temp\DV_Imagefiles";
             Directory.CreateDirectory(directoryLocation);

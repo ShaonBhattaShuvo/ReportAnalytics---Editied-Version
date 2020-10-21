@@ -30,14 +30,19 @@ namespace DV_ReportAnalytics
                 //The enter key takes care of displaying the prompt again.
                 //SpreadsheetGearWorkbookViewController svc = new SpreadsheetGearWorkbookViewController();
                 string contourHtmlLocation = proxy.WriteContourHtml(proxy.GetContourHTML(args[0]), args[0]);
-                string surfaceHtmlLocatoin = proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[0]);
+                string surfaceHtmlLocation = proxy.WriteSurfaceHtml(proxy.GetSurfaceHTML(args[0]), args[0]);
                 //Opening the html file in default browser
                 //proxy.OpenHTML(htmlLocation);
                 //Capturing Screenshop as png format. 
-                string imageLocation = proxy.Screenshot(contourHtmlLocation);
-                string directoryLocation = proxy.GetDirectory(args[0]);
+                string imageLocation = proxy.Screenshot(contourHtmlLocation,"Contour.png");
+                //string directoryLocation = proxy.GetDirectory(args[0]); //if we want to create directory according to same name as input file
+                string directoryLocation = proxy.GetPath(args[0])+"/ContourImages";
                 Directory.CreateDirectory(directoryLocation);
                 proxy.SplitImage(imageLocation,directoryLocation);
+                imageLocation = proxy.Screenshot(surfaceHtmlLocation, "Surface3D.png");
+                directoryLocation = proxy.GetPath(args[0]) + "/Surface3DImages";
+                Directory.CreateDirectory(directoryLocation);
+                proxy.SplitImage(imageLocation, directoryLocation);
                 System.Windows.Forms.SendKeys.SendWait("{ENTER}");
                 Application.Exit();
                 // pass input/output path as argument e.g. "C:\Users\Downloads\test-Copy.xlsx"
@@ -52,13 +57,18 @@ namespace DV_ReportAnalytics
                 //Opening the html file in default browser
                 //proxy.OpenHTML(args[1]);
                 //Capturing Screenshop as png format. 
-                string imageLocation = proxy.Screenshot(contourHtmlLocation);
-                string directoryLocation = proxy.GetDirectory(args[1]);
+                string imageLocation = proxy.Screenshot(contourHtmlLocation, "Contour.png");
+                //string directoryLocation = proxy.GetDirectory(args[0]); //if we want to create directory according to same name as input file
+                string directoryLocation = proxy.GetPath(args[1]) + "/ContourImages";
+                Directory.CreateDirectory(directoryLocation);
+                proxy.SplitImage(imageLocation, directoryLocation);
+                imageLocation = proxy.Screenshot(surfaceHtmlLocation, "Surface3D.png");
+                directoryLocation = proxy.GetPath(args[1]) + "/Surface3DImages";
                 Directory.CreateDirectory(directoryLocation);
                 proxy.SplitImage(imageLocation, directoryLocation);
                 System.Windows.Forms.SendKeys.SendWait("{ENTER}");
                 Application.Exit();
-                //pass input/output path as argument e.g. "C:\Users\Downloads\test-Copy.xlsx" "C:\Users\Downloads\test-Copy.Result.html"
+                //pass input/output path as argument e.g. "C:\Users\Downloads\test-Copy.xlsx" "C:\Users\Downloads\"
             }
             else
             {
