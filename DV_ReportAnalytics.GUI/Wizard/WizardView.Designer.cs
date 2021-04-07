@@ -206,7 +206,7 @@
             // 
             // openFileDialog
             // 
-            this.openFileDialog.Filter = "Spreadsheet files|*.xlsx;*.xls";
+            this.openFileDialog.Filter = "Spreadsheet files|*.xlsx;*.xls;*.xlsm";
             // 
             // openFileDialogConfig
             // 
