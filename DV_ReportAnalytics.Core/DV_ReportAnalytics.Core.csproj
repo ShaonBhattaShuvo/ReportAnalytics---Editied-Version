@@ -1,5 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\..\..\..\Projects\Components\NuGetPackages\cef.redist.x64.89.0.17\build\cef.redist.x64.props" Condition="Exists('..\..\..\..\..\..\Projects\Components\NuGetPackages\cef.redist.x64.89.0.17\build\cef.redist.x64.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -95,11 +96,12 @@
     <PostBuildEvent>
     </PostBuildEvent>
   </PropertyGroup>
-  <Import Project="..\..\..\..\..\..\Projects\Components\NuGetPackages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\..\..\..\..\..\Projects\Components\NuGetPackages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\..\..\..\Projects\Components\NuGetPackages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\Projects\Components\NuGetPackages\Selenium.WebDriver.ChromeDriver.89.0.4389.2300\build\Selenium.WebDriver.ChromeDriver.targets'))" />
+    <Error Condition="!Exists('..\..\..\..\..\..\Projects\Components\NuGetPackages\cef.redist.x64.89.0.17\build\cef.redist.x64.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\Projects\Components\NuGetPackages\cef.redist.x64.89.0.17\build\cef.redist.x64.props'))" />
+    <Error Condition="!Exists('..\..\..\..\..\..\Projects\Components\NuGetPackages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\..\..\..\Projects\Components\NuGetPackages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets'))" />
   </Target>
+  <Import Project="..\..\..\..\..\..\Projects\Components\NuGetPackages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets" Condition="Exists('..\..\..\..\..\..\Projects\Components\NuGetPackages\Selenium.WebDriver.ChromeDriver.90.0.4430.2400\build\Selenium.WebDriver.ChromeDriver.targets')" />
 </Project>
