@@ -169,6 +169,7 @@
     <None Include="..\.editorconfig">
       <Link>.editorconfig</Link>
     </None>
+    <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DV_ReportAnalytics.App\DV_ReportAnalytics.App.csproj">

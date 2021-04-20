@@ -4,7 +4,8 @@ using System;
 using System.Drawing;
 using System.IO;
 using System.Reflection;
-
+using WebDriverManager;
+using WebDriverManager.DriverConfigs.Impl;
 namespace DV_ReportAnalytics.App.Presenters
 {
     public class EPTPresenterProxy
@@ -23,7 +24,7 @@ namespace DV_ReportAnalytics.App.Presenters
         }
         public string Screenshot(string url, string imageName)
         {
-            //new DriverManager().SetUpDriver(new ChromeConfig());
+            //new DriverManager().SetUpDriver(new ChromeConfig()); //webdriver manager for automatic update of drive to match new version
             ChromeOptions options = new ChromeOptions();
             //options.setBinary();
             options.AddArgument("headless");//Comment if we want to see the window. 
