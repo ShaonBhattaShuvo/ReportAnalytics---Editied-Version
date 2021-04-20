@@ -23,7 +23,9 @@ namespace DV_ReportAnalytics.App.Presenters
         }
         public string Screenshot(string url, string imageName)
         {
+            //new DriverManager().SetUpDriver(new ChromeConfig());
             ChromeOptions options = new ChromeOptions();
+            //options.setBinary();
             options.AddArgument("headless");//Comment if we want to see the window. 
             var driver = new ChromeDriver(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), options);
             driver.Manage().Window.Size = new System.Drawing.Size(800, 7110);
